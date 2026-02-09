@@ -114,7 +114,7 @@ const WhatsAppHeroSection: React.FC = () => {
                         className="text-base font-semibold px-8 h-14 border-white/20 text-white hover:bg-white/10 transition-all duration-300"
                         radius="full"
                         as="a"
-                        href="https://demo.evogroup.ai/demo"
+                        href="https://main.evogroup.ai/demo"
                         target="_blank"
                         rel="noopener noreferrer"
                     >
