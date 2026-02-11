@@ -13,15 +13,6 @@ export default function Hero() {
                 Создаем интеллектуальные решения для крупнейших компаний Кыргызстана
             </p>
 
-            <div className="space-y-4 md:space-y-0 md:space-x-4 md:flex md:justify-center">
-                <button className="bg-blue-600 hover:bg-blue-700 px-8 py-4 rounded-xl text-lg font-semibold transition-all duration-200 transform hover:scale-105 shadow-lg hover:shadow-xl text-white">
-                    Начать проект →
-                </button>
-                <button className="border border-white/20 px-8 py-4 rounded-xl text-lg font-semibold hover:bg-white/10 transition-all duration-200 backdrop-blur-sm text-white">
-                    Посмотреть кейсы
-                </button>
-            </div>
-
             {/* Статистики с анимированными счетчиками */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-16 max-w-4xl mx-auto">
                 <div className="text-center">

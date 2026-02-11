@@ -1,7 +1,6 @@
 'use client'
 
 import React, { useState, useEffect } from 'react'
-import { Button } from '@nextui-org/react'
 import { useTranslation } from '@/components/providers/I18nProvider'
 
 const ModernHero: React.FC = () => {
@@ -94,28 +93,6 @@ const ModernHero: React.FC = () => {
                 <p className="text-lg sm:text-xl lg:text-2xl text-white/70 max-w-3xl mx-auto mb-12 leading-relaxed animate-slide-up" style={{animationDelay: '0.2s'}}>
                     {translations.subtitle}
                 </p>
-
-                {/* CTA Buttons */}
-                <div className="flex flex-col sm:flex-row gap-4 justify-center mb-20 animate-slide-up" style={{animationDelay: '0.4s'}}>
-                    <Button
-                        size="lg"
-                        color="primary"
-                        className="text-base font-semibold px-8 h-14 bg-blue-600 hover:bg-blue-700 transition-all duration-300"
-                        radius="full"
-                        onPress={() => scrollToSection('contact')}
-                    >
-                        {translations.ctaPrimary}
-                    </Button>
-                    <Button
-                        size="lg"
-                        variant="bordered"
-                        className="text-base font-semibold px-8 h-14 border-white/20 text-white hover:bg-white/10 transition-all duration-300"
-                        radius="full"
-                        onPress={() => scrollToSection('technology')}
-                    >
-                        {translations.ctaSecondary}
-                    </Button>
-                </div>
 
                 {/* Stats */}
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 max-w-4xl mx-auto animate-slide-up" style={{animationDelay: '0.6s'}}>
