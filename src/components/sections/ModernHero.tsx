@@ -17,7 +17,7 @@ const ModernHero: React.FC = () => {
     const getTranslations = () => {
         if (locale === 'en') {
             return {
-                preTitle: 'Enterprise AI Solutions',
+                preTitle: 'EvoAI CRM Demo',
                 title: 'The future of business',
                 titleHighlight: ['is intelligent.', 'is automated.', 'is here.'],
                 subtitle: 'We create AI solutions that transform how leading companies in Kyrgyzstan work. From banks to government—we make the impossible possible.',
@@ -31,7 +31,7 @@ const ModernHero: React.FC = () => {
             }
         } else if (locale === 'ky') {
             return {
-                preTitle: 'Корпоративдүү ИИ чечимдери',
+                preTitle: 'Демо EvoAI CRM',
                 title: 'Бизнестин келечеги',
                 titleHighlight: ['акылдуу.', 'автоматташкан.', 'келди.'],
                 subtitle: 'Биз Кыргызстандын алдыңкы компанияларынын иш ыкмасын өзгөртүүчү ИИ чечимдерин түзөбүз. Банктардан мамлекетке чейин - мүмкүн эмес нерсени мүмкүн кылабыз.',
@@ -45,7 +45,7 @@ const ModernHero: React.FC = () => {
             }
         } else {
             return {
-                preTitle: 'Корпоративные AI решения',
+                preTitle: 'Демо EvoAI CRM',
                 title: 'Будущее бизнеса',
                 titleHighlight: ['умное.', 'быстрое.', 'уже здесь.'],
                 subtitle: 'Мы создаем AI-решения, которые трансформируют способ работы ведущих компаний Кыргызстана. От банков до государства — делаем невозможное возможным.',
@@ -74,9 +74,9 @@ const ModernHero: React.FC = () => {
             <div className="relative z-10 max-w-7xl mx-auto px-6 py-32 text-center">
                 {/* Pre-title */}
                 <div className="mb-8 animate-fade-in">
-                    <span className="inline-flex items-center px-4 py-2 rounded-full bg-white/5 backdrop-blur-xl border border-white/10 text-sm font-medium text-white/90">
+                    <a href="https://main.evogroup.ai/demo" target="_blank" rel="noopener noreferrer" className="inline-flex items-center px-4 py-2 rounded-full bg-white/5 backdrop-blur-xl border border-white/10 text-sm font-medium text-white/90 hover:bg-white/10 transition-colors">
                         {translations.preTitle}
-                    </span>
+                    </a>
                 </div>
 
                 {/* Main Title */}
