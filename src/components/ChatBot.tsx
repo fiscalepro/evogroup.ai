@@ -130,7 +130,7 @@ export default function ChatBot() {
     <>
       {/* WhatsApp Button */}
       <motion.a
-        href="https://wa.me/996550872711"
+        href="https://wa.me/996552343333"
         target="_blank"
         rel="noopener noreferrer"
         className="fixed bottom-6 right-24 z-50 w-14 h-14 bg-gradient-to-br from-green-500 to-green-600 rounded-full shadow-lg flex items-center justify-center text-white hover:shadow-xl transition-shadow"

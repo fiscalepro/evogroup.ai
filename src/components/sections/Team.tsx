@@ -97,7 +97,7 @@ export default function Team() {
                     gradient: 'from-orange-500 to-amber-500',
                     fullPosition: 'Sales Manager | B2B | IT and AI Solutions',
                     email: 'ely@evogroup.ai',
-                    whatsapp: '+996550872711',
+                    whatsapp: '+996552343333',
                     bio: 'Sales manager with B2B experience. Specializes in selling IT solutions, business process automation, and implementing AI tools. Manages the full sales cycle — from initial contact and identifying client needs to implementation and ongoing support.'
                 },
                 {
@@ -163,7 +163,7 @@ export default function Team() {
                     gradient: 'from-orange-500 to-amber-500',
                     fullPosition: 'Сатуу боюнча менеджер | B2B | IT жана AI чечимдери',
                     email: 'ely@evogroup.ai',
-                    whatsapp: '+996550872711',
+                    whatsapp: '+996552343333',
                     bio: 'B2B тармагында тажрыйбасы бар сатуу боюнча менеджер. IT-чечимдерди сатууга, бизнес-процесстерди автоматташтырууга жана AI-куралдарды ишке ашырууга адистешкен. Сатуунун толук циклин жүргүзөт — биринчи байланыштан жана кардардын муктаждыктарын аныктоодон баштап, ишке ашырууга жана андан кийинки колдоого чейин.'
                 },
                 {
@@ -229,7 +229,7 @@ export default function Team() {
                     gradient: 'from-orange-500 to-amber-500',
                     fullPosition: 'Менеджер по продажам | B2B | IT и AI-решения',
                     email: 'ely@evogroup.ai',
-                    whatsapp: '+996550872711',
+                    whatsapp: '+996552343333',
                     bio: 'Менеджер по продажам с опытом работы в B2B-сегменте. Специализируется на продаже IT-решений, автоматизации бизнес-процессов и внедрении AI-инструментов. Сопровождает полный цикл сделки — от первого контакта и выявления потребностей клиента до внедрения и дальнейшего сопровождения решений.'
                 },
                 {
