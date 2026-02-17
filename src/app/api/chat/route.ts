@@ -1,19 +1,20 @@
 import { NextRequest, NextResponse } from 'next/server';
 import OpenAI from 'openai';
 
-// Lazy initialization of DeepSeek client
+// Lazy initialization of OpenClaw client (OpenAI-compatible API)
 let client: OpenAI | null = null;
 
 function getClient(): OpenAI {
   if (!client) {
-    if (!process.env.DEEPSEEK_API_KEY) {
-      throw new Error('DEEPSEEK_API_KEY is not configured');
+    const token = process.env.OPENCLAW_GATEWAY_TOKEN;
+    if (!token) {
+      throw new Error('OPENCLAW_GATEWAY_TOKEN is not configured');
     }
     client = new OpenAI({
-      apiKey: process.env.DEEPSEEK_API_KEY,
-      baseURL: 'https://api.deepseek.com',
-      timeout: 30000,
-      maxRetries: 3,
+      apiKey: token,
+      baseURL: process.env.OPENCLAW_API_URL || 'https://platform2.evogroup.ai/v1',
+      timeout: 60000,
+      maxRetries: 2,
     });
   }
   return client;
@@ -52,48 +53,8 @@ function sanitizeInput(text: string): string {
     .trim();
 }
 
-// System prompt for EvoGroup AI assistant
-const SYSTEM_PROMPT = `Ты — AI-ассистент компании EvoGroup.ai. Отвечаешь клиентам в WhatsApp.
-
-КОМПАНИЯ:
-EvoGroup.ai создаёт AI чат-ботов для автоматизации бизнеса (WhatsApp, Telegram, Instagram).
-Ниши: магазины, автосервисы, детейлинг, строительство, услуги.
-
-ЦЕНЫ:
-- Пробный месяц — бесплатно
-- Внедрение — от 15,000 сом
-- Подписка — от 8,000 сом/мес
-Точная цена зависит от задач. Предложи бесплатную консультацию для расчёта.
-
-СРОКИ: 3-14 дней в зависимости от сложности.
-
-КЕЙСЫ:
-- Avtoestet.kg (детейлинг): +50% записей
-- Home-wise UZ (строительство): +60% лидов
-- toot.kg (магазин): +70% продаж
-
-КОНТАКТЫ:
-- Instagram: @evogroup.ai
-- Сайт: evogroup.ai
-- Телефон: +996 552 343 333
-
-ПРАВИЛА ОБЩЕНИЯ:
-
-1. КРАТКОСТЬ. Отвечай 2-4 предложениями. Не пиши стены текста. Не перечисляй всё сразу — давай информацию порциями.
-
-2. ЕСТЕСТВЕННОСТЬ. Пиши как живой человек в мессенджере, не как робот. Без формальных списков и нумерованных меню. Не копируй шаблоны дословно.
-
-3. БЕЗ ЭМОДЗИ. Не используй эмодзи вообще. Пиши чистым текстом.
-
-4. ОДИН ВОПРОС. Задавай только один вопрос за раз. Не засыпай клиента вопросами.
-
-5. СЛУШАЙ КЛИЕНТА. Отвечай на то, что спросили. Не перенаправляй на меню. Не навязывай тему.
-
-6. КВАЛИФИКАЦИЯ. Узнай тип бизнеса и что хотят автоматизировать — но через естественный разговор, не через анкету.
-
-7. МЕНЕДЖЕР. Если клиент просит связать с менеджером — скажи что передашь запрос и менеджер свяжется. Попроси оставить имя и удобное время.
-
-8. ВОЗРАЖЕНИЯ. Если сомневается — упомяни бесплатный пробный месяц. Не давай длинных списков гарантий.`;
+// Agent ID for the OpenClaw demo bot
+const OPENCLAW_AGENT_ID = process.env.OPENCLAW_AGENT_ID || 'demo_bot';
 
 export async function POST(req: NextRequest) {
   try {
@@ -113,7 +74,7 @@ export async function POST(req: NextRequest) {
     }
 
     const body = await req.json();
-    const { messages, userContext } = body;
+    const { messages } = body;
 
     if (!messages || !Array.isArray(messages)) {
       return NextResponse.json(
@@ -136,27 +97,14 @@ export async function POST(req: NextRequest) {
       content: sanitizeInput(m.content || '')
     })).filter(m => m.content.length > 0);
 
-    // Add user context to system prompt if provided
-    let enhancedSystemPrompt = SYSTEM_PROMPT;
-    if (userContext) {
-      enhancedSystemPrompt += `\n\nКОНТЕКСТ ПОЛЬЗОВАТЕЛЯ:\n${JSON.stringify(userContext, null, 2)}`;
-    }
+    // Generate stable user ID for session persistence
+    const userId = `web_${ip.replace(/[^a-zA-Z0-9]/g, '_')}`;
 
-    // Prepare messages for API
-    const apiMessages = [
-      { role: 'system', content: enhancedSystemPrompt },
-      ...sanitizedMessages,
-    ];
-
-    // Call DeepSeek API
+    // Call OpenClaw API (system prompt is configured in the agent's CLAUDE.md)
     const completion = await getClient().chat.completions.create({
-      model: 'deepseek-chat',
-      messages: apiMessages as OpenAI.Chat.Completions.ChatCompletionMessageParam[],
-      temperature: 0.7, // Баланс между творчеством и точностью
-      max_tokens: 500, // Короткие и по делу ответы
-      top_p: 0.9,
-      frequency_penalty: 0.2,
-      presence_penalty: 0.2,
+      model: `openclaw:${OPENCLAW_AGENT_ID}`,
+      messages: sanitizedMessages as OpenAI.Chat.Completions.ChatCompletionMessageParam[],
+      user: userId,
       stream: false,
     });
 
@@ -208,7 +156,7 @@ export async function POST(req: NextRequest) {
 export async function GET() {
   return NextResponse.json({
     status: 'ok',
-    service: 'EvoGroup AI Chat',
+    service: 'EvoGroup AI Chat (OpenClaw)',
     version: '1.0.0'
   });
 }
