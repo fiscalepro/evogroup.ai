@@ -41,7 +41,7 @@ const securityHeaders = [
             "font-src 'self' https://fonts.gstatic.com data:",
             "img-src 'self' data: blob: https:",
             "media-src 'self' blob:",
-            "connect-src 'self' https://api.web3forms.com https://api.deepseek.com https://wa.me",
+            "connect-src 'self' https://api.web3forms.com https://platform2.evogroup.ai https://wa.me",
             "frame-ancestors 'none'",
             "base-uri 'self'",
             "form-action 'self' https://api.web3forms.com"
