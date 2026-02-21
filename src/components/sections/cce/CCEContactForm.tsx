@@ -225,7 +225,7 @@ const CCEContactForm: React.FC = () => {
                     email: formData.email,
                     phone: formData.phone,
                     company: formData.company,
-                    message: `Размер команды: ${formData.teamSize || 'Не указан'}\n\n${formData.message}`,
+                    description: `Размер команды: ${formData.teamSize || 'Не указан'}\n\n${formData.message}`,
                 }),
             })
 
