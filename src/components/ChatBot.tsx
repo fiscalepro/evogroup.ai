@@ -77,7 +77,7 @@ export default function ChatBot() {
         if (window.turnstile) {
           clearInterval(poll);
           resolve(true);
-        } else if (attempts > 30) { // 3s timeout
+        } else if (attempts > 50) { // 5s timeout
           clearInterval(poll);
           resolve(false);
         }
@@ -102,7 +102,7 @@ export default function ChatBot() {
 
     // Create fresh container — each render into a new DOM element works reliably
     const container = document.createElement('div');
-    container.style.cssText = 'visibility:hidden;position:fixed;left:0;top:0;width:300px;height:65px;overflow:hidden;pointer-events:none;z-index:-1';
+    container.style.cssText = 'opacity:0;position:fixed;left:0;bottom:0;width:300px;height:65px;overflow:hidden;z-index:-1';
     container.setAttribute('aria-hidden', 'true');
     document.body.appendChild(container);
 
