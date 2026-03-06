@@ -12,6 +12,10 @@ RUN bun install --frozen-lockfile
 # Copy application files
 COPY . .
 
+# Accept build-time env vars (Coolify passes them as --build-arg)
+ARG NEXT_PUBLIC_TURNSTILE_SITE_KEY
+ENV NEXT_PUBLIC_TURNSTILE_SITE_KEY=$NEXT_PUBLIC_TURNSTILE_SITE_KEY
+
 # Build the application
 ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1
