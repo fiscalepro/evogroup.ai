@@ -90,6 +90,10 @@ export default function ChatBot() {
       },
       'expired-callback': () => {
         turnstileTokenRef.current = null;
+        if (pendingResolveRef.current) {
+          pendingResolveRef.current(null);
+          pendingResolveRef.current = null;
+        }
       },
     });
   }, []);
