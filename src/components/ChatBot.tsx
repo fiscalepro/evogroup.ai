@@ -43,6 +43,7 @@ export default function ChatBot() {
   const widgetIdRef = useRef<string | null>(null);
   const turnstileTokenRef = useRef<string | null>(null);
   const turnstileContainerRef = useRef<HTMLDivElement>(null);
+  const pendingResolveRef = useRef<((token: string | null) => void) | null>(null);
 
   // Auto-scroll to bottom
   const scrollToBottom = () => {
@@ -71,11 +72,23 @@ export default function ChatBot() {
     turnstileTokenRef.current = null;
     widgetIdRef.current = window.turnstile.render(turnstileContainerRef.current, {
       sitekey: TURNSTILE_SITE_KEY,
-      appearance: 'always',
+      appearance: 'interaction-only',
+      refreshExpired: 'auto',
       callback: (token: string) => {
         turnstileTokenRef.current = token;
+        if (pendingResolveRef.current) {
+          pendingResolveRef.current(token);
+          pendingResolveRef.current = null;
+        }
       },
       'error-callback': () => {
+        turnstileTokenRef.current = null;
+        if (pendingResolveRef.current) {
+          pendingResolveRef.current(null);
+          pendingResolveRef.current = null;
+        }
+      },
+      'expired-callback': () => {
         turnstileTokenRef.current = null;
       },
     });
@@ -105,7 +118,7 @@ export default function ChatBot() {
     });
   };
 
-  // Get a fresh Turnstile token (reset + wait for callback)
+  // Get a fresh Turnstile token (callback-driven, no polling)
   const getTurnstileToken = async (): Promise<string | null> => {
     if (!TURNSTILE_SITE_KEY) {
       return null; // No Turnstile configured — graceful fallback
@@ -118,38 +131,29 @@ export default function ChatBot() {
     // If widget hasn't been rendered yet, render it now
     if (!widgetIdRef.current) {
       renderTurnstile();
-      // Wait briefly for initial token
-      await new Promise((r) => setTimeout(r, 500));
     }
 
     if (!widgetIdRef.current) return null;
 
+    // If token already available (from initial render or auto-refresh), use it
+    if (turnstileTokenRef.current) {
+      const token = turnstileTokenRef.current;
+      turnstileTokenRef.current = null;
+      return token;
+    }
+
+    // No token — reset widget and wait for callback
     return new Promise((resolve) => {
-      // If we already have a token from initial render, use it
-      if (turnstileTokenRef.current) {
-        const token = turnstileTokenRef.current;
-        turnstileTokenRef.current = null;
-        resolve(token);
-        return;
-      }
+      pendingResolveRef.current = resolve;
+      window.turnstile!.reset(widgetIdRef.current!);
 
-      // Remove and re-render widget for a fresh token
-      // (reset() doesn't work reliably with off-screen managed widgets)
-      renderTurnstile();
-
-      let attempts = 0;
-      const poll = setInterval(() => {
-        attempts++;
-        if (turnstileTokenRef.current) {
-          clearInterval(poll);
-          const token = turnstileTokenRef.current;
-          turnstileTokenRef.current = null;
-          resolve(token);
-        } else if (attempts > 50) { // 5s timeout
-          clearInterval(poll);
+      // Safety timeout 5s
+      setTimeout(() => {
+        if (pendingResolveRef.current === resolve) {
+          pendingResolveRef.current = null;
           resolve(null);
         }
-      }, 100);
+      }, 5000);
     });
   };
 
@@ -261,7 +265,7 @@ export default function ChatBot() {
       {TURNSTILE_SITE_KEY && (
         <div
           ref={turnstileContainerRef}
-          style={{ position: 'fixed', left: '-9999px', top: '-9999px', width: '300px', height: '65px' }}
+          style={{ visibility: 'hidden', position: 'absolute', width: 0, height: 0, pointerEvents: 'none' }}
           aria-hidden="true"
         />
       )}

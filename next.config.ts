@@ -56,9 +56,6 @@ const securityHeaders = [
 ]
 
 const nextConfig: NextConfig = {
-    // Оптимизация компиляции и минификации
-    swcMinify: true,
-
     // Оптимизация production build
     compiler: {
         removeConsole: process.env.NODE_ENV === 'production' ? {
