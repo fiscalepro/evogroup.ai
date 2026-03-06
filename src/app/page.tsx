@@ -4,6 +4,7 @@ import { I18nProvider } from '@/components/providers/I18nProvider'
 import ModernHeader from '@/components/sections/ModernHeader'
 import ModernHero from '@/components/sections/ModernHero'
 import TrustSignals from '@/components/sections/TrustSignals'
+import CaseStudies from '@/components/sections/CaseStudies'
 import Footer from '@/components/sections/Footer'
 import Link from 'next/link'
 import { Button } from '@nextui-org/react'
@@ -23,6 +24,7 @@ export default function Home() {
                     <ModernHero />
 
                     <TrustSignals />
+                    <CaseStudies />
 
                     {/* CTA Section */}
                     <section className="relative py-20">
