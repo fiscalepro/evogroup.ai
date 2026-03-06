@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Script from 'next/script';
 
@@ -41,6 +41,8 @@ export default function ChatBot() {
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const widgetIdRef = useRef<string | null>(null);
+  const readyTokenRef = useRef<string | null>(null);
+  const containerRef = useRef<HTMLDivElement | null>(null);
 
   // Auto-scroll to bottom
   const scrollToBottom = () => {
@@ -58,85 +60,88 @@ export default function ChatBot() {
     }
   }, [isOpen]);
 
-  // Cleanup Turnstile widget on unmount
+  // Create a fresh container, render Turnstile widget, store token when ready
+  const warmUpToken = useCallback(() => {
+    if (!TURNSTILE_SITE_KEY || !window.turnstile) return;
+
+    // Cleanup previous widget
+    if (widgetIdRef.current) {
+      try { window.turnstile.remove(widgetIdRef.current); } catch { /* ignore */ }
+      widgetIdRef.current = null;
+    }
+    // Cleanup previous container
+    if (containerRef.current) {
+      try { document.body.removeChild(containerRef.current); } catch { /* ignore */ }
+      containerRef.current = null;
+    }
+
+    readyTokenRef.current = null;
+
+    // Fresh container for reliable first-render
+    const container = document.createElement('div');
+    container.style.cssText = 'opacity:0;position:fixed;left:0;bottom:0;width:300px;height:65px;overflow:hidden;z-index:-1';
+    container.setAttribute('aria-hidden', 'true');
+    document.body.appendChild(container);
+    containerRef.current = container;
+
+    widgetIdRef.current = window.turnstile.render(container, {
+      sitekey: TURNSTILE_SITE_KEY,
+      appearance: 'always',
+      callback: (token: string) => {
+        readyTokenRef.current = token;
+      },
+      'error-callback': () => {
+        readyTokenRef.current = null;
+      },
+      'expired-callback': () => {
+        // Token expired — warm up a new one
+        readyTokenRef.current = null;
+        warmUpToken();
+      },
+    });
+  }, [TURNSTILE_SITE_KEY]);
+
+  // Cleanup on unmount
   useEffect(() => {
     return () => {
       if (widgetIdRef.current && window.turnstile) {
         try { window.turnstile.remove(widgetIdRef.current); } catch { /* ignore */ }
       }
+      if (containerRef.current) {
+        try { document.body.removeChild(containerRef.current); } catch { /* ignore */ }
+      }
     };
   }, []);
 
-  // Wait for Turnstile script to load (up to 3s)
-  const waitForTurnstile = (): Promise<boolean> => {
-    if (window.turnstile) return Promise.resolve(true);
-    return new Promise((resolve) => {
-      let attempts = 0;
-      const poll = setInterval(() => {
-        attempts++;
-        if (window.turnstile) {
-          clearInterval(poll);
-          resolve(true);
-        } else if (attempts > 50) { // 5s timeout
-          clearInterval(poll);
-          resolve(false);
-        }
-      }, 100);
-    });
-  };
-
-  // Get a fresh Turnstile token by creating a new container each time
+  // Consume pre-warmed token, or wait for it (up to 8s), then warm up next one
   const getTurnstileToken = async (): Promise<string | null> => {
-    if (!TURNSTILE_SITE_KEY) {
-      return null; // No Turnstile configured — graceful fallback
+    if (!TURNSTILE_SITE_KEY) return null;
+
+    // If token is already ready, consume it immediately
+    if (readyTokenRef.current) {
+      const token = readyTokenRef.current;
+      readyTokenRef.current = null;
+      // Warm up next token in background
+      setTimeout(() => warmUpToken(), 0);
+      return token;
     }
 
-    const loaded = await waitForTurnstile();
-    if (!loaded || !window.turnstile) return null;
-
-    // Cleanup previous widget if exists
-    if (widgetIdRef.current) {
-      try { window.turnstile.remove(widgetIdRef.current); } catch { /* ignore */ }
-      widgetIdRef.current = null;
-    }
-
-    // Create fresh container — each render into a new DOM element works reliably
-    const container = document.createElement('div');
-    container.style.cssText = 'opacity:0;position:fixed;left:0;bottom:0;width:300px;height:65px;overflow:hidden;z-index:-1';
-    container.setAttribute('aria-hidden', 'true');
-    document.body.appendChild(container);
-
+    // Token not ready yet — wait for callback (up to 8s)
     return new Promise((resolve) => {
-      let resolved = false;
-
-      widgetIdRef.current = window.turnstile!.render(container, {
-        sitekey: TURNSTILE_SITE_KEY!,
-        appearance: 'always',
-        callback: (token: string) => {
-          if (!resolved) {
-            resolved = true;
-            resolve(token);
-          }
-          // Cleanup container after getting token
-          try { document.body.removeChild(container); } catch { /* ignore */ }
-        },
-        'error-callback': () => {
-          if (!resolved) {
-            resolved = true;
-            resolve(null);
-          }
-          try { document.body.removeChild(container); } catch { /* ignore */ }
-        },
-      });
-
-      // Safety timeout 8s
-      setTimeout(() => {
-        if (!resolved) {
-          resolved = true;
+      let elapsed = 0;
+      const poll = setInterval(() => {
+        elapsed += 200;
+        if (readyTokenRef.current) {
+          clearInterval(poll);
+          const token = readyTokenRef.current;
+          readyTokenRef.current = null;
+          setTimeout(() => warmUpToken(), 0);
+          resolve(token);
+        } else if (elapsed >= 8000) {
+          clearInterval(poll);
           resolve(null);
-          try { document.body.removeChild(container); } catch { /* ignore */ }
         }
-      }, 8000);
+      }, 200);
     });
   };
 
@@ -240,6 +245,7 @@ export default function ChatBot() {
         <Script
           src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit"
           strategy="afterInteractive"
+          onLoad={() => warmUpToken()}
         />
       )}
 
