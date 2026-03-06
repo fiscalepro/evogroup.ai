@@ -8,6 +8,7 @@ declare global {
   interface Window {
     turnstile?: {
       render: (container: string | HTMLElement, options: Record<string, unknown>) => string;
+      execute: (container: string | HTMLElement, options?: Record<string, unknown>) => void;
       reset: (widgetId: string) => void;
       remove: (widgetId: string) => void;
     };
@@ -72,8 +73,8 @@ export default function ChatBot() {
     turnstileTokenRef.current = null;
     widgetIdRef.current = window.turnstile.render(turnstileContainerRef.current, {
       sitekey: TURNSTILE_SITE_KEY,
-      appearance: 'interaction-only',
-      refreshExpired: 'auto',
+      execution: 'execute',
+      appearance: 'execute',
       callback: (token: string) => {
         turnstileTokenRef.current = token;
         if (pendingResolveRef.current) {
@@ -139,17 +140,10 @@ export default function ChatBot() {
 
     if (!widgetIdRef.current) return null;
 
-    // If token already available (from initial render or auto-refresh), use it
-    if (turnstileTokenRef.current) {
-      const token = turnstileTokenRef.current;
-      turnstileTokenRef.current = null;
-      return token;
-    }
-
-    // No token — reset widget and wait for callback
+    // Execute the widget to get a fresh token each time
     return new Promise((resolve) => {
       pendingResolveRef.current = resolve;
-      window.turnstile!.reset(widgetIdRef.current!);
+      window.turnstile!.execute(turnstileContainerRef.current!);
 
       // Safety timeout 5s
       setTimeout(() => {
