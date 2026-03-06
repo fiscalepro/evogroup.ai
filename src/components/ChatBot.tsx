@@ -72,7 +72,7 @@ export default function ChatBot() {
     turnstileTokenRef.current = null;
     widgetIdRef.current = window.turnstile.render(turnstileContainerRef.current, {
       sitekey: TURNSTILE_SITE_KEY,
-      appearance: 'interaction-only',
+      appearance: 'always',
       callback: (token: string) => {
         turnstileTokenRef.current = token;
       },
@@ -82,13 +82,11 @@ export default function ChatBot() {
     });
   }, []);
 
+  // Render Turnstile widget on mount (container is always in DOM)
   useEffect(() => {
-    if (isOpen) {
-      // Small delay to ensure container is mounted
-      const timer = setTimeout(renderTurnstile, 100);
-      return () => clearTimeout(timer);
-    }
-  }, [isOpen, renderTurnstile]);
+    const timer = setTimeout(renderTurnstile, 300);
+    return () => clearTimeout(timer);
+  }, [renderTurnstile]);
 
   // Get a fresh Turnstile token (reset + wait for callback)
   const getTurnstileToken = (): Promise<string | null> => {
@@ -116,7 +114,7 @@ export default function ChatBot() {
         try { window.turnstile!.remove(widgetIdRef.current!); } catch { /* ignore */ }
         widgetIdRef.current = window.turnstile!.render(turnstileContainerRef.current, {
           sitekey: TURNSTILE_SITE_KEY,
-          appearance: 'interaction-only',
+          appearance: 'always',
           callback: originalCallback,
           'error-callback': () => resolve(null),
         });
@@ -229,9 +227,16 @@ export default function ChatBot() {
         <Script
           src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit"
           strategy="lazyOnload"
-          onLoad={() => {
-            if (isOpen) renderTurnstile();
-          }}
+          onLoad={() => renderTurnstile()}
+        />
+      )}
+
+      {/* Turnstile container (off-screen but rendered with real dimensions) */}
+      {TURNSTILE_SITE_KEY && (
+        <div
+          ref={turnstileContainerRef}
+          style={{ position: 'fixed', left: '-9999px', top: '-9999px', width: '300px', height: '65px' }}
+          aria-hidden="true"
         />
       )}
 
