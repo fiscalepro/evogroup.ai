@@ -227,6 +227,7 @@ export default function ChatBot() {
       setMessages((prev) => [...prev, errorMessage]);
     } finally {
       setIsLoading(false);
+      setTimeout(() => inputRef.current?.focus(), 0);
     }
   };
 
