@@ -363,9 +363,6 @@ export default function ChatBot() {
               <div ref={messagesEndRef} />
             </div>
 
-            {/* Turnstile container (hidden) */}
-            <div ref={turnstileContainerRef} style={{ display: 'none' }} />
-
             {/* Input */}
             <div className="p-4 bg-white border-t border-gray-100">
               <div className="flex gap-2">
