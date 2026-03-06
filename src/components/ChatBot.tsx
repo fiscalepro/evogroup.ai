@@ -71,7 +71,7 @@ export default function ChatBot() {
     turnstileTokenRef.current = null;
     widgetIdRef.current = window.turnstile.render(turnstileContainerRef.current, {
       sitekey: TURNSTILE_SITE_KEY,
-      appearance: 'always',
+      size: 'invisible',
       callback: (token: string) => {
         turnstileTokenRef.current = token;
       },
