@@ -71,7 +71,7 @@ export default function ChatBot() {
     turnstileTokenRef.current = null;
     widgetIdRef.current = window.turnstile.render(turnstileContainerRef.current, {
       sitekey: TURNSTILE_SITE_KEY,
-      size: 'invisible',
+      appearance: 'always',
       callback: (token: string) => {
         turnstileTokenRef.current = token;
       },
@@ -125,7 +125,7 @@ export default function ChatBot() {
     if (!widgetIdRef.current) return null;
 
     return new Promise((resolve) => {
-      // If we already have a token from initial render or previous reset, use it
+      // If we already have a token from initial render, use it
       if (turnstileTokenRef.current) {
         const token = turnstileTokenRef.current;
         turnstileTokenRef.current = null;
@@ -133,9 +133,9 @@ export default function ChatBot() {
         return;
       }
 
-      // Reset widget — Turnstile will call the original callback (set in renderTurnstile)
-      // which sets turnstileTokenRef.current. Poll until it appears.
-      window.turnstile!.reset(widgetIdRef.current!);
+      // Remove and re-render widget for a fresh token
+      // (reset() doesn't work reliably with off-screen managed widgets)
+      renderTurnstile();
 
       let attempts = 0;
       const poll = setInterval(() => {
