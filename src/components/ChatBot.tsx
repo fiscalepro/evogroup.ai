@@ -269,7 +269,7 @@ export default function ChatBot() {
       {TURNSTILE_SITE_KEY && (
         <div
           ref={turnstileContainerRef}
-          style={{ visibility: 'hidden', position: 'absolute', width: 0, height: 0, pointerEvents: 'none' }}
+          style={{ visibility: 'hidden', position: 'fixed', left: 0, top: 0, width: '300px', height: '65px', overflow: 'hidden', pointerEvents: 'none', zIndex: -1 }}
           aria-hidden="true"
         />
       )}
