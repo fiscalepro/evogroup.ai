@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useRef, useEffect, useCallback } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Script from 'next/script';
 
@@ -8,7 +8,6 @@ declare global {
   interface Window {
     turnstile?: {
       render: (container: string | HTMLElement, options: Record<string, unknown>) => string;
-      execute: (container: string | HTMLElement, options?: Record<string, unknown>) => void;
       reset: (widgetId: string) => void;
       remove: (widgetId: string) => void;
     };
@@ -42,9 +41,6 @@ export default function ChatBot() {
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const widgetIdRef = useRef<string | null>(null);
-  const turnstileTokenRef = useRef<string | null>(null);
-  const turnstileContainerRef = useRef<HTMLDivElement>(null);
-  const pendingResolveRef = useRef<((token: string | null) => void) | null>(null);
 
   // Auto-scroll to bottom
   const scrollToBottom = () => {
@@ -62,48 +58,14 @@ export default function ChatBot() {
     }
   }, [isOpen]);
 
-  // Render Turnstile widget when chat opens
-  const renderTurnstile = useCallback(() => {
-    if (!TURNSTILE_SITE_KEY || !window.turnstile || !turnstileContainerRef.current) return;
-    // Remove previous widget if exists
-    if (widgetIdRef.current) {
-      try { window.turnstile.remove(widgetIdRef.current); } catch { /* ignore */ }
-      widgetIdRef.current = null;
-    }
-    turnstileTokenRef.current = null;
-    widgetIdRef.current = window.turnstile.render(turnstileContainerRef.current, {
-      sitekey: TURNSTILE_SITE_KEY,
-      execution: 'execute',
-      appearance: 'execute',
-      callback: (token: string) => {
-        turnstileTokenRef.current = token;
-        if (pendingResolveRef.current) {
-          pendingResolveRef.current(token);
-          pendingResolveRef.current = null;
-        }
-      },
-      'error-callback': () => {
-        turnstileTokenRef.current = null;
-        if (pendingResolveRef.current) {
-          pendingResolveRef.current(null);
-          pendingResolveRef.current = null;
-        }
-      },
-      'expired-callback': () => {
-        turnstileTokenRef.current = null;
-        if (pendingResolveRef.current) {
-          pendingResolveRef.current(null);
-          pendingResolveRef.current = null;
-        }
-      },
-    });
-  }, []);
-
-  // Render Turnstile widget on mount (container is always in DOM)
+  // Cleanup Turnstile widget on unmount
   useEffect(() => {
-    const timer = setTimeout(renderTurnstile, 300);
-    return () => clearTimeout(timer);
-  }, [renderTurnstile]);
+    return () => {
+      if (widgetIdRef.current && window.turnstile) {
+        try { window.turnstile.remove(widgetIdRef.current); } catch { /* ignore */ }
+      }
+    };
+  }, []);
 
   // Wait for Turnstile script to load (up to 3s)
   const waitForTurnstile = (): Promise<boolean> => {
@@ -123,35 +85,58 @@ export default function ChatBot() {
     });
   };
 
-  // Get a fresh Turnstile token (callback-driven, no polling)
+  // Get a fresh Turnstile token by creating a new container each time
   const getTurnstileToken = async (): Promise<string | null> => {
     if (!TURNSTILE_SITE_KEY) {
       return null; // No Turnstile configured — graceful fallback
     }
 
-    // Wait for script to load if not yet available
     const loaded = await waitForTurnstile();
     if (!loaded || !window.turnstile) return null;
 
-    // If widget hasn't been rendered yet, render it now
-    if (!widgetIdRef.current) {
-      renderTurnstile();
+    // Cleanup previous widget if exists
+    if (widgetIdRef.current) {
+      try { window.turnstile.remove(widgetIdRef.current); } catch { /* ignore */ }
+      widgetIdRef.current = null;
     }
 
-    if (!widgetIdRef.current) return null;
+    // Create fresh container — each render into a new DOM element works reliably
+    const container = document.createElement('div');
+    container.style.cssText = 'visibility:hidden;position:fixed;left:0;top:0;width:300px;height:65px;overflow:hidden;pointer-events:none;z-index:-1';
+    container.setAttribute('aria-hidden', 'true');
+    document.body.appendChild(container);
 
-    // Execute the widget to get a fresh token each time
     return new Promise((resolve) => {
-      pendingResolveRef.current = resolve;
-      window.turnstile!.execute(turnstileContainerRef.current!);
+      let resolved = false;
 
-      // Safety timeout 5s
+      widgetIdRef.current = window.turnstile!.render(container, {
+        sitekey: TURNSTILE_SITE_KEY!,
+        appearance: 'always',
+        callback: (token: string) => {
+          if (!resolved) {
+            resolved = true;
+            resolve(token);
+          }
+          // Cleanup container after getting token
+          try { document.body.removeChild(container); } catch { /* ignore */ }
+        },
+        'error-callback': () => {
+          if (!resolved) {
+            resolved = true;
+            resolve(null);
+          }
+          try { document.body.removeChild(container); } catch { /* ignore */ }
+        },
+      });
+
+      // Safety timeout 8s
       setTimeout(() => {
-        if (pendingResolveRef.current === resolve) {
-          pendingResolveRef.current = null;
+        if (!resolved) {
+          resolved = true;
           resolve(null);
+          try { document.body.removeChild(container); } catch { /* ignore */ }
         }
-      }, 5000);
+      }, 8000);
     });
   };
 
@@ -255,16 +240,6 @@ export default function ChatBot() {
         <Script
           src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit"
           strategy="afterInteractive"
-          onLoad={() => renderTurnstile()}
-        />
-      )}
-
-      {/* Turnstile container (off-screen but rendered with real dimensions) */}
-      {TURNSTILE_SITE_KEY && (
-        <div
-          ref={turnstileContainerRef}
-          style={{ visibility: 'hidden', position: 'fixed', left: 0, top: 0, width: '300px', height: '65px', overflow: 'hidden', pointerEvents: 'none', zIndex: -1 }}
-          aria-hidden="true"
         />
       )}
 

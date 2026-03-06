@@ -62,18 +62,12 @@ describe('ChatBot - Turnstile integration', () => {
       expect(capturedScriptProps!.src).toContain('challenges.cloudflare.com/turnstile');
     });
 
-    it('renders Turnstile container hidden but with real dimensions for proper iframe injection', () => {
+    it('does NOT render a static Turnstile container (containers are created dynamically per token request)', () => {
       const { container } = render(<ChatBot />);
 
+      // No static aria-hidden container should exist — they are created on-demand in getTurnstileToken
       const turnstileContainer = container.querySelector('[aria-hidden="true"]');
-      expect(turnstileContainer).toBeInTheDocument();
-
-      const style = (turnstileContainer as HTMLElement).style;
-      expect(style.visibility).toBe('hidden');
-      expect(style.position).toBe('fixed');
-      expect(style.pointerEvents).toBe('none');
-      expect(parseInt(style.width)).toBeGreaterThanOrEqual(300);
-      expect(parseInt(style.height)).toBeGreaterThanOrEqual(65);
+      expect(turnstileContainer).toBeNull();
     });
   });
 
