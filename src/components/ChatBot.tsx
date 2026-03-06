@@ -95,7 +95,7 @@ export default function ChatBot() {
     }
 
     return new Promise((resolve) => {
-      // If we already have a token from initial render, use it
+      // If we already have a token from initial render or previous reset, use it
       if (turnstileTokenRef.current) {
         const token = turnstileTokenRef.current;
         turnstileTokenRef.current = null;
@@ -103,27 +103,23 @@ export default function ChatBot() {
         return;
       }
 
-      // Reset and wait for new token
-      const originalCallback = (token: string) => {
-        turnstileTokenRef.current = null;
-        resolve(token);
-      };
+      // Reset widget — Turnstile will call the original callback (set in renderTurnstile)
+      // which sets turnstileTokenRef.current. Poll until it appears.
+      window.turnstile!.reset(widgetIdRef.current!);
 
-      // Re-render widget to get fresh token
-      if (turnstileContainerRef.current) {
-        try { window.turnstile!.remove(widgetIdRef.current!); } catch { /* ignore */ }
-        widgetIdRef.current = window.turnstile!.render(turnstileContainerRef.current, {
-          sitekey: TURNSTILE_SITE_KEY,
-          appearance: 'always',
-          callback: originalCallback,
-          'error-callback': () => resolve(null),
-        });
-      } else {
-        resolve(null);
-      }
-
-      // Timeout after 5s
-      setTimeout(() => resolve(null), 5000);
+      let attempts = 0;
+      const poll = setInterval(() => {
+        attempts++;
+        if (turnstileTokenRef.current) {
+          clearInterval(poll);
+          const token = turnstileTokenRef.current;
+          turnstileTokenRef.current = null;
+          resolve(token);
+        } else if (attempts > 50) { // 5s timeout
+          clearInterval(poll);
+          resolve(null);
+        }
+      }, 100);
     });
   };
 
