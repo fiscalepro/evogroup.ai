@@ -1,7 +1,18 @@
 'use client';
 
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import Script from 'next/script';
+
+declare global {
+  interface Window {
+    turnstile?: {
+      render: (container: string | HTMLElement, options: Record<string, unknown>) => string;
+      reset: (widgetId: string) => void;
+      remove: (widgetId: string) => void;
+    };
+  }
+}
 
 interface Message {
   role: 'user' | 'assistant';
@@ -14,6 +25,8 @@ interface UserContext {
   referrer?: string;
   language?: string;
 }
+
+const TURNSTILE_SITE_KEY = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
 
 export default function ChatBot() {
   const [isOpen, setIsOpen] = useState(false);
@@ -28,6 +41,9 @@ export default function ChatBot() {
   const [isLoading, setIsLoading] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+  const widgetIdRef = useRef<string | null>(null);
+  const turnstileTokenRef = useRef<string | null>(null);
+  const turnstileContainerRef = useRef<HTMLDivElement>(null);
 
   // Auto-scroll to bottom
   const scrollToBottom = () => {
@@ -44,6 +60,74 @@ export default function ChatBot() {
       inputRef.current.focus();
     }
   }, [isOpen]);
+
+  // Render Turnstile widget when chat opens
+  const renderTurnstile = useCallback(() => {
+    if (!TURNSTILE_SITE_KEY || !window.turnstile || !turnstileContainerRef.current) return;
+    // Remove previous widget if exists
+    if (widgetIdRef.current) {
+      try { window.turnstile.remove(widgetIdRef.current); } catch { /* ignore */ }
+      widgetIdRef.current = null;
+    }
+    turnstileTokenRef.current = null;
+    widgetIdRef.current = window.turnstile.render(turnstileContainerRef.current, {
+      sitekey: TURNSTILE_SITE_KEY,
+      appearance: 'interaction-only',
+      callback: (token: string) => {
+        turnstileTokenRef.current = token;
+      },
+      'error-callback': () => {
+        turnstileTokenRef.current = null;
+      },
+    });
+  }, []);
+
+  useEffect(() => {
+    if (isOpen) {
+      // Small delay to ensure container is mounted
+      const timer = setTimeout(renderTurnstile, 100);
+      return () => clearTimeout(timer);
+    }
+  }, [isOpen, renderTurnstile]);
+
+  // Get a fresh Turnstile token (reset + wait for callback)
+  const getTurnstileToken = (): Promise<string | null> => {
+    if (!TURNSTILE_SITE_KEY || !window.turnstile || !widgetIdRef.current) {
+      return Promise.resolve(null); // No Turnstile configured — graceful fallback
+    }
+
+    return new Promise((resolve) => {
+      // If we already have a token from initial render, use it
+      if (turnstileTokenRef.current) {
+        const token = turnstileTokenRef.current;
+        turnstileTokenRef.current = null;
+        resolve(token);
+        return;
+      }
+
+      // Reset and wait for new token
+      const originalCallback = (token: string) => {
+        turnstileTokenRef.current = null;
+        resolve(token);
+      };
+
+      // Re-render widget to get fresh token
+      if (turnstileContainerRef.current) {
+        try { window.turnstile!.remove(widgetIdRef.current!); } catch { /* ignore */ }
+        widgetIdRef.current = window.turnstile!.render(turnstileContainerRef.current, {
+          sitekey: TURNSTILE_SITE_KEY,
+          appearance: 'interaction-only',
+          callback: originalCallback,
+          'error-callback': () => resolve(null),
+        });
+      } else {
+        resolve(null);
+      }
+
+      // Timeout after 5s
+      setTimeout(() => resolve(null), 5000);
+    });
+  };
 
   // Get user context
   const getUserContext = (): UserContext => {
@@ -69,6 +153,18 @@ export default function ChatBot() {
     setIsLoading(true);
 
     try {
+      // Get Turnstile token before sending
+      const turnstileToken = await getTurnstileToken();
+      if (TURNSTILE_SITE_KEY && !turnstileToken) {
+        const errorMessage: Message = {
+          role: 'assistant',
+          content: 'Проверка безопасности не пройдена. Обновите страницу и попробуйте снова.',
+          timestamp: new Date(),
+        };
+        setMessages((prev) => [...prev, errorMessage]);
+        return;
+      }
+
       const response = await fetch('/api/chat', {
         method: 'POST',
         headers: {
@@ -80,13 +176,13 @@ export default function ChatBot() {
             content: m.content,
           })),
           userContext: getUserContext(),
+          turnstileToken,
         }),
       });
 
       const data = await response.json();
 
       if (!response.ok) {
-        // Используем сообщение об ошибке от сервера
         const errorMessage: Message = {
           role: 'assistant',
           content: data.userMessage || 'Упс, что-то пошло не так. Попробуйте еще раз через пару секунд.',
@@ -128,6 +224,17 @@ export default function ChatBot() {
 
   return (
     <>
+      {/* Turnstile Script */}
+      {TURNSTILE_SITE_KEY && (
+        <Script
+          src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit"
+          strategy="lazyOnload"
+          onLoad={() => {
+            if (isOpen) renderTurnstile();
+          }}
+        />
+      )}
+
       {/* WhatsApp Button */}
       <motion.a
         href="https://wa.me/996552343333"
@@ -255,6 +362,9 @@ export default function ChatBot() {
 
               <div ref={messagesEndRef} />
             </div>
+
+            {/* Turnstile container (hidden) */}
+            <div ref={turnstileContainerRef} style={{ display: 'none' }} />
 
             {/* Input */}
             <div className="p-4 bg-white border-t border-gray-100">

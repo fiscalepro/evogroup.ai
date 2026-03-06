@@ -1,8 +1,8 @@
 // Learn more: https://github.com/testing-library/jest-dom
 import '@testing-library/jest-dom'
 
-// Mock window.matchMedia
-Object.defineProperty(window, 'matchMedia', {
+// Mock window.matchMedia (only in jsdom environment)
+if (typeof window !== 'undefined') Object.defineProperty(window, 'matchMedia', {
   writable: true,
   value: jest.fn().mockImplementation(query => ({
     matches: false,
@@ -24,5 +24,5 @@ global.IntersectionObserver = class IntersectionObserver {
   unobserve() {}
 } as any
 
-// Mock scrollTo
-window.scrollTo = jest.fn()
+// Mock scrollTo (only in jsdom environment)
+if (typeof window !== 'undefined') window.scrollTo = jest.fn()

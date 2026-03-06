@@ -38,9 +38,11 @@ const contactFormSchema = z.object({
 // Санитизация строки от потенциально опасных символов
 function sanitizeString(str: string): string {
     return str
-        .replace(/[<>]/g, '') // Удаляем HTML теги
-        .replace(/javascript:/gi, '') // Удаляем javascript: протокол
-        .replace(/on\w+=/gi, '') // Удаляем event handlers
+        .replace(/<[^>]*>/g, '') // Удаляем HTML теги
+        .replace(/j\s*a\s*v\s*a\s*s\s*c\s*r\s*i\s*p\s*t\s*:/gi, '') // javascript: с любыми пробелами
+        .replace(/on\w+\s*=/gi, '') // Удаляем event handlers
+        .replace(/data\s*:/gi, '') // data: URI scheme
+        .replace(/vbscript\s*:/gi, '') // vbscript: protocol
         .trim()
 }
 
