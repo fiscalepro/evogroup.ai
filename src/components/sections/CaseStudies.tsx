@@ -209,7 +209,9 @@ function CaseCard({ card, index }: { card: CaseCard, index: number }) {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.6, delay: index * 0.15 }}
-            className={`bg-white/[0.04] border border-white/[0.07] rounded-[20px] overflow-hidden transition-all duration-300 hover:border-${accent}-400/30 hover:-translate-y-0.5`}
+            className={`bg-white/[0.04] border border-white/[0.07] rounded-[20px] overflow-hidden transition-all duration-300 hover:-translate-y-0.5 ${
+                isBlue ? 'hover:border-cyan-400/30' : 'hover:border-emerald-400/30'
+            }`}
         >
             {/* Card Head */}
             <div className="p-7 pb-0 flex items-start gap-4">
