@@ -26,9 +26,8 @@ interface UserContext {
   language?: string;
 }
 
-const TURNSTILE_SITE_KEY = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
-
 export default function ChatBot() {
+  const TURNSTILE_SITE_KEY = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
     {
@@ -88,11 +87,42 @@ export default function ChatBot() {
     return () => clearTimeout(timer);
   }, [renderTurnstile]);
 
+  // Wait for Turnstile script to load (up to 3s)
+  const waitForTurnstile = (): Promise<boolean> => {
+    if (window.turnstile) return Promise.resolve(true);
+    return new Promise((resolve) => {
+      let attempts = 0;
+      const poll = setInterval(() => {
+        attempts++;
+        if (window.turnstile) {
+          clearInterval(poll);
+          resolve(true);
+        } else if (attempts > 30) { // 3s timeout
+          clearInterval(poll);
+          resolve(false);
+        }
+      }, 100);
+    });
+  };
+
   // Get a fresh Turnstile token (reset + wait for callback)
-  const getTurnstileToken = (): Promise<string | null> => {
-    if (!TURNSTILE_SITE_KEY || !window.turnstile || !widgetIdRef.current) {
-      return Promise.resolve(null); // No Turnstile configured — graceful fallback
+  const getTurnstileToken = async (): Promise<string | null> => {
+    if (!TURNSTILE_SITE_KEY) {
+      return null; // No Turnstile configured — graceful fallback
     }
+
+    // Wait for script to load if not yet available
+    const loaded = await waitForTurnstile();
+    if (!loaded || !window.turnstile) return null;
+
+    // If widget hasn't been rendered yet, render it now
+    if (!widgetIdRef.current) {
+      renderTurnstile();
+      // Wait briefly for initial token
+      await new Promise((r) => setTimeout(r, 500));
+    }
+
+    if (!widgetIdRef.current) return null;
 
     return new Promise((resolve) => {
       // If we already have a token from initial render or previous reset, use it
@@ -222,7 +252,7 @@ export default function ChatBot() {
       {TURNSTILE_SITE_KEY && (
         <Script
           src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit"
-          strategy="lazyOnload"
+          strategy="afterInteractive"
           onLoad={() => renderTurnstile()}
         />
       )}

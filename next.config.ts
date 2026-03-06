@@ -42,6 +42,7 @@ const securityHeaders = [
             "img-src 'self' data: blob: https:",
             "media-src 'self' blob:",
             "connect-src 'self' https://api.web3forms.com https://platform2.evogroup.ai https://wa.me https://challenges.cloudflare.com",
+            "frame-src 'self' https://challenges.cloudflare.com",
             "frame-ancestors 'none'",
             "base-uri 'self'",
             "form-action 'self' https://api.web3forms.com"
