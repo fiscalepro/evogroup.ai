@@ -4,133 +4,8 @@ import React from 'react'
 import { useTranslation } from '@/components/providers/I18nProvider'
 
 const TrainingSystemSection: React.FC = () => {
-    const { locale } = useTranslation()
-
-    const getTranslations = () => {
-        if (locale === 'en') {
-            return {
-                badge: 'Training System',
-                title: 'Manager training system',
-                subtitle: 'Turn newbies into professionals with our training platform',
-                features: [
-                    {
-                        icon: 'library',
-                        title: '200+ real examples',
-                        description: 'Library of successful dialogs from your industry'
-                    },
-                    {
-                        icon: 'test',
-                        title: 'Tests and exams',
-                        description: 'Knowledge verification at every stage'
-                    },
-                    {
-                        icon: 'certificate',
-                        title: 'Certification',
-                        description: 'Certificates for employees upon completion'
-                    },
-                    {
-                        icon: 'gamification',
-                        title: 'Gamification',
-                        description: 'Leaderboards, achievements, and rewards'
-                    }
-                ],
-                stats: [
-                    { value: '200+', label: 'Dialog examples' },
-                    { value: '50+', label: 'Test questions' },
-                    { value: '3x', label: 'Faster onboarding' }
-                ],
-                moduleTitle: 'Training Modules',
-                modules: [
-                    { name: 'Greeting basics', progress: 100, lessons: 8 },
-                    { name: 'Product knowledge', progress: 75, lessons: 12 },
-                    { name: 'Objection handling', progress: 40, lessons: 10 },
-                    { name: 'Closing sales', progress: 0, lessons: 6 }
-                ]
-            }
-        } else if (locale === 'ky') {
-            return {
-                badge: 'Окутуу системасы',
-                title: 'Менеджерлерди окутуу системасы',
-                subtitle: 'Жаңы кызматкерлерди биздин окутуу платформасы менен профессионалдарга айлантыңыз',
-                features: [
-                    {
-                        icon: 'library',
-                        title: '200+ реалдуу мисал',
-                        description: 'Сиздин тармактагы ийгиликтүү диалогдордун китепканасы'
-                    },
-                    {
-                        icon: 'test',
-                        title: 'Тесттер жана экзамендер',
-                        description: 'Ар бир этапта билимди текшерүү'
-                    },
-                    {
-                        icon: 'certificate',
-                        title: 'Сертификаттоо',
-                        description: 'Аяктагандан кийин кызматкерлерге сертификаттар'
-                    },
-                    {
-                        icon: 'gamification',
-                        title: 'Геймификация',
-                        description: 'Лидерборддор, жетишкендиктер жана сыйлыктар'
-                    }
-                ],
-                stats: [
-                    { value: '200+', label: 'Диалог мисалдары' },
-                    { value: '50+', label: 'Тест суроолору' },
-                    { value: '3x', label: 'Тезирээк адаптация' }
-                ],
-                moduleTitle: 'Окутуу модулдары',
-                modules: [
-                    { name: 'Саламдашуу негиздери', progress: 100, lessons: 8 },
-                    { name: 'Продукт билими', progress: 75, lessons: 12 },
-                    { name: 'Каршылыктарды иштетүү', progress: 40, lessons: 10 },
-                    { name: 'Сатууларды жабуу', progress: 0, lessons: 6 }
-                ]
-            }
-        } else {
-            return {
-                badge: 'Система обучения',
-                title: 'Система обучения менеджеров',
-                subtitle: 'Превратите новичков в профессионалов с нашей платформой обучения',
-                features: [
-                    {
-                        icon: 'library',
-                        title: '200+ реальных примеров',
-                        description: 'Библиотека успешных диалогов из вашей отрасли'
-                    },
-                    {
-                        icon: 'test',
-                        title: 'Тесты и экзамены',
-                        description: 'Проверка знаний на каждом этапе'
-                    },
-                    {
-                        icon: 'certificate',
-                        title: 'Сертификация',
-                        description: 'Сертификаты для сотрудников по завершении'
-                    },
-                    {
-                        icon: 'gamification',
-                        title: 'Геймификация',
-                        description: 'Лидерборды, достижения и награды'
-                    }
-                ],
-                stats: [
-                    { value: '200+', label: 'Примеров диалогов' },
-                    { value: '50+', label: 'Тестовых вопросов' },
-                    { value: '3x', label: 'Быстрее адаптация' }
-                ],
-                moduleTitle: 'Модули обучения',
-                modules: [
-                    { name: 'Основы приветствия', progress: 100, lessons: 8 },
-                    { name: 'Знание продукта', progress: 75, lessons: 12 },
-                    { name: 'Работа с возражениями', progress: 40, lessons: 10 },
-                    { name: 'Закрытие продаж', progress: 0, lessons: 6 }
-                ]
-            }
-        }
-    }
-
-    const translations = getTranslations()
+    const { tObj } = useTranslation()
+    const translations = tObj('whatsappTraining')
 
     const getIcon = (icon: string) => {
         switch (icon) {
@@ -222,7 +97,7 @@ const TrainingSystemSection: React.FC = () => {
                             </div>
                             <div>
                                 <div className="text-white font-medium">{translations.moduleTitle}</div>
-                                <div className="text-cyan-400 text-xs">4 {locale === 'en' ? 'modules' : locale === 'ky' ? 'модул' : 'модуля'}</div>
+                                <div className="text-cyan-400 text-xs">4 {translations.modulesLabel}</div>
                             </div>
                         </div>
 
@@ -232,7 +107,7 @@ const TrainingSystemSection: React.FC = () => {
                                 <div key={index} className="p-3 bg-white/5 rounded-lg">
                                     <div className="flex items-center justify-between mb-2">
                                         <span className="text-white text-sm font-medium">{module.name}</span>
-                                        <span className="text-white/60 text-xs">{module.lessons} {locale === 'en' ? 'lessons' : locale === 'ky' ? 'сабак' : 'уроков'}</span>
+                                        <span className="text-white/60 text-xs">{module.lessons} {translations.lessonsLabel}</span>
                                     </div>
                                     <div className="h-2 bg-white/10 rounded-full overflow-hidden">
                                         <div
@@ -247,12 +122,12 @@ const TrainingSystemSection: React.FC = () => {
                                         />
                                     </div>
                                     <div className="flex items-center justify-between mt-1">
-                                        <span className={`text-xs ${module.progress === 100 ? 'text-green-400' : 'text-white/40'}`}>
+                                        <span className={`text-xs ${module.progress === 100 ? 'text-green-400' : 'text-white/55'}`}>
                                             {module.progress === 100
-                                                ? (locale === 'en' ? 'Completed' : locale === 'ky' ? 'Аяктаган' : 'Завершено')
+                                                ? translations.completed
                                                 : module.progress > 0
-                                                ? (locale === 'en' ? 'In progress' : locale === 'ky' ? 'Процесстен' : 'В процессе')
-                                                : (locale === 'en' ? 'Not started' : locale === 'ky' ? 'Башталган жок' : 'Не начато')
+                                                ? translations.inProgress
+                                                : translations.notStarted
                                             }
                                         </span>
                                         <span className="text-white/60 text-xs">{module.progress}%</span>

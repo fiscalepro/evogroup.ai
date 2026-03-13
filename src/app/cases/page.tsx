@@ -1,83 +1,271 @@
 'use client'
 
-import { I18nProvider, useTranslation } from '@/components/providers/I18nProvider'
+import React from 'react'
+import { motion } from 'framer-motion'
+import Link from 'next/link'
+
 import ModernHeader from '@/components/sections/ModernHeader'
-import Solutions from '@/components/sections/Solutions'
 import Footer from '@/components/sections/Footer'
-import Image from 'next/image'
 
-function CasesContent() {
-    const { locale } = useTranslation()
+// ─── Icons ────────────────────────────────────────────────────────────────────
 
-    const getHeaderTranslations = () => {
-        if (locale === 'en') {
-            return {
-                category: 'Portfolio',
-                title: 'Our projects',
-                subtitle: 'Real cases of AI solution implementation'
-            }
-        } else if (locale === 'ky') {
-            return {
-                category: 'Портфолио',
-                title: 'Биздин долбоорлор',
-                subtitle: 'AI чечимдерин ишке ашыруунун реалдуу учурлары'
-            }
-        } else {
-            return {
-                category: 'Портфолио',
-                title: 'Наши проекты',
-                subtitle: 'Реальные кейсы внедрения AI-решений'
-            }
-        }
-    }
+const ArrowIcon = () => (
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+        <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+)
 
-    const translations = getHeaderTranslations()
+const ExternalIcon = () => (
+    <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+        <path d="M2 10L10 2M10 2H5M10 2V7" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+)
 
+// ─── Data ─────────────────────────────────────────────────────────────────────
+
+const cases = [
+    {
+        number: '01',
+        color: 'green' as const,
+        tag: 'Бьюти · Малый бизнес',
+        company: 'Сайкал Перманентный макияж',
+        headline: 'Как студия перестала терять клиентов из-за пропущенных сообщений',
+        teaser: 'Мастер не успевала отвечать в Instagram и WhatsApp между процедурами — клиенты уходили к конкурентам. AI-чатбот закрыл проблему за первую неделю.',
+        results: [
+            { value: '<1 мин', label: 'Время ответа' },
+            { value: '24/7', label: 'Без выходных' },
+            { value: '+↑', label: 'Записей' },
+            { value: '0', label: 'Отвлечений' },
+        ],
+        quote: '«Раньше я сама отвечала на каждое сообщение. Теперь чатбот всё делает за меня — клиенты довольны, записей стало намного больше.»',
+        quoteAuthor: '— Сайкал, владелец студии',
+        instagram: { handle: '@saikal_begimbaeva.pm', url: 'https://instagram.com/saikal_begimbaeva.pm' },
+        product: 'EvoAI CRM',
+        productHref: '/solutions/whatsapp',
+    },
+    {
+        number: '02',
+        color: 'blue' as const,
+        tag: 'Производство · B2B',
+        company: 'БИАСТ.КГ',
+        headline: 'Полная автоматизация: от входящей заявки до отгрузки',
+        teaser: 'Производитель сэндвич-панелей терял заявки и тратил часы на ручное оформление каждого заказа. Внедрили AI-чатбот, CRM и дашборд — всё стало прозрачным.',
+        results: [
+            { value: '~0%', label: 'Потерянных заявок' },
+            { value: '−80%', label: 'Времени на обработку' },
+            { value: '100%', label: 'Прозрачность' },
+            { value: '3–5 дн', label: 'Онбординг' },
+        ],
+        quote: '«Теперь я в любой момент открываю дашборд и вижу, что происходит с каждым заказом. Раньше нужно было звонить каждому менеджеру.»',
+        quoteAuthor: '— Руководитель БИАСТ.КГ',
+        instagram: { handle: '@biast_kg', url: 'https://instagram.com/biast_kg' },
+        product: 'EvoAI CRM',
+        productHref: '/solutions/whatsapp',
+    },
+]
+
+const palette = {
+    green: {
+        accentText: 'text-emerald-400',
+        accentBg: 'bg-emerald-500/[0.07]',
+        accentBorder: 'border-emerald-500/20',
+        accentLine: 'from-emerald-500',
+        metricText: 'text-emerald-400',
+        metricBg: 'bg-emerald-500/[0.04]',
+        quoteLine: 'bg-emerald-500/30',
+        hoverBorder: 'hover:border-emerald-500/20',
+    },
+    blue: {
+        accentText: 'text-blue-400',
+        accentBg: 'bg-blue-500/[0.07]',
+        accentBorder: 'border-blue-500/20',
+        accentLine: 'from-blue-500',
+        metricText: 'text-blue-400',
+        metricBg: 'bg-blue-500/[0.04]',
+        quoteLine: 'bg-blue-500/30',
+        hoverBorder: 'hover:border-blue-500/20',
+    },
+}
+
+// ─── Case Card ────────────────────────────────────────────────────────────────
+
+function CaseCard({ c, index }: { c: typeof cases[0]; index: number }) {
+    const g = palette[c.color]
     return (
-        <div className="relative min-h-screen bg-black">
-            {/* Background gradients */}
-            <div className="fixed inset-0 overflow-hidden pointer-events-none">
-                <div className="absolute top-0 left-1/4 w-[800px] h-[800px] bg-green-500/20 rounded-full blur-[120px] animate-float" />
-                <div className="absolute top-1/3 right-1/4 w-[600px] h-[600px] bg-blue-500/20 rounded-full blur-[100px] animate-float" style={{animationDelay: '2s'}} />
-            </div>
+        <motion.div
+            initial={{ opacity: 0, y: 28 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-40px' }}
+            transition={{ duration: 0.6, delay: index * 0.1, ease: [0.25, 0.1, 0.25, 1] }}
+            className={`relative bg-white/[0.025] border border-white/[0.07] rounded-2xl overflow-hidden transition-colors duration-300 ${g.hoverBorder}`}
+        >
+            <div className={`h-[1.5px] bg-gradient-to-r ${g.accentLine} to-transparent`} />
 
-            <ModernHeader />
+            <div className="p-7 lg:p-9">
+                {/* Header */}
+                <div className="flex flex-wrap items-center justify-between gap-4 mb-6">
+                    <div className="flex items-center gap-3">
+                        <span className={`text-[11px] font-semibold uppercase tracking-widest border rounded-md px-2.5 py-1 ${g.accentBg} ${g.accentBorder} ${g.accentText}`}>
+                            {c.tag}
+                        </span>
+                    </div>
+                    <span className={`text-5xl font-black tabular-nums leading-none ${g.accentText} opacity-20`}>{c.number}</span>
+                </div>
 
-            {/* Page header with visual */}
-            <div className="relative pt-32 pb-12">
-                <div className="max-w-7xl mx-auto px-6">
-                    <div className="grid lg:grid-cols-2 gap-12 items-center">
-                        {/* Left: Text */}
-                        <div>
-                            <p className="text-sm uppercase tracking-wider text-white/50 mb-3">{translations.category}</p>
-                            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4">
-                                {translations.title}
-                            </h1>
-                            <p className="text-lg text-white/60 max-w-xl">
-                                {translations.subtitle}
-                            </p>
+                {/* Company + headline */}
+                <p className="text-xs text-white/50 uppercase tracking-wider font-medium mb-2">{c.company}</p>
+                <h3 className="text-2xl lg:text-3xl font-bold text-white leading-tight mb-4 max-w-2xl">
+                    {c.headline}
+                </h3>
+                <p className="text-sm text-white/50 leading-relaxed mb-7 max-w-2xl">{c.teaser}</p>
+
+                {/* Metrics bar */}
+                <div className="grid grid-cols-2 sm:grid-cols-4 border border-white/[0.07] rounded-xl overflow-hidden mb-7">
+                    {c.results.map((r, i) => (
+                        <div
+                            key={i}
+                            className={[
+                                `px-5 py-4 text-center border-white/[0.07]`,
+                                i < 3 ? 'border-r' : '',
+                                i < 2 ? 'border-b sm:border-b-0' : '',
+                                g.metricBg,
+                            ].join(' ')}
+                        >
+                            <div className={`text-2xl lg:text-3xl font-bold font-mono mb-0.5 ${g.metricText}`}>{r.value}</div>
+                            <div className="text-[11px] text-white/50 leading-tight">{r.label}</div>
                         </div>
-                        {/* Right: Visual - AI Chatbot Icon */}
-                        <div className="hidden lg:flex justify-center items-center">
-                            <div className="relative w-full h-64">
-                                <div className="absolute top-0 right-0 w-48 h-48 bg-green-500/20 rounded-full blur-3xl" />
-                                <div className="absolute bottom-0 left-0 w-48 h-48 bg-blue-500/20 rounded-full blur-3xl" />
-                                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-                                    <Image
-                                        src="/ai.svg"
-                                        alt="AI Projects"
-                                        width={200}
-                                        height={200}
-                                        className="opacity-30 animate-pulse"
-                                    />
-                                </div>
-                            </div>
-                        </div>
+                    ))}
+                </div>
+
+                {/* Quote + footer row */}
+                <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-6 items-end">
+                    <blockquote className="relative pl-4">
+                        <div className={`absolute left-0 top-1 bottom-1 w-[2px] rounded-full ${g.quoteLine}`} />
+                        <p className="text-sm text-white/60 italic leading-relaxed mb-1">{c.quote}</p>
+                        <cite className={`text-[12px] font-semibold not-italic ${g.accentText}`}>{c.quoteAuthor}</cite>
+                    </blockquote>
+
+                    <div className="flex items-center gap-4 flex-shrink-0">
+                        <a
+                            href={c.instagram.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className={`inline-flex items-center gap-1.5 text-[12px] font-medium no-underline transition-opacity hover:opacity-60 ${g.accentText}`}
+                        >
+                            {c.instagram.handle}
+                            <ExternalIcon />
+                        </a>
+                        <Link
+                            href={c.productHref}
+                            className={`inline-flex items-center gap-1.5 text-[12px] font-semibold no-underline transition-opacity hover:opacity-70 ${g.accentText}`}
+                        >
+                            {c.product}
+                            <ArrowIcon />
+                        </Link>
                     </div>
                 </div>
             </div>
+        </motion.div>
+    )
+}
 
-            <Solutions />
+// ─── Page ─────────────────────────────────────────────────────────────────────
+
+function CasesContent() {
+    return (
+        <div className="relative min-h-screen bg-black">
+            <ModernHeader />
+
+            {/* Hero */}
+            <section className="relative pt-32 pb-16 overflow-hidden">
+                <div className="absolute inset-0 pointer-events-none">
+                    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[500px] bg-emerald-500/[0.04] rounded-full blur-[140px]" />
+                </div>
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.7, ease: [0.25, 0.1, 0.25, 1] }}
+                    className="relative z-10 max-w-7xl mx-auto px-6"
+                >
+                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/10 bg-white/[0.04] mb-6">
+                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                        <span className="text-xs text-white/55 uppercase tracking-widest font-medium">Кейсы клиентов</span>
+                    </div>
+                    <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white tracking-tight leading-[1.05] mb-4 max-w-2xl">
+                        Реальные<br />результаты
+                    </h1>
+                    <p className="text-base lg:text-lg text-white/60 max-w-lg leading-relaxed">
+                        Внедряем AI-автоматизацию под ключ. Вот что получают клиенты на практике — с цифрами и именами.
+                    </p>
+                </motion.div>
+            </section>
+
+            {/* Stats */}
+            <section className="pb-20">
+                <div className="max-w-7xl mx-auto px-6">
+                    <motion.div
+                        initial={{ opacity: 0, y: 16 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.5 }}
+                        className="grid grid-cols-2 lg:grid-cols-4 border border-white/[0.07] rounded-2xl overflow-hidden"
+                    >
+                        {[
+                            { value: '50+', label: 'Клиентов', sub: 'Активных внедрений' },
+                            { value: '3', label: 'Отрасли', sub: 'Бьюти, производство, IT' },
+                            { value: '2 нед', label: 'До результата', sub: 'Среднее время запуска' },
+                            { value: '250%', label: 'Средний ROI', sub: 'За 6–18 месяцев' },
+                        ].map((s, i) => (
+                            <div
+                                key={i}
+                                className={[
+                                    'px-6 py-7 lg:px-8 border-white/[0.07]',
+                                    i < 3 ? 'lg:border-r' : '',
+                                    i < 2 ? 'border-b border-r lg:border-b-0' : '',
+                                    i === 2 ? 'border-r lg:border-r-0' : '',
+                                ].join(' ')}
+                            >
+                                <div className="text-3xl lg:text-4xl font-bold text-white mb-1 tabular-nums">{s.value}</div>
+                                <div className="text-sm font-semibold text-white/70 mb-1">{s.label}</div>
+                                <p className="text-xs text-white/50">{s.sub}</p>
+                            </div>
+                        ))}
+                    </motion.div>
+                </div>
+            </section>
+
+            {/* Cases */}
+            <section className="pb-24 border-t border-white/[0.06]">
+                <div className="max-w-5xl mx-auto px-6 pt-20">
+                    <div className="flex flex-col gap-6 mb-12">
+                        {cases.map((c, i) => (
+                            <CaseCard key={c.number} c={c} index={i} />
+                        ))}
+                    </div>
+
+                    {/* CTA strip */}
+                    <motion.div
+                        initial={{ opacity: 0, y: 16 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.5 }}
+                        className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5 border border-white/[0.07] rounded-2xl px-7 py-6 bg-white/[0.02]"
+                    >
+                        <div>
+                            <p className="text-base font-semibold text-white mb-1">Ваш бизнес — следующий кейс?</p>
+                            <p className="text-sm text-white/55">Разберём ситуацию и запустим пилот бесплатно на 2 недели.</p>
+                        </div>
+                        <Link
+                            href="/contact"
+                            className="flex-shrink-0 inline-flex items-center gap-2 bg-white text-black px-6 py-3 rounded-xl text-sm font-bold no-underline hover:bg-white/90 transition-colors"
+                        >
+                            Начать бесплатный пилот
+                            <ArrowIcon />
+                        </Link>
+                    </motion.div>
+                </div>
+            </section>
+
             <Footer />
         </div>
     )
@@ -85,8 +273,6 @@ function CasesContent() {
 
 export default function CasesPage() {
     return (
-        <I18nProvider initialLocale="ru">
-            <CasesContent />
-        </I18nProvider>
+        <CasesContent />
     )
 }

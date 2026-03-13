@@ -14,103 +14,9 @@ interface PricingPlan {
 }
 
 const EvoPayPricingSection: React.FC = () => {
-    const { locale } = useTranslation()
+    const { tObj } = useTranslation()
+    const t = tObj('evoPayPricing')
     const [isYearly, setIsYearly] = useState(false)
-
-    const translations = {
-        ru: {
-            badge: 'Тарифы',
-            title: 'Стоимость программы',
-            subtitle: 'Первый месяц — бесплатно. Выберите тариф под ваш бизнес.',
-            monthly: 'Ежемесячно',
-            yearly: 'Ежегодно',
-            save: 'Экономия 20%',
-            popular: 'Популярный',
-            currency: 'сом',
-            perMonth: '/месяц',
-            perYear: '/год',
-            tryFree: 'Попробовать бесплатно',
-            contactUs: 'Связаться с нами',
-            customPrice: 'По запросу',
-            footer: 'Нужно больше столов или особые условия? Оставьте заявку — подберём индивидуальное решение.',
-            plans: [
-                { name: 'Старт', price: '5,000', yearlyPrice: '48,000', description: 'Для небольших кафе', features: [
-                    { name: 'До 10 столов', included: true }, { name: 'Цифровое меню', included: true }, { name: 'QR-коды', included: true }, { name: 'Онлайн-оплата', included: true }, { name: 'Базовая аналитика', included: true }, { name: 'Email поддержка', included: true }, { name: 'Печать на кухню', included: false }, { name: 'Push-уведомления', included: false }, { name: 'Интеграция с POS', included: false }, { name: 'Выделенный менеджер', included: false }
-                ]},
-                { name: 'Бизнес', price: '12,000', yearlyPrice: '115,200', description: 'Для ресторанов', recommended: true, features: [
-                    { name: 'До 30 столов', included: true }, { name: 'Цифровое меню', included: true }, { name: 'QR-коды', included: true }, { name: 'Онлайн-оплата', included: true }, { name: 'Расширенная аналитика', included: true }, { name: 'Чат + Email поддержка', included: true }, { name: 'Печать на кухню', included: true }, { name: 'Push-уведомления', included: true }, { name: 'Интеграция с POS', included: false }, { name: 'Выделенный менеджер', included: false }
-                ]},
-                { name: 'Профессионал', price: '25,000', yearlyPrice: '240,000', description: 'Для сетей ресторанов', features: [
-                    { name: 'До 100 столов', included: true }, { name: 'Цифровое меню', included: true }, { name: 'QR-коды', included: true }, { name: 'Онлайн-оплата', included: true }, { name: 'Полная аналитика + API', included: true }, { name: 'Приоритетная поддержка', included: true }, { name: 'Печать на кухню', included: true }, { name: 'Push-уведомления', included: true }, { name: 'Интеграция с POS', included: true }, { name: 'Выделенный менеджер', included: false }
-                ]},
-                { name: 'Корпоративный', price: 'custom', description: 'Для крупных сетей', features: [
-                    { name: 'Неограниченно столов', included: true }, { name: 'Цифровое меню', included: true }, { name: 'QR-коды', included: true }, { name: 'Онлайн-оплата', included: true }, { name: 'Полная аналитика + API', included: true }, { name: 'Приоритетная поддержка 24/7', included: true }, { name: 'Печать на кухню', included: true }, { name: 'Push-уведомления', included: true }, { name: 'Интеграция с POS', included: true }, { name: 'Выделенный менеджер', included: true }
-                ]}
-            ]
-        },
-        en: {
-            badge: 'Pricing',
-            title: 'Program cost',
-            subtitle: 'First month — free. Choose a plan for your business.',
-            monthly: 'Monthly',
-            yearly: 'Yearly',
-            save: 'Save 20%',
-            popular: 'Popular',
-            currency: 'som',
-            perMonth: '/month',
-            perYear: '/year',
-            tryFree: 'Try for free',
-            contactUs: 'Contact us',
-            customPrice: 'On request',
-            footer: 'Need more tables or special conditions? Leave a request — we\'ll find an individual solution.',
-            plans: [
-                { name: 'Start', price: '5,000', yearlyPrice: '48,000', description: 'For small cafes', features: [
-                    { name: 'Up to 10 tables', included: true }, { name: 'Digital menu', included: true }, { name: 'QR codes', included: true }, { name: 'Online payment', included: true }, { name: 'Basic analytics', included: true }, { name: 'Email support', included: true }, { name: 'Kitchen printing', included: false }, { name: 'Push notifications', included: false }, { name: 'POS integration', included: false }, { name: 'Dedicated manager', included: false }
-                ]},
-                { name: 'Business', price: '12,000', yearlyPrice: '115,200', description: 'For restaurants', recommended: true, features: [
-                    { name: 'Up to 30 tables', included: true }, { name: 'Digital menu', included: true }, { name: 'QR codes', included: true }, { name: 'Online payment', included: true }, { name: 'Advanced analytics', included: true }, { name: 'Chat + Email support', included: true }, { name: 'Kitchen printing', included: true }, { name: 'Push notifications', included: true }, { name: 'POS integration', included: false }, { name: 'Dedicated manager', included: false }
-                ]},
-                { name: 'Professional', price: '25,000', yearlyPrice: '240,000', description: 'For restaurant chains', features: [
-                    { name: 'Up to 100 tables', included: true }, { name: 'Digital menu', included: true }, { name: 'QR codes', included: true }, { name: 'Online payment', included: true }, { name: 'Full analytics + API', included: true }, { name: 'Priority support', included: true }, { name: 'Kitchen printing', included: true }, { name: 'Push notifications', included: true }, { name: 'POS integration', included: true }, { name: 'Dedicated manager', included: false }
-                ]},
-                { name: 'Enterprise', price: 'custom', description: 'For large chains', features: [
-                    { name: 'Unlimited tables', included: true }, { name: 'Digital menu', included: true }, { name: 'QR codes', included: true }, { name: 'Online payment', included: true }, { name: 'Full analytics + API', included: true }, { name: 'Priority 24/7 support', included: true }, { name: 'Kitchen printing', included: true }, { name: 'Push notifications', included: true }, { name: 'POS integration', included: true }, { name: 'Dedicated manager', included: true }
-                ]}
-            ]
-        },
-        ky: {
-            badge: 'Тарифтер',
-            title: 'Программанын баасы',
-            subtitle: 'Биринчи ай — акысыз. Бизнесиңизге ылайыктуу тарифти тандаңыз.',
-            monthly: 'Ай сайын',
-            yearly: 'Жыл сайын',
-            save: '20% үнөмдөө',
-            popular: 'Популярдуу',
-            currency: 'сом',
-            perMonth: '/ай',
-            perYear: '/жыл',
-            tryFree: 'Акысыз сынап көрүү',
-            contactUs: 'Байланышуу',
-            customPrice: 'Суроо боюнча',
-            footer: 'Көбүрөөк стол же өзгөчө шарттар керекпи? Өтүнүч калтырыңыз — жеке чечим табабыз.',
-            plans: [
-                { name: 'Старт', price: '5,000', yearlyPrice: '48,000', description: 'Кичине кафелер үчүн', features: [
-                    { name: '10 столго чейин', included: true }, { name: 'Санариптик меню', included: true }, { name: 'QR-коддор', included: true }, { name: 'Онлайн төлөм', included: true }, { name: 'Негизги аналитика', included: true }, { name: 'Email колдоо', included: true }, { name: 'Ашканага басып чыгаруу', included: false }, { name: 'Push-билдирүүлөр', included: false }, { name: 'POS интеграция', included: false }, { name: 'Жеке менеджер', included: false }
-                ]},
-                { name: 'Бизнес', price: '12,000', yearlyPrice: '115,200', description: 'Рестораңдар үчүн', recommended: true, features: [
-                    { name: '30 столго чейин', included: true }, { name: 'Санариптик меню', included: true }, { name: 'QR-коддор', included: true }, { name: 'Онлайн төлөм', included: true }, { name: 'Кеңейтилген аналитика', included: true }, { name: 'Чат + Email колдоо', included: true }, { name: 'Ашканага басып чыгаруу', included: true }, { name: 'Push-билдирүүлөр', included: true }, { name: 'POS интеграция', included: false }, { name: 'Жеке менеджер', included: false }
-                ]},
-                { name: 'Профессионал', price: '25,000', yearlyPrice: '240,000', description: 'Ресторан тармактары үчүн', features: [
-                    { name: '100 столго чейин', included: true }, { name: 'Санариптик меню', included: true }, { name: 'QR-коддор', included: true }, { name: 'Онлайн төлөм', included: true }, { name: 'Толук аналитика + API', included: true }, { name: 'Приоритеттүү колдоо', included: true }, { name: 'Ашканага басып чыгаруу', included: true }, { name: 'Push-билдирүүлөр', included: true }, { name: 'POS интеграция', included: true }, { name: 'Жеке менеджер', included: false }
-                ]},
-                { name: 'Корпоративдик', price: 'custom', description: 'Чоң тармактар үчүн', features: [
-                    { name: 'Чексиз столдор', included: true }, { name: 'Санариптик меню', included: true }, { name: 'QR-коддор', included: true }, { name: 'Онлайн төлөм', included: true }, { name: 'Толук аналитика + API', included: true }, { name: 'Приоритеттүү 24/7 колдоо', included: true }, { name: 'Ашканага басып чыгаруу', included: true }, { name: 'Push-билдирүүлөр', included: true }, { name: 'POS интеграция', included: true }, { name: 'Жеке менеджер', included: true }
-                ]}
-            ]
-        }
-    }
-
-    const t = translations[locale] || translations.ru
 
     const scrollToDemo = () => {
         const element = document.getElementById('evopay-demo')
@@ -240,11 +146,11 @@ const EvoPayPricingSection: React.FC = () => {
                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                                             </svg>
                                         ) : (
-                                            <svg className="w-5 h-5 text-white/30 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <svg className="w-5 h-5 text-white/50 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                                             </svg>
                                         )}
-                                        <span className={`text-sm ${feature.included ? 'text-white/80' : 'text-white/40'}`}>
+                                        <span className={`text-sm ${feature.included ? 'text-white/80' : 'text-white/55'}`}>
                                             {feature.name}
                                         </span>
                                     </li>

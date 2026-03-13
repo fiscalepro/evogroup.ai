@@ -4,7 +4,6 @@ import React, { useEffect, useRef, useState } from 'react'
 import { useTranslation } from '@/components/providers/I18nProvider'
 import { motion, useInView, useSpring, useTransform } from 'framer-motion'
 
-// Modern minimalist icons
 const Icons = {
     bank: (
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-full h-full">
@@ -44,290 +43,200 @@ const Icons = {
     ),
 }
 
-// Animated counter component
-function AnimatedNumber({ value, suffix = '' }: { value: number, suffix?: string }) {
+function AnimatedNumber({ value, suffix = '', decimals = 0 }: { value: number; suffix?: string; decimals?: number }) {
     const ref = useRef<HTMLSpanElement>(null)
-    const isInView = useInView(ref, { once: true, margin: "-100px" })
+    const isInView = useInView(ref, { once: true, margin: '-80px' })
     const spring = useSpring(0, { mass: 0.8, stiffness: 75, damping: 15 })
-    const display = useTransform(spring, (current) => Math.round(current))
+    const display = useTransform(spring, (v) => parseFloat(v.toFixed(decimals)))
     const [displayValue, setDisplayValue] = useState(0)
 
     useEffect(() => {
-        if (isInView) {
-            spring.set(value)
-        }
+        if (isInView) spring.set(value)
     }, [isInView, spring, value])
 
     useEffect(() => {
-        return display.on("change", (latest) => {
-            setDisplayValue(latest)
-        })
+        return display.on('change', (latest) => setDisplayValue(latest))
     }, [display])
 
-    return <span ref={ref}>{displayValue}{suffix}</span>
+    return (
+        <span ref={ref}>
+            {decimals > 0 ? displayValue.toFixed(decimals) : displayValue}
+            {suffix}
+        </span>
+    )
 }
 
 const TrustSignals: React.FC = () => {
-    const { locale } = useTranslation()
+    const { tObj } = useTranslation()
+    const content = tObj('trustSignals')
 
-    const getTranslations = () => {
-        if (locale === 'en') {
-            return {
-                title: 'Trusted by Industry Leaders',
-                subtitle: 'We partner with the largest banks, industrial companies, and government organizations',
-                keyClients: 'Our Key Partners',
-                certificationsTitle: 'Certifications & Partnerships',
-            }
-        } else if (locale === 'ky') {
-            return {
-                title: 'Базардын лидерлери бизге ишенет',
-                subtitle: 'Эң ири банктар, өнөр жай компаниялары жана мамлекеттик уюмдар менен иштейбиз',
-                keyClients: 'Биздин негизги өнөктөштөр',
-                certificationsTitle: 'Сертификаттар жана өнөктөштүк',
-            }
-        } else {
-            return {
-                title: 'Нам доверяют лидеры рынка',
-                subtitle: 'Работаем с крупнейшими банками, промышленными компаниями и государственными организациями',
-                keyClients: 'Наши ключевые партнёры',
-                certificationsTitle: 'Сертификации и партнёрства',
-            }
-        }
+    const certColors = {
+        blue: {
+            border: 'border-l-blue-500/60',
+            bg: 'bg-blue-500/10',
+            text: 'text-blue-400',
+        },
+        emerald: {
+            border: 'border-l-emerald-500/60',
+            bg: 'bg-emerald-500/10',
+            text: 'text-emerald-400',
+        },
+        purple: {
+            border: 'border-l-purple-500/60',
+            bg: 'bg-purple-500/10',
+            text: 'text-purple-400',
+        },
     }
-
-    const getCertifications = () => {
-        if (locale === 'en') {
-            return [
-                { name: 'ISO 27001', icon: 'shield' as const, description: 'Information Security Management' },
-                { name: 'API Partner', icon: 'api' as const, description: 'Official Government Partner' },
-                { name: 'AI Certified', icon: 'ai' as const, description: 'Certified AI Solutions' },
-            ]
-        } else if (locale === 'ky') {
-            return [
-                { name: 'ISO 27001', icon: 'shield' as const, description: 'Маалымат коопсуздугун башкаруу' },
-                { name: 'API өнөктөш', icon: 'api' as const, description: 'Расмий мамлекеттик өнөктөш' },
-                { name: 'ИИ сертификат', icon: 'ai' as const, description: 'Сертификатталган ИИ чечимдер' },
-            ]
-        } else {
-            return [
-                { name: 'ISO 27001', icon: 'shield' as const, description: 'Управление информационной безопасностью' },
-                { name: 'API Partner', icon: 'api' as const, description: 'Официальный партнёр госорганов' },
-                { name: 'AI Certified', icon: 'ai' as const, description: 'Сертифицированные ИИ-решения' },
-            ]
-        }
-    }
-
-    const getStats = () => {
-        if (locale === 'en') {
-            return [
-                { value: 10, suffix: '+', label: 'Years of Excellence', sublabel: 'In the market' },
-                { value: 50, suffix: '+', label: 'Enterprise Clients', sublabel: 'Trust our solutions' },
-                { value: 99.9, suffix: '%', label: 'System Uptime', sublabel: 'Guaranteed reliability' },
-                { value: 24, suffix: '/7', label: 'Support', sublabel: 'Always available' },
-            ]
-        } else if (locale === 'ky') {
-            return [
-                { value: 10, suffix: '+', label: 'Жыл мыктылык', sublabel: 'Базарда' },
-                { value: 50, suffix: '+', label: 'Ири кардарлар', sublabel: 'Бизге ишенет' },
-                { value: 99.9, suffix: '%', label: 'Системанын иштеши', sublabel: 'Гарантияланган ишенимдүүлүк' },
-                { value: 24, suffix: '/7', label: 'Колдоо', sublabel: 'Дайыма жеткиликтүү' },
-            ]
-        } else {
-            return [
-                { value: 10, suffix: '+', label: 'Лет превосходства', sublabel: 'На рынке' },
-                { value: 50, suffix: '+', label: 'Крупных клиентов', sublabel: 'Доверяют нам' },
-                { value: 99.9, suffix: '%', label: 'Надёжность систем', sublabel: 'Гарантированная стабильность' },
-                { value: 24, suffix: '/7', label: 'Поддержка', sublabel: 'Всегда на связи' },
-            ]
-        }
-    }
-
-    const getClients = () => {
-        if (locale === 'en') {
-            return [
-                { icon: 'bank' as const, name: 'Major Banks', description: 'Financial sector' },
-                { icon: 'oil' as const, name: 'Oil & Gas', description: 'Industrial sector' },
-                { icon: 'gov' as const, name: 'Government', description: 'Public sector' },
-                { icon: 'telecom' as const, name: 'Telecom', description: 'Communications' },
-            ]
-        } else if (locale === 'ky') {
-            return [
-                { icon: 'bank' as const, name: 'Ири банктар', description: 'Финансы сектору' },
-                { icon: 'oil' as const, name: 'Мунай-газ', description: 'Өнөр жай сектору' },
-                { icon: 'gov' as const, name: 'Мамлекет', description: 'Мамлекеттик сектор' },
-                { icon: 'telecom' as const, name: 'Телеком', description: 'Байланыш' },
-            ]
-        } else {
-            return [
-                { icon: 'bank' as const, name: 'Крупные банки', description: 'Финансовый сектор' },
-                { icon: 'oil' as const, name: 'Нефть и газ', description: 'Промышленность' },
-                { icon: 'gov' as const, name: 'Госорганы', description: 'Государственный сектор' },
-                { icon: 'telecom' as const, name: 'Телеком', description: 'Связь и коммуникации' },
-            ]
-        }
-    }
-
-    const translations = getTranslations()
-    const certifications = getCertifications()
-    const stats = getStats()
-    const clients = getClients()
 
     const containerVariants = {
         hidden: { opacity: 0 },
         visible: {
             opacity: 1,
-            transition: {
-                staggerChildren: 0.1,
-                delayChildren: 0.2
-            }
-        }
+            transition: { staggerChildren: 0.07, delayChildren: 0.1 },
+        },
     }
 
     const itemVariants = {
-        hidden: { opacity: 0, y: 30 },
+        hidden: { opacity: 0, y: 24 },
         visible: {
             opacity: 1,
             y: 0,
-            transition: {
-                duration: 0.6,
-                ease: [0.25, 0.1, 0.25, 1] as [number, number, number, number]
-            }
-        }
+            transition: { duration: 0.5, ease: [0.25, 0.1, 0.25, 1] as [number, number, number, number] },
+        },
     }
 
     return (
-        <section id="trust" className="relative py-32 lg:py-40 overflow-hidden bg-[#0a0a0a]">
-            {/* Subtle gradient orbs */}
-            <div className="absolute inset-0 overflow-hidden pointer-events-none">
-                <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-blue-500/5 rounded-full blur-[150px]" />
-                <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-purple-500/5 rounded-full blur-[150px]" />
-            </div>
+        <section id="trust" className="relative py-24 lg:py-32 overflow-hidden">
+            {/* Background */}
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/[0.015] to-transparent pointer-events-none" />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-blue-500/[0.04] rounded-full blur-[120px] pointer-events-none" />
 
             <div className="relative z-10 max-w-7xl mx-auto px-6">
-                {/* Header - Apple style large typography */}
+
+                {/* Header */}
                 <motion.div
-                    initial={{ opacity: 0, y: 40 }}
+                    initial={{ opacity: 0, y: 24 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: "-100px" }}
-                    transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
-                    className="text-center mb-24 lg:mb-32"
+                    viewport={{ once: true, margin: '-80px' }}
+                    transition={{ duration: 0.7, ease: [0.25, 0.1, 0.25, 1] }}
+                    className="mb-14 lg:mb-20"
                 >
-                    <h2 className="text-4xl sm:text-5xl lg:text-7xl font-semibold text-white tracking-tight mb-6 leading-tight">
-                        {translations.title}
+                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/10 bg-white/[0.04] mb-5">
+                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                        <span className="text-xs text-white/55 uppercase tracking-widest font-medium">
+                            {content.overline}
+                        </span>
+                    </div>
+                    <h2 className="text-4xl sm:text-5xl lg:text-6xl font-semibold text-white tracking-tight leading-tight max-w-2xl">
+                        {content.title}
                     </h2>
-                    <p className="text-xl lg:text-2xl text-white/50 max-w-3xl mx-auto font-light leading-relaxed">
-                        {translations.subtitle}
+                    <p className="mt-4 text-base lg:text-lg text-white/60 max-w-xl leading-relaxed">
+                        {content.subtitle}
                     </p>
                 </motion.div>
 
-                {/* Stats - Large numbers Apple style */}
+                {/* Stats — bordered grid with dividers */}
                 <motion.div
                     variants={containerVariants}
                     initial="hidden"
                     whileInView="visible"
-                    viewport={{ once: true, margin: "-50px" }}
-                    className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-4 mb-32"
+                    viewport={{ once: true, margin: '-50px' }}
+                    className="grid grid-cols-2 lg:grid-cols-4 border border-white/[0.08] rounded-2xl overflow-hidden mb-10"
                 >
-                    {stats.map((stat, index) => (
+                    {content.stats.map((stat, i) => (
                         <motion.div
-                            key={index}
+                            key={i}
                             variants={itemVariants}
-                            className="text-center group"
+                            className={[
+                                'px-6 py-8 lg:px-8 lg:py-10 text-center',
+                                i % 2 === 0 && i < content.stats.length - 2 ? 'border-r border-white/[0.08]' : '',
+                                i < 2 ? 'border-b border-white/[0.08] lg:border-b-0' : '',
+                                i === 1 || i === 3 ? 'lg:border-r-0' : '',
+                                i === 0 || i === 2 ? 'lg:border-r border-white/[0.08]' : '',
+                            ].join(' ')}
                         >
-                            <div className="relative">
-                                <div className="text-5xl sm:text-6xl lg:text-8xl font-semibold bg-gradient-to-b from-white to-white/60 bg-clip-text text-transparent tracking-tight">
-                                    <AnimatedNumber value={stat.value} suffix={stat.suffix} />
-                                </div>
-                                <div className="absolute inset-0 bg-gradient-to-b from-blue-500/0 to-blue-500/10 blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 -z-10" />
+                            <div className="text-4xl sm:text-5xl lg:text-6xl font-semibold bg-gradient-to-b from-white to-white/60 bg-clip-text text-transparent tabular-nums">
+                                <AnimatedNumber value={stat.value} suffix={stat.suffix} decimals={stat.decimals} />
                             </div>
-                            <div className="mt-4 space-y-1">
-                                <p className="text-lg lg:text-xl font-medium text-white/90">{stat.label}</p>
-                                <p className="text-sm lg:text-base text-white/40">{stat.sublabel}</p>
-                            </div>
+                            <p className="mt-2.5 text-sm font-medium text-white/80">{stat.label}</p>
+                            <p className="mt-0.5 text-xs text-white/50">{stat.sublabel}</p>
                         </motion.div>
                     ))}
                 </motion.div>
 
-                {/* Clients - Minimal cards */}
-                <motion.div
-                    initial={{ opacity: 0, y: 40 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.8 }}
-                    className="mb-32"
-                >
-                    <p className="text-center text-sm text-white/30 uppercase tracking-[0.2em] mb-12">
-                        {translations.keyClients}
-                    </p>
-                    <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
-                        {clients.map((client, index) => (
-                            <motion.div
-                                key={index}
-                                initial={{ opacity: 0, scale: 0.95 }}
-                                whileInView={{ opacity: 1, scale: 1 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: index * 0.1, duration: 0.5 }}
-                                whileHover={{ scale: 1.02, y: -4 }}
-                                className="group relative bg-white/[0.03] backdrop-blur-xl rounded-3xl p-8 lg:p-10 border border-white/[0.05] hover:border-white/10 hover:bg-white/[0.05] transition-all duration-500"
-                            >
-                                <div className="flex flex-col items-center text-center">
-                                    <div className="w-16 h-16 lg:w-20 lg:h-20 mb-6 relative">
-                                        <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                                        <div className="relative w-full h-full bg-white/5 rounded-2xl flex items-center justify-center group-hover:bg-white/10 transition-colors duration-300 p-4">
-                                            <div className="w-full h-full text-white/60 group-hover:text-white transition-colors duration-300">
-                                                {Icons[client.icon]}
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <h3 className="text-lg lg:text-xl font-medium text-white mb-2">{client.name}</h3>
-                                    <p className="text-sm text-white/40">{client.description}</p>
-                                </div>
-                            </motion.div>
-                        ))}
-                    </div>
-                </motion.div>
+                {/* Industries + Certifications */}
+                <div className="grid lg:grid-cols-[1fr_320px] gap-5 lg:gap-6">
 
-                {/* Certifications - Horizontal scroll on mobile, grid on desktop */}
-                <motion.div
-                    initial={{ opacity: 0, y: 40 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.8 }}
-                >
-                    <p className="text-center text-sm text-white/30 uppercase tracking-[0.2em] mb-12">
-                        {translations.certificationsTitle}
-                    </p>
-                    <div className="flex flex-col md:flex-row gap-4 lg:gap-6 justify-center">
-                        {certifications.map((cert, index) => (
-                            <motion.div
-                                key={index}
-                                initial={{ opacity: 0, x: -20 }}
-                                whileInView={{ opacity: 1, x: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: index * 0.15, duration: 0.5 }}
-                                whileHover={{ scale: 1.02 }}
-                                className="group flex-1 max-w-sm mx-auto md:mx-0"
-                            >
-                                <div className="relative h-full bg-gradient-to-br from-white/[0.05] to-white/[0.02] backdrop-blur-xl rounded-3xl p-6 lg:p-8 border border-white/[0.08] hover:border-white/15 transition-all duration-500 overflow-hidden">
-                                    {/* Subtle gradient overlay on hover */}
-                                    <div className="absolute inset-0 bg-gradient-to-br from-blue-500/0 via-purple-500/0 to-blue-500/0 group-hover:from-blue-500/5 group-hover:via-purple-500/5 group-hover:to-blue-500/5 transition-all duration-700" />
-
-                                    <div className="relative flex items-center gap-5">
-                                        <div className="flex-shrink-0 w-14 h-14 lg:w-16 lg:h-16 rounded-2xl bg-white/5 flex items-center justify-center group-hover:bg-white/10 transition-colors duration-300 p-3">
-                                            <div className="w-full h-full text-white/70 group-hover:text-white transition-colors duration-300">
-                                                {Icons[cert.icon]}
-                                            </div>
-                                        </div>
-                                        <div className="flex-1 min-w-0">
-                                            <h3 className="text-lg font-semibold text-white mb-1">{cert.name}</h3>
-                                            <p className="text-sm text-white/40 leading-relaxed">{cert.description}</p>
-                                        </div>
+                    {/* Industries */}
+                    <div>
+                        <p className="text-xs text-white/50 uppercase tracking-[0.18em] font-medium mb-4">
+                            {content.industriesLabel}
+                        </p>
+                        <motion.div
+                            variants={containerVariants}
+                            initial="hidden"
+                            whileInView="visible"
+                            viewport={{ once: true }}
+                            className="grid grid-cols-1 sm:grid-cols-2 gap-3"
+                        >
+                            {content.clients.map((client, i) => (
+                                <motion.div
+                                    key={i}
+                                    variants={itemVariants}
+                                    whileHover={{ scale: 1.01 }}
+                                    className="group flex items-start gap-3.5 p-4 rounded-xl bg-white/[0.03] border border-white/[0.06] hover:bg-white/[0.055] hover:border-white/10 transition-all duration-300 cursor-default"
+                                >
+                                    <div className="flex-shrink-0 w-9 h-9 rounded-lg bg-white/[0.06] flex items-center justify-center text-white/60 group-hover:text-white/75 group-hover:bg-white/10 transition-all duration-300 p-2 mt-0.5">
+                                        {Icons[client.icon]}
                                     </div>
-                                </div>
-                            </motion.div>
-                        ))}
+                                    <div className="min-w-0">
+                                        <p className="text-sm font-semibold text-white/90 leading-tight">{client.name}</p>
+                                        <p className="text-xs text-white/55 mt-0.5">{client.description}</p>
+                                        <p className="text-xs font-medium text-blue-400/70 mt-1.5">{client.metric}</p>
+                                    </div>
+                                </motion.div>
+                            ))}
+                        </motion.div>
                     </div>
-                </motion.div>
+
+                    {/* Certifications */}
+                    <div>
+                        <p className="text-xs text-white/50 uppercase tracking-[0.18em] font-medium mb-4">
+                            {content.certsLabel}
+                        </p>
+                        <motion.div
+                            variants={containerVariants}
+                            initial="hidden"
+                            whileInView="visible"
+                            viewport={{ once: true }}
+                            className="flex flex-col gap-3"
+                        >
+                            {content.certs.map((cert, i) => {
+                                const colors = certColors[cert.color]
+                                return (
+                                    <motion.div
+                                        key={i}
+                                        variants={itemVariants}
+                                        className={[
+                                            'flex items-center gap-3.5 p-4 rounded-xl',
+                                            'bg-white/[0.03] border border-white/[0.06]',
+                                            'border-l-2',
+                                            colors.border,
+                                        ].join(' ')}
+                                    >
+                                        <div className={['flex-shrink-0 w-9 h-9 rounded-lg flex items-center justify-center p-2', colors.bg, colors.text].join(' ')}>
+                                            {Icons[cert.icon]}
+                                        </div>
+                                        <div className="min-w-0">
+                                            <p className="text-sm font-semibold text-white leading-tight">{cert.name}</p>
+                                            <p className="text-xs text-white/55 mt-0.5 leading-snug">{cert.description}</p>
+                                        </div>
+                                    </motion.div>
+                                )
+                            })}
+                        </motion.div>
+                    </div>
+                </div>
             </div>
         </section>
     )

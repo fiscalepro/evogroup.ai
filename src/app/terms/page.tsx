@@ -1,6 +1,6 @@
 'use client'
 
-import { I18nProvider, useTranslation } from '@/components/providers/I18nProvider'
+import { useTranslation } from '@/components/providers/I18nProvider'
 import ModernHeader from '@/components/sections/ModernHeader'
 import Footer from '@/components/sections/Footer'
 
@@ -348,7 +348,7 @@ Email: legal@evogroup.ai
                     <p className="text-lg text-white/60 mb-2">
                         {content.subtitle}
                     </p>
-                    <p className="text-sm text-white/40">
+                    <p className="text-sm text-white/55">
                         {content.effectiveDate}
                     </p>
                 </div>
@@ -379,8 +379,6 @@ Email: legal@evogroup.ai
 
 export default function TermsPage() {
     return (
-        <I18nProvider initialLocale="ru">
-            <TermsContent />
-        </I18nProvider>
+        <TermsContent />
     )
 }

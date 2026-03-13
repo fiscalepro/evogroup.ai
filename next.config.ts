@@ -1,11 +1,6 @@
 import type { NextConfig } from 'next'
 
 const securityHeaders = [
-    // Защита от XSS атак
-    {
-        key: 'X-XSS-Protection',
-        value: '1; mode=block'
-    },
     // Запрет iframe embedding (clickjacking protection)
     {
         key: 'X-Frame-Options',
@@ -29,7 +24,7 @@ const securityHeaders = [
     // Permissions policy
     {
         key: 'Permissions-Policy',
-        value: 'camera=(), microphone=(), geolocation=(), interest-cohort=()'
+        value: 'camera=(), microphone=(), geolocation=()'
     },
     // Content Security Policy
     {
@@ -56,6 +51,9 @@ const securityHeaders = [
 ]
 
 const nextConfig: NextConfig = {
+    // Source maps for production (required for Lighthouse and debugging)
+    productionBrowserSourceMaps: true,
+
     // Оптимизация production build
     compiler: {
         removeConsole: process.env.NODE_ENV === 'production' ? {

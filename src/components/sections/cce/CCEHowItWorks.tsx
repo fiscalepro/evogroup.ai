@@ -5,84 +5,8 @@ import { motion } from 'framer-motion'
 import { useTranslation } from '@/components/providers/I18nProvider'
 
 const CCEHowItWorks: React.FC = () => {
-    const { locale } = useTranslation()
-
-    const translations = {
-        ru: {
-            badge: 'Как начать',
-            title: '3 шага к умной команде',
-            steps: [
-                {
-                    number: '1',
-                    title: 'Подключаем',
-                    description: 'Создаём Enterprise Config под стандарты вашей компании. Настраиваем Dashboard, политики безопасности и MCP серверы.',
-                    details: ['Анализ текущих процессов', 'Настройка конфигурации', 'Интеграция с инфраструктурой'],
-                },
-                {
-                    number: '2',
-                    title: 'Запускаем',
-                    description: 'Каждый разработчик выполняет cce init — и сразу работает по единым стандартам с полным набором инструментов.',
-                    details: ['Одна команда для старта', 'Автонастройка Claude Code', 'Подключение всех MCP'],
-                },
-                {
-                    number: '3',
-                    title: 'Растём',
-                    description: 'Swarm Intelligence собирает паттерны, Dashboard показывает метрики. Команда становится умнее каждый день.',
-                    details: ['Паттерны распространяются', 'Метрики растут', 'Знание накапливается'],
-                },
-            ],
-        },
-        en: {
-            badge: 'How to start',
-            title: '3 steps to a smart team',
-            steps: [
-                {
-                    number: '1',
-                    title: 'Connect',
-                    description: 'We create an Enterprise Config tailored to your company standards. Set up Dashboard, security policies, and MCP servers.',
-                    details: ['Current process analysis', 'Configuration setup', 'Infrastructure integration'],
-                },
-                {
-                    number: '2',
-                    title: 'Launch',
-                    description: 'Each developer runs cce init — and immediately works to unified standards with a full toolkit.',
-                    details: ['One command to start', 'Auto-configure Claude Code', 'Connect all MCPs'],
-                },
-                {
-                    number: '3',
-                    title: 'Grow',
-                    description: 'Swarm Intelligence collects patterns, Dashboard shows metrics. The team gets smarter every day.',
-                    details: ['Patterns spread', 'Metrics grow', 'Knowledge accumulates'],
-                },
-            ],
-        },
-        ky: {
-            badge: 'Кантип баштоо',
-            title: 'Акылдуу командага 3 кадам',
-            steps: [
-                {
-                    number: '1',
-                    title: 'Туташтырабыз',
-                    description: 'Компанияңыздын стандарттарына ылайык Enterprise Config түзөбүз. Dashboard, коопсуздук саясаттарын жөндөйбүз.',
-                    details: ['Учурдагы процесстерди анализдөө', 'Конфигурацияны жөндөө', 'Инфраструктура менен интеграция'],
-                },
-                {
-                    number: '2',
-                    title: 'Ишке киргизебиз',
-                    description: 'Ар бир иштеп чыгуучу cce init аткарат — жана дароо бирдиктүү стандарттар боюнча иштей баштайт.',
-                    details: ['Баштоо үчүн бир команда', 'Claude Code авто-жөндөө', 'Бардык MCP туташтыруу'],
-                },
-                {
-                    number: '3',
-                    title: 'Өсөбүз',
-                    description: 'Swarm Intelligence паттерндерди чогултат, Dashboard метрикаларды көрсөтөт. Команда күн сайын акылдуу болот.',
-                    details: ['Паттерндер жайылат', 'Метрикалар өсөт', 'Билим топтолот'],
-                },
-            ],
-        }
-    }
-
-    const t = translations[locale] || translations.ru
+    const { tObj } = useTranslation()
+    const t = tObj('cceHowItWorks')
 
     return (
         <section className="py-20 sm:py-32 px-4 sm:px-6 lg:px-10 bg-black relative overflow-hidden">

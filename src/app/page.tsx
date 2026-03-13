@@ -1,33 +1,31 @@
 'use client'
 
-import { I18nProvider } from '@/components/providers/I18nProvider'
 import ModernHeader from '@/components/sections/ModernHeader'
 import ModernHero from '@/components/sections/ModernHero'
 import TrustSignals from '@/components/sections/TrustSignals'
 import CaseStudies from '@/components/sections/CaseStudies'
 import Footer from '@/components/sections/Footer'
-import Link from 'next/link'
-import { Button } from '@nextui-org/react'
+import { PartnersMarquee } from '@/components/sections/PartnerMarquee'
 
 export default function Home() {
     return (
-        <I18nProvider initialLocale="ru">
                 <div className="relative min-h-screen bg-black">
                     {/* Apple-style gradient background */}
-                    <div className="fixed inset-0 overflow-hidden pointer-events-none">
+                    {/* <div className="fixed inset-0 overflow-hidden pointer-events-none">
                         <div className="absolute top-0 left-1/4 w-[800px] h-[800px] bg-blue-500/20 rounded-full blur-[120px] animate-float" />
                         <div className="absolute top-1/3 right-1/4 w-[600px] h-[600px] bg-purple-500/20 rounded-full blur-[100px] animate-float" style={{animationDelay: '2s'}} />
                         <div className="absolute bottom-0 left-1/3 w-[700px] h-[700px] bg-indigo-500/15 rounded-full blur-[110px] animate-float" style={{animationDelay: '4s'}} />
-                    </div>
+                    </div> */}
 
                     <ModernHeader />
                     <ModernHero />
+                    <PartnersMarquee />
 
                     <TrustSignals />
                     <CaseStudies />
 
                     {/* CTA Section */}
-                    <section className="relative py-20">
+                    {/* <section className="relative py-20">
                         <div className="max-w-4xl mx-auto px-6 text-center">
                             <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
                                 Готовы начать проект?
@@ -44,10 +42,9 @@ export default function Home() {
                                 </Button>
                             </Link>
                         </div>
-                    </section>
+                    </section> */}
 
                     <Footer />
                 </div>
-        </I18nProvider>
     )
 }

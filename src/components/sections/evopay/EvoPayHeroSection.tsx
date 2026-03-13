@@ -5,84 +5,8 @@ import { motion } from 'framer-motion'
 import { useTranslation } from '@/components/providers/I18nProvider'
 
 const EvoPayHeroSection: React.FC = () => {
-    const { locale } = useTranslation()
-
-    const translations = {
-        ru: {
-            badge: 'Новое решение для ресторанов',
-            titleStart: 'Гости заказывают и оплачивают',
-            titleHighlight: 'сами',
-            subtitle: 'EvoPay — умная система заказа и оплаты. Клиент сканирует QR-код на столе, выбирает блюда, оплачивает — без ожидания официанта.',
-            cta: 'Получить демо',
-            howItWorks: 'Как это работает',
-            stat1Value: '30%',
-            stat1Label: 'Рост среднего чека',
-            stat2Value: '2x',
-            stat2Label: 'Быстрее обслуживание',
-            stat3Value: '3 дня',
-            stat3Label: 'На запуск системы',
-            table: 'Столик №5',
-            dish1: 'Том Ям с креветками',
-            dish2: 'Поке с лососем',
-            dish3: 'Раф кофе',
-            items: '3 позиции',
-            pay: 'Оплатить →',
-            qrCode: 'QR-код',
-            scan: 'Сканируй',
-            payment: 'Оплата',
-            success: 'Успешно!'
-        },
-        en: {
-            badge: 'New solution for restaurants',
-            titleStart: 'Guests order and pay',
-            titleHighlight: 'themselves',
-            subtitle: 'EvoPay — smart ordering and payment system. Customer scans QR code on the table, selects dishes, pays — no waiting for a waiter.',
-            cta: 'Get demo',
-            howItWorks: 'How it works',
-            stat1Value: '30%',
-            stat1Label: 'Average check growth',
-            stat2Value: '2x',
-            stat2Label: 'Faster service',
-            stat3Value: '3 days',
-            stat3Label: 'To launch',
-            table: 'Table #5',
-            dish1: 'Tom Yum with shrimp',
-            dish2: 'Poke with salmon',
-            dish3: 'Raf coffee',
-            items: '3 items',
-            pay: 'Pay →',
-            qrCode: 'QR code',
-            scan: 'Scan',
-            payment: 'Payment',
-            success: 'Success!'
-        },
-        ky: {
-            badge: 'Рестораңдар үчүн жаңы чечим',
-            titleStart: 'Конокторго заказ беришет жана төлөшөт',
-            titleHighlight: 'өздөрү',
-            subtitle: 'EvoPay — акылдуу заказ жана төлөм системасы. Кардар үстөлдөгү QR-кодду сканерлейт, тамактарды тандайт, төлөйт — официантты күтпөстөн.',
-            cta: 'Демо алуу',
-            howItWorks: 'Кантип иштейт',
-            stat1Value: '30%',
-            stat1Label: 'Орточо чектин өсүшү',
-            stat2Value: '2x',
-            stat2Label: 'Тезирээк тейлөө',
-            stat3Value: '3 күн',
-            stat3Label: 'Ишке киргизүү',
-            table: 'Стол №5',
-            dish1: 'Том Ям креветка менен',
-            dish2: 'Поке лосось менен',
-            dish3: 'Раф кофе',
-            items: '3 позиция',
-            pay: 'Төлөө →',
-            qrCode: 'QR-код',
-            scan: 'Сканерле',
-            payment: 'Төлөм',
-            success: 'Ийгиликтүү!'
-        }
-    }
-
-    const t = translations[locale] || translations.ru
+    const { tObj } = useTranslation()
+    const t = tObj('evoPayHero')
     const scrollToDemo = () => {
         const element = document.getElementById('evopay-demo')
         if (element) {
@@ -219,7 +143,7 @@ const EvoPayHeroSection: React.FC = () => {
                                     <div className="text-xl font-extrabold bg-gradient-to-r from-cyan-400 to-emerald-400 bg-clip-text text-transparent">
                                         EvoPay
                                     </div>
-                                    <div className="text-xs text-white/40 mt-1">{t.table}</div>
+                                    <div className="text-xs text-white/55 mt-1">{t.table}</div>
                                 </div>
 
                                 {/* Menu Items */}
