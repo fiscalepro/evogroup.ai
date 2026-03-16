@@ -26,6 +26,9 @@ FROM oven/bun:1-slim AS runner
 
 WORKDIR /app
 
+# Install curl for healthcheck
+RUN apt-get update && apt-get install -y curl && rm -rf /var/lib/apt/lists/*
+
 # Add non-root user for security
 RUN groupadd --system --gid 1001 nodejs && \
     useradd --system --uid 1001 --gid nodejs nextjs
@@ -54,7 +57,7 @@ ENV NEXT_TELEMETRY_DISABLED=1
 
 # Health check
 HEALTHCHECK --interval=30s --timeout=10s --start-period=40s --retries=3 \
-  CMD bun --eval "fetch('http://localhost:4599/').then(r => process.exit(r.ok ? 0 : 1)).catch(() => process.exit(1))"
+  CMD curl -f http://localhost:4599/health || exit 1
 
 # Start the application
 CMD ["bun", "run", "start"]
