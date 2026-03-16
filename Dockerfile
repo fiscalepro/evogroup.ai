@@ -47,17 +47,17 @@ RUN chown -R nextjs:nodejs /app
 USER nextjs
 
 # Expose port
-EXPOSE 4599
+EXPOSE 4598
 
 # Set environment variables
 ENV NODE_ENV=production
-ENV PORT=4599
+ENV PORT=4598
 ENV HOSTNAME=0.0.0.0
 ENV NEXT_TELEMETRY_DISABLED=1
 
 # Health check
 HEALTHCHECK --interval=30s --timeout=10s --start-period=40s --retries=3 \
-  CMD curl -f http://localhost:4599/api/health || exit 1
+  CMD curl -f http://localhost:4598/api/health || exit 1
 
 # Start the application
 CMD ["bun", "run", "start"]
