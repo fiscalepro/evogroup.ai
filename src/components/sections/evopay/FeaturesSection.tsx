@@ -54,7 +54,7 @@ const FeaturesSection: React.FC = () => {
 
     const t = translations[locale] || translations.ru
     return (
-        <section id="features" className="py-20 sm:py-32 px-4 sm:px-6 lg:px-10 bg-black relative overflow-hidden">
+        <section id="features" className="py-20 sm:py-32 px-4 sm:px-6 lg:px-10 relative overflow-hidden">
             <div className="max-w-6xl mx-auto relative z-10">
                 {/* Header */}
                 <div className="text-center mb-16">

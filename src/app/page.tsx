@@ -8,10 +8,12 @@ import SolutionsPreview from '@/components/sections/SolutionsPreview'
 import CaseStudies from '@/components/sections/CaseStudies'
 import CTABanner from '@/components/sections/CTABanner'
 import Footer from '@/components/sections/Footer'
+import PageBackground from '@/components/sections/PageBackground'
 
 export default function Home() {
     return (
-        <div className="relative min-h-screen bg-[#0B0F1A]">
+        <div className="relative min-h-screen bg-[#0A0E1A]">
+            <PageBackground />
             <ModernHeader />
             <HeroRedesign />
             <PartnersMarquee />

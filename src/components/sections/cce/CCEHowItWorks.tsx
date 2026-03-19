@@ -9,7 +9,7 @@ const CCEHowItWorks: React.FC = () => {
     const t = tObj('cceHowItWorks')
 
     return (
-        <section className="py-20 sm:py-32 px-4 sm:px-6 lg:px-10 bg-black relative overflow-hidden">
+        <section className="py-20 sm:py-32 px-4 sm:px-6 lg:px-10 relative overflow-hidden">
             <div className="absolute inset-0 overflow-hidden pointer-events-none">
                 <div className="absolute top-1/3 left-[-10%] w-[400px] h-[400px] bg-violet-500/5 rounded-full blur-[120px]" />
                 <div className="absolute bottom-1/4 right-[-5%] w-[300px] h-[300px] bg-amber-500/5 rounded-full blur-[100px]" />

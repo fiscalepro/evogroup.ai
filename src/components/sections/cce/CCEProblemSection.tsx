@@ -9,7 +9,7 @@ const CCEProblemSection: React.FC = () => {
     const t = tObj('cceProblem')
 
     return (
-        <section className="py-20 sm:py-32 px-4 sm:px-6 lg:px-10 bg-[#12121a] relative overflow-hidden">
+        <section className="py-20 sm:py-32 px-4 sm:px-6 lg:px-10 relative overflow-hidden">
             <div className="max-w-6xl mx-auto relative z-10">
                 {/* Badge */}
                 <motion.span

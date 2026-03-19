@@ -295,29 +295,25 @@ const AIChatbotSection: React.FC = () => {
     }, [isOpen, locale, messages.length])
 
     return (
-        <section id="chatbot" className="py-12 sm:py-24 bg-slate-900/30 relative overflow-hidden">
-            <div className="absolute inset-0 overflow-hidden pointer-events-none">
-                <div className="absolute top-1/3 left-16 w-64 h-64 bg-green-500/5 rounded-full blur-3xl" />
-                <div className="absolute bottom-1/3 right-16 w-80 h-80 bg-blue-500/5 rounded-full blur-3xl" />
-            </div>
+        <section id="chatbot" className="py-12 sm:py-24 relative overflow-hidden">
 
             <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
                 <div className="text-center mb-12 sm:mb-16">
-                    <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-4 py-2 text-sm text-white/80 shadow-sm mb-4 sm:mb-6">
-                        <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
+                    <div className="inline-flex items-center gap-2 bg-[#F0F0F5]/[0.04] border border-[#F0F0F5]/[0.08] rounded-full px-4 py-2 text-sm text-[#F0F0F5]/60 mb-4 sm:mb-6">
+                        <div className="w-1.5 h-1.5 bg-blue-400 rounded-full animate-pulse" />
                         {translations.badge}
                     </div>
-                    <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold text-white mb-4 sm:mb-6 px-4">
+                    <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold text-[#F0F0F5] mb-4 sm:mb-6 px-4">
                         {translations.title}
                     </h2>
-                    <p className="text-lg sm:text-xl text-white/70 max-w-3xl mx-auto px-4">
+                    <p className="text-lg sm:text-xl text-[#F0F0F5]/50 max-w-3xl mx-auto px-4">
                         {translations.subtitle}
                     </p>
                 </div>
 
                 <div className="max-w-4xl mx-auto">
-                    <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-4 sm:p-8 border border-white/10 mb-6 sm:mb-8">
-                        <h3 className="text-xl sm:text-2xl font-bold text-white mb-4 sm:mb-6 text-center">{translations.demoTitle}</h3>
+                    <div className="bg-[#F0F0F5]/[0.02] rounded-2xl p-4 sm:p-8 border border-[#F0F0F5]/[0.06] mb-6 sm:mb-8">
+                        <h3 className="text-xl sm:text-2xl font-bold text-[#F0F0F5] mb-4 sm:mb-6 text-center">{translations.demoTitle}</h3>
 
                         <div className="grid sm:grid-cols-2 gap-3 sm:gap-4 mb-6 sm:mb-8">
                             {quickReplies.map((reply) => (
@@ -327,17 +323,17 @@ const AIChatbotSection: React.FC = () => {
                                         setIsOpen(true)
                                         setTimeout(() => handleQuickReply(reply), 300)
                                     }}
-                                    className="p-3 sm:p-4 bg-white/5 border border-white/10 rounded-xl text-left hover:bg-white/10 transition-all duration-200 group"
+                                    className="p-3 sm:p-4 bg-[#F0F0F5]/[0.02] border border-[#F0F0F5]/[0.06] rounded-xl text-left hover:bg-[#F0F0F5]/[0.05] hover:border-[#F0F0F5]/[0.12] transition-all duration-200 group"
                                 >
                                     <div className="flex items-center gap-3">
-                                        <div className="w-8 h-8 sm:w-10 sm:h-10 bg-blue-500/20 rounded-lg flex items-center justify-center group-hover:bg-blue-500/30 transition-colors flex-shrink-0">
+                                        <div className="w-8 h-8 sm:w-10 sm:h-10 bg-blue-500/[0.08] rounded-lg flex items-center justify-center group-hover:bg-blue-500/[0.12] transition-colors flex-shrink-0">
                                             <svg className="w-4 h-4 sm:w-5 sm:h-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8.625 12a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 01-2.555-.337A5.972 5.972 0 015.41 20.97a5.969 5.969 0 01-.474-.065 4.48 4.48 0 00.978-2.025c.09-.457-.133-.901-.467-1.226C3.93 16.178 3 14.189 3 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25z" />
                                             </svg>
                                         </div>
                                         <div className="flex-1 min-w-0">
-                                            <div className="text-white font-medium text-sm sm:text-base">{reply.text}</div>
-                                            <div className="text-white/60 text-xs sm:text-sm">
+                                            <div className="text-[#F0F0F5] font-medium text-sm sm:text-base">{reply.text}</div>
+                                            <div className="text-[#F0F0F5]/40 text-xs sm:text-sm">
                                                 {locale === 'en' ? 'Click for example' :
                                                     locale === 'ky' ? 'Мисал үчүн басыңыз' :
                                                         'Нажмите для примера'}
@@ -360,28 +356,28 @@ const AIChatbotSection: React.FC = () => {
                         </div>
                     </div>
 
-                    <div className="grid sm:grid-cols-3 gap-4 sm:gap-6">
+                    <div className="grid sm:grid-cols-3 gap-4 sm:gap-5">
                         {translations.features.map((feature, index) => (
-                            <div key={index} className="text-center bg-white/5 backdrop-blur-sm rounded-xl p-4 sm:p-6 border border-white/10">
-                                <div className="w-10 h-10 sm:w-12 sm:h-12 bg-blue-500/20 rounded-lg flex items-center justify-center mx-auto mb-3 sm:mb-4">
+                            <div key={index} className="text-center bg-[#F0F0F5]/[0.02] rounded-2xl p-4 sm:p-6 border border-[#F0F0F5]/[0.06]">
+                                <div className="w-10 h-10 sm:w-11 sm:h-11 bg-[#F0F0F5]/[0.04] border border-[#F0F0F5]/[0.06] rounded-xl flex items-center justify-center mx-auto mb-3 sm:mb-4">
                                     {index === 0 && (
-                                        <svg className="w-5 h-5 sm:w-6 sm:h-6 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                                        <svg className="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
                                         </svg>
                                     )}
                                     {index === 1 && (
-                                        <svg className="w-5 h-5 sm:w-6 sm:h-6 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                                        <svg className="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" d="M12 18v-5.25m0 0a6.01 6.01 0 001.5-.189m-1.5.189a6.01 6.01 0 01-1.5-.189m3.75 7.478a12.06 12.06 0 01-4.5 0m3.75 2.383a14.406 14.406 0 01-3 0M14.25 18v-.192c0-.983.658-1.823 1.508-2.316a7.5 7.5 0 10-7.517 0c.85.493 1.509 1.333 1.509 2.316V18" />
                                         </svg>
                                     )}
                                     {index === 2 && (
-                                        <svg className="w-5 h-5 sm:w-6 sm:h-6 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                                        <svg className="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 1.5H8.25A2.25 2.25 0 006 3.75v16.5a2.25 2.25 0 002.25 2.25h7.5A2.25 2.25 0 0018 20.25V3.75a2.25 2.25 0 00-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3" />
                                         </svg>
                                     )}
                                 </div>
-                                <h4 className="text-base sm:text-lg font-bold text-white mb-2">{feature.title}</h4>
-                                <p className="text-white/60 text-xs sm:text-sm">{feature.description}</p>
+                                <h4 className="text-base sm:text-lg font-bold text-[#F0F0F5] mb-2">{feature.title}</h4>
+                                <p className="text-[#F0F0F5]/45 text-xs sm:text-sm">{feature.description}</p>
                             </div>
                         ))}
                     </div>

@@ -3,12 +3,9 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
-
 import ModernHeader from '@/components/sections/ModernHeader'
 import Footer from '@/components/sections/Footer'
-import { CaseCard } from '@/components/sections/CaseCard'
-
-// ─── Icons ────────────────────────────────────────────────────────────────────
+import PageBackground from '@/components/sections/PageBackground'
 
 const ArrowIcon = () => (
     <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
@@ -16,141 +13,188 @@ const ArrowIcon = () => (
     </svg>
 )
 
-// ─── Data ─────────────────────────────────────────────────────────────────────
+interface CaseItem {
+    tag: string
+    product: string
+    productHref: string
+    company: string
+    headline: string
+    results: { value: string; label: string }[]
+    quote: string
+    quoteAuthor: string
+}
 
-const cases = [
+const cases: CaseItem[] = [
     {
-        number: '01',
-        color: 'green' as const,
-        tag: 'Бьюти · Малый бизнес',
-        company: 'Сайкал Перманентный макияж',
-        headline: 'Как студия перестала терять клиентов из-за пропущенных сообщений',
-        teaser: 'Мастер не успевала отвечать в Instagram и WhatsApp между процедурами — клиенты уходили к конкурентам. AI-чатбот закрыл проблему за первую неделю.',
-        results: [
-            { value: '<1 мин', label: 'Время ответа' },
-            { value: '24/7', label: 'Без выходных' },
-            { value: '+↑', label: 'Записей' },
-            { value: '0', label: 'Отвлечений' },
-        ],
-        quote: '«Раньше я сама отвечала на каждое сообщение. Теперь чатбот всё делает за меня — клиенты довольны, записей стало намного больше.»',
-        quoteAuthor: '— Сайкал, владелец студии',
-        instagram: { handle: '@saikal_begimbaeva.pm', url: 'https://instagram.com/saikal_begimbaeva.pm' },
+        tag: 'Beauty / Small Business',
         product: 'EvoAI CRM',
         productHref: '/solutions/whatsapp',
+        company: 'Saikal Permanent Makeup',
+        headline: 'Studio stopped losing clients from missed messages. AI chatbot closed the gap in the first week.',
+        results: [
+            { value: '<1 min', label: 'Response time' },
+            { value: '24/7', label: 'Availability' },
+            { value: '0', label: 'Missed inquiries' },
+        ],
+        quote: 'The chatbot handles everything — clients are happy, bookings went up significantly.',
+        quoteAuthor: 'Saikal, studio owner',
     },
     {
-        number: '02',
-        color: 'blue' as const,
-        tag: 'Производство · B2B',
-        company: 'БИАСТ.КГ',
-        headline: 'Полная автоматизация: от входящей заявки до отгрузки',
-        teaser: 'Производитель сэндвич-панелей терял заявки и тратил часы на ручное оформление каждого заказа. Внедрили AI-чатбот, CRM и дашборд — всё стало прозрачным.',
-        results: [
-            { value: '~0%', label: 'Потерянных заявок' },
-            { value: '−80%', label: 'Времени на обработку' },
-            { value: '100%', label: 'Прозрачность' },
-            { value: '3–5 дн', label: 'Онбординг' },
-        ],
-        quote: '«Теперь я в любой момент открываю дашборд и вижу, что происходит с каждым заказом. Раньше нужно было звонить каждому менеджеру.»',
-        quoteAuthor: '— Руководитель БИАСТ.КГ',
-        instagram: { handle: '@biast_kg', url: 'https://instagram.com/biast_kg' },
+        tag: 'Manufacturing / B2B',
         product: 'EvoAI CRM',
         productHref: '/solutions/whatsapp',
+        company: 'BIAST.KG',
+        headline: 'Full automation from incoming request to shipping. AI chatbot, CRM, and dashboard — all transparent.',
+        results: [
+            { value: '~0%', label: 'Lost requests' },
+            { value: '-80%', label: 'Processing time' },
+            { value: '100%', label: 'Transparency' },
+        ],
+        quote: 'Now I open the dashboard and see every order instantly. Before, I had to call each manager.',
+        quoteAuthor: 'CEO, BIAST.KG',
     },
 ]
 
-// ─── Page ─────────────────────────────────────────────────────────────────────
+const stats = [
+    { value: '50+', label: 'Clients', detail: 'Active deployments' },
+    { value: '3', label: 'Industries', detail: 'Beauty, manufacturing, IT' },
+    { value: '2 weeks', label: 'To results', detail: 'Average launch time' },
+    { value: '250%', label: 'Average ROI', detail: 'Within 6-18 months' },
+]
 
-function CasesContent() {
+const itemVariants = {
+    hidden: { opacity: 0, y: 24 },
+    visible: (i: number) => ({
+        opacity: 1,
+        y: 0,
+        transition: { duration: 0.5, delay: i * 0.1, ease: [0.25, 0.1, 0.25, 1] as [number, number, number, number] },
+    }),
+}
+
+export default function CasesPage() {
     return (
-        <div className="relative min-h-screen bg-black">
+        <div className="relative min-h-screen bg-[#0A0E1A]">
+            <PageBackground />
+
             <ModernHeader />
 
             {/* Hero */}
-            <section className="relative pt-32 pb-16 overflow-hidden">
-                <div className="absolute inset-0 pointer-events-none">
-                    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[500px] bg-emerald-500/[0.04] rounded-full blur-[140px]" />
-                </div>
+            <section className="relative pt-32 pb-16">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.7, ease: [0.25, 0.1, 0.25, 1] }}
-                    className="relative z-10 max-w-7xl mx-auto px-6"
+                    transition={{ duration: 0.6 }}
+                    className="relative z-10 max-w-5xl mx-auto px-6 text-center"
                 >
-                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/10 bg-white/[0.04] mb-6">
-                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                        <span className="text-xs text-white/55 uppercase tracking-widest font-medium">Кейсы клиентов</span>
-                    </div>
-                    <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white tracking-tight leading-[1.05] mb-4 max-w-2xl">
-                        Реальные<br />результаты
+                    <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-[#F0F0F5] tracking-tight mb-4">
+                        Real results
                     </h1>
-                    <p className="text-base lg:text-lg text-white/60 max-w-lg leading-relaxed">
-                        Внедряем AI-автоматизацию под ключ. Вот что получают клиенты на практике — с цифрами и именами.
+                    <p className="text-base lg:text-lg text-[#F0F0F5]/50 max-w-lg mx-auto leading-relaxed">
+                        AI automation delivered end-to-end. Here&apos;s what clients get in practice — with numbers and names.
                     </p>
                 </motion.div>
             </section>
 
             {/* Stats */}
             <section className="pb-20">
-                <div className="max-w-7xl mx-auto px-6">
-                    <motion.div
-                        initial={{ opacity: 0, y: 16 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.5 }}
-                        className="grid grid-cols-2 lg:grid-cols-4 border border-white/[0.07] rounded-2xl overflow-hidden"
-                    >
-                        {[
-                            { value: '50+', label: 'Клиентов', sub: 'Активных внедрений' },
-                            { value: '3', label: 'Отрасли', sub: 'Бьюти, производство, IT' },
-                            { value: '2 нед', label: 'До результата', sub: 'Среднее время запуска' },
-                            { value: '250%', label: 'Средний ROI', sub: 'За 6–18 месяцев' },
-                        ].map((s, i) => (
-                            <div
-                                key={i}
-                                className={[
-                                    'px-6 py-7 lg:px-8 border-white/[0.07]',
-                                    i < 3 ? 'lg:border-r' : '',
-                                    i < 2 ? 'border-b border-r lg:border-b-0' : '',
-                                    i === 2 ? 'border-r lg:border-r-0' : '',
-                                ].join(' ')}
+                <div className="max-w-5xl mx-auto px-6">
+                    <div className="grid grid-cols-2 lg:grid-cols-4 gap-5">
+                        {stats.map((s, i) => (
+                            <motion.div
+                                key={i} custom={i} variants={itemVariants} initial="hidden" whileInView="visible" viewport={{ once: true }}
+                                className="p-5 rounded-xl border border-[#F0F0F5]/[0.06] bg-[#F0F0F5]/[0.02]"
                             >
-                                <div className="text-3xl lg:text-4xl font-bold text-white mb-1 tabular-nums">{s.value}</div>
-                                <div className="text-sm font-semibold text-white/70 mb-1">{s.label}</div>
-                                <p className="text-xs text-white/50">{s.sub}</p>
-                            </div>
+                                <div className="text-2xl font-bold text-[#F0F0F5] mb-0.5">{s.value}</div>
+                                <div className="text-sm font-medium text-[#F0F0F5]/55 mb-0.5">{s.label}</div>
+                                <div className="text-xs text-[#F0F0F5]/30">{s.detail}</div>
+                            </motion.div>
                         ))}
-                    </motion.div>
+                    </div>
                 </div>
             </section>
 
             {/* Cases */}
-            <section className="pb-24 border-t border-white/[0.06]">
+            <section className="pb-24 border-t border-[#F0F0F5]/[0.04]">
                 <div className="max-w-5xl mx-auto px-6 pt-20">
-                    <div className="flex flex-col gap-6 mb-12">
-                        {cases.map((c, i) => (
-                            <CaseCard key={c.number} card={c} index={i} />
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        whileInView={{ opacity: 1 }}
+                        viewport={{ once: true }}
+                        className="grid md:grid-cols-2 gap-5 mb-12"
+                    >
+                        {cases.map((card, index) => (
+                            <motion.article
+                                key={index}
+                                custom={index}
+                                variants={itemVariants}
+                                initial="hidden"
+                                whileInView="visible"
+                                viewport={{ once: true, margin: '-40px' }}
+                                className="group flex flex-col p-7 lg:p-8 rounded-2xl border border-[#F0F0F5]/[0.06] bg-[#F0F0F5]/[0.02] hover:bg-[#F0F0F5]/[0.04] hover:border-[#F0F0F5]/[0.1] transition-all duration-300"
+                            >
+                                {/* Tag + product */}
+                                <div className="flex items-center justify-between mb-5">
+                                    <span className="text-xs font-medium text-[#F0F0F5]/35 uppercase tracking-wider">
+                                        {card.tag}
+                                    </span>
+                                    <Link
+                                        href={card.productHref}
+                                        className="text-xs font-medium text-blue-400/60 hover:text-blue-400 no-underline transition-colors"
+                                    >
+                                        {card.product}
+                                    </Link>
+                                </div>
+
+                                {/* Company */}
+                                <h3 className="text-lg font-bold text-[#F0F0F5] mb-2">
+                                    {card.company}
+                                </h3>
+
+                                {/* Headline */}
+                                <p className="text-sm text-[#F0F0F5]/45 leading-relaxed mb-6 flex-grow">
+                                    {card.headline}
+                                </p>
+
+                                {/* Metrics */}
+                                <div className="flex gap-6 mb-6 pb-6 border-b border-[#F0F0F5]/[0.06]">
+                                    {card.results.map((r, i) => (
+                                        <div key={i}>
+                                            <div className="text-xl font-bold text-[#F0F0F5] mb-0.5">{r.value}</div>
+                                            <div className="text-xs text-[#F0F0F5]/30">{r.label}</div>
+                                        </div>
+                                    ))}
+                                </div>
+
+                                {/* Quote */}
+                                <blockquote>
+                                    <p className="text-sm text-[#F0F0F5]/50 leading-relaxed italic mb-2">
+                                        &ldquo;{card.quote}&rdquo;
+                                    </p>
+                                    <cite className="text-xs font-medium text-[#F0F0F5]/30 not-italic">
+                                        {card.quoteAuthor}
+                                    </cite>
+                                </blockquote>
+                            </motion.article>
                         ))}
-                    </div>
+                    </motion.div>
 
                     {/* CTA strip */}
                     <motion.div
                         initial={{ opacity: 0, y: 16 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        transition={{ duration: 0.5 }}
-                        className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5 border border-white/[0.07] rounded-2xl px-7 py-6 bg-white/[0.02]"
+                        transition={{ duration: 0.5, delay: 0.2 }}
+                        className="flex flex-col sm:flex-row items-center justify-between gap-5 p-6 rounded-2xl border border-[#F0F0F5]/[0.06] bg-[#F0F0F5]/[0.02]"
                     >
                         <div>
-                            <p className="text-base font-semibold text-white mb-1">Ваш бизнес — следующий кейс?</p>
-                            <p className="text-sm text-white/55">Разберём ситуацию и запустим пилот бесплатно на 2 недели.</p>
+                            <p className="text-sm font-semibold text-[#F0F0F5] mb-0.5">Your business could be next</p>
+                            <p className="text-sm text-[#F0F0F5]/40">Free pilot for 2 weeks — no commitment.</p>
                         </div>
                         <Link
                             href="/contact"
-                            className="flex-shrink-0 inline-flex items-center gap-2 bg-white text-black px-6 py-3 rounded-xl text-sm font-bold no-underline hover:bg-white/90 transition-colors"
+                            className="flex-shrink-0 inline-flex items-center gap-2 bg-[#F0F0F5] text-[#0A0E1A] px-6 py-2.5 rounded-xl text-sm font-semibold no-underline hover:bg-white transition-colors"
                         >
-                            Начать бесплатный пилот
-                            <ArrowIcon />
+                            Start free pilot <ArrowIcon />
                         </Link>
                     </motion.div>
                 </div>
@@ -158,11 +202,5 @@ function CasesContent() {
 
             <Footer />
         </div>
-    )
-}
-
-export default function CasesPage() {
-    return (
-        <CasesContent />
     )
 }

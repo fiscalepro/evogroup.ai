@@ -26,7 +26,7 @@ const EvoPayHeroSection: React.FC = () => {
             {/* Gradient overlays */}
             <div className="absolute top-0 left-0 w-full h-full pointer-events-none">
                 <div className="absolute top-[-50%] left-[-20%] w-[80%] h-[150%] bg-gradient-to-br from-cyan-500/15 via-transparent to-transparent rounded-full blur-3xl" />
-                <div className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-gradient-to-tl from-emerald-500/10 to-transparent rounded-full blur-3xl" />
+                <div className="absolute bottom-13 right-0 w-[600px] h-[600px] bg-gradient-to-tl from-emerald-500/10 to-transparent rounded-full blur-3xl" />
             </div>
 
             <div className="max-w-7xl mx-auto w-full relative z-10">

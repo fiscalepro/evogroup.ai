@@ -34,10 +34,9 @@ const CCEPlatformOverview: React.FC = () => {
     ]
 
     return (
-        <section className="py-20 sm:py-32 px-4 sm:px-6 lg:px-10 bg-black relative overflow-hidden">
+        <section className="py-20 sm:py-32 px-4 sm:px-6 lg:px-10 relative overflow-hidden">
             <div className="absolute inset-0 overflow-hidden pointer-events-none">
                 <div className="absolute top-[-30%] right-[-10%] w-[500px] h-[500px] bg-violet-500/8 rounded-full blur-[150px]" />
-                <div className="absolute bottom-[-20%] left-[-10%] w-[400px] h-[400px] bg-amber-500/5 rounded-full blur-[120px]" />
             </div>
 
             <div className="max-w-6xl mx-auto relative z-10">

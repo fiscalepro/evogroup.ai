@@ -4,6 +4,7 @@ import React, { useState } from 'react'
 import { motion } from 'framer-motion'
 import ModernHeader from '@/components/sections/ModernHeader'
 import Footer from '@/components/sections/Footer'
+import PageBackground from '@/components/sections/PageBackground'
 
 // ─── Icons ────────────────────────────────────────────────────────────────────
 
@@ -231,13 +232,12 @@ function ContactFormBlock() {
 
 function ContactContent() {
     return (
-        <div className="relative min-h-screen bg-black">
+        <div className="relative min-h-screen bg-[#0A0E1A]">
+            <PageBackground accent="blue" />
+
             <ModernHeader />
 
             <section className="relative pt-32 pb-24 overflow-hidden">
-                <div className="absolute inset-0 pointer-events-none">
-                    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[600px] bg-blue-500/[0.05] rounded-full blur-[150px]" />
-                </div>
 
                 <div className="relative z-10 max-w-7xl mx-auto px-6">
                     <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.4fr] gap-16 items-start">
@@ -248,15 +248,15 @@ function ContactContent() {
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.7, ease: [0.25, 0.1, 0.25, 1] }}
                         >
-                            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/10 bg-white/[0.04] mb-6">
+                            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-[#F0F0F5]/[0.08] bg-[#F0F0F5]/[0.04] mb-6">
                                 <span className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse" />
-                                <span className="text-xs text-white/55 uppercase tracking-widest font-medium">Контакты</span>
+                                <span className="text-xs text-[#F0F0F5]/40 uppercase tracking-widest font-medium">Contact</span>
                             </div>
-                            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white tracking-tight leading-[1.05] mb-4">
-                                Начните<br />свой проект
+                            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-[#F0F0F5] tracking-tight leading-[1.05] mb-4">
+                                Start your<br />project
                             </h1>
-                            <p className="text-base text-white/60 leading-relaxed mb-10 max-w-sm">
-                                Расскажите о задаче — наши эксперты предложат оптимальное AI-решение с учётом специфики вашего бизнеса.
+                            <p className="text-base text-[#F0F0F5]/50 leading-relaxed mb-10 max-w-sm">
+                                Tell us about your challenge — our experts will propose the optimal AI solution for your business.
                             </p>
 
                             {/* Contact items */}
@@ -267,24 +267,24 @@ function ContactContent() {
                                         href={c.href}
                                         target={c.href.startsWith('http') ? '_blank' : undefined}
                                         rel="noopener noreferrer"
-                                        className="inline-flex items-center gap-3 text-sm text-white/60 hover:text-white transition-colors no-underline"
+                                        className="inline-flex items-center gap-3 text-sm text-[#F0F0F5]/50 hover:text-[#F0F0F5] transition-colors no-underline"
                                     >
-                                        <span className="text-white/50">{c.icon}</span>
+                                        <span className="text-[#F0F0F5]/30">{c.icon}</span>
                                         {c.label}
                                     </a>
                                 ))}
                             </div>
 
                             {/* What happens next */}
-                            <div className="border border-white/[0.07] rounded-2xl overflow-hidden">
-                                <div className="px-6 py-4 border-b border-white/[0.07]">
-                                    <p className="text-xs text-white/50 uppercase tracking-widest font-medium">Что будет дальше</p>
+                            <div className="border border-[#F0F0F5]/[0.06] rounded-2xl overflow-hidden">
+                                <div className="px-6 py-4 border-b border-[#F0F0F5]/[0.06]">
+                                    <p className="text-xs text-[#F0F0F5]/35 uppercase tracking-widest font-medium">What happens next</p>
                                 </div>
-                                <div className="divide-y divide-white/[0.06]">
+                                <div className="divide-y divide-[#F0F0F5]/[0.04]">
                                     {nextSteps.map((step, i) => (
                                         <div key={i} className="flex items-center gap-4 px-6 py-4">
-                                            <span className="flex-shrink-0 text-xs font-bold text-white/20 tabular-nums w-5">{String(i + 1).padStart(2, '0')}</span>
-                                            <span className="text-sm text-white/55">{step}</span>
+                                            <span className="flex-shrink-0 text-xs font-bold text-[#F0F0F5]/15 tabular-nums w-5">{String(i + 1).padStart(2, '0')}</span>
+                                            <span className="text-sm text-[#F0F0F5]/45">{step}</span>
                                         </div>
                                     ))}
                                 </div>

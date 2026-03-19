@@ -99,7 +99,7 @@ const HeroRedesign: React.FC = () => {
                 >
                     <Link
                         href="/contact"
-                        className="inline-flex items-center justify-center gap-2 bg-[#F0F0F5] text-[#0B0F1A] px-8 py-4 rounded-xl text-base font-semibold no-underline transition-all duration-200 hover:bg-white"
+                        className="inline-flex items-center justify-center gap-2 bg-[#F0F0F5] text-[#0A0E1A] px-8 py-4 rounded-xl text-base font-semibold no-underline transition-all duration-200 hover:bg-white"
                     >
                         Get Free Demo
                         <svg width="16" height="16" viewBox="0 0 16 16" fill="none">

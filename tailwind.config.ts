@@ -49,7 +49,7 @@ module.exports = {
         themes: {
             dark: {
                 colors: {
-                    background: "#0B0F1A",
+                    background: "#000000",
                     foreground: "#FFFFFF",
                     divider: "rgba(255, 255, 255, 0.1)",
                     focus: "#0071E3",

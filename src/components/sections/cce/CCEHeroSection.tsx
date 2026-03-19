@@ -25,11 +25,11 @@ const CCEHeroSection: React.FC = () => {
     return (
         <section className="relative min-h-screen flex items-center justify-center py-32 sm:py-40 px-4 sm:px-6 lg:px-10 overflow-hidden">
             {/* Background gradient orbs */}
-            <div className="absolute inset-0 overflow-hidden pointer-events-none">
+            {/* <div className="absolute inset-0 overflow-hidden pointer-events-none">
                 <div className="absolute top-[-20%] left-[-10%] w-[600px] h-[600px] bg-violet-500/15 rounded-full blur-[150px]" />
                 <div className="absolute bottom-[-10%] right-[-10%] w-[500px] h-[500px] bg-amber-500/10 rounded-full blur-[120px]" />
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-violet-500/5 rounded-full blur-[100px]" />
-            </div>
+            </div> */}
 
             <div className="max-w-5xl mx-auto text-center relative z-10">
                 {/* Badge */}

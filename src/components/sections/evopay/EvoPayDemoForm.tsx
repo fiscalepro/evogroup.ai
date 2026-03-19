@@ -210,11 +210,10 @@ const EvoPayDemoForm: React.FC = () => {
 
     // Main form
     return (
-        <section id="evopay-demo" className="py-20 sm:py-32 px-4 sm:px-6 lg:px-10 bg-black relative overflow-hidden">
+        <section id="evopay-demo" className="py-20 sm:py-32 px-4 sm:px-6 lg:px-10 relative overflow-hidden">
             {/* Background */}
             <div className="absolute inset-0 overflow-hidden pointer-events-none">
-                <div className="absolute bottom-0 left-1/4 w-[500px] h-[500px] bg-cyan-500/10 rounded-full blur-[150px]" />
-                <div className="absolute top-0 right-1/4 w-[400px] h-[400px] bg-emerald-500/10 rounded-full blur-[120px]" />
+                <div className="absolute bottom-7 left-1/4 w-[500px] h-[500px] bg-cyan-500/10 rounded-full blur-[150px]" />
             </div>
 
             <div className="max-w-5xl mx-auto relative z-10">
