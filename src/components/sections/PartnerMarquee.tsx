@@ -47,8 +47,8 @@ export function PartnersMarquee() {
 				</div>
 
 				{/* Gradient overlays */}
-				<div className='absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-[#0a0a0a] to-transparent pointer-events-none' />
-				<div className='absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-[#0a0a0a] to-transparent pointer-events-none' />
+				<div className='absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-[#0B0F1A] to-transparent pointer-events-none' />
+				<div className='absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-[#0B0F1A] to-transparent pointer-events-none' />
 			</div>
 		</section>
 	)

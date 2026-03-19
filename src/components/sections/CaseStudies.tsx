@@ -18,7 +18,6 @@ export interface CaseCard {
     headline: string
     teaser: string
     results: ResultItem[]
-    quote: string
     quoteAuthor: string
     instagram: {
         handle: string
@@ -40,7 +39,6 @@ const cases: CaseCard[] = [
             { value: '+↑', label: 'Записей' },
             { value: '0', label: 'Отвлечений мастера' },
         ],
-        quote: '«Раньше я сама отвечала на каждое сообщение. Теперь чатбот всё делает за меня — клиенты довольны, записей стало намного больше.»',
         quoteAuthor: '— Сайкал, владелец студии',
         instagram: { handle: '@saikal_begimbaeva.pm', url: 'https://instagram.com/saikal_begimbaeva.pm' },
     },
@@ -57,7 +55,6 @@ const cases: CaseCard[] = [
             { value: '100%', label: 'Прозрачность' },
             { value: '3–5 дн', label: 'Онбординг' },
         ],
-        quote: '«Теперь я в любой момент открываю дашборд и вижу, что происходит с каждым заказом. Раньше нужно было звонить каждому менеджеру.»',
         quoteAuthor: '— Руководитель БИАСТ.КГ',
         instagram: { handle: '@biast_kg', url: 'https://instagram.com/biast_kg' },
     },
@@ -66,13 +63,8 @@ const cases: CaseCard[] = [
 
 const CaseStudies: React.FC = () => {
     return (
-        <section id="cases" className="relative py-24 lg:py-32 overflow-hidden bg-[#0a0a0a]/20">
+        <section id="cases" className="relative py-24 lg:py-32 overflow-hidden">
             {/* Subtle background blobs */}
-            <div className="absolute inset-0 overflow-hidden pointer-events-none">
-                <div className="absolute -top-32 left-1/4 w-[600px] h-[600px] bg-emerald-500/[0.03] rounded-full blur-[140px]" />
-                <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-cyan-500/[0.03] rounded-full blur-[140px]" />
-            </div>
-
             <div className="relative z-10 max-w-4xl mx-auto px-6">
 
                 {/* Section header */}

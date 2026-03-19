@@ -6,18 +6,13 @@ import Link from 'next/link'
 
 import ModernHeader from '@/components/sections/ModernHeader'
 import Footer from '@/components/sections/Footer'
+import { CaseCard } from '@/components/sections/CaseCard'
 
 // ─── Icons ────────────────────────────────────────────────────────────────────
 
 const ArrowIcon = () => (
     <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
         <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-)
-
-const ExternalIcon = () => (
-    <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-        <path d="M2 10L10 2M10 2H5M10 2V7" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
 )
 
@@ -63,111 +58,6 @@ const cases = [
         productHref: '/solutions/whatsapp',
     },
 ]
-
-const palette = {
-    green: {
-        accentText: 'text-emerald-400',
-        accentBg: 'bg-emerald-500/[0.07]',
-        accentBorder: 'border-emerald-500/20',
-        accentLine: 'from-emerald-500',
-        metricText: 'text-emerald-400',
-        metricBg: 'bg-emerald-500/[0.04]',
-        quoteLine: 'bg-emerald-500/30',
-        hoverBorder: 'hover:border-emerald-500/20',
-    },
-    blue: {
-        accentText: 'text-blue-400',
-        accentBg: 'bg-blue-500/[0.07]',
-        accentBorder: 'border-blue-500/20',
-        accentLine: 'from-blue-500',
-        metricText: 'text-blue-400',
-        metricBg: 'bg-blue-500/[0.04]',
-        quoteLine: 'bg-blue-500/30',
-        hoverBorder: 'hover:border-blue-500/20',
-    },
-}
-
-// ─── Case Card ────────────────────────────────────────────────────────────────
-
-function CaseCard({ c, index }: { c: typeof cases[0]; index: number }) {
-    const g = palette[c.color]
-    return (
-        <motion.div
-            initial={{ opacity: 0, y: 28 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-40px' }}
-            transition={{ duration: 0.6, delay: index * 0.1, ease: [0.25, 0.1, 0.25, 1] }}
-            className={`relative bg-white/[0.025] border border-white/[0.07] rounded-2xl overflow-hidden transition-colors duration-300 ${g.hoverBorder}`}
-        >
-            <div className={`h-[1.5px] bg-gradient-to-r ${g.accentLine} to-transparent`} />
-
-            <div className="p-7 lg:p-9">
-                {/* Header */}
-                <div className="flex flex-wrap items-center justify-between gap-4 mb-6">
-                    <div className="flex items-center gap-3">
-                        <span className={`text-[11px] font-semibold uppercase tracking-widest border rounded-md px-2.5 py-1 ${g.accentBg} ${g.accentBorder} ${g.accentText}`}>
-                            {c.tag}
-                        </span>
-                    </div>
-                    <span className={`text-5xl font-black tabular-nums leading-none ${g.accentText} opacity-20`}>{c.number}</span>
-                </div>
-
-                {/* Company + headline */}
-                <p className="text-xs text-white/50 uppercase tracking-wider font-medium mb-2">{c.company}</p>
-                <h3 className="text-2xl lg:text-3xl font-bold text-white leading-tight mb-4 max-w-2xl">
-                    {c.headline}
-                </h3>
-                <p className="text-sm text-white/50 leading-relaxed mb-7 max-w-2xl">{c.teaser}</p>
-
-                {/* Metrics bar */}
-                <div className="grid grid-cols-2 sm:grid-cols-4 border border-white/[0.07] rounded-xl overflow-hidden mb-7">
-                    {c.results.map((r, i) => (
-                        <div
-                            key={i}
-                            className={[
-                                `px-5 py-4 text-center border-white/[0.07]`,
-                                i < 3 ? 'border-r' : '',
-                                i < 2 ? 'border-b sm:border-b-0' : '',
-                                g.metricBg,
-                            ].join(' ')}
-                        >
-                            <div className={`text-2xl lg:text-3xl font-bold font-mono mb-0.5 ${g.metricText}`}>{r.value}</div>
-                            <div className="text-[11px] text-white/50 leading-tight">{r.label}</div>
-                        </div>
-                    ))}
-                </div>
-
-                {/* Quote + footer row */}
-                <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-6 items-end">
-                    <blockquote className="relative pl-4">
-                        <div className={`absolute left-0 top-1 bottom-1 w-[2px] rounded-full ${g.quoteLine}`} />
-                        <p className="text-sm text-white/60 italic leading-relaxed mb-1">{c.quote}</p>
-                        <cite className={`text-[12px] font-semibold not-italic ${g.accentText}`}>{c.quoteAuthor}</cite>
-                    </blockquote>
-
-                    <div className="flex items-center gap-4 flex-shrink-0">
-                        <a
-                            href={c.instagram.url}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className={`inline-flex items-center gap-1.5 text-[12px] font-medium no-underline transition-opacity hover:opacity-60 ${g.accentText}`}
-                        >
-                            {c.instagram.handle}
-                            <ExternalIcon />
-                        </a>
-                        <Link
-                            href={c.productHref}
-                            className={`inline-flex items-center gap-1.5 text-[12px] font-semibold no-underline transition-opacity hover:opacity-70 ${g.accentText}`}
-                        >
-                            {c.product}
-                            <ArrowIcon />
-                        </Link>
-                    </div>
-                </div>
-            </div>
-        </motion.div>
-    )
-}
 
 // ─── Page ─────────────────────────────────────────────────────────────────────
 
@@ -239,7 +129,7 @@ function CasesContent() {
                 <div className="max-w-5xl mx-auto px-6 pt-20">
                     <div className="flex flex-col gap-6 mb-12">
                         {cases.map((c, i) => (
-                            <CaseCard key={c.number} c={c} index={i} />
+                            <CaseCard key={c.number} card={c} index={i} />
                         ))}
                     </div>
 

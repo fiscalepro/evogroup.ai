@@ -109,7 +109,7 @@ export default function RootLayout({
             <link rel="apple-touch-icon" href="/favicon.svg" />
             <meta name="theme-color" content="#0a0a0a" />
         </head>
-        <body className={`${inter.className} antialiased dark bg-black text-white`}>
+        <body className={`${inter.className} antialiased dark bg-[#0B0F1A] text-[#F0F0F5]`}>
         <Providers>
             {children}
             <ChatBot />

@@ -1,6 +1,16 @@
 import Link from 'next/link'
 import { motion } from 'framer-motion'
-import { type CaseCard } from './CaseStudies';
+interface CaseCard {
+	number: string
+	color: 'green' | 'blue'
+	tag: string
+	company: string
+	headline: string
+	teaser: string
+	results: { value: string; label: string }[]
+	quoteAuthor: string
+	instagram: { handle: string; url: string }
+}
 
 const InstagramIcon = () => (
 	<svg
@@ -114,21 +124,10 @@ export function CaseCard({ card, index }: { card: CaseCard; index: number }) {
 				</div>
 
 				{/* Teaser + Quote — two columns on lg */}
-				<div className='grid lg:grid-cols-2 gap-6 mb-8'>
+				<div className='flex gap-6 mb-8'>
 					<p className='text-sm text-white/60 leading-relaxed self-center'>
 						{card.teaser}
 					</p>
-					<blockquote className='relative pl-5'>
-						<div
-							className={`absolute left-0 top-1 bottom-1 w-[2px] rounded-full ${g.quoteLine}`}
-						/>
-						<p className='text-sm text-white/65 italic leading-relaxed mb-2'>
-							{card.quote}
-						</p>
-						<cite className='text-[12px] font-semibold text-white/50 not-italic'>
-							{card.quoteAuthor}
-						</cite>
-					</blockquote>
 				</div>
 
 				{/* Footer: Instagram + CTA */}
