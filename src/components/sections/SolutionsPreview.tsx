@@ -3,6 +3,7 @@
 import React from 'react'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
+import { useTranslation } from '@/components/providers/I18nProvider'
 
 const solutions = [
     {
@@ -35,6 +36,16 @@ const solutions = [
         iconBg: 'bg-purple-500/[0.08]',
         iconColor: 'text-purple-400',
     },
+    {
+        title: 'EvoClinic',
+        description: 'Medical scheduling platform for clinics. Patient records, AI analytics, warehouse, and WhatsApp integration.',
+        features: ['Smart scheduling', 'Patient records', 'AI analytics', 'Multi-clinic support'],
+        metric: { value: '10+', label: 'modules' },
+        href: '/solutions/evoclinic',
+        gradient: 'from-pink-400 to-cyan-400',
+        iconBg: 'bg-pink-500/[0.08]',
+        iconColor: 'text-pink-400',
+    },
 ]
 
 const icons = [
@@ -46,6 +57,9 @@ const icons = [
     </svg>,
     <svg key="cce" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-6 h-6">
         <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5" />
+    </svg>,
+    <svg key="clinic" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-6 h-6">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
     </svg>,
 ]
 
@@ -67,6 +81,13 @@ const itemVariants = {
 }
 
 const SolutionsPreview: React.FC = () => {
+    const { locale } = useTranslation()
+    const ui = locale === 'en'
+        ? { title: 'Our solutions', subtitle: 'Four products to automate customer service, payments, healthcare, and development', learnMore: 'Learn more', compare: 'Compare all solutions →' }
+        : locale === 'ky'
+        ? { title: 'Биздин чечимдер', subtitle: 'Кардарларды тейлөө, төлөмдөр, саламаттыкты сактоо жана иштеп чыгууну автоматташтыруу үчүн төрт продукт', learnMore: 'Толугураак', compare: 'Бардык чечимдерди салыштыруу →' }
+        : { title: 'Наши решения', subtitle: 'Четыре продукта для автоматизации обслуживания, платежей, здравоохранения и разработки', learnMore: 'Подробнее', compare: 'Сравнить все решения →' }
+
     return (
         <section className="relative py-24 lg:py-32">
             <div className="max-w-7xl mx-auto px-6">
@@ -79,10 +100,10 @@ const SolutionsPreview: React.FC = () => {
                     className="text-center mb-16"
                 >
                     <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#F0F0F5] tracking-tight mb-4">
-                        Our solutions
+                        {ui.title}
                     </h2>
                     <p className="text-base lg:text-lg text-[#F0F0F5]/50 max-w-xl mx-auto">
-                        Three products to automate customer service, payments, and development
+                        {ui.subtitle}
                     </p>
                 </motion.div>
 
@@ -92,7 +113,7 @@ const SolutionsPreview: React.FC = () => {
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: true, margin: '-50px' }}
-                    className="grid lg:grid-cols-3 gap-5"
+                    className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5"
                 >
                     {solutions.map((solution, index) => (
                         <motion.div
@@ -141,7 +162,7 @@ const SolutionsPreview: React.FC = () => {
                                 href={solution.href}
                                 className="inline-flex items-center justify-center gap-2 w-full py-3 rounded-xl text-sm font-semibold text-[#F0F0F5]/65 border border-[#F0F0F5]/[0.08] hover:bg-[#F0F0F5]/[0.04] hover:text-[#F0F0F5] hover:border-[#F0F0F5]/[0.14] no-underline transition-all duration-200"
                             >
-                                Learn more
+                                {ui.learnMore}
                                 <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
                                     <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                                 </svg>
@@ -162,7 +183,7 @@ const SolutionsPreview: React.FC = () => {
                         href="/solutions"
                         className="text-sm text-[#F0F0F5]/35 hover:text-[#F0F0F5]/60 no-underline transition-colors"
                     >
-                        Compare all solutions →
+                        {ui.compare}
                     </Link>
                 </motion.div>
             </div>

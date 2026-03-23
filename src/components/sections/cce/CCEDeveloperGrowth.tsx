@@ -4,6 +4,15 @@ import React from 'react'
 import { motion } from 'framer-motion'
 import { useTranslation } from '@/components/providers/I18nProvider'
 
+const dimensionGradients = [
+    'linear-gradient(to right, #8b5cf6, #a78bfa)',
+    'linear-gradient(to right, #8b5cf6, #fbbf24)',
+    'linear-gradient(to right, #f59e0b, #fbbf24)',
+    'linear-gradient(to right, #a78bfa, #f59e0b)',
+    'linear-gradient(to right, #fbbf24, #8b5cf6)',
+    'linear-gradient(to right, #8b5cf6, #f59e0b)',
+]
+
 const CCEDeveloperGrowth: React.FC = () => {
     const { tObj } = useTranslation()
     const t = tObj('cceDeveloperGrowth')
@@ -126,7 +135,8 @@ const CCEDeveloperGrowth: React.FC = () => {
                                             whileInView={{ width: `${dim.value}%` }}
                                             viewport={{ once: true }}
                                             transition={{ delay: 0.5 + index * 0.1, duration: 0.8, ease: 'easeOut' }}
-                                            className={`h-full bg-gradient-to-r ${dim.color} rounded-full`}
+                                            className="h-full rounded-full"
+                                            style={{ background: dimensionGradients[index] }}
                                         />
                                     </div>
                                 </div>

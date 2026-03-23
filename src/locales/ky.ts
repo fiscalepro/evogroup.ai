@@ -4,6 +4,7 @@ export const ky = {
         solutions: 'Чечимдер',
         whatsappCrm: 'EvoAI CRM',
         evopay: 'EvoPay',
+        evoclinic: 'EvoClinic',
         cce: 'CCE',
         cases: 'Мисалдар',
         technology: 'Технологиялар',

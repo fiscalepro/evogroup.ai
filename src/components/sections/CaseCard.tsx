@@ -1,5 +1,7 @@
 import Link from 'next/link'
 import { motion } from 'framer-motion'
+import { useTranslation } from '@/components/providers/I18nProvider'
+
 interface CaseCard {
 	number: string
 	color: 'green' | 'blue'
@@ -28,6 +30,8 @@ const InstagramIcon = () => (
 )
 
 export function CaseCard({ card, index }: { card: CaseCard; index: number }) {
+	const { locale } = useTranslation()
+	const ctaText = locale === 'en' ? 'Discuss project' : locale === 'ky' ? 'Долбоорду талкуулоо' : 'Обсудить проект'
 	const isBlue = card.color === 'blue'
 
 	const g = isBlue
@@ -145,7 +149,7 @@ export function CaseCard({ card, index }: { card: CaseCard; index: number }) {
 						href='/contact'
 						className={`inline-flex items-center gap-1.5 px-5 py-2.5 rounded-lg text-[13px] font-bold text-black no-underline transition-colors ${g.ctaBg}`}
 					>
-						Обсудить проект
+						{ctaText}
 						<svg width='12' height='12' viewBox='0 0 12 12' fill='none'>
 							<path
 								d='M2.5 6h7M6.5 3l3 3-3 3'

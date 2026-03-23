@@ -6,9 +6,9 @@ import { PartnersMarquee } from '@/components/sections/PartnerMarquee'
 import ProblemStatement from '@/components/sections/ProblemStatement'
 import SolutionsPreview from '@/components/sections/SolutionsPreview'
 import CaseStudies from '@/components/sections/CaseStudies'
-import CTABanner from '@/components/sections/CTABanner'
 import Footer from '@/components/sections/Footer'
 import PageBackground from '@/components/sections/PageBackground'
+import TrustSignals from '@/components/sections/TrustSignals'
 
 export default function Home() {
     return (
@@ -19,8 +19,8 @@ export default function Home() {
             <PartnersMarquee />
             <ProblemStatement />
             <SolutionsPreview />
+            <TrustSignals/>
             <CaseStudies />
-            <CTABanner />
             <Footer />
         </div>
     )

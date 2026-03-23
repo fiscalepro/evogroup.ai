@@ -4,6 +4,7 @@ export const ru = {
         solutions: 'Решения',
         whatsappCrm: 'EvoAI CRM',
         evopay: 'EvoPay',
+        evoclinic: 'EvoClinic',
         cce: 'CCE',
         cases: 'Кейсы',
         technology: 'Технологии',

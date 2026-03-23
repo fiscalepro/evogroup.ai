@@ -65,9 +65,17 @@ const companyLinks = [
 ]
 
 const contactItems = [
-    { icon: <MailIcon />, label: 'hello@evogroup.ai', href: 'mailto:hello@evogroup.ai' },
-    { icon: <PhoneIcon />, label: '+996 700 000 000', href: 'tel:+996700000000' },
-    { icon: <MapIcon />, label: 'Бишкек, Кыргызстан', href: '#' },
+	{
+		icon: <MailIcon />,
+		label: 'info@evogroup.ai',
+		href: 'mailto:info@evogroup.ai',
+	},
+	{ icon: <PhoneIcon />, label: '+996 700 000 000', href: 'tel:+996700000000' },
+	{
+		icon: <MapIcon />,
+		label: 'Бишкек, Кыргызстан',
+		href: 'https://maps.app.goo.gl/WCRHWcAnH9RnPZ7P7',
+	},
 ]
 
 const Footer: React.FC = () => {

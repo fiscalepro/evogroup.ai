@@ -4,6 +4,7 @@ export const en = {
         solutions: 'Solutions',
         whatsappCrm: 'EvoAI CRM',
         evopay: 'EvoPay',
+        evoclinic: 'EvoClinic',
         cce: 'CCE',
         cases: 'Cases',
         technology: 'Technology',

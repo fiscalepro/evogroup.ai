@@ -1,10 +1,10 @@
 'use client'
 
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useState } from 'react'
 import { useTranslation } from '@/components/providers/I18nProvider'
-import { motion, useInView, useSpring, useTransform } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 
-const Icons = {
+const Icons: Record<string, React.ReactNode> = {
     bank: (
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-full h-full">
             <path strokeLinecap="round" strokeLinejoin="round" d="M12 21v-8.25M15.75 21v-8.25M8.25 21v-8.25M3 9l9-6 9 6m-1.5 12V10.332A48.36 48.36 0 0012 9.75c-2.551 0-5.056.2-7.5.582V21M3 21h18M12 6.75h.008v.008H12V6.75z" />
@@ -26,217 +26,267 @@ const Icons = {
             <path strokeLinecap="round" strokeLinejoin="round" d="M8.288 15.038a5.25 5.25 0 017.424 0M5.106 11.856c3.807-3.808 9.98-3.808 13.788 0M1.924 8.674c5.565-5.565 14.587-5.565 20.152 0M12.53 18.22l-.53.53-.53-.53a.75.75 0 011.06 0z" />
         </svg>
     ),
-    shield: (
+    horeca: (
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-full h-full">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
+            <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 21v-7.5a.75.75 0 01.75-.75h3a.75.75 0 01.75.75V21m-4.5 0H2.36m11.14 0H18m0 0h3.64m-1.39 0V9.349m-16.5 11.65V9.35m0 0a3.001 3.001 0 003.75-.615A2.993 2.993 0 009.75 9.75c.896 0 1.7-.393 2.25-1.016a2.993 2.993 0 002.25 1.016c.896 0 1.7-.393 2.25-1.016a3.001 3.001 0 003.75.614m-16.5 0a3.004 3.004 0 01-.621-4.72L4.318 3.44A1.5 1.5 0 015.378 3h13.243a1.5 1.5 0 011.06.44l1.19 1.189a3 3 0 01-.621 4.72" />
         </svg>
     ),
-    api: (
+    medicine: (
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-full h-full">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M14.25 9.75L16.5 12l-2.25 2.25m-4.5 0L7.5 12l2.25-2.25M6 20.25h12A2.25 2.25 0 0020.25 18V6A2.25 2.25 0 0018 3.75H6A2.25 2.25 0 003.75 6v12A2.25 2.25 0 006 20.25z" />
+            <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
         </svg>
     ),
-    ai: (
+    home: (
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-full h-full">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z" />
+            <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
+        </svg>
+    ),
+    retail: (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-full h-full">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+        </svg>
+    ),
+    beauty: (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-full h-full">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
+        </svg>
+    ),
+    food: (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-full h-full">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M12 8.25v-1.5m0 1.5c-1.355 0-2.697.056-4.024.166C6.845 8.51 6 9.473 6 10.608v2.513m6-4.871c1.355 0 2.697.056 4.024.166C17.155 8.51 18 9.473 18 10.608v2.513M15 8.25v-1.5m-6 1.5v-1.5m12 9.75l-1.5.75a3.354 3.354 0 01-3 0 3.354 3.354 0 00-3 0 3.354 3.354 0 01-3 0 3.354 3.354 0 00-3 0 3.354 3.354 0 01-3 0L3 16.5m15-3.379a48.474 48.474 0 00-6-.371c-2.032 0-4.034.126-6 .371m12 0c.39.049.777.102 1.163.16 1.07.16 1.837 1.094 1.837 2.175v5.169c0 .621-.504 1.125-1.125 1.125H4.125A1.125 1.125 0 013 20.625v-5.17c0-1.08.768-2.014 1.837-2.174A47.78 47.78 0 016 13.12" />
+        </svg>
+    ),
+    tourism: (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-full h-full">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
+            <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
+        </svg>
+    ),
+    ecommerce: (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-full h-full">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0115 18.257V17.25m6-12V15a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 15V5.25m18 0A2.25 2.25 0 0018.75 3H5.25A2.25 2.25 0 003 5.25m18 0V12a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 12V5.25" />
+        </svg>
+    ),
+    services: (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-full h-full">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M11.42 15.17l-5.658 3.286a.75.75 0 01-1.012-.317l-.099-.177a.75.75 0 01.237-.97l5.658-3.286m0 0l-1.06-1.768m1.06 1.768l5.658 3.286m-5.658-3.286l1.06-1.768m-1.06 1.768L12 21m0-6.83l5.658-3.286a.75.75 0 01.97.237l.099.177a.75.75 0 01-.237.97l-5.658 3.286m0 0L12 21m0 0l-1.06-1.768M12 21l1.06-1.768m0 0l5.658-3.286" />
+        </svg>
+    ),
+    clinic: (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-full h-full">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21m-3.75 3h.008v.008h-.008v-.008zm0 3h.008v.008h-.008v-.008zm0 3h.008v.008h-.008v-.008z" />
+        </svg>
+    ),
+    floristry: (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-full h-full">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z" />
         </svg>
     ),
 }
 
-function AnimatedNumber({ value, suffix = '', decimals = 0 }: { value: number; suffix?: string; decimals?: number }) {
-    const ref = useRef<HTMLSpanElement>(null)
-    const isInView = useInView(ref, { once: true, margin: '-80px' })
-    const spring = useSpring(0, { mass: 0.8, stiffness: 75, damping: 15 })
-    const display = useTransform(spring, (v) => parseFloat(v.toFixed(decimals)))
-    const [displayValue, setDisplayValue] = useState(0)
-
-    useEffect(() => {
-        if (isInView) spring.set(value)
-    }, [isInView, spring, value])
-
-    useEffect(() => {
-        return display.on('change', (latest) => setDisplayValue(latest))
-    }, [display])
-
-    return (
-        <span ref={ref}>
-            {decimals > 0 ? displayValue.toFixed(decimals) : displayValue}
-            {suffix}
-        </span>
-    )
-}
+const ChevronIcon = ({ open }: { open: boolean }) => (
+    <motion.svg
+        width="20"
+        height="20"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        animate={{ rotate: open ? 180 : 0 }}
+        transition={{ duration: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
+        className="text-white/40"
+    >
+        <polyline points="6 9 12 15 18 9" />
+    </motion.svg>
+)
 
 const TrustSignals: React.FC = () => {
-    const { tObj } = useTranslation()
-    const content = tObj('trustSignals')
+    const { locale } = useTranslation()
+    const [smbOpen, setSmbOpen] = useState(false)
 
-    const certColors = {
-        blue: {
-            border: 'border-l-blue-500/60',
-            bg: 'bg-blue-500/10',
-            text: 'text-blue-400',
-        },
-        emerald: {
-            border: 'border-l-emerald-500/60',
-            bg: 'bg-emerald-500/10',
-            text: 'text-emerald-400',
-        },
-        purple: {
-            border: 'border-l-purple-500/60',
-            bg: 'bg-purple-500/10',
-            text: 'text-purple-400',
-        },
+    const getContent = () => {
+        if (locale === 'en') {
+            return {
+                title: 'OUR KEY PARTNERS',
+                partners: [
+                    { icon: 'bank', name: 'Major Banks', sub: 'Financial sector' },
+                    { icon: 'oil', name: 'Oil & Gas', sub: 'Industrial sector' },
+                    { icon: 'horeca', name: 'HoReCa', sub: 'Restaurants & Hotels' },
+                    { icon: 'medicine', name: 'Medicine', sub: 'Healthcare' },
+                ],
+                smb: {
+                    icon: 'home',
+                    name: 'SMB',
+                    sub: 'Small & medium business',
+                    categories: [
+                        { icon: 'retail', name: 'Retail' },
+                        { icon: 'beauty', name: 'Beauty & Care' },
+                        { icon: 'food', name: 'Cafes & Restaurants' },
+                        { icon: 'tourism', name: 'Tourism' },
+                        { icon: 'ecommerce', name: 'Online Stores' },
+                        { icon: 'services', name: 'Services' },
+                        { icon: 'clinic', name: 'Clinics' },
+                        { icon: 'floristry', name: 'Floristry' },
+                    ],
+                },
+            }
+        } else if (locale === 'ky') {
+            return {
+                title: 'БИЗДИН НЕГИЗГИ ӨНӨКТӨШТӨР',
+                partners: [
+                    { icon: 'bank', name: 'Ири банктар', sub: 'Каржы сектору' },
+                    { icon: 'oil', name: 'Мунай жана газ', sub: 'Өнөр жай' },
+                    { icon: 'horeca', name: 'HoReCa', sub: 'Мейманканалар жана ресторандар' },
+                    { icon: 'medicine', name: 'Медицина', sub: 'Саламаттыкты сактоо' },
+                ],
+                smb: {
+                    icon: 'home',
+                    name: 'МСБ',
+                    sub: 'Чакан жана орто бизнес',
+                    categories: [
+                        { icon: 'retail', name: 'Чекене соода' },
+                        { icon: 'beauty', name: 'Сулуулук жана кам көрүү' },
+                        { icon: 'food', name: 'Тамактануу жана кафе' },
+                        { icon: 'tourism', name: 'Туризм' },
+                        { icon: 'ecommerce', name: 'Интернет-дүкөндөр' },
+                        { icon: 'services', name: 'Кызматтар' },
+                        { icon: 'clinic', name: 'Клиникалар' },
+                        { icon: 'floristry', name: 'Гүлчүлүк' },
+                    ],
+                },
+            }
+        }
+        return {
+            title: 'НАШИ КЛЮЧЕВЫЕ ПАРТНЁРЫ',
+            partners: [
+                { icon: 'bank', name: 'Крупные банки', sub: 'Финансовый сектор' },
+                { icon: 'oil', name: 'Нефть и газ', sub: 'Промышленность' },
+                { icon: 'horeca', name: 'HoReCa', sub: 'Рестораны и отели' },
+                { icon: 'medicine', name: 'Медицина', sub: 'Здравоохранение' },
+            ],
+            smb: {
+                icon: 'home',
+                name: 'МСБ',
+                sub: 'Малый и средний бизнес',
+                categories: [
+                    { icon: 'retail', name: 'Розничная торговля' },
+                    { icon: 'beauty', name: 'Красота и уход' },
+                    { icon: 'food', name: 'Общепит и кафе' },
+                    { icon: 'tourism', name: 'Туризм' },
+                    { icon: 'ecommerce', name: 'Интернет-магазины' },
+                    { icon: 'services', name: 'Услуги и сервис' },
+                    { icon: 'clinic', name: 'Медицина / клиники' },
+                    { icon: 'floristry', name: 'Флористика' },
+                ],
+            },
+        }
     }
 
-    const containerVariants = {
-        hidden: { opacity: 0 },
-        visible: {
-            opacity: 1,
-            transition: { staggerChildren: 0.07, delayChildren: 0.1 },
-        },
-    }
+    const content = getContent()
 
-    const itemVariants = {
+    const cardVariants = {
         hidden: { opacity: 0, y: 24 },
-        visible: {
+        visible: (i: number) => ({
             opacity: 1,
             y: 0,
-            transition: { duration: 0.5, ease: [0.25, 0.1, 0.25, 1] as [number, number, number, number] },
-        },
+            transition: { duration: 0.5, delay: i * 0.08, ease: [0.25, 0.1, 0.25, 1] as [number, number, number, number] },
+        }),
     }
 
     return (
         <section id="trust" className="relative py-24 lg:py-32 overflow-hidden">
-            {/* Background */}
-            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/[0.015] to-transparent pointer-events-none" />
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-blue-500/[0.04] rounded-full blur-[120px] pointer-events-none" />
+            <div className="relative z-10 max-w-4xl mx-auto px-6">
 
-            <div className="relative z-10 max-w-7xl mx-auto px-6">
+                {/* Title */}
+                <motion.p
+                    initial={{ opacity: 0, y: 16 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: '-60px' }}
+                    transition={{ duration: 0.5 }}
+                    className="text-center text-xs text-white/40 uppercase tracking-[0.25em] font-medium mb-10"
+                >
+                    {content.title}
+                </motion.p>
 
-                {/* Header */}
+                {/* 2x2 Partner Grid */}
+                <div className="grid grid-cols-2 gap-4 mb-4">
+                    {content.partners.map((partner, i) => (
+                        <motion.div
+                            key={i}
+                            custom={i}
+                            variants={cardVariants}
+                            initial="hidden"
+                            whileInView="visible"
+                            viewport={{ once: true, margin: '-40px' }}
+                            className="group p-5 sm:p-6 rounded-2xl bg-white/[0.03] border border-white/[0.07] hover:bg-white/[0.06] hover:border-white/[0.12] transition-all duration-300"
+                        >
+                            <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-white/[0.06] border border-white/[0.08] flex items-center justify-center mb-4 text-white/50 group-hover:text-white/70 group-hover:bg-white/[0.1] transition-all duration-300 p-2.5">
+                                {Icons[partner.icon]}
+                            </div>
+                            <h3 className="text-sm sm:text-base font-bold text-white mb-0.5">{partner.name}</h3>
+                            <p className="text-xs text-white/40">{partner.sub}</p>
+                        </motion.div>
+                    ))}
+                </div>
+
+                {/* Expandable SMB Card */}
                 <motion.div
                     initial={{ opacity: 0, y: 24 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: '-80px' }}
-                    transition={{ duration: 0.7, ease: [0.25, 0.1, 0.25, 1] }}
-                    className="mb-14 lg:mb-20"
+                    viewport={{ once: true, margin: '-40px' }}
+                    transition={{ duration: 0.5, delay: 0.3 }}
+                    className="rounded-2xl bg-white/[0.03] border border-white/[0.07] overflow-hidden transition-colors duration-300"
                 >
-                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/10 bg-white/[0.04] mb-5">
-                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                        <span className="text-xs text-white/55 uppercase tracking-widest font-medium">
-                            {content.overline}
-                        </span>
-                    </div>
-                    <h2 className="text-4xl sm:text-5xl lg:text-6xl font-semibold text-white tracking-tight leading-tight max-w-2xl">
-                        {content.title}
-                    </h2>
-                    <p className="mt-4 text-base lg:text-lg text-white/60 max-w-xl leading-relaxed">
-                        {content.subtitle}
-                    </p>
+                    {/* SMB Header — always visible, clickable */}
+                    <button
+                        onClick={() => setSmbOpen(!smbOpen)}
+                        className="w-full flex items-center gap-4 p-5 sm:p-6 text-left cursor-pointer transition-colors duration-200"
+                    >
+                        <div className="w-11 h-11 rounded-xl bg-white/[0.06] border border-white/[0.08] flex items-center justify-center text-white/50 p-2.5 flex-shrink-0">
+                            {Icons[content.smb.icon]}
+                        </div>
+                        <div className="flex-grow min-w-0">
+                            <h3 className="text-sm sm:text-base font-bold text-white">{content.smb.name}</h3>
+                            <p className="text-xs text-white/40">{content.smb.sub}</p>
+                        </div>
+                        <ChevronIcon open={smbOpen} />
+                    </button>
+
+                    {/* Expandable sub-categories */}
+                    <AnimatePresence initial={false}>
+                        {smbOpen && (
+                            <motion.div
+                                initial={{ height: 0, opacity: 0 }}
+                                animate={{ height: 'auto', opacity: 1 }}
+                                exit={{ height: 0, opacity: 0 }}
+                                transition={{ duration: 0.35, ease: [0.25, 0.1, 0.25, 1] }}
+                                className="overflow-hidden"
+                            >
+                                <div className="px-5 sm:px-6 pb-5 sm:pb-6 pt-1">
+                                    <div className="grid grid-cols-2 gap-3">
+                                        {content.smb.categories.map((cat, i) => (
+                                            <motion.div
+                                                key={i}
+                                                initial={{ opacity: 0, y: 12 }}
+                                                animate={{ opacity: 1, y: 0 }}
+                                                transition={{ duration: 0.3, delay: i * 0.04 }}
+                                                className="flex items-center gap-3 p-3 rounded-xl bg-white/[0.03] border border-white/[0.06] hover:bg-white/[0.06] transition-colors duration-200"
+                                            >
+                                                <div className="w-7 h-7 rounded-lg bg-white/[0.06] flex items-center justify-center text-white/45 p-1.5 flex-shrink-0">
+                                                    {Icons[cat.icon]}
+                                                </div>
+                                                <span className="text-xs sm:text-sm text-white/65 font-medium leading-tight">{cat.name}</span>
+                                            </motion.div>
+                                        ))}
+                                    </div>
+                                </div>
+                            </motion.div>
+                        )}
+                    </AnimatePresence>
                 </motion.div>
 
-                {/* Stats — bordered grid with dividers */}
-                <motion.div
-                    variants={containerVariants}
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true, margin: '-50px' }}
-                    className="grid grid-cols-2 lg:grid-cols-4 border border-white/[0.08] rounded-2xl overflow-hidden mb-10"
-                >
-                    {content.stats.map((stat, i) => (
-                        <motion.div
-                            key={i}
-                            variants={itemVariants}
-                            className={[
-                                'px-6 py-8 lg:px-8 lg:py-10 text-center',
-                                i % 2 === 0 && i < content.stats.length - 2 ? 'border-r border-white/[0.08]' : '',
-                                i < 2 ? 'border-b border-white/[0.08] lg:border-b-0' : '',
-                                i === 1 || i === 3 ? 'lg:border-r-0' : '',
-                                i === 0 || i === 2 ? 'lg:border-r border-white/[0.08]' : '',
-                            ].join(' ')}
-                        >
-                            <div className="text-4xl sm:text-5xl lg:text-6xl font-semibold bg-gradient-to-b from-white to-white/60 bg-clip-text text-transparent tabular-nums">
-                                <AnimatedNumber value={stat.value} suffix={stat.suffix} decimals={stat.decimals} />
-                            </div>
-                            <p className="mt-2.5 text-sm font-medium text-white/80">{stat.label}</p>
-                            <p className="mt-0.5 text-xs text-white/50">{stat.sublabel}</p>
-                        </motion.div>
-                    ))}
-                </motion.div>
-
-                {/* Industries + Certifications */}
-                <div className="grid lg:grid-cols-[1fr_320px] gap-5 lg:gap-6">
-
-                    {/* Industries */}
-                    <div>
-                        <p className="text-xs text-white/50 uppercase tracking-[0.18em] font-medium mb-4">
-                            {content.industriesLabel}
-                        </p>
-                        <motion.div
-                            variants={containerVariants}
-                            initial="hidden"
-                            whileInView="visible"
-                            viewport={{ once: true }}
-                            className="grid grid-cols-1 sm:grid-cols-2 gap-3"
-                        >
-                            {content.clients.map((client, i) => (
-                                <motion.div
-                                    key={i}
-                                    variants={itemVariants}
-                                    whileHover={{ scale: 1.01 }}
-                                    className="group flex items-start gap-3.5 p-4 rounded-xl bg-white/[0.03] border border-white/[0.06] hover:bg-white/[0.055] hover:border-white/10 transition-all duration-300 cursor-default"
-                                >
-                                    <div className="flex-shrink-0 w-9 h-9 rounded-lg bg-white/[0.06] flex items-center justify-center text-white/60 group-hover:text-white/75 group-hover:bg-white/10 transition-all duration-300 p-2 mt-0.5">
-                                        {Icons[client.icon]}
-                                    </div>
-                                    <div className="min-w-0">
-                                        <p className="text-sm font-semibold text-white/90 leading-tight">{client.name}</p>
-                                        <p className="text-xs text-white/55 mt-0.5">{client.description}</p>
-                                        <p className="text-xs font-medium text-blue-400/70 mt-1.5">{client.metric}</p>
-                                    </div>
-                                </motion.div>
-                            ))}
-                        </motion.div>
-                    </div>
-
-                    {/* Certifications */}
-                    <div>
-                        <p className="text-xs text-white/50 uppercase tracking-[0.18em] font-medium mb-4">
-                            {content.certsLabel}
-                        </p>
-                        <motion.div
-                            variants={containerVariants}
-                            initial="hidden"
-                            whileInView="visible"
-                            viewport={{ once: true }}
-                            className="flex flex-col gap-3"
-                        >
-                            {content.certs.map((cert, i) => {
-                                const colors = certColors[cert.color]
-                                return (
-                                    <motion.div
-                                        key={i}
-                                        variants={itemVariants}
-                                        className={[
-                                            'flex items-center gap-3.5 p-4 rounded-xl',
-                                            'bg-white/[0.03] border border-white/[0.06]',
-                                            'border-l-2',
-                                            colors.border,
-                                        ].join(' ')}
-                                    >
-                                        <div className={['flex-shrink-0 w-9 h-9 rounded-lg flex items-center justify-center p-2', colors.bg, colors.text].join(' ')}>
-                                            {Icons[cert.icon]}
-                                        </div>
-                                        <div className="min-w-0">
-                                            <p className="text-sm font-semibold text-white leading-tight">{cert.name}</p>
-                                            <p className="text-xs text-white/55 mt-0.5 leading-snug">{cert.description}</p>
-                                        </div>
-                                    </motion.div>
-                                )
-                            })}
-                        </motion.div>
-                    </div>
-                </div>
             </div>
         </section>
     )

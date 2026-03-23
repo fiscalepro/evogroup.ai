@@ -6,6 +6,7 @@ import Link from 'next/link'
 import ModernHeader from '@/components/sections/ModernHeader'
 import Footer from '@/components/sections/Footer'
 import PageBackground from '@/components/sections/PageBackground'
+import { useTranslation } from '@/components/providers/I18nProvider'
 
 const ArrowIcon = () => (
     <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
@@ -13,60 +14,204 @@ const ArrowIcon = () => (
     </svg>
 )
 
-const techCategories = [
-    {
-        label: 'AI / ML',
-        desc: 'Models and frameworks for building intelligent systems',
-        items: [
-            { name: 'OpenAI GPT-4', sub: 'Large Language Models' },
-            { name: 'TensorFlow', sub: 'ML Framework' },
-            { name: 'PyTorch', sub: 'Deep Learning' },
-            { name: 'LangChain', sub: 'LLM Orchestration' },
-            { name: 'Hugging Face', sub: 'Model Hub' },
-            { name: 'scikit-learn', sub: 'Classical ML' },
-        ],
-    },
-    {
-        label: 'Infrastructure',
-        desc: 'Cloud platform for scalable deployment',
-        items: [
-            { name: 'Kubernetes', sub: 'Container Orchestration' },
-            { name: 'AWS / GCP', sub: 'Cloud Platforms' },
-            { name: 'Docker', sub: 'Containerization' },
-            { name: 'PostgreSQL', sub: 'Relational Database' },
-            { name: 'Redis', sub: 'In-Memory Cache' },
-            { name: 'Kafka', sub: 'Event Streaming' },
-        ],
-    },
-    {
-        label: 'Security',
-        desc: 'Enterprise-grade data protection and access control',
-        items: [
-            { name: 'ISO 27001', sub: 'Information Security' },
-            { name: 'GDPR', sub: 'Data Protection' },
-            { name: 'OAuth 2.0', sub: 'Authorization' },
-            { name: 'mTLS', sub: 'Mutual TLS' },
-            { name: 'Vault', sub: 'Secrets Management' },
-            { name: 'SIEM', sub: 'Security Monitoring' },
-        ],
-    },
-]
+const getContent = (locale: string) => {
+    if (locale === 'en') {
+        return {
+            heroTitle: 'Modern AI stack',
+            heroDesc: 'Battle-tested tools and custom solutions to make your AI systems reliable at any scale.',
+            techTitle: 'Three layers of reliable AI architecture',
+            capabilitiesTitle: 'What we build',
+            methodologyTitle: 'How we build AI systems',
+            stepLabel: 'Step',
+            ctaTitle: 'Want to discuss project architecture?',
+            ctaDesc: 'Tell us your challenge — we\'ll recommend the optimal tech stack.',
+            ctaButton: 'Discuss project',
+            techCategories: [
+                {
+                    label: 'AI / ML',
+                    desc: 'Models and frameworks for building intelligent systems',
+                    items: [
+                        { name: 'OpenAI GPT-4', sub: 'Large Language Models' },
+                        { name: 'TensorFlow', sub: 'ML Framework' },
+                        { name: 'PyTorch', sub: 'Deep Learning' },
+                        { name: 'LangChain', sub: 'LLM Orchestration' },
+                        { name: 'Hugging Face', sub: 'Model Hub' },
+                        { name: 'scikit-learn', sub: 'Classical ML' },
+                    ],
+                },
+                {
+                    label: 'Infrastructure',
+                    desc: 'Cloud platform for scalable deployment',
+                    items: [
+                        { name: 'Kubernetes', sub: 'Container Orchestration' },
+                        { name: 'AWS / GCP', sub: 'Cloud Platforms' },
+                        { name: 'Docker', sub: 'Containerization' },
+                        { name: 'PostgreSQL', sub: 'Relational Database' },
+                        { name: 'Redis', sub: 'In-Memory Cache' },
+                        { name: 'Kafka', sub: 'Event Streaming' },
+                    ],
+                },
+                {
+                    label: 'Security',
+                    desc: 'Enterprise-grade data protection and access control',
+                    items: [
+                        { name: 'ISO 27001', sub: 'Information Security' },
+                        { name: 'GDPR', sub: 'Data Protection' },
+                        { name: 'OAuth 2.0', sub: 'Authorization' },
+                        { name: 'mTLS', sub: 'Mutual TLS' },
+                        { name: 'Vault', sub: 'Secrets Management' },
+                        { name: 'SIEM', sub: 'Security Monitoring' },
+                    ],
+                },
+            ],
+            capabilities: [
+                { title: 'Multi-agent AI systems', desc: 'Multiple AI agents work in tandem: one collects data, another analyzes, a third makes decisions.' },
+                { title: 'RAG & vector databases', desc: 'Models work with corporate knowledge via Retrieval-Augmented Generation without retraining.' },
+                { title: 'Real-time data processing', desc: 'Kafka + stream processing for real-time systems with latency under 100ms.' },
+                { title: 'On-premise & hybrid deploy', desc: 'Deploy on client servers for maximum security and data control.' },
+            ],
+            steps: [
+                { title: 'Research', desc: 'Study business processes, identify bottlenecks, formulate technical requirements with the client team.' },
+                { title: 'Prototype', desc: 'Build MVP in 2 weeks. Real data, real business process — no guesswork.' },
+                { title: 'Development', desc: 'Production code with tests, CI/CD, and monitoring. Short iterations, weekly progress demos.' },
+                { title: 'Deploy', desc: 'Roll out to client infrastructure or our cloud cluster. Zero-downtime, automatic rollback on failure.' },
+                { title: 'Monitoring', desc: 'Dashboards, alerts, 99.9% SLA. Proactive response before issues affect business.' },
+                { title: 'Optimization', desc: 'Analyze data, improve models, and scale the system as load grows.' },
+            ],
+        }
+    }
 
-const capabilities = [
-    { title: 'Multi-agent AI systems', desc: 'Multiple AI agents work in tandem: one collects data, another analyzes, a third makes decisions.' },
-    { title: 'RAG & vector databases', desc: 'Models work with corporate knowledge via Retrieval-Augmented Generation without retraining.' },
-    { title: 'Real-time data processing', desc: 'Kafka + stream processing for real-time systems with latency under 100ms.' },
-    { title: 'On-premise & hybrid deploy', desc: 'Deploy on client servers for maximum security and data control.' },
-]
+    if (locale === 'ky') {
+        return {
+            heroTitle: 'Заманбап AI стек',
+            heroDesc: 'Сынактан өткөн куралдар жана жеке чечимдер — AI тутумдарыңыз каалаган масштабда ишенимдүү болушу үчүн.',
+            techTitle: 'Ишенимдүү AI архитектурасынын үч катмары',
+            capabilitiesTitle: 'Биз эмне курабыз',
+            methodologyTitle: 'AI тутумдарды кантип курабыз',
+            stepLabel: 'Кадам',
+            ctaTitle: 'Долбоордун архитектурасын талкуулайбызбы?',
+            ctaDesc: 'Көйгөйүңүздү айтыңыз — биз оптималдуу технологиялык стекти сунуштайбыз.',
+            ctaButton: 'Долбоорду талкуулоо',
+            techCategories: [
+                {
+                    label: 'AI / ML',
+                    desc: 'Акылдуу тутумдарды куруу үчүн моделдер жана фреймворктор',
+                    items: [
+                        { name: 'OpenAI GPT-4', sub: 'Чоң тил моделдери' },
+                        { name: 'TensorFlow', sub: 'ML фреймворк' },
+                        { name: 'PyTorch', sub: 'Терең үйрөнүү' },
+                        { name: 'LangChain', sub: 'LLM оркестрация' },
+                        { name: 'Hugging Face', sub: 'Моделдер хабы' },
+                        { name: 'scikit-learn', sub: 'Классикалык ML' },
+                    ],
+                },
+                {
+                    label: 'Инфраструктура',
+                    desc: 'Масштабдуу жайгаштыруу үчүн булут платформасы',
+                    items: [
+                        { name: 'Kubernetes', sub: 'Контейнер оркестрациясы' },
+                        { name: 'AWS / GCP', sub: 'Булут платформалары' },
+                        { name: 'Docker', sub: 'Контейнеризация' },
+                        { name: 'PostgreSQL', sub: 'Реляциялык маалымат базасы' },
+                        { name: 'Redis', sub: 'Оперативдик кэш' },
+                        { name: 'Kafka', sub: 'Окуялар агымы' },
+                    ],
+                },
+                {
+                    label: 'Коопсуздук',
+                    desc: 'Корпоративдик деңгээлдеги маалыматтарды коргоо жана кирүү башкаруусу',
+                    items: [
+                        { name: 'ISO 27001', sub: 'Маалымат коопсуздугу' },
+                        { name: 'GDPR', sub: 'Маалыматтарды коргоо' },
+                        { name: 'OAuth 2.0', sub: 'Авторизация' },
+                        { name: 'mTLS', sub: 'Өз ара TLS' },
+                        { name: 'Vault', sub: 'Сырлар башкаруусу' },
+                        { name: 'SIEM', sub: 'Коопсуздук мониторинги' },
+                    ],
+                },
+            ],
+            capabilities: [
+                { title: 'Мульти-агенттик AI тутумдары', desc: 'Бир нече AI агент биргелешип иштейт: бири маалымат чогултат, экинчиси талдайт, үчүнчүсү чечим кабыл алат.' },
+                { title: 'RAG жана вектордук базалар', desc: 'Моделдер корпоративдик билимдер менен Retrieval-Augmented Generation аркылуу кайра үйрөтүүсүз иштейт.' },
+                { title: 'Реалдуу убакытта маалымат иштетүү', desc: 'Kafka + агымдык иштетүү — 100мс ашпаган кечигүү менен реалдуу убакыт тутумдары.' },
+                { title: 'On-premise жана гибриддик жайгаштыруу', desc: 'Максималдуу коопсуздук жана маалыматтарды көзөмөлдөө үчүн кардардын серверлерине жайгаштыруу.' },
+            ],
+            steps: [
+                { title: 'Изилдөө', desc: 'Бизнес-процесстерди изилдеп, тоскоолдуктарды аныктап, кардар командасы менен техникалык талаптарды түзүү.' },
+                { title: 'Прототип', desc: '2 жумада MVP курабыз. Реалдуу маалымат, реалдуу бизнес-процесс — болжолдоосуз.' },
+                { title: 'Иштеп чыгуу', desc: 'Тесттер, CI/CD жана мониторинг менен продакшн код. Кыска итерациялар, жума сайын прогресс демо.' },
+                { title: 'Жайгаштыруу', desc: 'Кардардын инфраструктурасына же биздин булут кластерге чыгаруу. Нөл токтоп калуу, ката болгондо автоматтык кайтаруу.' },
+                { title: 'Мониторинг', desc: 'Дашборддор, эскертүүлөр, 99.9% SLA. Көйгөйлөр бизнеске таасир эткенге чейин проактивдүү жооп.' },
+                { title: 'Оптимизация', desc: 'Маалыматтарды талдоо, моделдерди жакшыртуу жана жүктөм өскөн сайын тутумду масштабдоо.' },
+            ],
+        }
+    }
 
-const steps = [
-    { title: 'Research', desc: 'Study business processes, identify bottlenecks, formulate technical requirements with the client team.' },
-    { title: 'Prototype', desc: 'Build MVP in 2 weeks. Real data, real business process — no guesswork.' },
-    { title: 'Development', desc: 'Production code with tests, CI/CD, and monitoring. Short iterations, weekly progress demos.' },
-    { title: 'Deploy', desc: 'Roll out to client infrastructure or our cloud cluster. Zero-downtime, automatic rollback on failure.' },
-    { title: 'Monitoring', desc: 'Dashboards, alerts, 99.9% SLA. Proactive response before issues affect business.' },
-    { title: 'Optimization', desc: 'Analyze data, improve models, and scale the system as load grows.' },
-]
+    // Default: Russian
+    return {
+        heroTitle: 'Современный AI-стек',
+        heroDesc: 'Проверенные инструменты и индивидуальные решения, чтобы ваши AI-системы работали надёжно на любом масштабе.',
+        techTitle: 'Три уровня надёжной AI-архитектуры',
+        capabilitiesTitle: 'Что мы создаём',
+        methodologyTitle: 'Как мы строим AI-системы',
+        stepLabel: 'Шаг',
+        ctaTitle: 'Хотите обсудить архитектуру проекта?',
+        ctaDesc: 'Расскажите о вашей задаче — мы подберём оптимальный технологический стек.',
+        ctaButton: 'Обсудить проект',
+        techCategories: [
+            {
+                label: 'AI / ML',
+                desc: 'Модели и фреймворки для создания интеллектуальных систем',
+                items: [
+                    { name: 'OpenAI GPT-4', sub: 'Большие языковые модели' },
+                    { name: 'TensorFlow', sub: 'ML-фреймворк' },
+                    { name: 'PyTorch', sub: 'Глубокое обучение' },
+                    { name: 'LangChain', sub: 'Оркестрация LLM' },
+                    { name: 'Hugging Face', sub: 'Хаб моделей' },
+                    { name: 'scikit-learn', sub: 'Классический ML' },
+                ],
+            },
+            {
+                label: 'Инфраструктура',
+                desc: 'Облачная платформа для масштабируемого развёртывания',
+                items: [
+                    { name: 'Kubernetes', sub: 'Оркестрация контейнеров' },
+                    { name: 'AWS / GCP', sub: 'Облачные платформы' },
+                    { name: 'Docker', sub: 'Контейнеризация' },
+                    { name: 'PostgreSQL', sub: 'Реляционная СУБД' },
+                    { name: 'Redis', sub: 'In-Memory кэш' },
+                    { name: 'Kafka', sub: 'Потоковая обработка событий' },
+                ],
+            },
+            {
+                label: 'Безопасность',
+                desc: 'Защита данных и контроль доступа корпоративного уровня',
+                items: [
+                    { name: 'ISO 27001', sub: 'Информационная безопасность' },
+                    { name: 'GDPR', sub: 'Защита персональных данных' },
+                    { name: 'OAuth 2.0', sub: 'Авторизация' },
+                    { name: 'mTLS', sub: 'Взаимный TLS' },
+                    { name: 'Vault', sub: 'Управление секретами' },
+                    { name: 'SIEM', sub: 'Мониторинг безопасности' },
+                ],
+            },
+        ],
+        capabilities: [
+            { title: 'Мульти-агентные AI-системы', desc: 'Несколько AI-агентов работают в связке: один собирает данные, другой анализирует, третий принимает решения.' },
+            { title: 'RAG и векторные базы данных', desc: 'Модели работают с корпоративными знаниями через Retrieval-Augmented Generation без переобучения.' },
+            { title: 'Обработка данных в реальном времени', desc: 'Kafka + потоковая обработка для систем реального времени с задержкой менее 100 мс.' },
+            { title: 'On-premise и гибридное развёртывание', desc: 'Развёртывание на серверах клиента для максимальной безопасности и контроля данных.' },
+        ],
+        steps: [
+            { title: 'Исследование', desc: 'Изучаем бизнес-процессы, выявляем узкие места, формируем технические требования совместно с командой клиента.' },
+            { title: 'Прототип', desc: 'Создаём MVP за 2 недели. Реальные данные, реальный бизнес-процесс — без догадок.' },
+            { title: 'Разработка', desc: 'Продакшн-код с тестами, CI/CD и мониторингом. Короткие итерации, еженедельные демо прогресса.' },
+            { title: 'Развёртывание', desc: 'Выкатка на инфраструктуру клиента или наш облачный кластер. Нулевой простой, автоматический откат при сбое.' },
+            { title: 'Мониторинг', desc: 'Дашборды, алерты, SLA 99.9%. Проактивная реакция до того, как проблемы затронут бизнес.' },
+            { title: 'Оптимизация', desc: 'Анализ данных, улучшение моделей и масштабирование системы по мере роста нагрузки.' },
+        ],
+    }
+}
 
 const itemVariants = {
     hidden: { opacity: 0, y: 24 },
@@ -78,6 +223,9 @@ const itemVariants = {
 }
 
 export default function TechnologyPage() {
+    const { locale } = useTranslation()
+    const content = getContent(locale)
+
     return (
         <div className="relative min-h-screen bg-[#0A0E1A]">
             <PageBackground />
@@ -93,10 +241,10 @@ export default function TechnologyPage() {
                     className="relative z-10 max-w-5xl mx-auto px-6 text-center"
                 >
                     <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-[#F0F0F5] tracking-tight mb-4">
-                        Modern AI stack
+                        {content.heroTitle}
                     </h1>
                     <p className="text-base lg:text-lg text-[#F0F0F5]/50 max-w-lg mx-auto leading-relaxed">
-                        Battle-tested tools and custom solutions to make your AI systems reliable at any scale.
+                        {content.heroDesc}
                     </p>
                 </motion.div>
             </section>
@@ -105,11 +253,11 @@ export default function TechnologyPage() {
             <section className="pb-24 border-t border-[#F0F0F5]/[0.04]">
                 <div className="max-w-5xl mx-auto px-6 pt-20">
                     <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="text-center mb-14">
-                        <h2 className="text-3xl sm:text-4xl font-bold text-[#F0F0F5] tracking-tight mb-3">Three layers of reliable AI architecture</h2>
+                        <h2 className="text-3xl sm:text-4xl font-bold text-[#F0F0F5] tracking-tight mb-3">{content.techTitle}</h2>
                     </motion.div>
 
                     <div className="grid md:grid-cols-3 gap-5">
-                        {techCategories.map((cat, i) => (
+                        {content.techCategories.map((cat, i) => (
                             <motion.div
                                 key={i} custom={i} variants={itemVariants} initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-40px' }}
                                 className="p-7 rounded-2xl border border-[#F0F0F5]/[0.06] bg-[#F0F0F5]/[0.02] hover:bg-[#F0F0F5]/[0.04] hover:border-[#F0F0F5]/[0.1] transition-all duration-300"
@@ -134,11 +282,11 @@ export default function TechnologyPage() {
             <section className="py-24 border-t border-[#F0F0F5]/[0.04]">
                 <div className="max-w-5xl mx-auto px-6">
                     <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="text-center mb-14">
-                        <h2 className="text-3xl sm:text-4xl font-bold text-[#F0F0F5] tracking-tight mb-3">What we build</h2>
+                        <h2 className="text-3xl sm:text-4xl font-bold text-[#F0F0F5] tracking-tight mb-3">{content.capabilitiesTitle}</h2>
                     </motion.div>
 
                     <div className="grid md:grid-cols-2 gap-5">
-                        {capabilities.map((c, i) => (
+                        {content.capabilities.map((c, i) => (
                             <motion.div
                                 key={i} custom={i} variants={itemVariants} initial="hidden" whileInView="visible" viewport={{ once: true }}
                                 className="p-7 rounded-2xl border border-[#F0F0F5]/[0.06] bg-[#F0F0F5]/[0.02] hover:bg-[#F0F0F5]/[0.04] hover:border-[#F0F0F5]/[0.1] transition-all duration-300"
@@ -155,16 +303,16 @@ export default function TechnologyPage() {
             <section className="py-24 border-t border-[#F0F0F5]/[0.04]">
                 <div className="max-w-5xl mx-auto px-6">
                     <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="text-center mb-14">
-                        <h2 className="text-3xl sm:text-4xl font-bold text-[#F0F0F5] tracking-tight mb-3">How we build AI systems</h2>
+                        <h2 className="text-3xl sm:text-4xl font-bold text-[#F0F0F5] tracking-tight mb-3">{content.methodologyTitle}</h2>
                     </motion.div>
 
                     <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                        {steps.map((s, i) => (
+                        {content.steps.map((s, i) => (
                             <motion.div
                                 key={i} custom={i} variants={itemVariants} initial="hidden" whileInView="visible" viewport={{ once: true }}
                                 className="p-6 rounded-2xl border border-[#F0F0F5]/[0.06] bg-[#F0F0F5]/[0.02]"
                             >
-                                <span className="text-xs font-bold text-[#F0F0F5]/20 mb-3 block">Step {i + 1}</span>
+                                <span className="text-xs font-bold text-[#F0F0F5]/20 mb-3 block">{content.stepLabel} {i + 1}</span>
                                 <h3 className="text-base font-bold text-[#F0F0F5] mb-2">{s.title}</h3>
                                 <p className="text-sm text-[#F0F0F5]/40 leading-relaxed">{s.desc}</p>
                             </motion.div>
@@ -178,14 +326,14 @@ export default function TechnologyPage() {
                 <div className="max-w-5xl mx-auto px-6">
                     <div className="flex flex-col sm:flex-row items-center justify-between gap-5 p-6 rounded-2xl border border-[#F0F0F5]/[0.06] bg-[#F0F0F5]/[0.02]">
                         <div>
-                            <p className="text-sm font-semibold text-[#F0F0F5] mb-0.5">Want to discuss project architecture?</p>
-                            <p className="text-sm text-[#F0F0F5]/40">Tell us your challenge — we&apos;ll recommend the optimal tech stack.</p>
+                            <p className="text-sm font-semibold text-[#F0F0F5] mb-0.5">{content.ctaTitle}</p>
+                            <p className="text-sm text-[#F0F0F5]/40">{content.ctaDesc}</p>
                         </div>
                         <Link
                             href="/contact"
                             className="flex-shrink-0 inline-flex items-center gap-2 bg-[#F0F0F5] text-[#0A0E1A] px-6 py-2.5 rounded-xl text-sm font-semibold no-underline hover:bg-white transition-colors"
                         >
-                            Discuss project <ArrowIcon />
+                            {content.ctaButton} <ArrowIcon />
                         </Link>
                     </div>
                 </div>

@@ -20,6 +20,7 @@ const ModernHeader = () => {
 		{ href: '/solutions', label: t.solutions },
 		{ href: '/solutions/whatsapp', label: t.whatsappCrm },
 		{ href: '/solutions/evopay', label: t.evopay },
+		{ href: '/solutions/evoclinic', label: t.evoclinic },
 		{ href: '/solutions/cce', label: t.cce },
 	]
 
@@ -81,9 +82,8 @@ const ModernHeader = () => {
 							onMouseEnter={handleMouseEnter}
 							onMouseLeave={handleMouseLeave}
 						>
-							<Link
-								href='/solutions'
-								className={`flex items-center gap-1 px-4 py-2 rounded-lg text-sm font-medium transition-colors duration-150 ${
+							<div
+								className={`flex cursor-pointer items-center gap-1 px-4 py-2 rounded-lg text-sm font-medium transition-colors duration-150 ${
 									isSolutions
 										? 'text-[#F0F0F5]'
 										: 'text-[#F0F0F5]/60 hover:text-[#F0F0F5]'
@@ -104,28 +104,26 @@ const ModernHeader = () => {
 										d='M19 9l-7 7-7-7'
 									/>
 								</svg>
-							</Link>
+							</div>
 
 							{/* Dropdown */}
-							{isOpen && (
-								<div className='absolute top-full pt-2 left-0 z-50'>
-									<div className='w-56 bg-[#0F1423] border border-white/[0.08] rounded-xl shadow-2xl shadow-black/40 p-2'>
-										{solutionItems.map(item => (
-											<Link
-												key={item.href}
-												href={item.href}
-												className={`block px-3 py-2.5 rounded-lg text-sm font-medium transition-colors duration-150 ${
-													isActive(item.href)
-														? 'text-[#F0F0F5] bg-white/[0.06]'
-														: 'text-[#F0F0F5]/55 hover:text-[#F0F0F5] hover:bg-white/[0.04]'
-												}`}
-											>
-												{item.label}
-											</Link>
-										))}
-									</div>
+							<div className={`absolute top-full pt-2 left-0 z-50 transition-all duration-200 ${isOpen ? 'opacity-100 translate-y-0 visible' : 'opacity-0 -translate-y-1 invisible pointer-events-none'}`}>
+								<div className='w-56 bg-[#0F1423] border border-white/[0.08] rounded-xl shadow-2xl shadow-black/40 p-2'>
+									{solutionItems.map(item => (
+										<Link
+											key={item.href}
+											href={item.href}
+											className={`block px-3 py-2.5 rounded-lg text-sm font-medium transition-colors duration-150 ${
+												isActive(item.href)
+													? 'text-[#F0F0F5] bg-white/[0.06]'
+													: 'text-[#F0F0F5]/55 hover:text-[#F0F0F5] hover:bg-white/[0.04]'
+											}`}
+										>
+											{item.label}
+										</Link>
+									))}
 								</div>
-							)}
+							</div>
 						</div>
 
 						{/* Other nav items */}
