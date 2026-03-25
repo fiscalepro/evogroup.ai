@@ -95,6 +95,12 @@ export const en = {
             unread: 3,
         },
         messageExample: 'Hi! Your order #1234 will be delivered tomorrow between 10:00-14:00. Is that convenient?',
+        mockUI: {
+            windowTitle: 'WhatsApp CRM',
+            searchPlaceholder: 'Search...',
+            online: 'Online',
+            typePlaceholder: 'Type a message...',
+        },
     },
     whatsappAiBot: {
         badge: 'AI Bot',
@@ -225,6 +231,7 @@ export const en = {
         startTrial: 'Start free trial',
         contactSales: 'Contact sales',
         popular: 'Popular',
+        currency: 'som',
         additionalInfo: 'Need more users or messages? Contact us for custom options.',
         plans: [
             {
@@ -476,6 +483,25 @@ export const en = {
             },
         ],
     },
+    problemStatement: {
+        title: 'Problems we solve',
+        subtitle: 'Every day without automation costs you clients, money, and time',
+        problems: [
+            {
+                title: 'Slow customer response',
+                description: 'Clients wait hours for answers. By then, they already went to a competitor.',
+            },
+            {
+                title: 'Payment fraud risks',
+                description: 'Manual transaction monitoring misses threats. Fraud costs pile up undetected.',
+            },
+            {
+                title: 'Code reviews bottleneck',
+                description: 'Developers wait days for reviews. Knowledge stays siloed. Standards drift.',
+            },
+        ],
+        solveWith: 'Solve with {solution}',
+    },
     evoPayHero: {
         badge: 'New solution for restaurants',
         titleStart: 'Guests order and pay',
@@ -499,6 +525,10 @@ export const en = {
         scan: 'Scan',
         payment: 'Payment',
         success: 'Success!',
+        price1: '890 som',
+        price2: '720 som',
+        price3: '280 som',
+        total: '1,890 som',
     },
     evoPayPricing: {
         badge: 'Pricing',
@@ -538,6 +568,32 @@ export const en = {
             },
         ],
     },
+    partnerMarquee: {
+        heading: 'Trusted by Leading Organizations',
+        partners: [
+            'Bakai Bank',
+            'Bishkek Petroleum',
+            'Partner Neft',
+            'Ministry of Education KR',
+            'BIAST.KG',
+            'Tauras-Phoenix',
+            'VkusVill',
+            'ONDAY',
+        ] as string[],
+    },
+    ctaBanner: {
+        heading: 'Why companies choose us',
+        stats: [
+            { value: '10+', label: 'Years in market', detail: 'Since 2014' },
+            { value: '50+', label: 'Enterprise clients', detail: 'Banks, government, oil & gas' },
+            { value: '99.9%', label: 'System uptime', detail: 'SLA guaranteed' },
+            { value: '2 weeks', label: 'To launch pilot', detail: 'No commitment needed' },
+        ],
+    },
+    portfolioGallery: {
+        title: 'Our Portfolio',
+        subtitle: 'Our projects will appear here soon',
+    },
     evoPayDemoForm: {
         badge: 'Get demo',
         title: 'Ready to increase revenue?',
@@ -556,6 +612,9 @@ export const en = {
         successMessage: 'We received your request and will contact you within 24 hours for an EvoPay demo.',
         successSteps: ['Review your requirements', 'Prepare demonstration', 'Show system features', 'Answer all questions'],
         sendAnother: 'Send another request',
+        apiPrefix: '[EvoPay Demo Request]',
+        tablesPrefix: 'Number of tables: ',
+        noAdditionalInfo: 'No additional info',
         errors: {
             nameRequired: 'Please enter your name',
             nameInvalid: 'Name contains invalid characters',
@@ -567,5 +626,78 @@ export const en = {
             tooManyRequests: 'Too many requests. Please try again in 15 minutes.',
             general: 'Failed to send request. Please try again later.',
         },
+    },
+    footer: {
+        cta: {
+            overline: 'Get started today',
+            title: 'Ready to launch AI',
+            titleLine2: 'in your business?',
+            subtitle: 'We will analyze your situation for free and launch a pilot project in 2 weeks — no strings attached.',
+            primaryButton: 'Get a free demo',
+            secondaryButton: 'Write to us',
+        },
+        brand: {
+            description: '68+ projects: banks, oil depots, government agencies, restaurants, clinics. Spring Boot + Next.js + Claude AI.',
+        },
+        solutions: {
+            title: 'Solutions',
+            items: [
+                { label: 'EvoAI CRM', sublabel: 'AI bots for WhatsApp/Instagram/Telegram' },
+                { label: 'EvoResto', sublabel: 'QR menu, orders, Bakai24 payment' },
+                { label: 'CCE Platform', sublabel: 'Claude Code Enterprise for teams' },
+            ],
+        },
+        company: {
+            title: 'Company',
+            links: ['About us', 'Technology', 'Cases', 'Careers'],
+        },
+        contact: {
+            title: 'Contact',
+            email: 'info@evogroup.ai',
+            phone: '+996 552 343 333',
+            location: 'Bishkek, Kyrgyzstan',
+        },
+        bottom: {
+            rights: 'All rights reserved.',
+            privacy: 'Privacy Policy',
+            terms: 'Terms of Service',
+            country: 'Kyrgyzstan',
+        },
+    },
+    solutionsPreview: {
+        title: 'Our solutions',
+        subtitle: 'Four products to automate customer service, payments, healthcare, and development',
+        learnMore: 'Learn more',
+        compare: 'Compare all solutions',
+        solutions: [
+            {
+                title: 'EvoAI CRM',
+                description: 'AI-powered multi-channel bots on OpenClaw platform. WhatsApp, Instagram, Telegram — one workspace per bot with custom knowledge base.',
+                features: ['AI chatbot 24/7', 'Multi-channel (WA, IG, TG)', 'OpenClaw platform', 'Sales training & exams'],
+                metricValue: '5+',
+                metricLabel: 'bots in production',
+            },
+            {
+                title: 'EvoResto',
+                description: 'Restaurant automation: QR-menu, online orders, Bakai24 payments, table management. Kitchen Display System included.',
+                features: ['QR-menu & ordering', 'Bakai24 payments', 'Kitchen Display (KDS)', 'Multi-language (RU/KY/EN)'],
+                metricValue: '+30%',
+                metricLabel: 'average check',
+            },
+            {
+                title: 'CCE Platform',
+                description: 'Claude Code Enterprise — centralized AI dev tooling. Skills, hooks, swarm intelligence, ADR workflow for teams.',
+                features: ['18 enterprise skills', '5 MCP servers', 'Swarm Intelligence', 'DORA metrics (DevPulse)'],
+                metricValue: '68+',
+                metricLabel: 'repos managed',
+            },
+            {
+                title: 'EvoClinic',
+                description: 'Clinic management with WhatsApp Business integration. Patient records, scheduling, and AI-powered bot for appointments.',
+                features: ['WhatsApp Business API', 'Patient records', 'Appointment booking', 'Multi-clinic support'],
+                metricValue: '10+',
+                metricLabel: 'modules',
+            },
+        ],
     },
 }

@@ -123,7 +123,7 @@ const EvoPayDemoForm: React.FC = () => {
                     email: formData.email,
                     phone: formData.phone,
                     company: formData.company,
-                    description: `[EvoPay Demo Request]\nКоличество столов: ${formData.tables}\n${formData.message || 'Без дополнительной информации'}`,
+                    description: `${t.apiPrefix}\n${t.tablesPrefix}${formData.tables}\n${formData.message || t.noAdditionalInfo}`,
                     newsletter: false
                 }),
             })

@@ -111,10 +111,10 @@ const TrustSignals: React.FC = () => {
             return {
                 title: 'OUR KEY PARTNERS',
                 partners: [
-                    { icon: 'bank', name: 'Major Banks', sub: 'Financial sector' },
-                    { icon: 'oil', name: 'Oil & Gas', sub: 'Industrial sector' },
-                    { icon: 'horeca', name: 'HoReCa', sub: 'Restaurants & Hotels' },
-                    { icon: 'medicine', name: 'Medicine', sub: 'Healthcare' },
+                    { icon: 'bank', name: 'Bakai Bank', sub: 'SmartUchet platform — 16 microservices' },
+                    { icon: 'oil', name: 'Bishkek Petroleum', sub: '70+ gas stations, 10 oil depots' },
+                    { icon: 'horeca', name: 'HoReCa', sub: 'EvoResto, SmartStay, restaurant mgmt' },
+                    { icon: 'medicine', name: 'EvoClinic', sub: 'Clinic management + WhatsApp' },
                 ],
                 smb: {
                     icon: 'home',
@@ -136,10 +136,10 @@ const TrustSignals: React.FC = () => {
             return {
                 title: 'БИЗДИН НЕГИЗГИ ӨНӨКТӨШТӨР',
                 partners: [
-                    { icon: 'bank', name: 'Ири банктар', sub: 'Каржы сектору' },
-                    { icon: 'oil', name: 'Мунай жана газ', sub: 'Өнөр жай' },
-                    { icon: 'horeca', name: 'HoReCa', sub: 'Мейманканалар жана ресторандар' },
-                    { icon: 'medicine', name: 'Медицина', sub: 'Саламаттыкты сактоо' },
+                    { icon: 'bank', name: 'Бакай Банк', sub: 'SmartUchet платформасы — 16 микросервис' },
+                    { icon: 'oil', name: 'Бишкек Петролеум', sub: '70+ АЗС, 10 мунай базасы' },
+                    { icon: 'horeca', name: 'HoReCa', sub: 'EvoResto, SmartStay, ресторан башкаруу' },
+                    { icon: 'medicine', name: 'EvoClinic', sub: 'Клиника башкаруу + WhatsApp' },
                 ],
                 smb: {
                     icon: 'home',
@@ -161,10 +161,10 @@ const TrustSignals: React.FC = () => {
         return {
             title: 'НАШИ КЛЮЧЕВЫЕ ПАРТНЁРЫ',
             partners: [
-                { icon: 'bank', name: 'Крупные банки', sub: 'Финансовый сектор' },
-                { icon: 'oil', name: 'Нефть и газ', sub: 'Промышленность' },
-                { icon: 'horeca', name: 'HoReCa', sub: 'Рестораны и отели' },
-                { icon: 'medicine', name: 'Медицина', sub: 'Здравоохранение' },
+                { icon: 'bank', name: 'Бакай Банк', sub: 'Платформа SmartUchet — 16 микросервисов' },
+                { icon: 'oil', name: 'Бишкек Петролеум', sub: '70+ АЗС, 10 нефтебаз' },
+                { icon: 'horeca', name: 'HoReCa', sub: 'EvoResto, SmartStay, управление ресторанами' },
+                { icon: 'medicine', name: 'EvoClinic', sub: 'Управление клиникой + WhatsApp' },
             ],
             smb: {
                 icon: 'home',

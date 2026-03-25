@@ -4,6 +4,7 @@ import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
+import { useTranslation } from '@/components/providers/I18nProvider'
 
 const InstagramIcon = () => (
     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
@@ -51,35 +52,28 @@ const socials = [
     { icon: <LinkedInIcon />, label: 'LinkedIn', href: 'https://linkedin.com/company/evogroup-ai' },
 ]
 
-const solutions = [
-    { label: 'EvoAI CRM', sublabel: 'WhatsApp-автоматизация', href: '/solutions/whatsapp' },
-    { label: 'EvoPay', sublabel: 'Обработка платежей', href: '/solutions/evopay' },
-    { label: 'CCE Platform', sublabel: 'Ревью кода', href: '/solutions/cce' },
-]
+const solutionHrefs = ['/solutions/whatsapp', '/solutions/evopay', '/solutions/cce']
 
-const companyLinks = [
-    { label: 'О компании', href: '/about' },
-    { label: 'Технологии', href: '/technology' },
-    { label: 'Кейсы', href: '/cases' },
-    { label: 'Карьера', href: '#career' },
-]
-
-const contactItems = [
-	{
-		icon: <MailIcon />,
-		label: 'info@evogroup.ai',
-		href: 'mailto:info@evogroup.ai',
-	},
-	{ icon: <PhoneIcon />, label: '+996 700 000 000', href: 'tel:+996700000000' },
-	{
-		icon: <MapIcon />,
-		label: 'Бишкек, Кыргызстан',
-		href: 'https://maps.app.goo.gl/WCRHWcAnH9RnPZ7P7',
-	},
-]
+const companyHrefs = ['/about', '/technology', '/cases', '#career']
 
 const Footer: React.FC = () => {
+    const { tObj } = useTranslation()
+    const t = tObj('footer')
     const currentYear = new Date().getFullYear()
+
+    const contactItems = [
+        {
+            icon: <MailIcon />,
+            label: t.contact.email,
+            href: 'mailto:info@evogroup.ai',
+        },
+        { icon: <PhoneIcon />, label: t.contact.phone, href: 'tel:+996552343333' },
+        {
+            icon: <MapIcon />,
+            label: t.contact.location,
+            href: 'https://maps.app.goo.gl/WCRHWcAnH9RnPZ7P7',
+        },
+    ]
 
     return (
 			<footer className='relative overflow-hidden border-t border-white/[0.06]'>
@@ -96,22 +90,21 @@ const Footer: React.FC = () => {
 						className='relative z-10 max-w-3xl mx-auto px-6 text-center'
 					>
 						<p className='text-xs text-white/50 uppercase tracking-[0.2em] font-medium mb-5'>
-							Начните сегодня
+							{t.cta.overline}
 						</p>
 						<h2 className='text-4xl sm:text-5xl lg:text-6xl font-bold text-white tracking-tight leading-tight mb-5'>
-							Готовы запустить AI
-							<br className='hidden sm:block' /> в вашем бизнесе?
+							{t.cta.title}
+							<br className='hidden sm:block' /> {t.cta.titleLine2}
 						</h2>
 						<p className='text-base lg:text-lg text-white/60 leading-relaxed mb-10 max-w-xl mx-auto'>
-							Бесплатно разберём вашу ситуацию и запустим пилотный проект за 2
-							недели — без обязательств.
+							{t.cta.subtitle}
 						</p>
 						<div className='flex flex-col sm:flex-row gap-3 justify-center'>
 							<Link
 								href='/contact'
 								className='inline-flex items-center justify-center gap-2 bg-white text-black px-7 py-3.5 rounded-xl text-sm font-bold no-underline hover:bg-white/90 transition-colors'
 							>
-								Получить бесплатное демо
+								{t.cta.primaryButton}
 								<svg width='14' height='14' viewBox='0 0 14 14' fill='none'>
 									<path
 										d='M2 7h10M8 3l4 4-4 4'
@@ -123,10 +116,10 @@ const Footer: React.FC = () => {
 								</svg>
 							</Link>
 							<Link
-								href='mailto:hello@evogroup.ai'
+								href='mailto:info@evogroup.ai'
 								className='inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl text-sm font-semibold text-white/70 border border-white/10 bg-white/[0.04] hover:bg-white/[0.08] hover:text-white no-underline transition-all'
 							>
-								Написать нам
+								{t.cta.secondaryButton}
 							</Link>
 						</div>
 					</motion.div>
@@ -150,8 +143,7 @@ const Footer: React.FC = () => {
 								</span>
 							</div>
 							<p className='text-sm text-white/70 leading-relaxed mb-6 max-w-[220px]'>
-								Ведущий провайдер AI-решений в Центральной Азии. Банки,
-								нефтегаз, госорганы.
+								{t.brand.description}
 							</p>
 							<div className='flex items-center gap-3'>
 								{socials.map(s => (
@@ -172,12 +164,12 @@ const Footer: React.FC = () => {
 						{/* Solutions */}
 						<div>
 							<p className='text-xs text-blue-400 uppercase tracking-[0.15em] font-medium mb-5'>
-								Решения
+								{t.solutions.title}
 							</p>
 							<ul className='space-y-3.5'>
-								{solutions.map(s => (
+								{t.solutions.items.map((s, i) => (
 									<li key={s.label}>
-										<Link href={s.href} className='group no-underline'>
+										<Link href={solutionHrefs[i]} className='group no-underline'>
 											<span className='block text-sm text-white group-hover:text-blue-400 transition-colors leading-tight'>
 												{s.label}
 											</span>
@@ -193,16 +185,16 @@ const Footer: React.FC = () => {
 						{/* Company */}
 						<div>
 							<p className='text-xs text-purple-400 uppercase tracking-[0.15em] font-medium mb-5'>
-								Компания
+								{t.company.title}
 							</p>
 							<ul className='space-y-3'>
-								{companyLinks.map(l => (
-									<li key={l.label}>
+								{t.company.links.map((label, i) => (
+									<li key={label}>
 										<Link
-											href={l.href}
+											href={companyHrefs[i]}
 											className='text-sm text-white hover:text-purple-400 transition-colors no-underline'
 										>
-											{l.label}
+											{label}
 										</Link>
 									</li>
 								))}
@@ -212,11 +204,11 @@ const Footer: React.FC = () => {
 						{/* Contact */}
 						<div>
 							<p className='text-xs text-emerald-400 uppercase tracking-[0.15em] font-medium mb-5'>
-								Контакты
+								{t.contact.title}
 							</p>
 							<ul className='space-y-3.5'>
 								{contactItems.map(c => (
-									<li key={c.label}>
+									<li key={c.href}>
 										<a
 											href={c.href}
 											className='inline-flex items-center gap-2.5 text-sm text-white hover:text-emerald-400 transition-colors no-underline'
@@ -235,24 +227,24 @@ const Footer: React.FC = () => {
 				<div className='relative z-10 border-t border-white/[0.05]'>
 					<div className='max-w-7xl mx-auto px-6 py-5 flex flex-col sm:flex-row items-center justify-between gap-3'>
 						<p className='text-xs text-white/75'>
-							© {currentYear} Evolution Group. Все права защищены.
+							© {currentYear} Evolution Group. {t.bottom.rights}
 						</p>
 						<div className='flex items-center gap-4'>
 							<Link
 								href='/privacy'
 								className='text-xs text-white/75 hover:text-white/50 transition-colors no-underline'
 							>
-								Политика конфиденциальности
+								{t.bottom.privacy}
 							</Link>
 							<span className='text-white/10'>·</span>
 							<Link
 								href='/terms'
 								className='text-xs text-white/75 hover:text-white/50 transition-colors no-underline'
 							>
-								Условия использования
+								{t.bottom.terms}
 							</Link>
 							<span className='text-white/10'>·</span>
-							<span className='text-xs text-white/75'>🇰🇬 Кыргызстан</span>
+							<span className='text-xs text-white/75'>🇰🇬 {t.bottom.country}</span>
 						</div>
 					</div>
 				</div>

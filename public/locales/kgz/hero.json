@@ -12,20 +12,20 @@
   "scroll_hint": "Төмөн жылдыруу",
   "metrics": {
     "projects": {
-      "value": "50+",
+      "value": "68+",
       "label": "Долбоор"
     },
     "savings": {
-      "value": "$10M+",
-      "label": "Кардарлардын үнөмү"
+      "value": "16",
+      "label": "SmartUchet микросервистери"
     },
     "uptime": {
-      "value": "99.9%",
-      "label": "Жумуштоо убактысы"
+      "value": "600+",
+      "label": "Pull Requests"
     },
     "experts": {
-      "value": "25+",
-      "label": "Адис"
+      "value": "5+",
+      "label": "AI-боттор продакшнде"
     }
   },
   "features": [

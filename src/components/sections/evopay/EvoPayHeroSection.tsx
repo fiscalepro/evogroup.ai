@@ -152,7 +152,7 @@ const EvoPayHeroSection: React.FC = () => {
                                         <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-orange-400 to-red-500" />
                                         <div className="flex-1">
                                             <div className="text-sm font-semibold text-white">{t.dish1}</div>
-                                            <div className="text-xs font-bold text-emerald-400">890 сом</div>
+                                            <div className="text-xs font-bold text-emerald-400">{t.price1}</div>
                                         </div>
                                         <div className="w-7 h-7 bg-gradient-to-r from-cyan-500 to-emerald-500 rounded-lg flex items-center justify-center text-black font-bold text-lg">+</div>
                                     </div>
@@ -160,7 +160,7 @@ const EvoPayHeroSection: React.FC = () => {
                                         <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-emerald-400 to-teal-500" />
                                         <div className="flex-1">
                                             <div className="text-sm font-semibold text-white">{t.dish2}</div>
-                                            <div className="text-xs font-bold text-emerald-400">720 сом</div>
+                                            <div className="text-xs font-bold text-emerald-400">{t.price2}</div>
                                         </div>
                                         <div className="w-7 h-7 bg-gradient-to-r from-cyan-500 to-emerald-500 rounded-lg flex items-center justify-center text-black font-bold text-lg">+</div>
                                     </div>
@@ -168,7 +168,7 @@ const EvoPayHeroSection: React.FC = () => {
                                         <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-blue-400 to-purple-500" />
                                         <div className="flex-1">
                                             <div className="text-sm font-semibold text-white">{t.dish3}</div>
-                                            <div className="text-xs font-bold text-emerald-400">280 сом</div>
+                                            <div className="text-xs font-bold text-emerald-400">{t.price3}</div>
                                         </div>
                                         <div className="w-7 h-7 bg-gradient-to-r from-cyan-500 to-emerald-500 rounded-lg flex items-center justify-center text-black font-bold text-lg">+</div>
                                     </div>
@@ -179,7 +179,7 @@ const EvoPayHeroSection: React.FC = () => {
                                     <div className="flex items-center justify-between p-4 bg-gradient-to-r from-cyan-500 to-emerald-500 rounded-xl">
                                         <div>
                                             <div className="text-xs text-black/70">{t.items}</div>
-                                            <div className="text-base font-bold text-black">1 890 сом</div>
+                                            <div className="text-base font-bold text-black">{t.total}</div>
                                         </div>
                                         <div className="text-sm font-bold text-black">{t.pay}</div>
                                     </div>

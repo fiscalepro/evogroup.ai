@@ -1,24 +1,18 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import { useTranslation } from '@/components/providers/I18nProvider'
 
 export function PartnersMarquee() {
-	const partners = [
-		'Kyrgyz National Bank',
-		'KyrgyzGas',
-		'Ministry of Digital Development',
-		'Dos-Kredobank',
-		'KyrgyzTelecom',
-		'Bishkek City Administration',
-		'KyrgyzEnergo',
-		'RSK Bank',
-	]
+	const { tObj } = useTranslation()
+	const t = tObj('partnerMarquee')
+	const partners = t.partners as string[]
 
 	return (
 		<section className='py-20 border-y border-white/10 overflow-hidden my-12'>
 			<div className='max-w-7xl mx-auto px-6 mb-12'>
 				<p className='text-center text-white/80 uppercase tracking-wider text-sm'>
-					Trusted by Leading Organizations
+					{t.heading}
 				</p>
 			</div>
 

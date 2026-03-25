@@ -33,7 +33,7 @@ const UnifiedInboxShowcase: React.FC = () => {
                                 <div className="w-3 h-3 rounded-full bg-yellow-500" />
                                 <div className="w-3 h-3 rounded-full bg-green-500" />
                             </div>
-                            <span className="text-white/55 text-sm">WhatsApp CRM</span>
+                            <span className="text-white/55 text-sm">{translations.mockUI.windowTitle}</span>
                         </div>
 
                         {/* Content */}
@@ -43,7 +43,7 @@ const UnifiedInboxShowcase: React.FC = () => {
                                 <div className="p-3 border-b border-white/10">
                                     <input
                                         type="text"
-                                        placeholder="Search..."
+                                        placeholder={translations.mockUI.searchPlaceholder}
                                         className="w-full px-3 py-2 bg-white/5 rounded-lg text-sm text-white/60 placeholder-white/30"
                                         readOnly
                                     />
@@ -89,7 +89,7 @@ const UnifiedInboxShowcase: React.FC = () => {
                                     </div>
                                     <div>
                                         <div className="text-white font-medium">{translations.chatPreview.name}</div>
-                                        <div className="text-green-400 text-xs">Online</div>
+                                        <div className="text-green-400 text-xs">{translations.mockUI.online}</div>
                                     </div>
                                 </div>
 
@@ -120,7 +120,7 @@ const UnifiedInboxShowcase: React.FC = () => {
                                 <div className="px-4 py-3 border-t border-white/10 flex gap-2">
                                     <input
                                         type="text"
-                                        placeholder="Type a message..."
+                                        placeholder={translations.mockUI.typePlaceholder}
                                         className="flex-1 px-3 py-2 bg-white/5 rounded-lg text-sm text-white/60 placeholder-white/30"
                                         readOnly
                                     />

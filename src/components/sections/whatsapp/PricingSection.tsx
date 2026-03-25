@@ -95,7 +95,7 @@ const PricingSection: React.FC = () => {
                                     </span>
                                     {plan.price !== 'По запросу' && plan.price !== 'Custom' && plan.price !== 'Суроо боюнча' && (
                                         <>
-                                            <span className="text-white/60 text-sm">сом</span>
+                                            <span className="text-white/60 text-sm">{translations.currency}</span>
                                             <span className="text-white/60 text-sm">
                                                 {isYearly ? translations.perYear : translations.perMonth}
                                             </span>

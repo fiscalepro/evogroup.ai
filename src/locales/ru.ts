@@ -75,6 +75,12 @@ export const ru = {
         ],
         chatPreview: { name: 'Анна Петрова', message: 'Когда придёт мой заказ?', time: '2 мин назад', unread: 3 },
         messageExample: 'Здравствуйте! Ваш заказ #1234 будет доставлен завтра с 10:00 до 14:00. Вам удобно?',
+        mockUI: {
+            windowTitle: 'WhatsApp CRM',
+            searchPlaceholder: 'Поиск...',
+            online: 'Онлайн',
+            typePlaceholder: 'Напишите сообщение...',
+        },
     },
     whatsappAiBot: {
         badge: 'AI Бот',
@@ -169,6 +175,7 @@ export const ru = {
         startTrial: 'Начать бесплатно',
         contactSales: 'Связаться с нами',
         popular: 'Популярный',
+        currency: 'сом',
         additionalInfo: 'Нужно больше пользователей или сообщений? Свяжитесь с нами для индивидуальных условий.',
         plans: [
             {
@@ -374,6 +381,25 @@ export const ru = {
             { title: 'Self-hosted опция', description: 'Данные остаются в вашем периметре. Полный контроль над инфраструктурой и конфиденциальностью.' },
         ],
     },
+    problemStatement: {
+        title: 'Проблемы, которые мы решаем',
+        subtitle: 'Каждый день без автоматизации стоит вам клиентов, денег и времени',
+        problems: [
+            {
+                title: 'Медленный ответ клиентам',
+                description: 'Клиенты ждут ответа часами. К тому времени они уже ушли к конкуренту.',
+            },
+            {
+                title: 'Риски мошенничества с платежами',
+                description: 'Ручной мониторинг транзакций пропускает угрозы. Убытки от мошенничества копятся незамеченными.',
+            },
+            {
+                title: 'Узкое место — код-ревью',
+                description: 'Разработчики ждут ревью днями. Знания остаются разрозненными. Стандарты расплываются.',
+            },
+        ],
+        solveWith: 'Решить с {solution}',
+    },
     evoPayHero: {
         badge: 'Новое решение для ресторанов',
         titleStart: 'Гости заказывают и оплачивают',
@@ -397,6 +423,10 @@ export const ru = {
         scan: 'Сканируй',
         payment: 'Оплата',
         success: 'Успешно!',
+        price1: '890 сом',
+        price2: '720 сом',
+        price3: '280 сом',
+        total: '1 890 сом',
     },
     evoPayPricing: {
         badge: 'Тарифы',
@@ -428,6 +458,32 @@ export const ru = {
             ]},
         ],
     },
+    partnerMarquee: {
+        heading: 'Нам доверяют ведущие организации',
+        partners: [
+            'Bakai Bank',
+            'Bishkek Petroleum',
+            'Partner Neft',
+            'Ministry of Education KR',
+            'BIAST.KG',
+            'Tauras-Phoenix',
+            'VkusVill',
+            'ONDAY',
+        ] as string[],
+    },
+    ctaBanner: {
+        heading: 'Почему компании выбирают нас',
+        stats: [
+            { value: '10+', label: 'Лет на рынке', detail: 'С 2014 года' },
+            { value: '50+', label: 'Крупных клиентов', detail: 'Банки, госорганы, нефть и газ' },
+            { value: '99.9%', label: 'Время работы', detail: 'Гарантия SLA' },
+            { value: '2 недели', label: 'На запуск пилота', detail: 'Без обязательств' },
+        ],
+    },
+    portfolioGallery: {
+        title: 'Портфолио работ',
+        subtitle: 'Скоро здесь будут наши проекты',
+    },
     evoPayDemoForm: {
         badge: 'Получить демо',
         title: 'Готовы увеличить выручку?',
@@ -446,6 +502,9 @@ export const ru = {
         successMessage: 'Мы получили вашу заявку и свяжемся с вами в течение 24 часов для демонстрации EvoPay.',
         successSteps: ['Изучим ваши требования', 'Подготовим демонстрацию', 'Покажем возможности системы', 'Ответим на все вопросы'],
         sendAnother: 'Отправить ещё одну заявку',
+        apiPrefix: '[EvoPay Demo Request]',
+        tablesPrefix: 'Количество столов: ',
+        noAdditionalInfo: 'Без дополнительной информации',
         errors: {
             nameRequired: 'Укажите ваше имя',
             nameInvalid: 'Имя содержит недопустимые символы',
@@ -457,5 +516,78 @@ export const ru = {
             tooManyRequests: 'Слишком много запросов. Попробуйте через 15 минут.',
             general: 'Не удалось отправить заявку. Попробуйте позже.',
         },
+    },
+    footer: {
+        cta: {
+            overline: 'Начните сегодня',
+            title: 'Готовы запустить AI',
+            titleLine2: 'в вашем бизнесе?',
+            subtitle: 'Бесплатно разберём вашу ситуацию и запустим пилотный проект за 2 недели — без обязательств.',
+            primaryButton: 'Получить бесплатное демо',
+            secondaryButton: 'Написать нам',
+        },
+        brand: {
+            description: '68+ проектов: банки, нефтебазы, госорганы, рестораны, клиники. Spring Boot + Next.js + Claude AI.',
+        },
+        solutions: {
+            title: 'Решения',
+            items: [
+                { label: 'EvoAI CRM', sublabel: 'AI-боты WhatsApp/Instagram/Telegram' },
+                { label: 'EvoResto', sublabel: 'QR-меню, заказы, оплата Bakai24' },
+                { label: 'CCE Platform', sublabel: 'Claude Code Enterprise для команд' },
+            ],
+        },
+        company: {
+            title: 'Компания',
+            links: ['О компании', 'Технологии', 'Кейсы', 'Карьера'],
+        },
+        contact: {
+            title: 'Контакты',
+            email: 'info@evogroup.ai',
+            phone: '+996 552 343 333',
+            location: 'Бишкек, Кыргызстан',
+        },
+        bottom: {
+            rights: 'Все права защищены.',
+            privacy: 'Политика конфиденциальности',
+            terms: 'Условия использования',
+            country: 'Кыргызстан',
+        },
+    },
+    solutionsPreview: {
+        title: 'Наши решения',
+        subtitle: 'Четыре продукта для автоматизации обслуживания, платежей, здравоохранения и разработки',
+        learnMore: 'Подробнее',
+        compare: 'Сравнить все решения',
+        solutions: [
+            {
+                title: 'EvoAI CRM',
+                description: 'AI-боты для мульти-канальной коммуникации на платформе OpenClaw. WhatsApp, Instagram, Telegram — один рабочий стол на бота с кастомной базой знаний.',
+                features: ['AI чат-бот 24/7', 'Мульти-канал (WA, IG, TG)', 'Платформа OpenClaw', 'Обучение продажам и экзамены'],
+                metricValue: '5+',
+                metricLabel: 'ботов в продакшене',
+            },
+            {
+                title: 'EvoResto',
+                description: 'Автоматизация ресторана: QR-меню, онлайн-заказы, оплата Bakai24, управление столами. Система отображения для кухни включена.',
+                features: ['QR-меню и заказы', 'Оплата Bakai24', 'Дисплей кухни (KDS)', 'Мультиязычность (RU/KY/EN)'],
+                metricValue: '+30%',
+                metricLabel: 'средний чек',
+            },
+            {
+                title: 'CCE Platform',
+                description: 'Claude Code Enterprise — централизованные AI-инструменты для разработки. Навыки, хуки, роевой интеллект, ADR-процесс для команд.',
+                features: ['18 корпоративных навыков', '5 MCP серверов', 'Роевой интеллект', 'Метрики DORA (DevPulse)'],
+                metricValue: '68+',
+                metricLabel: 'репозиториев',
+            },
+            {
+                title: 'EvoClinic',
+                description: 'Управление клиникой с интеграцией WhatsApp Business. Карты пациентов, расписание и AI-бот для записи на приём.',
+                features: ['WhatsApp Business API', 'Карты пациентов', 'Запись на приём', 'Поддержка нескольких клиник'],
+                metricValue: '10+',
+                metricLabel: 'модулей',
+            },
+        ],
     },
 }

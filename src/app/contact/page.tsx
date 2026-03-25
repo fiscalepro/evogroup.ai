@@ -5,6 +5,7 @@ import { motion } from 'framer-motion'
 import ModernHeader from '@/components/sections/ModernHeader'
 import Footer from '@/components/sections/Footer'
 import PageBackground from '@/components/sections/PageBackground'
+import { useTranslation } from '@/components/providers/I18nProvider'
 
 // ─── Icons ────────────────────────────────────────────────────────────────────
 
@@ -26,6 +27,156 @@ const CheckIcon = () => (
     </svg>
 )
 
+// ─── Content ──────────────────────────────────────────────────────────────────
+
+function getContent(locale: string) {
+    const content = {
+        en: {
+            badge: 'Contact',
+            heroTitle: 'Start your',
+            heroTitleBr: 'project',
+            heroSubtitle: 'Tell us about your challenge — our experts will propose the optimal AI solution for your business.',
+            whatsNext: 'What happens next',
+            nextSteps: [
+                'An expert will review your task',
+                'We will prepare a preliminary proposal',
+                'We will contact you to discuss details',
+                'We will give an accurate project estimate',
+            ],
+            form: {
+                nameLabel: 'Name *',
+                namePlaceholder: 'Your name',
+                emailLabel: 'Email *',
+                emailPlaceholder: 'your@email.com',
+                companyLabel: 'Company',
+                companyPlaceholder: 'Company name',
+                phoneLabel: 'Phone',
+                phonePlaceholder: '+996 XXX XXX XXX',
+                descriptionLabel: 'Task description *',
+                descriptionPlaceholder: 'Describe the business challenge you want to solve with AI. The more detail — the more accurate our estimate.',
+                submitButton: 'Submit request',
+                submitting: 'Submitting...',
+                consent: 'By submitting this form, you agree to the processing of personal data',
+            },
+            validation: {
+                nameRequired: 'Name is required',
+                nameInvalid: 'Name contains invalid characters',
+                emailRequired: 'Email is required',
+                emailInvalid: 'Invalid email format',
+                phoneInvalid: 'Invalid phone format',
+                descriptionRequired: 'Description is required',
+                descriptionMinLength: 'Minimum 10 characters',
+            },
+            errors: {
+                rateLimit: 'Too many requests. Please try again in 15 minutes.',
+                submitFailed: 'Failed to submit the form. Please try again later.',
+                submitFailedShort: 'Failed to submit the form.',
+            },
+            success: {
+                title: 'Request submitted!',
+                subtitle: 'We will respond within 2 hours during business hours.',
+                sendAnother: 'Submit another request',
+            },
+        },
+        ru: {
+            badge: 'Контакт',
+            heroTitle: 'Начните свой',
+            heroTitleBr: 'проект',
+            heroSubtitle: 'Расскажите о вашей задаче — наши эксперты предложат оптимальное AI-решение для вашего бизнеса.',
+            whatsNext: 'Что будет дальше',
+            nextSteps: [
+                'Эксперт изучит вашу задачу',
+                'Подготовим предварительное предложение',
+                'Свяжемся для обсуждения деталей',
+                'Дадим точную оценку проекта',
+            ],
+            form: {
+                nameLabel: 'Имя *',
+                namePlaceholder: 'Ваше имя',
+                emailLabel: 'Email *',
+                emailPlaceholder: 'your@email.com',
+                companyLabel: 'Компания',
+                companyPlaceholder: 'Название компании',
+                phoneLabel: 'Телефон',
+                phonePlaceholder: '+996 XXX XXX XXX',
+                descriptionLabel: 'Описание задачи *',
+                descriptionPlaceholder: 'Опишите бизнес-задачу, которую хотите решить с помощью ИИ. Чем подробнее — тем точнее сможем оценить проект.',
+                submitButton: 'Отправить заявку',
+                submitting: 'Отправка...',
+                consent: 'Отправляя форму, вы соглашаетесь с обработкой персональных данных',
+            },
+            validation: {
+                nameRequired: 'Имя обязательно',
+                nameInvalid: 'Имя содержит недопустимые символы',
+                emailRequired: 'Email обязателен',
+                emailInvalid: 'Неверный формат email',
+                phoneInvalid: 'Неверный формат телефона',
+                descriptionRequired: 'Описание обязательно',
+                descriptionMinLength: 'Минимум 10 символов',
+            },
+            errors: {
+                rateLimit: 'Слишком много запросов. Попробуйте через 15 минут.',
+                submitFailed: 'Не удалось отправить форму. Попробуйте позже.',
+                submitFailedShort: 'Не удалось отправить форму.',
+            },
+            success: {
+                title: 'Заявка отправлена!',
+                subtitle: 'Ответим в течение 2 часов в рабочее время.',
+                sendAnother: 'Отправить ещё одну заявку',
+            },
+        },
+        ky: {
+            badge: 'Байланыш',
+            heroTitle: 'Долбооруңузду',
+            heroTitleBr: 'баштаңыз',
+            heroSubtitle: 'Тапшырмаңыз жөнүндө айтып бериңиз — биздин эксперттер бизнесиңиз үчүн оптималдуу AI-чечимди сунушташат.',
+            whatsNext: 'Андан кийин эмне болот',
+            nextSteps: [
+                'Эксперт тапшырмаңызды изилдейт',
+                'Алдын ала сунуш даярдайбыз',
+                'Деталдарды талкуулоо үчүн байланышабыз',
+                'Долбоордун так баасын беребиз',
+            ],
+            form: {
+                nameLabel: 'Аты *',
+                namePlaceholder: 'Атыңыз',
+                emailLabel: 'Email *',
+                emailPlaceholder: 'your@email.com',
+                companyLabel: 'Компания',
+                companyPlaceholder: 'Компаниянын аты',
+                phoneLabel: 'Телефон',
+                phonePlaceholder: '+996 XXX XXX XXX',
+                descriptionLabel: 'Тапшырманын сүрөттөмөсү *',
+                descriptionPlaceholder: 'AI жардамы менен чечкиңиз келген бизнес-тапшырманы сүрөттөп бериңиз. Канчалык толук болсо — ошончолук так баалай алабыз.',
+                submitButton: 'Өтүнүч жөнөтүү',
+                submitting: 'Жөнөтүлүүдө...',
+                consent: 'Форманы жөнөтүү менен, жеке маалыматтарды иштетүүгө макулдугуңузду билдиресиз',
+            },
+            validation: {
+                nameRequired: 'Аты милдеттүү',
+                nameInvalid: 'Атта жол берилбеген символдор бар',
+                emailRequired: 'Email милдеттүү',
+                emailInvalid: 'Email форматы туура эмес',
+                phoneInvalid: 'Телефон форматы туура эмес',
+                descriptionRequired: 'Сүрөттөмө милдеттүү',
+                descriptionMinLength: 'Минимум 10 символ',
+            },
+            errors: {
+                rateLimit: 'Өтө көп суроо-талаптар. 15 мүнөттөн кийин кайра аракет кылыңыз.',
+                submitFailed: 'Форманы жөнөтүү мүмкүн болгон жок. Кийинчерээк кайра аракет кылыңыз.',
+                submitFailedShort: 'Форманы жөнөтүү мүмкүн болгон жок.',
+            },
+            success: {
+                title: 'Өтүнүч жөнөтүлдү!',
+                subtitle: 'Жумуш убактысында 2 сааттын ичинде жооп беребиз.',
+                sendAnother: 'Дагы бир өтүнүч жөнөтүү',
+            },
+        },
+    }
+
+    return content[locale as keyof typeof content] || content.en
+}
+
 // ─── Form ─────────────────────────────────────────────────────────────────────
 
 interface FormData {
@@ -44,19 +195,12 @@ interface FormErrors {
     general?: string
 }
 
-const nextSteps = [
-    'Эксперт изучит вашу задачу',
-    'Подготовим предварительное предложение',
-    'Свяжемся для обсуждения деталей',
-    'Дадим точную оценку проекта',
-]
-
 const contactItems = [
-    { icon: <MailIcon />, label: 'hello@evogroup.ai', href: 'mailto:hello@evogroup.ai' },
+    { icon: <MailIcon />, label: 'info@evogroup.ai', href: 'mailto:info@evogroup.ai' },
     { icon: <TelegramIcon />, label: '@evogroup_ai', href: 'https://t.me/evogroup_ai' },
 ]
 
-function ContactFormBlock() {
+function ContactFormBlock({ content }: { content: ReturnType<typeof getContent> }) {
     const [formData, setFormData] = useState<FormData>({ name: '', email: '', company: '', phone: '', description: '' })
     const [errors, setErrors] = useState<FormErrors>({})
     const [isSubmitting, setIsSubmitting] = useState(false)
@@ -64,13 +208,13 @@ function ContactFormBlock() {
 
     const validate = (): boolean => {
         const e: FormErrors = {}
-        if (!formData.name.trim()) e.name = 'Имя обязательно'
-        else if (!/^[a-zA-Zа-яА-ЯёЁүүөөңңҢҢ\s\-']+$/.test(formData.name)) e.name = 'Имя содержит недопустимые символы'
-        if (!formData.email.trim()) e.email = 'Email обязателен'
-        else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) e.email = 'Неверный формат email'
-        if (formData.phone && !/^[\d+\-\s()]*$/.test(formData.phone)) e.phone = 'Неверный формат телефона'
-        if (!formData.description.trim()) e.description = 'Описание обязательно'
-        else if (formData.description.trim().length < 10) e.description = 'Минимум 10 символов'
+        if (!formData.name.trim()) e.name = content.validation.nameRequired
+        else if (!/^[a-zA-Zа-яА-ЯёЁүүөөңңҢҢ\s\-']+$/.test(formData.name)) e.name = content.validation.nameInvalid
+        if (!formData.email.trim()) e.email = content.validation.emailRequired
+        else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) e.email = content.validation.emailInvalid
+        if (formData.phone && !/^[\d+\-\s()]*$/.test(formData.phone)) e.phone = content.validation.phoneInvalid
+        if (!formData.description.trim()) e.description = content.validation.descriptionRequired
+        else if (formData.description.trim().length < 10) e.description = content.validation.descriptionMinLength
         setErrors(e)
         return Object.keys(e).length === 0
     }
@@ -93,16 +237,16 @@ function ContactFormBlock() {
                 body: JSON.stringify(formData),
             })
             const result = await response.json()
-            if (response.status === 429) { setErrors({ general: 'Слишком много запросов. Попробуйте через 15 минут.' }); return }
-            if (!response.ok) { setErrors({ general: result.error || 'Не удалось отправить форму. Попробуйте позже.' }); return }
+            if (response.status === 429) { setErrors({ general: content.errors.rateLimit }); return }
+            if (!response.ok) { setErrors({ general: result.error || content.errors.submitFailed }); return }
             if (result.success) {
                 setIsSubmitted(true)
                 setFormData({ name: '', email: '', company: '', phone: '', description: '' })
             } else {
-                setErrors({ general: result.error || 'Не удалось отправить форму.' })
+                setErrors({ general: result.error || content.errors.submitFailedShort })
             }
         } catch {
-            setErrors({ general: 'Не удалось отправить форму. Попробуйте позже.' })
+            setErrors({ general: content.errors.submitFailed })
         } finally {
             setIsSubmitting(false)
         }
@@ -126,10 +270,10 @@ function ContactFormBlock() {
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                         </svg>
                     </div>
-                    <h3 className="text-2xl font-bold text-white mb-2">Заявка отправлена!</h3>
-                    <p className="text-sm text-white/50 mb-8">Ответим в течение 2 часов в рабочее время.</p>
+                    <h3 className="text-2xl font-bold text-white mb-2">{content.success.title}</h3>
+                    <p className="text-sm text-white/50 mb-8">{content.success.subtitle}</p>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-8 text-left">
-                        {nextSteps.map((step, i) => (
+                        {content.nextSteps.map((step, i) => (
                             <div key={i} className="flex items-center gap-3 bg-white/[0.03] border border-white/[0.06] rounded-xl px-4 py-3">
                                 <span className="flex-shrink-0 w-5 h-5 rounded-full bg-emerald-500/10 text-emerald-400 flex items-center justify-center">
                                     <CheckIcon />
@@ -142,7 +286,7 @@ function ContactFormBlock() {
                         onClick={() => setIsSubmitted(false)}
                         className="text-sm text-white/55 hover:text-white/70 transition-colors"
                     >
-                        Отправить ещё одну заявку
+                        {content.success.sendAnother}
                     </button>
                 </div>
             </motion.div>
@@ -161,19 +305,19 @@ function ContactFormBlock() {
                 <form onSubmit={handleSubmit} noValidate>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-5">
                         <div>
-                            <label className={labelBase}>Имя *</label>
+                            <label className={labelBase}>{content.form.nameLabel}</label>
                             <input
                                 type="text" name="name" value={formData.name} onChange={handleChange}
-                                placeholder="Ваше имя" maxLength={100} required
+                                placeholder={content.form.namePlaceholder} maxLength={100} required
                                 className={`${inputBase} ${errors.name ? 'border-red-500/40' : ''}`}
                             />
                             {errors.name && <p className="mt-1 text-xs text-red-400">{errors.name}</p>}
                         </div>
                         <div>
-                            <label className={labelBase}>Email *</label>
+                            <label className={labelBase}>{content.form.emailLabel}</label>
                             <input
                                 type="email" name="email" value={formData.email} onChange={handleChange}
-                                placeholder="your@email.com" maxLength={254} required
+                                placeholder={content.form.emailPlaceholder} maxLength={254} required
                                 className={`${inputBase} ${errors.email ? 'border-red-500/40' : ''}`}
                             />
                             {errors.email && <p className="mt-1 text-xs text-red-400">{errors.email}</p>}
@@ -182,18 +326,18 @@ function ContactFormBlock() {
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-5">
                         <div>
-                            <label className={labelBase}>Компания</label>
+                            <label className={labelBase}>{content.form.companyLabel}</label>
                             <input
                                 type="text" name="company" value={formData.company} onChange={handleChange}
-                                placeholder="Название компании" maxLength={200}
+                                placeholder={content.form.companyPlaceholder} maxLength={200}
                                 className={inputBase}
                             />
                         </div>
                         <div>
-                            <label className={labelBase}>Телефон</label>
+                            <label className={labelBase}>{content.form.phoneLabel}</label>
                             <input
                                 type="tel" name="phone" value={formData.phone} onChange={handleChange}
-                                placeholder="+996 XXX XXX XXX" maxLength={20}
+                                placeholder={content.form.phonePlaceholder} maxLength={20}
                                 className={`${inputBase} ${errors.phone ? 'border-red-500/40' : ''}`}
                             />
                             {errors.phone && <p className="mt-1 text-xs text-red-400">{errors.phone}</p>}
@@ -201,10 +345,10 @@ function ContactFormBlock() {
                     </div>
 
                     <div className="mb-7">
-                        <label className={labelBase}>Описание задачи *</label>
+                        <label className={labelBase}>{content.form.descriptionLabel}</label>
                         <textarea
                             name="description" value={formData.description} onChange={handleChange}
-                            placeholder="Опишите бизнес-задачу, которую хотите решить с помощью ИИ. Чем подробнее — тем точнее сможем оценить проект."
+                            placeholder={content.form.descriptionPlaceholder}
                             rows={5} maxLength={5000} required
                             className={`${inputBase} resize-none ${errors.description ? 'border-red-500/40' : ''}`}
                         />
@@ -216,11 +360,11 @@ function ContactFormBlock() {
                         disabled={isSubmitting}
                         className="w-full bg-white text-black py-3.5 rounded-xl text-sm font-bold hover:bg-white/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                     >
-                        {isSubmitting ? 'Отправка...' : 'Отправить заявку'}
+                        {isSubmitting ? content.form.submitting : content.form.submitButton}
                     </button>
 
                     <p className="mt-4 text-xs text-white/50 text-center">
-                        Отправляя форму, вы соглашаетесь с обработкой персональных данных
+                        {content.form.consent}
                     </p>
                 </form>
             </div>
@@ -231,6 +375,9 @@ function ContactFormBlock() {
 // ─── Page ─────────────────────────────────────────────────────────────────────
 
 function ContactContent() {
+    const { locale } = useTranslation()
+    const content = getContent(locale)
+
     return (
         <div className="relative min-h-screen bg-[#0A0E1A]">
             <PageBackground accent="blue" />
@@ -250,13 +397,13 @@ function ContactContent() {
                         >
                             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-[#F0F0F5]/[0.08] bg-[#F0F0F5]/[0.04] mb-6">
                                 <span className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse" />
-                                <span className="text-xs text-[#F0F0F5]/40 uppercase tracking-widest font-medium">Contact</span>
+                                <span className="text-xs text-[#F0F0F5]/40 uppercase tracking-widest font-medium">{content.badge}</span>
                             </div>
                             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-[#F0F0F5] tracking-tight leading-[1.05] mb-4">
-                                Start your<br />project
+                                {content.heroTitle}<br />{content.heroTitleBr}
                             </h1>
                             <p className="text-base text-[#F0F0F5]/50 leading-relaxed mb-10 max-w-sm">
-                                Tell us about your challenge — our experts will propose the optimal AI solution for your business.
+                                {content.heroSubtitle}
                             </p>
 
                             {/* Contact items */}
@@ -278,10 +425,10 @@ function ContactContent() {
                             {/* What happens next */}
                             <div className="border border-[#F0F0F5]/[0.06] rounded-2xl overflow-hidden">
                                 <div className="px-6 py-4 border-b border-[#F0F0F5]/[0.06]">
-                                    <p className="text-xs text-[#F0F0F5]/35 uppercase tracking-widest font-medium">What happens next</p>
+                                    <p className="text-xs text-[#F0F0F5]/35 uppercase tracking-widest font-medium">{content.whatsNext}</p>
                                 </div>
                                 <div className="divide-y divide-[#F0F0F5]/[0.04]">
-                                    {nextSteps.map((step, i) => (
+                                    {content.nextSteps.map((step, i) => (
                                         <div key={i} className="flex items-center gap-4 px-6 py-4">
                                             <span className="flex-shrink-0 text-xs font-bold text-[#F0F0F5]/15 tabular-nums w-5">{String(i + 1).padStart(2, '0')}</span>
                                             <span className="text-sm text-[#F0F0F5]/45">{step}</span>
@@ -297,7 +444,7 @@ function ContactContent() {
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.7, delay: 0.1, ease: [0.25, 0.1, 0.25, 1] }}
                         >
-                            <ContactFormBlock />
+                            <ContactFormBlock content={content} />
                         </motion.div>
                     </div>
                 </div>

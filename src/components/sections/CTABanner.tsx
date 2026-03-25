@@ -2,13 +2,7 @@
 
 import React from 'react'
 import { motion } from 'framer-motion'
-
-const stats = [
-    { value: '10+', label: 'Years in market', detail: 'Since 2014' },
-    { value: '50+', label: 'Enterprise clients', detail: 'Banks, government, oil & gas' },
-    { value: '99.9%', label: 'System uptime', detail: 'SLA guaranteed' },
-    { value: '2 weeks', label: 'To launch pilot', detail: 'No commitment needed' },
-]
+import { useTranslation } from '@/components/providers/I18nProvider'
 
 const containerVariants = {
     hidden: { opacity: 0 },
@@ -28,6 +22,10 @@ const itemVariants = {
 }
 
 const CTABanner: React.FC = () => {
+    const { tObj } = useTranslation()
+    const t = tObj('ctaBanner')
+    const stats = t.stats as Array<{ value: string; label: string; detail: string }>
+
     return (
         <section className="relative py-20 lg:py-24">
             <div className="max-w-5xl mx-auto px-6">
@@ -38,7 +36,7 @@ const CTABanner: React.FC = () => {
                     viewport={{ once: true }}
                     className="text-center text-xs text-[#F0F0F5]/35 uppercase tracking-[0.2em] font-medium mb-12"
                 >
-                    Why companies choose us
+                    {t.heading}
                 </motion.p>
 
                 {/* Stats grid */}

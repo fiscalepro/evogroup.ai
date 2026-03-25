@@ -5,42 +5,26 @@ import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { useTranslation } from '@/components/providers/I18nProvider'
 
-const solutions = [
+const cardMeta = [
     {
-        title: 'EvoAI CRM',
-        description: 'AI-powered customer service via WhatsApp & Instagram. Chatbot handles 40-60% of inquiries automatically.',
-        features: ['AI chatbot 24/7', 'Unified inbox', 'Quality control', 'Sales analytics'],
-        metric: { value: '<1 min', label: 'response time' },
         href: '/solutions/whatsapp',
         gradient: 'from-blue-400 to-cyan-400',
         iconBg: 'bg-blue-500/[0.08]',
         iconColor: 'text-blue-400',
     },
     {
-        title: 'EvoPay',
-        description: 'Smart ordering and payment system for restaurants. QR code → menu → pay. No waiting for a waiter.',
-        features: ['QR ordering', 'AI fraud detection', 'Multi-bank support', 'Real-time analytics'],
-        metric: { value: '+30%', label: 'average check' },
         href: '/solutions/evopay',
         gradient: 'from-emerald-400 to-green-400',
         iconBg: 'bg-emerald-500/[0.08]',
         iconColor: 'text-emerald-400',
     },
     {
-        title: 'CCE Platform',
-        description: 'AI code review for development teams. One developer\'s pattern becomes the whole team\'s knowledge.',
-        features: ['Multi-agent AI review', 'Swarm Intelligence', 'Developer growth tracking', 'Enterprise security'],
-        metric: { value: '117+', label: 'MCP tools' },
         href: '/solutions/cce',
         gradient: 'from-purple-400 to-violet-400',
         iconBg: 'bg-purple-500/[0.08]',
         iconColor: 'text-purple-400',
     },
     {
-        title: 'EvoClinic',
-        description: 'Medical scheduling platform for clinics. Patient records, AI analytics, warehouse, and WhatsApp integration.',
-        features: ['Smart scheduling', 'Patient records', 'AI analytics', 'Multi-clinic support'],
-        metric: { value: '10+', label: 'modules' },
         href: '/solutions/evoclinic',
         gradient: 'from-pink-400 to-cyan-400',
         iconBg: 'bg-pink-500/[0.08]',
@@ -81,12 +65,15 @@ const itemVariants = {
 }
 
 const SolutionsPreview: React.FC = () => {
-    const { locale } = useTranslation()
-    const ui = locale === 'en'
-        ? { title: 'Our solutions', subtitle: 'Four products to automate customer service, payments, healthcare, and development', learnMore: 'Learn more', compare: 'Compare all solutions →' }
-        : locale === 'ky'
-        ? { title: 'Биздин чечимдер', subtitle: 'Кардарларды тейлөө, төлөмдөр, саламаттыкты сактоо жана иштеп чыгууну автоматташтыруу үчүн төрт продукт', learnMore: 'Толугураак', compare: 'Бардык чечимдерди салыштыруу →' }
-        : { title: 'Наши решения', subtitle: 'Четыре продукта для автоматизации обслуживания, платежей, здравоохранения и разработки', learnMore: 'Подробнее', compare: 'Сравнить все решения →' }
+    const { tObj } = useTranslation()
+    const t = tObj('solutionsPreview')
+    const solutions = (t.solutions ?? []) as Array<{
+        title: string
+        description: string
+        features: string[]
+        metricValue: string
+        metricLabel: string
+    }>
 
     return (
         <section className="relative py-24 lg:py-32">
@@ -100,10 +87,10 @@ const SolutionsPreview: React.FC = () => {
                     className="text-center mb-16"
                 >
                     <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#F0F0F5] tracking-tight mb-4">
-                        {ui.title}
+                        {t.title as string}
                     </h2>
                     <p className="text-base lg:text-lg text-[#F0F0F5]/50 max-w-xl mx-auto">
-                        {ui.subtitle}
+                        {t.subtitle as string}
                     </p>
                 </motion.div>
 
@@ -115,60 +102,63 @@ const SolutionsPreview: React.FC = () => {
                     viewport={{ once: true, margin: '-50px' }}
                     className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5"
                 >
-                    {solutions.map((solution, index) => (
-                        <motion.div
-                            key={index}
-                            variants={itemVariants}
-                            className="group relative flex flex-col p-7 rounded-2xl border border-[#F0F0F5]/[0.06] hover:border-[#F0F0F5]/[0.12] bg-[#F0F0F5]/[0.02] hover:bg-[#F0F0F5]/[0.04] transition-all duration-300"
-                        >
-                            {/* Top accent line */}
-                            <div className={`absolute top-0 left-6 right-6 h-px bg-gradient-to-r ${solution.gradient} opacity-0 group-hover:opacity-40 transition-opacity duration-300`} />
-
-                            {/* Icon + metric row */}
-                            <div className="flex items-start justify-between mb-6">
-                                <div className={`w-11 h-11 rounded-lg ${solution.iconBg} border border-[#F0F0F5]/[0.06] flex items-center justify-center ${solution.iconColor}`}>
-                                    {icons[index]}
-                                </div>
-                                <div className="text-right">
-                                    <div className={`text-lg font-bold bg-gradient-to-r ${solution.gradient} bg-clip-text text-transparent`}>
-                                        {solution.metric.value}
-                                    </div>
-                                    <div className="text-xs text-[#F0F0F5]/35">{solution.metric.label}</div>
-                                </div>
-                            </div>
-
-                            {/* Title & description */}
-                            <h3 className="text-xl font-bold text-[#F0F0F5] mb-2">
-                                {solution.title}
-                            </h3>
-                            <p className="text-sm text-[#F0F0F5]/45 leading-relaxed mb-6 flex-grow">
-                                {solution.description}
-                            </p>
-
-                            {/* Features list */}
-                            <ul className="space-y-2 mb-8">
-                                {solution.features.map((feature, i) => (
-                                    <li key={i} className="flex items-center gap-2.5 text-sm text-[#F0F0F5]/55">
-                                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" className="flex-shrink-0 text-[#F0F0F5]/25">
-                                            <path d="M3 7l3 3 5-5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                                        </svg>
-                                        {feature}
-                                    </li>
-                                ))}
-                            </ul>
-
-                            {/* CTA */}
-                            <Link
-                                href={solution.href}
-                                className="inline-flex items-center justify-center gap-2 w-full py-3 rounded-xl text-sm font-semibold text-[#F0F0F5]/65 border border-[#F0F0F5]/[0.08] hover:bg-[#F0F0F5]/[0.04] hover:text-[#F0F0F5] hover:border-[#F0F0F5]/[0.14] no-underline transition-all duration-200"
+                    {solutions.map((solution, index) => {
+                        const meta = cardMeta[index]
+                        return (
+                            <motion.div
+                                key={index}
+                                variants={itemVariants}
+                                className="group relative flex flex-col p-7 rounded-2xl border border-[#F0F0F5]/[0.06] hover:border-[#F0F0F5]/[0.12] bg-[#F0F0F5]/[0.02] hover:bg-[#F0F0F5]/[0.04] transition-all duration-300"
                             >
-                                {ui.learnMore}
-                                <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                                    <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                                </svg>
-                            </Link>
-                        </motion.div>
-                    ))}
+                                {/* Top accent line */}
+                                <div className={`absolute top-0 left-6 right-6 h-px bg-gradient-to-r ${meta.gradient} opacity-0 group-hover:opacity-40 transition-opacity duration-300`} />
+
+                                {/* Icon + metric row */}
+                                <div className="flex items-start justify-between mb-6">
+                                    <div className={`w-11 h-11 rounded-lg ${meta.iconBg} border border-[#F0F0F5]/[0.06] flex items-center justify-center ${meta.iconColor}`}>
+                                        {icons[index]}
+                                    </div>
+                                    <div className="text-right">
+                                        <div className={`text-lg font-bold bg-gradient-to-r ${meta.gradient} bg-clip-text text-transparent`}>
+                                            {solution.metricValue}
+                                        </div>
+                                        <div className="text-xs text-[#F0F0F5]/35">{solution.metricLabel}</div>
+                                    </div>
+                                </div>
+
+                                {/* Title & description */}
+                                <h3 className="text-xl font-bold text-[#F0F0F5] mb-2">
+                                    {solution.title}
+                                </h3>
+                                <p className="text-sm text-[#F0F0F5]/45 leading-relaxed mb-6 flex-grow">
+                                    {solution.description}
+                                </p>
+
+                                {/* Features list */}
+                                <ul className="space-y-2 mb-8">
+                                    {solution.features.map((feature, i) => (
+                                        <li key={i} className="flex items-center gap-2.5 text-sm text-[#F0F0F5]/55">
+                                            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" className="flex-shrink-0 text-[#F0F0F5]/25">
+                                                <path d="M3 7l3 3 5-5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                                            </svg>
+                                            {feature}
+                                        </li>
+                                    ))}
+                                </ul>
+
+                                {/* CTA */}
+                                <Link
+                                    href={meta.href}
+                                    className="inline-flex items-center justify-center gap-2 w-full py-3 rounded-xl text-sm font-semibold text-[#F0F0F5]/65 border border-[#F0F0F5]/[0.08] hover:bg-[#F0F0F5]/[0.04] hover:text-[#F0F0F5] hover:border-[#F0F0F5]/[0.14] no-underline transition-all duration-200"
+                                >
+                                    {t.learnMore as string}
+                                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                                        <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                                    </svg>
+                                </Link>
+                            </motion.div>
+                        )
+                    })}
                 </motion.div>
 
                 {/* Compare link */}
@@ -183,7 +173,7 @@ const SolutionsPreview: React.FC = () => {
                         href="/solutions"
                         className="text-sm text-[#F0F0F5]/35 hover:text-[#F0F0F5]/60 no-underline transition-colors"
                     >
-                        {ui.compare}
+                        {t.compare as string} →
                     </Link>
                 </motion.div>
             </div>

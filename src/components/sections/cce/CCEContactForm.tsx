@@ -66,6 +66,9 @@ const CCEContactForm: React.FC = () => {
                 description: 'Мы свяжемся с вами в ближайшее время для обсуждения CCE Enterprise.',
                 back: 'Отправить ещё',
             },
+            apiPrefix: '[CCE Enterprise] ',
+            teamSizePrefix: 'Размер команды: ',
+            notSpecified: 'Не указан',
         },
         en: {
             badge: 'Enterprise',
@@ -108,6 +111,9 @@ const CCEContactForm: React.FC = () => {
                 description: 'We\'ll contact you soon to discuss CCE Enterprise.',
                 back: 'Send another',
             },
+            apiPrefix: '[CCE Enterprise] ',
+            teamSizePrefix: 'Team size: ',
+            notSpecified: 'Not specified',
         },
         ky: {
             badge: 'Enterprise',
@@ -150,6 +156,9 @@ const CCEContactForm: React.FC = () => {
                 description: 'CCE Enterprise боюнча талкуулоо үчүн жакын арада байланышабыз.',
                 back: 'Дагы жөнөтүү',
             },
+            apiPrefix: '[CCE Enterprise] ',
+            teamSizePrefix: 'Команда көлөмү: ',
+            notSpecified: 'Көрсөтүлгөн эмес',
         }
     }
 
@@ -221,11 +230,11 @@ const CCEContactForm: React.FC = () => {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
-                    name: `[CCE Enterprise] ${formData.name}`,
+                    name: `${t.apiPrefix}${formData.name}`,
                     email: formData.email,
                     phone: formData.phone,
                     company: formData.company,
-                    description: `Размер команды: ${formData.teamSize || 'Не указан'}\n\n${formData.message}`,
+                    description: `${t.teamSizePrefix}${formData.teamSize || t.notSpecified}\n\n${formData.message}`,
                 }),
             })
 

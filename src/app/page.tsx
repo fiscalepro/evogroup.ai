@@ -17,9 +17,9 @@ export default function Home() {
             <ModernHeader />
             <HeroRedesign />
             <PartnersMarquee />
+            <TrustSignals />
             <ProblemStatement />
             <SolutionsPreview />
-            <TrustSignals/>
             <CaseStudies />
             <Footer />
         </div>

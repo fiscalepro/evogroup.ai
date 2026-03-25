@@ -3,16 +3,15 @@
 import React from 'react'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
+import { useTranslation } from '@/components/providers/I18nProvider'
 
-const problems = [
+const problemsMeta = [
     {
         icon: (
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-6 h-6">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
         ),
-        title: 'Slow customer response',
-        description: 'Clients wait hours for answers. By then, they already went to a competitor.',
         solution: 'EvoAI CRM',
         href: '/solutions/whatsapp',
     },
@@ -22,8 +21,6 @@ const problems = [
                 <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
             </svg>
         ),
-        title: 'Payment fraud risks',
-        description: 'Manual transaction monitoring misses threats. Fraud costs pile up undetected.',
         solution: 'EvoPay',
         href: '/solutions/evopay',
     },
@@ -33,8 +30,6 @@ const problems = [
                 <path strokeLinecap="round" strokeLinejoin="round" d="M14.25 9.75L16.5 12l-2.25 2.25m-4.5 0L7.5 12l2.25-2.25M6 20.25h12A2.25 2.25 0 0020.25 18V6A2.25 2.25 0 0018 3.75H6A2.25 2.25 0 003.75 6v12A2.25 2.25 0 006 20.25z" />
             </svg>
         ),
-        title: 'Code reviews bottleneck',
-        description: 'Developers wait days for reviews. Knowledge stays siloed. Standards drift.',
         solution: 'CCE Platform',
         href: '/solutions/cce',
     },
@@ -58,6 +53,9 @@ const itemVariants = {
 }
 
 const ProblemStatement: React.FC = () => {
+    const { tObj } = useTranslation()
+    const t = tObj('problemStatement')
+
     return (
         <section className="relative py-24 lg:py-32">
             <div className="max-w-7xl mx-auto px-6">
@@ -70,10 +68,10 @@ const ProblemStatement: React.FC = () => {
                     className="text-center mb-16"
                 >
                     <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#F0F0F5] tracking-tight mb-4">
-                        Problems we solve
+                        {t.title}
                     </h2>
                     <p className="text-base lg:text-lg text-[#F0F0F5]/50 max-w-xl mx-auto">
-                        Every day without automation costs you clients, money, and time
+                        {t.subtitle}
                     </p>
                 </motion.div>
 
@@ -85,7 +83,7 @@ const ProblemStatement: React.FC = () => {
                     viewport={{ once: true, margin: '-50px' }}
                     className="grid md:grid-cols-3 gap-5"
                 >
-                    {problems.map((problem, index) => (
+                    {t.problems.map((problem, index) => (
                         <motion.div
                             key={index}
                             variants={itemVariants}
@@ -93,7 +91,7 @@ const ProblemStatement: React.FC = () => {
                         >
                             {/* Icon */}
                             <div className="w-11 h-11 rounded-lg bg-red-500/[0.08] border border-red-400/[0.1] flex items-center justify-center text-red-400/80 mb-5">
-                                {problem.icon}
+                                {problemsMeta[index].icon}
                             </div>
 
                             {/* Content */}
@@ -106,10 +104,10 @@ const ProblemStatement: React.FC = () => {
 
                             {/* Solution link */}
                             <Link
-                                href={problem.href}
+                                href={problemsMeta[index].href}
                                 className="inline-flex items-center gap-2 text-sm font-medium text-blue-400/80 hover:text-blue-400 no-underline transition-colors"
                             >
-                                Solve with {problem.solution}
+                                {t.solveWith.replace('{solution}', problemsMeta[index].solution)}
                                 <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
                                     <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                                 </svg>

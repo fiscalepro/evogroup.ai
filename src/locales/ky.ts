@@ -95,6 +95,12 @@ export const ky = {
             unread: 3,
         },
         messageExample: 'Салам! Сиздин буйрутма #1234 эртең 10:00-14:00 ортосунда жеткирилет. Бул сизге ыңгайлуубу?',
+        mockUI: {
+            windowTitle: 'WhatsApp CRM',
+            searchPlaceholder: 'Издөө...',
+            online: 'Онлайнда',
+            typePlaceholder: 'Билдирүү жазыңыз...',
+        },
     },
     whatsappAiBot: {
         badge: 'AI Бот',
@@ -225,6 +231,7 @@ export const ky = {
         startTrial: 'Акысыз сынап көрүү',
         contactSales: 'Сатуу менен байланышуу',
         popular: 'Популярдуу',
+        currency: 'сом',
         additionalInfo: 'Көбүрөөк колдонуучулар же билдирүүлөр керекпи? Жеке варианттар үчүн биз менен байланышыңыз.',
         plans: [
             {
@@ -476,6 +483,25 @@ export const ky = {
             },
         ],
     },
+    problemStatement: {
+        title: 'Биз чечкен көйгөйлөр',
+        subtitle: 'Автоматташтыруусуз ар бир күн сизге кардарларды, акчаны жана убакытты жоготот',
+        problems: [
+            {
+                title: 'Кардарларга жай жооп берүү',
+                description: 'Кардарлар жооп үчүн сааттап күтүшөт. Ошол убакка чейин алар атаандашка кетип калышкан.',
+            },
+            {
+                title: 'Төлөм алдамчылыгынын тобокелдиктери',
+                description: 'Кол менен транзакция мониторинги коркунучтарды өткөрүп жиберет. Алдамчылык чыгымдары байкалбай топтолот.',
+            },
+            {
+                title: 'Код-ревью тоскоолдугу',
+                description: 'Иштеп чыгуучулар ревьюну күндөп күтүшөт. Билим бөлүнгөн бойдон калат. Стандарттар начарлайт.',
+            },
+        ],
+        solveWith: '{solution} менен чечүү',
+    },
     evoPayHero: {
         badge: 'Рестораңдар үчүн жаңы чечим',
         titleStart: 'Конокторго заказ беришет жана төлөшөт',
@@ -499,6 +525,10 @@ export const ky = {
         scan: 'Сканерле',
         payment: 'Төлөм',
         success: 'Ийгиликтүү!',
+        price1: '890 сом',
+        price2: '720 сом',
+        price3: '280 сом',
+        total: '1 890 сом',
     },
     evoPayPricing: {
         badge: 'Тарифтер',
@@ -538,6 +568,32 @@ export const ky = {
             },
         ],
     },
+    partnerMarquee: {
+        heading: 'Алдыңкы уюмдар бизге ишенет',
+        partners: [
+            'Bakai Bank',
+            'Bishkek Petroleum',
+            'Partner Neft',
+            'Ministry of Education KR',
+            'BIAST.KG',
+            'Tauras-Phoenix',
+            'VkusVill',
+            'ONDAY',
+        ] as string[],
+    },
+    ctaBanner: {
+        heading: 'Эмне үчүн компаниялар бизди тандайт',
+        stats: [
+            { value: '10+', label: 'Жыл базарда', detail: '2014-жылдан бери' },
+            { value: '50+', label: 'Ири кардарлар', detail: 'Банктар, мамлекет, мунай-газ' },
+            { value: '99.9%', label: 'Системанын иштеши', detail: 'SLA кепилдик' },
+            { value: '2 жума', label: 'Пилотту баштоого', detail: 'Милдеттенмесиз' },
+        ],
+    },
+    portfolioGallery: {
+        title: 'Портфолио',
+        subtitle: 'Жакында биздин долбоорлор бул жерде болот',
+    },
     evoPayDemoForm: {
         badge: 'Демо алуу',
         title: 'Кирешени көбөйтүүгө даярсызбы?',
@@ -556,6 +612,9 @@ export const ky = {
         successMessage: 'Биз өтүнүчүңүздү алдык жана EvoPay демонстрациясы үчүн 24 сааттын ичинде сиз менен байланышабыз.',
         successSteps: ['Талаптарыңызды изилдейбиз', 'Демонстрация даярдайбыз', 'Системанын мүмкүнчүлүктөрүн көрсөтөбүз', 'Бардык суроолорго жооп беребиз'],
         sendAnother: 'Дагы бир өтүнүч жөнөтүү',
+        apiPrefix: '[EvoPay Demo Request]',
+        tablesPrefix: 'Столдордун саны: ',
+        noAdditionalInfo: 'Кошумча маалымат жок',
         errors: {
             nameRequired: 'Атыңызды киргизиңиз',
             nameInvalid: 'Атта уруксат берилбеген символдор бар',
@@ -567,5 +626,78 @@ export const ky = {
             tooManyRequests: 'Өтө көп суроо. 15 мүнөттөн кийин кайталап көрүңүз.',
             general: 'Өтүнүч жөнөтүлгөн жок. Кийинчерээк кайталап көрүңүз.',
         },
+    },
+    footer: {
+        cta: {
+            overline: 'Бүгүн баштаңыз',
+            title: 'AI ишке киргизүүгө',
+            titleLine2: 'даярсызбы?',
+            subtitle: 'Кырдаалыңызды акысыз талдап, 2 жуманын ичинде пилоттук долбоорду ишке киргизебиз — милдеттенмесиз.',
+            primaryButton: 'Акысыз демо алуу',
+            secondaryButton: 'Бизге жазыңыз',
+        },
+        brand: {
+            description: '68+ долбоор: банктар, мунай базалары, мамлекеттик органдар, рестораңдар, клиникалар. Spring Boot + Next.js + Claude AI.',
+        },
+        solutions: {
+            title: 'Чечимдер',
+            items: [
+                { label: 'EvoAI CRM', sublabel: 'WhatsApp/Instagram/Telegram AI-боттору' },
+                { label: 'EvoResto', sublabel: 'QR-меню, буйрутмалар, Bakai24 төлөм' },
+                { label: 'CCE Platform', sublabel: 'Командалар үчүн Claude Code Enterprise' },
+            ],
+        },
+        company: {
+            title: 'Компания',
+            links: ['Компания жөнүндө', 'Технологиялар', 'Мисалдар', 'Карьера'],
+        },
+        contact: {
+            title: 'Байланыш',
+            email: 'info@evogroup.ai',
+            phone: '+996 552 343 333',
+            location: 'Бишкек, Кыргызстан',
+        },
+        bottom: {
+            rights: 'Бардык укуктар корголгон.',
+            privacy: 'Купуялуулук саясаты',
+            terms: 'Колдонуу шарттары',
+            country: 'Кыргызстан',
+        },
+    },
+    solutionsPreview: {
+        title: 'Биздин чечимдер',
+        subtitle: 'Кардарларды тейлөө, төлөмдөр, саламаттыкты сактоо жана иштеп чыгууну автоматташтыруу үчүн төрт продукт',
+        learnMore: 'Толугураак',
+        compare: 'Бардык чечимдерди салыштыруу',
+        solutions: [
+            {
+                title: 'EvoAI CRM',
+                description: 'OpenClaw платформасында AI-менен иштеген көп каналдуу боттор. WhatsApp, Instagram, Telegram — ар бир бот үчүн бир иш мейкиндиги жана өзгөчө билим базасы.',
+                features: ['AI чатбот 24/7', 'Көп каналдуу (WA, IG, TG)', 'OpenClaw платформасы', 'Сатуу окутуу жана экзамендер'],
+                metricValue: '5+',
+                metricLabel: 'продакшендеги боттор',
+            },
+            {
+                title: 'EvoResto',
+                description: 'Ресторанды автоматташтыруу: QR-меню, онлайн буйрутмалар, Bakai24 төлөмдөрү, стол башкаруу. Ашкана дисплей системасы камтылган.',
+                features: ['QR-меню жана буйрутмалар', 'Bakai24 төлөмдөрү', 'Ашкана дисплейи (KDS)', 'Көп тилдүү (RU/KY/EN)'],
+                metricValue: '+30%',
+                metricLabel: 'орточо чек',
+            },
+            {
+                title: 'CCE Platform',
+                description: 'Claude Code Enterprise — борбордоштурулган AI иштеп чыгуу куралдары. Көндүмдөр, хуктар, рой интеллекти, командалар үчүн ADR процесси.',
+                features: ['18 корпоративдик көндүм', '5 MCP сервер', 'Рой интеллекти', 'DORA метрикалары (DevPulse)'],
+                metricValue: '68+',
+                metricLabel: 'репозиторийлер',
+            },
+            {
+                title: 'EvoClinic',
+                description: 'WhatsApp Business интеграциясы менен клиниканы башкаруу. Бейтап карталары, расписание жана кабыл алууга жазуу үчүн AI-бот.',
+                features: ['WhatsApp Business API', 'Бейтап карталары', 'Кабыл алууга жазуу', 'Көп клиника колдоо'],
+                metricValue: '10+',
+                metricLabel: 'модулдар',
+            },
+        ],
     },
 }
