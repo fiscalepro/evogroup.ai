@@ -52,7 +52,7 @@ const socials = [
     { icon: <LinkedInIcon />, label: 'LinkedIn', href: 'https://linkedin.com/company/evogroup-ai' },
 ]
 
-const solutionHrefs = ['/solutions/whatsapp', '/solutions/evopay', '/solutions/cce']
+const solutionHrefs = ['/solutions/whatsapp', '/solutions/evopay', '/solutions/cce', '/solutions/smartuchet']
 
 const companyHrefs = ['/about', '/technology', '/cases', '#career']
 

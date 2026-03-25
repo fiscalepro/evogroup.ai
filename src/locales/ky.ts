@@ -5,6 +5,7 @@ export const ky = {
         whatsappCrm: 'EvoAI CRM',
         evopay: 'EvoPay',
         evoclinic: 'EvoClinic',
+        smartuchet: 'Smart Учёт',
         cce: 'CCE',
         cases: 'Мисалдар',
         technology: 'Технологиялар',
@@ -645,6 +646,7 @@ export const ky = {
                 { label: 'EvoAI CRM', sublabel: 'WhatsApp/Instagram/Telegram AI-боттору' },
                 { label: 'EvoResto', sublabel: 'QR-меню, буйрутмалар, Bakai24 төлөм' },
                 { label: 'CCE Platform', sublabel: 'Командалар үчүн Claude Code Enterprise' },
+                { label: 'Smart Учёт', sublabel: 'ЭСФ, ЭТТН, салык отчёттуулугу жана аналитика' },
             ],
         },
         company: {

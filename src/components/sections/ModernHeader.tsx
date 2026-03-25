@@ -21,6 +21,7 @@ const ModernHeader = () => {
 		{ href: '/solutions/whatsapp', label: t.whatsappCrm },
 		{ href: '/solutions/evopay', label: t.evopay },
 		{ href: '/solutions/evoclinic', label: t.evoclinic },
+		{ href: '/solutions/smartuchet', label: t.smartuchet },
 		{ href: '/solutions/cce', label: t.cce },
 	]
 
