@@ -489,7 +489,7 @@ export const en = {
         subtitle: 'Every day without automation costs you clients, money, and time',
         problems: [
             {
-                title: 'Slow customer response',
+                title: 'One system for team and profit growth',
                 description: 'Monitoring, analytics, quality control, employee training and sales — one tool that grows your team and profit at the same time.',
             },
             {
@@ -635,7 +635,7 @@ export const en = {
             secondaryButton: 'Write to us',
         },
         brand: {
-            description: '68+ projects: banks, oil depots, government agencies, restaurants, clinics. Spring Boot + Next.js + Claude AI.',
+            description: 'We deliver AI solutions and business automation — from banks to restaurants.',
         },
         solutions: {
             title: 'Solutions',
