@@ -217,8 +217,8 @@ export const en = {
         monthly: 'Monthly',
         yearly: 'Yearly',
         yearlySave: 'Save 20%',
-        perMonth: '/month',
-        perYear: '/year',
+        perMonth: '',
+        perYear: '',
         users: 'users',
         messages: 'messages/month',
         channels: 'WhatsApp channels',
@@ -232,12 +232,12 @@ export const en = {
         startTrial: 'Start free trial',
         contactSales: 'Contact sales',
         popular: 'Popular',
-        currency: 'som',
+        currency: '',
         additionalInfo: 'Need more users or messages? Contact us for custom options.',
         plans: [
             {
                 name: 'Starter',
-                price: '9,000',
+                price: 'Get pricing',
                 description: 'For small businesses',
                 features: [
                     { name: 'Up to 5 managers', included: true },
@@ -252,7 +252,7 @@ export const en = {
             },
             {
                 name: 'Business',
-                price: '15,000',
+                price: 'Get pricing',
                 description: 'For growing teams',
                 recommended: true,
                 features: [
@@ -268,7 +268,7 @@ export const en = {
             },
             {
                 name: 'Enterprise',
-                price: 'Custom',
+                price: 'Get pricing',
                 description: 'For companies that scale',
                 features: [
                     { name: 'Up to 15 managers', included: true },
@@ -539,31 +539,31 @@ export const en = {
         yearly: 'Yearly',
         save: 'Save 20%',
         popular: 'Popular',
-        currency: 'som',
-        perMonth: '/month',
-        perYear: '/year',
+        currency: '',
+        perMonth: '',
+        perYear: '',
         tryFree: 'Try for free',
         contactUs: 'Contact us',
-        customPrice: 'On request',
+        customPrice: 'Get pricing',
         footer: "Need more tables or special conditions? Leave a request — we'll find an individual solution.",
         plans: [
             {
-                name: 'Start', price: '5,000', yearlyPrice: '48,000', description: 'For small cafes', features: [
+                name: 'Start', price: 'Get pricing', description: 'For small cafes', features: [
                     { name: 'Up to 10 tables', included: true }, { name: 'Digital menu', included: true }, { name: 'QR codes', included: true }, { name: 'Online payment', included: true }, { name: 'Basic analytics', included: true }, { name: 'Email support', included: true }, { name: 'Kitchen printing', included: false }, { name: 'Push notifications', included: false }, { name: 'POS integration', included: false }, { name: 'Dedicated manager', included: false },
                 ],
             },
             {
-                name: 'Business', price: '12,000', yearlyPrice: '115,200', description: 'For restaurants', recommended: true, features: [
+                name: 'Business', price: 'Get pricing', description: 'For restaurants', recommended: true, features: [
                     { name: 'Up to 30 tables', included: true }, { name: 'Digital menu', included: true }, { name: 'QR codes', included: true }, { name: 'Online payment', included: true }, { name: 'Advanced analytics', included: true }, { name: 'Chat + Email support', included: true }, { name: 'Kitchen printing', included: true }, { name: 'Push notifications', included: true }, { name: 'POS integration', included: false }, { name: 'Dedicated manager', included: false },
                 ],
             },
             {
-                name: 'Professional', price: '25,000', yearlyPrice: '240,000', description: 'For restaurant chains', features: [
+                name: 'Professional', price: 'Get pricing', description: 'For restaurant chains', features: [
                     { name: 'Up to 100 tables', included: true }, { name: 'Digital menu', included: true }, { name: 'QR codes', included: true }, { name: 'Online payment', included: true }, { name: 'Full analytics + API', included: true }, { name: 'Priority support', included: true }, { name: 'Kitchen printing', included: true }, { name: 'Push notifications', included: true }, { name: 'POS integration', included: true }, { name: 'Dedicated manager', included: false },
                 ],
             },
             {
-                name: 'Enterprise', price: 'custom', description: 'For large chains', features: [
+                name: 'Enterprise', price: 'Get pricing', description: 'For large chains', features: [
                     { name: 'Unlimited tables', included: true }, { name: 'Digital menu', included: true }, { name: 'QR codes', included: true }, { name: 'Online payment', included: true }, { name: 'Full analytics + API', included: true }, { name: 'Priority 24/7 support', included: true }, { name: 'Kitchen printing', included: true }, { name: 'Push notifications', included: true }, { name: 'POS integration', included: true }, { name: 'Dedicated manager', included: true },
                 ],
             },

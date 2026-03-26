@@ -217,8 +217,8 @@ export const ky = {
         monthly: 'Ай сайын',
         yearly: 'Жыл сайын',
         yearlySave: '20% үнөмдөө',
-        perMonth: '/ай',
-        perYear: '/жыл',
+        perMonth: '',
+        perYear: '',
         users: 'колдонуучулар',
         messages: 'билдирүү/ай',
         channels: 'WhatsApp каналдары',
@@ -232,12 +232,12 @@ export const ky = {
         startTrial: 'Акысыз сынап көрүү',
         contactSales: 'Сатуу менен байланышуу',
         popular: 'Популярдуу',
-        currency: 'сом',
+        currency: '',
         additionalInfo: 'Көбүрөөк колдонуучулар же билдирүүлөр керекпи? Жеке варианттар үчүн биз менен байланышыңыз.',
         plans: [
             {
                 name: 'Старт',
-                price: '9,000',
+                price: 'Бааны билүү',
                 description: 'Чакан бизнес үчүн',
                 features: [
                     { name: '5ке чейин менеджер', included: true },
@@ -252,7 +252,7 @@ export const ky = {
             },
             {
                 name: 'Бизнес',
-                price: '15,000',
+                price: 'Бааны билүү',
                 description: 'Өсүп жаткан командалар үчүн',
                 recommended: true,
                 features: [
@@ -268,7 +268,7 @@ export const ky = {
             },
             {
                 name: 'Корпоративдик',
-                price: 'Суроо боюнча',
+                price: 'Бааны билүү',
                 description: 'Масштабдуу компаниялар үчүн',
                 features: [
                     { name: '15ке чейин менеджер', included: true },
@@ -539,31 +539,31 @@ export const ky = {
         yearly: 'Жыл сайын',
         save: '20% үнөмдөө',
         popular: 'Популярдуу',
-        currency: 'сом',
-        perMonth: '/ай',
-        perYear: '/жыл',
+        currency: '',
+        perMonth: '',
+        perYear: '',
         tryFree: 'Акысыз сынап көрүү',
         contactUs: 'Байланышуу',
-        customPrice: 'Суроо боюнча',
+        customPrice: 'Бааны билүү',
         footer: 'Көбүрөөк стол же өзгөчө шарттар керекпи? Өтүнүч калтырыңыз — жеке чечим табабыз.',
         plans: [
             {
-                name: 'Старт', price: '5,000', yearlyPrice: '48,000', description: 'Кичине кафелер үчүн', features: [
+                name: 'Старт', price: 'Бааны билүү', description: 'Кичине кафелер үчүн', features: [
                     { name: '10 столго чейин', included: true }, { name: 'Санариптик меню', included: true }, { name: 'QR-коддор', included: true }, { name: 'Онлайн төлөм', included: true }, { name: 'Негизги аналитика', included: true }, { name: 'Email колдоо', included: true }, { name: 'Ашканага басып чыгаруу', included: false }, { name: 'Push-билдирүүлөр', included: false }, { name: 'POS интеграция', included: false }, { name: 'Жеке менеджер', included: false },
                 ],
             },
             {
-                name: 'Бизнес', price: '12,000', yearlyPrice: '115,200', description: 'Рестораңдар үчүн', recommended: true, features: [
+                name: 'Бизнес', price: 'Бааны билүү', description: 'Рестораңдар үчүн', recommended: true, features: [
                     { name: '30 столго чейин', included: true }, { name: 'Санариптик меню', included: true }, { name: 'QR-коддор', included: true }, { name: 'Онлайн төлөм', included: true }, { name: 'Кеңейтилген аналитика', included: true }, { name: 'Чат + Email колдоо', included: true }, { name: 'Ашканага басып чыгаруу', included: true }, { name: 'Push-билдирүүлөр', included: true }, { name: 'POS интеграция', included: false }, { name: 'Жеке менеджер', included: false },
                 ],
             },
             {
-                name: 'Профессионал', price: '25,000', yearlyPrice: '240,000', description: 'Ресторан тармактары үчүн', features: [
+                name: 'Профессионал', price: 'Бааны билүү', description: 'Ресторан тармактары үчүн', features: [
                     { name: '100 столго чейин', included: true }, { name: 'Санариптик меню', included: true }, { name: 'QR-коддор', included: true }, { name: 'Онлайн төлөм', included: true }, { name: 'Толук аналитика + API', included: true }, { name: 'Приоритеттүү колдоо', included: true }, { name: 'Ашканага басып чыгаруу', included: true }, { name: 'Push-билдирүүлөр', included: true }, { name: 'POS интеграция', included: true }, { name: 'Жеке менеджер', included: false },
                 ],
             },
             {
-                name: 'Корпоративдик', price: 'custom', description: 'Чоң тармактар үчүн', features: [
+                name: 'Корпоративдик', price: 'Бааны билүү', description: 'Чоң тармактар үчүн', features: [
                     { name: 'Чексиз столдор', included: true }, { name: 'Санариптик меню', included: true }, { name: 'QR-коддор', included: true }, { name: 'Онлайн төлөм', included: true }, { name: 'Толук аналитика + API', included: true }, { name: 'Приоритеттүү 24/7 колдоо', included: true }, { name: 'Ашканага басып чыгаруу', included: true }, { name: 'Push-билдирүүлөр', included: true }, { name: 'POS интеграция', included: true }, { name: 'Жеке менеджер', included: true },
                 ],
             },

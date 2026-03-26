@@ -161,8 +161,8 @@ export const ru = {
         monthly: 'Ежемесячно',
         yearly: 'Ежегодно',
         yearlySave: 'Экономия 20%',
-        perMonth: '/месяц',
-        perYear: '/год',
+        perMonth: '',
+        perYear: '',
         users: 'пользователей',
         messages: 'сообщений/мес',
         channels: 'каналов WhatsApp',
@@ -176,12 +176,12 @@ export const ru = {
         startTrial: 'Начать бесплатно',
         contactSales: 'Связаться с нами',
         popular: 'Популярный',
-        currency: 'сом',
+        currency: '',
         additionalInfo: 'Нужно больше пользователей или сообщений? Свяжитесь с нами для индивидуальных условий.',
         plans: [
             {
                 name: 'Старт',
-                price: '9,000',
+                price: 'Узнать цену',
                 description: 'Для малого бизнеса',
                 features: [
                     { name: 'До 5 менеджеров', included: true },
@@ -196,7 +196,7 @@ export const ru = {
             },
             {
                 name: 'Бизнес',
-                price: '15,000',
+                price: 'Узнать цену',
                 description: 'Для растущих команд',
                 recommended: true,
                 features: [
@@ -212,7 +212,7 @@ export const ru = {
             },
             {
                 name: 'Корпоративный',
-                price: 'По запросу',
+                price: 'Узнать цену',
                 description: 'Для компаний на масштабе',
                 features: [
                     { name: 'До 15 менеджеров', included: true },
@@ -437,21 +437,21 @@ export const ru = {
         yearly: 'Ежегодно',
         save: 'Экономия 20%',
         popular: 'Популярный',
-        currency: 'сом',
-        perMonth: '/месяц',
-        perYear: '/год',
+        currency: '',
+        perMonth: '',
+        perYear: '',
         tryFree: 'Попробовать бесплатно',
         contactUs: 'Связаться с нами',
-        customPrice: 'По запросу',
+        customPrice: 'Узнать цену',
         footer: 'Нужно больше столов или особые условия? Оставьте заявку — подберём индивидуальное решение.',
         plans: [
-            { name: 'Старт', price: '5,000', yearlyPrice: '48,000', description: 'Для небольших кафе', features: [
+            { name: 'Старт', price: 'custom', description: 'Для небольших кафе', features: [
                 { name: 'До 10 столов', included: true }, { name: 'Цифровое меню', included: true }, { name: 'QR-коды', included: true }, { name: 'Онлайн-оплата', included: true }, { name: 'Базовая аналитика', included: true }, { name: 'Email поддержка', included: true }, { name: 'Печать на кухню', included: false }, { name: 'Push-уведомления', included: false }, { name: 'Интеграция с POS', included: false }, { name: 'Выделенный менеджер', included: false },
             ]},
-            { name: 'Бизнес', price: '12,000', yearlyPrice: '115,200', description: 'Для ресторанов', recommended: true, features: [
+            { name: 'Бизнес', price: 'custom', description: 'Для ресторанов', recommended: true, features: [
                 { name: 'До 30 столов', included: true }, { name: 'Цифровое меню', included: true }, { name: 'QR-коды', included: true }, { name: 'Онлайн-оплата', included: true }, { name: 'Расширенная аналитика', included: true }, { name: 'Чат + Email поддержка', included: true }, { name: 'Печать на кухню', included: true }, { name: 'Push-уведомления', included: true }, { name: 'Интеграция с POS', included: false }, { name: 'Выделенный менеджер', included: false },
             ]},
-            { name: 'Профессионал', price: '25,000', yearlyPrice: '240,000', description: 'Для сетей ресторанов', features: [
+            { name: 'Профессионал', price: 'custom', description: 'Для сетей ресторанов', features: [
                 { name: 'До 100 столов', included: true }, { name: 'Цифровое меню', included: true }, { name: 'QR-коды', included: true }, { name: 'Онлайн-оплата', included: true }, { name: 'Полная аналитика + API', included: true }, { name: 'Приоритетная поддержка', included: true }, { name: 'Печать на кухню', included: true }, { name: 'Push-уведомления', included: true }, { name: 'Интеграция с POS', included: true }, { name: 'Выделенный менеджер', included: false },
             ]},
             { name: 'Корпоративный', price: 'custom', description: 'Для крупных сетей', features: [

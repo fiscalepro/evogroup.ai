@@ -87,7 +87,7 @@ const PricingSection: React.FC = () => {
                                 <p className="text-sm text-white/60 mb-4">{plan.description}</p>
                                 <div className="flex items-baseline justify-center gap-1">
                                     <span className="text-4xl font-bold text-white">
-                                        {plan.price === 'По запросу' || plan.price === 'Custom' || plan.price === 'Суроо боюнча'
+                                        {plan.price === 'Узнать цену' || plan.price === 'Get pricing' || plan.price === 'Бааны билүү'
                                             ? ''
                                             : isYearly
                                                 ? Math.round(parseInt(plan.price.replace(',', '')) * 12 * 0.8).toLocaleString()
@@ -101,7 +101,7 @@ const PricingSection: React.FC = () => {
                                             </span>
                                         </>
                                     )}
-                                    {(plan.price === 'По запросу' || plan.price === 'Custom' || plan.price === 'Суроо боюнча') && (
+                                    {(plan.price === 'Узнать цену' || plan.price === 'Get pricing' || plan.price === 'Бааны билүү') && (
                                         <span className="text-2xl font-bold text-white">{plan.price}</span>
                                     )}
                                 </div>
@@ -134,7 +134,7 @@ const PricingSection: React.FC = () => {
                                 }`}
                                 onPress={scrollToContact}
                             >
-                                {plan.price === 'По запросу' || plan.price === 'Custom' || plan.price === 'Суроо боюнча'
+                                {plan.price === 'Узнать цену' || plan.price === 'Get pricing' || plan.price === 'Бааны билүү'
                                     ? translations.contactSales
                                     : translations.startTrial}
                             </Button>

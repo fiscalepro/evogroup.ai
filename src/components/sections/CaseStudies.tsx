@@ -68,6 +68,22 @@ function getCaseData(locale: string): { cases: CaseCard[]; overline: string; tit
                     quoteAuthor: '— Bishkek Petroleum team',
                     instagram: { handle: '@bpetroleum', url: 'https://bpetroleum.kg' },
                 },
+                {
+                    number: '03',
+                    color: 'green',
+                    tag: 'HoReCa · Automation',
+                    company: 'PAUL × EvoRest',
+                    headline: 'Full restaurant automation: QR menu, online payments, and real-time analytics',
+                    teaser: 'PAUL restaurant in Bishkek was losing time on manual orders, cashier queues during rush hours, and had zero analytics. We deployed EvoRest — QR menu with online payments (Visa, MBank, OptimaPay), automatic order routing to kitchen screens, a loyalty system, and a real-time management dashboard.',
+                    results: [
+                        { value: '−40%', label: 'Service time' },
+                        { value: '+18%', label: 'Average check' },
+                        { value: '×1', label: 'Unified dashboard' },
+                        { value: '24/7', label: 'Analytics access' },
+                    ],
+                    quoteAuthor: '— PAUL Bishkek',
+                    instagram: { handle: '@evogroup.ai', url: 'https://instagram.com/evogroup.ai' },
+                },
             ],
         }
     }
@@ -112,6 +128,22 @@ function getCaseData(locale: string): { cases: CaseCard[]; overline: string; tit
                     quoteAuthor: '— Бишкек Петролеум командасы',
                     instagram: { handle: '@bpetroleum', url: 'https://bpetroleum.kg' },
                 },
+                {
+                    number: '03',
+                    color: 'green',
+                    tag: 'Тамак-аш · Автоматташтыруу',
+                    company: 'PAUL × EvoRest',
+                    headline: 'Ресторанды толук автоматташтыруу: QR-меню, онлайн төлөм жана реал убакыттагы аналитика',
+                    teaser: 'Бишкектеги PAUL ресторандын заказдарды кол менен кабыл алууга убакыт жоготуп, кассада кезектер, аналитика жок болгон. EvoRest орноттук — онлайн төлөм менен QR-меню (Visa, MBank, OptimaPay), заказдарды ашканага автоматтык жөнөтүү, лоялдуулук системасы жана реал убакыттагы башкаруу дашборду.',
+                    results: [
+                        { value: '−40%', label: 'Тейлөө убактысы' },
+                        { value: '+18%', label: 'Орточо чек' },
+                        { value: '×1', label: 'Бирдиктүү дашборд' },
+                        { value: '24/7', label: 'Аналитикага кирүү' },
+                    ],
+                    quoteAuthor: '— PAUL Бишкек',
+                    instagram: { handle: '@evogroup.ai', url: 'https://instagram.com/evogroup.ai' },
+                },
             ],
         }
     }
@@ -155,6 +187,22 @@ function getCaseData(locale: string): { cases: CaseCard[]; overline: string; tit
                 ],
                 quoteAuthor: '— Команда Бишкек Петролеум',
                 instagram: { handle: '@bpetroleum', url: 'https://bpetroleum.kg' },
+            },
+            {
+                number: '03',
+                color: 'green',
+                tag: 'Общепит · Автоматизация',
+                company: 'PAUL × EvoRest',
+                headline: 'Полная автоматизация ресторана: QR-меню, онлайн-оплата и аналитика в реальном времени',
+                teaser: 'Ресторан PAUL в Бишкеке терял время на ручном приёме заказов, очереди на кассе в часы пик, нулевая аналитика. Внедрили EvoRest — QR-меню с онлайн-оплатой (Visa, MBank, OptimaPay), автопередача заказов на кухню, система лояльности и дашборд управляющего в реальном времени.',
+                results: [
+                    { value: '−40%', label: 'Время обслуживания' },
+                    { value: '+18%', label: 'Средний чек' },
+                    { value: '×1', label: 'Единый дашборд' },
+                    { value: '24/7', label: 'Доступ к аналитике' },
+                ],
+                quoteAuthor: '— PAUL Бишкек',
+                instagram: { handle: '@evogroup.ai', url: 'https://instagram.com/evogroup.ai' },
             },
         ],
     }
