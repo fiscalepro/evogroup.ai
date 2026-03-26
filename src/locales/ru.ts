@@ -15,9 +15,9 @@ export const ru = {
     },
     hero: {
         preTitle: 'Демо EvoAI CRM',
-        title: 'Будущее бизнеса',
-        titleHighlight: ['умное', 'быстрое', 'уже здесь'] as string[],
-        subtitle: 'Мы создаем AI-решения, которые трансформируют способ работы ведущих компаний Кыргызстана. От банков до государства — делаем невозможное возможным',
+        title: 'Внедряем AI и автоматизируем бизнесы для',
+        titleHighlight: ['прибыльного роста', 'максимальной эффективности', 'ваших целей'] as string[],
+        subtitle: 'Мы проводим аудит вашего бизнеса, выстраиваем процессы и внедряем AI-автоматизации, чтобы устранить узкие места и повысить продуктивность команды',
         ctaPrimary: 'Начать проект',
         ctaSecondary: 'Смотреть демо',
         stats: [
@@ -462,14 +462,11 @@ export const ru = {
     partnerMarquee: {
         heading: 'Нам доверяют ведущие организации',
         partners: [
-            'Bakai Bank',
-            'Bishkek Petroleum',
-            'Partner Neft',
-            'Ministry of Education KR',
+            'Бакай Банк',
+            'Бишкек Петролеум',
+            'Партнер Нефть',
             'BIAST.KG',
-            'Tauras-Phoenix',
-            'VkusVill',
-            'ONDAY',
+            'Таурас-Феникс',
         ] as string[],
     },
     ctaBanner: {

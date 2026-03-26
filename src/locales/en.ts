@@ -15,9 +15,9 @@ export const en = {
     },
     hero: {
         preTitle: 'EvoAI CRM Demo',
-        title: 'The future of business',
-        titleHighlight: ['is intelligent', 'is automated', 'is here'],
-        subtitle: 'We create AI solutions that transform how leading companies in Kyrgyzstan work. From banks to government—we make the impossible possible',
+        title: 'We implement AI and automate businesses for',
+        titleHighlight: ['profitable scaling', 'maximum efficiency', 'your goals'],
+        subtitle: 'We audit your business, organize your operations and install AI automations to eliminate bottlenecks and boost your team productivity',
         ctaPrimary: 'Get Started',
         ctaSecondary: 'Watch Demo',
         stats: [
@@ -575,11 +575,8 @@ export const en = {
             'Bakai Bank',
             'Bishkek Petroleum',
             'Partner Neft',
-            'Ministry of Education KR',
             'BIAST.KG',
             'Tauras-Phoenix',
-            'VkusVill',
-            'ONDAY',
         ] as string[],
     },
     ctaBanner: {
