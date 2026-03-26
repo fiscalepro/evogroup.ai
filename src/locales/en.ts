@@ -490,7 +490,7 @@ export const en = {
         problems: [
             {
                 title: 'Slow customer response',
-                description: 'Clients wait hours for answers. By then, they already went to a competitor.',
+                description: 'Monitoring, analytics, quality control, employee training and sales — one tool that grows your team and profit at the same time.',
             },
             {
                 title: 'Payment fraud risks',

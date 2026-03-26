@@ -74,7 +74,7 @@ function getCaseData(locale: string): { cases: CaseCard[]; overline: string; tit
                     tag: 'HoReCa · Automation',
                     company: 'PAUL × EvoRest',
                     headline: 'Full restaurant automation: QR menu, online payments, and real-time analytics',
-                    teaser: 'PAUL restaurant in Bishkek was losing time on manual orders, cashier queues during rush hours, and had zero analytics. We deployed EvoRest — QR menu with online payments (Visa, MBank, OptimaPay), automatic order routing to kitchen screens, a loyalty system, and a real-time management dashboard.',
+                    teaser: 'PAUL restaurant in Bishkek was losing time on manual orders, cashier queues during rush hours, and had zero analytics. We deployed EvoRest — QR menu with online payments (Visa, BakaiBank, OptimaPay), automatic order routing to kitchen screens, a loyalty system, and a real-time management dashboard.',
                     results: [
                         { value: '−40%', label: 'Service time' },
                         { value: '+18%', label: 'Average check' },
@@ -134,7 +134,7 @@ function getCaseData(locale: string): { cases: CaseCard[]; overline: string; tit
                     tag: 'Тамак-аш · Автоматташтыруу',
                     company: 'PAUL × EvoRest',
                     headline: 'Ресторанды толук автоматташтыруу: QR-меню, онлайн төлөм жана реал убакыттагы аналитика',
-                    teaser: 'Бишкектеги PAUL ресторандын заказдарды кол менен кабыл алууга убакыт жоготуп, кассада кезектер, аналитика жок болгон. EvoRest орноттук — онлайн төлөм менен QR-меню (Visa, MBank, OptimaPay), заказдарды ашканага автоматтык жөнөтүү, лоялдуулук системасы жана реал убакыттагы башкаруу дашборду.',
+                    teaser: 'Бишкектеги PAUL ресторандын заказдарды кол менен кабыл алууга убакыт жоготуп, кассада кезектер, аналитика жок болгон. EvoRest орноттук — онлайн төлөм менен QR-меню (Visa, BakaiBank, OptimaPay), заказдарды ашканага автоматтык жөнөтүү, лоялдуулук системасы жана реал убакыттагы башкаруу дашборду.',
                     results: [
                         { value: '−40%', label: 'Тейлөө убактысы' },
                         { value: '+18%', label: 'Орточо чек' },
@@ -194,7 +194,7 @@ function getCaseData(locale: string): { cases: CaseCard[]; overline: string; tit
                 tag: 'Общепит · Автоматизация',
                 company: 'PAUL × EvoRest',
                 headline: 'Полная автоматизация ресторана: QR-меню, онлайн-оплата и аналитика в реальном времени',
-                teaser: 'Ресторан PAUL в Бишкеке терял время на ручном приёме заказов, очереди на кассе в часы пик, нулевая аналитика. Внедрили EvoRest — QR-меню с онлайн-оплатой (Visa, MBank, OptimaPay), автопередача заказов на кухню, система лояльности и дашборд управляющего в реальном времени.',
+                teaser: 'Ресторан PAUL в Бишкеке терял время на ручном приёме заказов, очереди на кассе в часы пик, нулевая аналитика. Внедрили EvoRest — QR-меню с онлайн-оплатой (Visa, BakaiBank, OptimaPay), автопередача заказов на кухню, система лояльности и дашборд управляющего в реальном времени.',
                 results: [
                     { value: '−40%', label: 'Время обслуживания' },
                     { value: '+18%', label: 'Средний чек' },

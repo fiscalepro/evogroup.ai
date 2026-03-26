@@ -6,6 +6,7 @@ import { PartnersMarquee } from '@/components/sections/PartnerMarquee'
 import ProblemStatement from '@/components/sections/ProblemStatement'
 import SolutionsPreview from '@/components/sections/SolutionsPreview'
 import CaseStudies from '@/components/sections/CaseStudies'
+import Certifications from '@/components/sections/Certifications'
 import Footer from '@/components/sections/Footer'
 import PageBackground from '@/components/sections/PageBackground'
 import TrustSignals from '@/components/sections/TrustSignals'
@@ -21,6 +22,7 @@ export default function Home() {
             <ProblemStatement />
             <SolutionsPreview />
             <CaseStudies />
+            <Certifications />
             <Footer />
         </div>
     )
