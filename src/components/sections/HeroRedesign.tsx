@@ -70,7 +70,7 @@ const HeroRedesign: React.FC = () => {
                     initial={{ opacity: 0, y: 24 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: 0.1 }}
-                    className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6"
+                    className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6"
                 >
                     <span className="text-[#F0F0F5]">{translations.title}</span>
                     <br />
@@ -99,7 +99,7 @@ const HeroRedesign: React.FC = () => {
                 >
                     <Link
                         href="/contact"
-                        className="inline-flex items-center justify-center gap-2 bg-[#F0F0F5] text-[#0A0E1A] px-8 py-4 rounded-xl text-base font-semibold no-underline transition-all duration-200 hover:bg-white"
+                        className="inline-flex items-center justify-center gap-2 bg-[#F0F0F5] text-[#0A0E1A] px-6 py-3 sm:px-8 sm:py-4 rounded-xl text-sm sm:text-base font-semibold no-underline transition-all duration-200 hover:bg-white"
                     >
                         {translations.ctaPrimary}
                         <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
@@ -108,7 +108,7 @@ const HeroRedesign: React.FC = () => {
                     </Link>
                     <Link
                         href="/solutions"
-                        className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl text-base font-semibold text-[#F0F0F5]/70 border border-[#F0F0F5]/[0.1] hover:bg-[#F0F0F5]/[0.05] hover:text-[#F0F0F5] no-underline transition-all duration-200"
+                        className="inline-flex items-center justify-center gap-2 px-6 py-3 sm:px-8 sm:py-4 rounded-xl text-sm sm:text-base font-semibold text-[#F0F0F5]/70 border border-[#F0F0F5]/[0.1] hover:bg-[#F0F0F5]/[0.05] hover:text-[#F0F0F5] no-underline transition-all duration-200"
                     >
                         {translations.ctaSecondary}
                     </Link>
@@ -119,11 +119,11 @@ const HeroRedesign: React.FC = () => {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: 0.4 }}
-                    className="flex flex-col sm:flex-row items-center justify-center gap-8 sm:gap-16"
+                    className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-16"
                 >
                     {translations.stats.map((stat: { value: string; label: string }, index: number) => (
                         <div key={index} className="text-center">
-                            <div className="text-3xl sm:text-4xl font-bold text-[#F0F0F5] mb-1">
+                            <div className="text-2xl sm:text-4xl font-bold text-[#F0F0F5] mb-1">
                                 {stat.value}
                             </div>
                             <div className="text-sm text-[#F0F0F5]/40 font-medium">

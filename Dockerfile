@@ -46,18 +46,21 @@ RUN chown -R nextjs:nodejs /app
 # Switch to non-root user
 USER nextjs
 
+# Port configuration (override via Coolify env or --build-arg)
+ARG APP_PORT=4598
+ENV PORT=$APP_PORT
+
 # Expose port
-EXPOSE 4598
+EXPOSE $APP_PORT
 
 # Set environment variables
 ENV NODE_ENV=production
-ENV PORT=4598
 ENV HOSTNAME=0.0.0.0
 ENV NEXT_TELEMETRY_DISABLED=1
 
 # Health check
 HEALTHCHECK --interval=30s --timeout=10s --start-period=40s --retries=3 \
-  CMD curl -f http://localhost:4598/api/health || exit 1
+  CMD curl -f http://localhost:${PORT}/api/health || exit 1
 
 # Start the application
 CMD ["bun", "run", "start"]

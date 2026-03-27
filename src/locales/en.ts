@@ -572,9 +572,9 @@ export const en = {
     partnerMarquee: {
         heading: 'Trusted by Leading Organizations',
         partners: [
-            'Bakai Bank',
-            'Bishkek Petroleum',
-            'Partner Neft',
+            'Banking Sector',
+            'Oil & Gas',
+            'Document Management',
             'BIAST.KG',
             'Tauras-Phoenix',
         ] as string[],
@@ -641,7 +641,7 @@ export const en = {
             title: 'Solutions',
             items: [
                 { label: 'EvoAI CRM', sublabel: 'AI bots for WhatsApp/Instagram/Telegram' },
-                { label: 'EvoResto', sublabel: 'QR menu, orders, Bakai24 payment' },
+                { label: 'EvoResto', sublabel: 'QR menu, orders, online payments' },
                 { label: 'CCE Platform', sublabel: 'Claude Code Enterprise for teams' },
                 { label: 'Universal Cabinet', sublabel: 'ESF, ETTN, tax reporting & analytics' },
             ],
@@ -678,8 +678,8 @@ export const en = {
             },
             {
                 title: 'EvoResto',
-                description: 'Restaurant automation: QR-menu, online orders, Bakai24 payments, table management. Kitchen Display System included.',
-                features: ['QR-menu & ordering', 'Bakai24 payments', 'Kitchen Display (KDS)', 'Multi-language (RU/KY/EN)'],
+                description: 'Restaurant automation: QR-menu, online orders, online payments, table management. Kitchen Display System included.',
+                features: ['QR-menu & ordering', 'Online payments', 'Kitchen Display (KDS)', 'Multi-language (RU/KY/EN)'],
                 metricValue: '+30%',
                 metricLabel: 'average check',
             },

@@ -572,9 +572,9 @@ export const ky = {
     partnerMarquee: {
         heading: 'Алдыңкы уюмдар бизге ишенет',
         partners: [
-            'Бакай Банк',
-            'Бишкек Петролеум',
-            'Партнер Нефть',
+            'Банк тармагы',
+            'Мунай жана газ',
+            'Документ жүгүртүү',
             'BIAST.KG',
             'Таурас-Феникс',
         ] as string[],
@@ -641,7 +641,7 @@ export const ky = {
             title: 'Чечимдер',
             items: [
                 { label: 'EvoAI CRM', sublabel: 'WhatsApp/Instagram/Telegram AI-боттору' },
-                { label: 'EvoResto', sublabel: 'QR-меню, буйрутмалар, Bakai24 төлөм' },
+                { label: 'EvoResto', sublabel: 'QR-меню, буйрутмалар, онлайн төлөм' },
                 { label: 'CCE Platform', sublabel: 'Командалар үчүн Claude Code Enterprise' },
                 { label: 'Универсалдуу Кабинет', sublabel: 'ЭСФ, ЭТТН, салык отчёттуулугу жана аналитика' },
             ],
@@ -678,8 +678,8 @@ export const ky = {
             },
             {
                 title: 'EvoResto',
-                description: 'Ресторанды автоматташтыруу: QR-меню, онлайн буйрутмалар, Bakai24 төлөмдөрү, стол башкаруу. Ашкана дисплей системасы камтылган.',
-                features: ['QR-меню жана буйрутмалар', 'Bakai24 төлөмдөрү', 'Ашкана дисплейи (KDS)', 'Көп тилдүү (RU/KY/EN)'],
+                description: 'Ресторанды автоматташтыруу: QR-меню, онлайн буйрутмалар, онлайн төлөмдөр, стол башкаруу. Ашкана дисплей системасы камтылган.',
+                features: ['QR-меню жана буйрутмалар', 'Онлайн төлөмдөр', 'Ашкана дисплейи (KDS)', 'Көп тилдүү (RU/KY/EN)'],
                 metricValue: '+30%',
                 metricLabel: 'орточо чек',
             },

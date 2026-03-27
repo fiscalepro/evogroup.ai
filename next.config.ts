@@ -72,6 +72,18 @@ const nextConfig: NextConfig = {
         optimizePackageImports: ['@nextui-org/react', 'framer-motion', 'lucide-react'],
     },
 
+    // Redirect www to non-www (or vice versa)
+    async redirects() {
+        return [
+            {
+                source: '/:path*',
+                has: [{ type: 'host', value: 'www.evogroup.ai' }],
+                destination: 'https://evogroup.ai/:path*',
+                permanent: true,
+            },
+        ]
+    },
+
     // Security headers
     async headers() {
         return [

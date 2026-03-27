@@ -111,9 +111,9 @@ const TrustSignals: React.FC = () => {
             return {
                 title: 'OUR KEY PARTNERS',
                 partners: [
-                    { icon: 'bank', name: 'Bakai Bank', sub: 'Universal Cabinet platform — 16 microservices' },
-                    { icon: 'oil', name: 'Bishkek Petroleum', sub: '70+ gas stations, 10 oil depots' },
-                    { icon: 'horeca', name: 'HoReCa', sub: 'EvoResto, SmartStay, restaurant mgmt' },
+                    { icon: 'bank', name: 'Banking Sector', sub: 'Working with banking wallets — 16 microservices' },
+                    { icon: 'oil', name: 'Oil & Gas', sub: 'Gas stations and oil depots' },
+                    { icon: 'horeca', name: 'HoReCa', sub: 'Restaurant & hotel automation' },
                     { icon: 'medicine', name: 'EvoClinic', sub: 'Clinic management + WhatsApp' },
                 ],
                 smb: {
@@ -136,9 +136,9 @@ const TrustSignals: React.FC = () => {
             return {
                 title: 'БИЗДИН НЕГИЗГИ ӨНӨКТӨШТӨР',
                 partners: [
-                    { icon: 'bank', name: 'Бакай Банк', sub: 'Универсалдуу Кабинет платформасы — 16 микросервис' },
-                    { icon: 'oil', name: 'Бишкек Петролеум', sub: '70+ АЗС, 10 мунай базасы' },
-                    { icon: 'horeca', name: 'HoReCa', sub: 'EvoResto, SmartStay, ресторан башкаруу' },
+                    { icon: 'bank', name: 'Банк тармагы', sub: 'Банк капчыктары менен иш — 16 микросервис' },
+                    { icon: 'oil', name: 'Мунай жана газ', sub: 'АЗС жана мунай базалары' },
+                    { icon: 'horeca', name: 'HoReCa', sub: 'Ресторан жана мейманкана автоматташтыруу' },
                     { icon: 'medicine', name: 'EvoClinic', sub: 'Клиника башкаруу + WhatsApp' },
                 ],
                 smb: {
@@ -161,9 +161,9 @@ const TrustSignals: React.FC = () => {
         return {
             title: 'НАШИ КЛЮЧЕВЫЕ ПАРТНЁРЫ',
             partners: [
-                { icon: 'bank', name: 'Бакай Банк', sub: 'Платформа Универсальный Кабинет — 16 микросервисов' },
-                { icon: 'oil', name: 'Бишкек Петролеум', sub: '70+ АЗС, 10 нефтебаз' },
-                { icon: 'horeca', name: 'HoReCa', sub: 'EvoResto, SmartStay, управление ресторанами' },
+                { icon: 'bank', name: 'Банковский сектор', sub: 'Работа с банковскими кошельками — 16 микросервисов' },
+                { icon: 'oil', name: 'Нефть и газ', sub: 'АЗС и нефтебазы' },
+                { icon: 'horeca', name: 'HoReCa', sub: 'Автоматизация ресторанов и отелей' },
                 { icon: 'medicine', name: 'EvoClinic', sub: 'Управление клиникой + WhatsApp' },
             ],
             smb: {
@@ -211,7 +211,7 @@ const TrustSignals: React.FC = () => {
                 </motion.p>
 
                 {/* 2x2 Partner Grid */}
-                <div className="grid grid-cols-2 gap-4 mb-4">
+                <div className="grid grid-cols-2 gap-2 sm:gap-4 mb-4">
                     {content.partners.map((partner, i) => (
                         <motion.div
                             key={i}
@@ -220,7 +220,7 @@ const TrustSignals: React.FC = () => {
                             initial="hidden"
                             whileInView="visible"
                             viewport={{ once: true, margin: '-40px' }}
-                            className="group p-5 sm:p-6 rounded-2xl bg-white/[0.03] border border-white/[0.07] hover:bg-white/[0.06] hover:border-white/[0.12] transition-all duration-300"
+                            className="group p-3 sm:p-5 lg:p-6 rounded-2xl bg-white/[0.03] border border-white/[0.07] hover:bg-white/[0.06] hover:border-white/[0.12] transition-all duration-300"
                         >
                             <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-white/[0.06] border border-white/[0.08] flex items-center justify-center mb-4 text-white/50 group-hover:text-white/70 group-hover:bg-white/[0.1] transition-all duration-300 p-2.5">
                                 {Icons[partner.icon]}
@@ -242,7 +242,7 @@ const TrustSignals: React.FC = () => {
                     {/* SMB Header — always visible, clickable */}
                     <button
                         onClick={() => setSmbOpen(!smbOpen)}
-                        className="w-full flex items-center gap-4 p-5 sm:p-6 text-left cursor-pointer transition-colors duration-200"
+                        className="w-full flex items-center gap-3 sm:gap-4 p-3 sm:p-5 lg:p-6 text-left cursor-pointer transition-colors duration-200"
                     >
                         <div className="w-11 h-11 rounded-xl bg-white/[0.06] border border-white/[0.08] flex items-center justify-center text-white/50 p-2.5 flex-shrink-0">
                             {Icons[content.smb.icon]}
@@ -264,15 +264,15 @@ const TrustSignals: React.FC = () => {
                                 transition={{ duration: 0.35, ease: [0.25, 0.1, 0.25, 1] }}
                                 className="overflow-hidden"
                             >
-                                <div className="px-5 sm:px-6 pb-5 sm:pb-6 pt-1">
-                                    <div className="grid grid-cols-2 gap-3">
+                                <div className="px-3 sm:px-5 lg:px-6 pb-3 sm:pb-5 lg:pb-6 pt-1">
+                                    <div className="grid grid-cols-2 gap-2 sm:gap-3">
                                         {content.smb.categories.map((cat, i) => (
                                             <motion.div
                                                 key={i}
                                                 initial={{ opacity: 0, y: 12 }}
                                                 animate={{ opacity: 1, y: 0 }}
                                                 transition={{ duration: 0.3, delay: i * 0.04 }}
-                                                className="flex items-center gap-3 p-3 rounded-xl bg-white/[0.03] border border-white/[0.06] hover:bg-white/[0.06] transition-colors duration-200"
+                                                className="flex items-center gap-2 sm:gap-3 p-2 sm:p-3 rounded-xl bg-white/[0.03] border border-white/[0.06] hover:bg-white/[0.06] transition-colors duration-200"
                                             >
                                                 <div className="w-7 h-7 rounded-lg bg-white/[0.06] flex items-center justify-center text-white/45 p-1.5 flex-shrink-0">
                                                     {Icons[cat.icon]}

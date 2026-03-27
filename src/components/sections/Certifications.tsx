@@ -69,7 +69,7 @@ const Certifications: React.FC = () => {
 					whileInView={{ opacity: 1, y: 0 }}
 					viewport={{ once: true }}
 					transition={{ duration: 0.5 }}
-					className="text-center mb-14"
+					className="text-center mb-8 sm:mb-14"
 				>
 					<div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/10 bg-white/[0.04] mb-5">
 						<span className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse" />
@@ -87,7 +87,7 @@ const Certifications: React.FC = () => {
 							whileInView={{ opacity: 1, y: 0 }}
 							viewport={{ once: true }}
 							transition={{ duration: 0.4, delay: i * 0.1 }}
-							className="group relative rounded-2xl border border-white/[0.07] bg-white/[0.02] p-6 hover:bg-white/[0.04] hover:border-white/[0.12] transition-all duration-200"
+							className="group relative rounded-2xl border border-white/[0.07] bg-white/[0.02] p-4 sm:p-5 lg:p-6 hover:bg-white/[0.04] hover:border-white/[0.12] transition-all duration-200"
 						>
 							<div className="text-blue-400/70 group-hover:text-blue-400 transition-colors mb-4">
 								{icons[i]}

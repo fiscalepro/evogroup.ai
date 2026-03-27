@@ -92,7 +92,7 @@ const Footer: React.FC = () => {
 						<p className='text-xs text-white/50 uppercase tracking-[0.2em] font-medium mb-5'>
 							{t.cta.overline}
 						</p>
-						<h2 className='text-4xl sm:text-5xl lg:text-6xl font-bold text-white tracking-tight leading-tight mb-5'>
+						<h2 className='text-2xl sm:text-4xl lg:text-6xl font-bold text-white tracking-tight leading-tight mb-5'>
 							{t.cta.title}
 							<br className='hidden sm:block' /> {t.cta.titleLine2}
 						</h2>
@@ -127,7 +127,7 @@ const Footer: React.FC = () => {
 
 				{/* Main footer columns */}
 				<div className='relative z-10 max-w-7xl mx-auto px-6 py-16'>
-					<div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[2fr_1.2fr_1fr_1.2fr] gap-12 lg:gap-8'>
+					<div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[2fr_1.2fr_1fr_1.2fr] gap-8 sm:gap-10 lg:gap-8'>
 						{/* Brand column */}
 						<div>
 							<div className='flex items-center gap-2.5 mb-4'>

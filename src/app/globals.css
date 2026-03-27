@@ -8,7 +8,12 @@
   UA-stylesheet outline algorithm (being removed). Utility classes override this.
 */
 h1 {
-    font-size: 2.25rem;
+    font-size: 1.5rem;
+}
+@media (min-width: 640px) {
+    h1 {
+        font-size: 2.25rem;
+    }
 }
 
 /* Smooth scrolling */

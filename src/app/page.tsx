@@ -17,7 +17,7 @@ export default function Home() {
             <PageBackground />
             <ModernHeader />
             <HeroRedesign />
-            <PartnersMarquee />
+            {/* <PartnersMarquee /> */}
             <TrustSignals />
             <ProblemStatement />
             <SolutionsPreview />

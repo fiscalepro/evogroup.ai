@@ -462,9 +462,9 @@ export const ru = {
     partnerMarquee: {
         heading: 'Нам доверяют ведущие организации',
         partners: [
-            'Бакай Банк',
-            'Бишкек Петролеум',
-            'Партнер Нефть',
+            'Банковский сектор',
+            'Нефть и газ',
+            'Документооборот',
             'BIAST.KG',
             'Таурас-Феникс',
         ] as string[],
@@ -531,7 +531,7 @@ export const ru = {
             title: 'Решения',
             items: [
                 { label: 'EvoAI CRM', sublabel: 'AI-боты WhatsApp/Instagram/Telegram' },
-                { label: 'EvoResto', sublabel: 'QR-меню, заказы, оплата Bakai24' },
+                { label: 'EvoResto', sublabel: 'QR-меню, заказы, онлайн-оплата' },
                 { label: 'CCE Platform', sublabel: 'Claude Code Enterprise для команд' },
                 { label: 'Универсальный Кабинет', sublabel: 'ЭСФ, ЭТТН, налоговая отчётность и аналитика' },
             ],
@@ -568,8 +568,8 @@ export const ru = {
             },
             {
                 title: 'EvoResto',
-                description: 'Автоматизация ресторана: QR-меню, онлайн-заказы, оплата Bakai24, управление столами. Система отображения для кухни включена.',
-                features: ['QR-меню и заказы', 'Оплата Bakai24', 'Дисплей кухни (KDS)', 'Мультиязычность (RU/KY/EN)'],
+                description: 'Автоматизация ресторана: QR-меню, онлайн-заказы, онлайн-оплата, управление столами. Система отображения для кухни включена.',
+                features: ['QR-меню и заказы', 'Онлайн-оплата', 'Дисплей кухни (KDS)', 'Мультиязычность (RU/KY/EN)'],
                 metricValue: '+30%',
                 metricLabel: 'средний чек',
             },
