@@ -4,11 +4,7 @@ import './globals.css'
 import { Providers } from '@/components/providers/Providers'
 import ChatBot from '@/components/ChatBot'
 
-const inter = Inter({
-    subsets: ['latin', 'cyrillic'],
-    display: 'swap',
-    variable: '--font-inter',
-})
+const inter = Inter({ subsets: ['latin', 'cyrillic'] })
 
 // Метаданные для каждого языка
 const metadataByLocale = {
@@ -24,7 +20,7 @@ const metadataByLocale = {
             type: 'website',
             locale: 'ru_RU',
             siteName: 'Evolution Group',
-            url: 'https://evogroup.ai'
+            url: 'https://fiscalepro.com'
         },
         twitter: {
             card: 'summary_large_image',
@@ -50,7 +46,7 @@ const metadataByLocale = {
             type: 'website',
             locale: 'en_US',
             siteName: 'Evolution Group',
-            url: 'https://evogroup.ai'
+            url: 'https://fiscalepro.com'
         },
         twitter: {
             card: 'summary_large_image',
@@ -76,7 +72,7 @@ const metadataByLocale = {
             type: 'website',
             locale: 'ky_KG',
             siteName: 'Evolution Group',
-            url: 'https://evogroup.ai'
+            url: 'https://fiscalepro.com'
         },
         twitter: {
             card: 'summary_large_image',
@@ -92,10 +88,7 @@ const metadataByLocale = {
     }
 }
 
-export const metadata: Metadata = {
-    ...metadataByLocale.ru,
-    metadataBase: new URL('https://evogroup.ai'),
-}
+export const metadata: Metadata = metadataByLocale.ru
 
 export default function RootLayout({
                                        children,
@@ -105,11 +98,12 @@ export default function RootLayout({
     return (
         <html lang="ru" className="dark">
         <head>
+            <meta name="viewport" content="width=device-width, initial-scale=1" />
             <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
             <link rel="apple-touch-icon" href="/favicon.svg" />
             <meta name="theme-color" content="#0a0a0a" />
         </head>
-        <body className={`${inter.className} antialiased dark bg-[#0A0E1A] text-[#F0F0F5]`}>
+        <body className={`${inter.className} antialiased dark bg-black text-white`}>
         <Providers>
             {children}
             <ChatBot />

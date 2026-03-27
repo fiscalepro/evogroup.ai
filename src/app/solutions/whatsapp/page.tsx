@@ -14,12 +14,16 @@ import BonusSystemSection from '@/components/sections/whatsapp/BonusSystemSectio
 import PricingSection from '@/components/sections/whatsapp/PricingSection'
 import FAQSection from '@/components/sections/whatsapp/FAQSection'
 import WhatsAppContactForm from '@/components/sections/whatsapp/WhatsAppContactForm'
-import PageBackground from '@/components/sections/PageBackground'
 
 function WhatsAppCRMContent() {
     return (
-        <div className="relative min-h-screen bg-[#0A0E1A]">
-            <PageBackground accent="green" />
+        <div className="relative min-h-screen bg-black">
+            {/* Background gradients */}
+            <div className="fixed inset-0 overflow-hidden pointer-events-none">
+                <div className="absolute top-0 left-1/4 w-[800px] h-[800px] bg-green-500/10 rounded-full blur-[120px] animate-float" />
+                <div className="absolute top-1/3 right-1/4 w-[600px] h-[600px] bg-blue-500/15 rounded-full blur-[100px] animate-float" style={{animationDelay: '2s'}} />
+                <div className="absolute bottom-1/4 left-1/3 w-[500px] h-[500px] bg-emerald-500/10 rounded-full blur-[100px] animate-float" style={{animationDelay: '4s'}} />
+            </div>
 
             <ModernHeader />
 

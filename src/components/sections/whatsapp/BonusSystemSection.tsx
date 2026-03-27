@@ -4,8 +4,142 @@ import React from 'react'
 import { useTranslation } from '@/components/providers/I18nProvider'
 
 const BonusSystemSection: React.FC = () => {
-    const { tObj } = useTranslation()
-    const translations = tObj('whatsappBonus')
+    const { locale } = useTranslation()
+
+    const getTranslations = () => {
+        if (locale === 'en') {
+            return {
+                badge: 'Motivation System',
+                title: 'Transparent bonus system',
+                subtitle: 'Motivate your team with fair and clear reward rules',
+                features: [
+                    {
+                        icon: 'speed',
+                        title: '×1.5 bonus for fast response',
+                        description: 'Response within 1 minute — 50% bonus multiplier',
+                        highlight: '×1.5'
+                    },
+                    {
+                        icon: 'money',
+                        title: 'Sales commission',
+                        description: 'Configurable percentage from each closed deal',
+                        highlight: '%'
+                    },
+                    {
+                        icon: 'rating',
+                        title: 'Transparent rating',
+                        description: 'Everyone sees their position and metrics in real-time',
+                        highlight: 'TOP'
+                    },
+                    {
+                        icon: 'reward',
+                        title: 'Automatic rewards',
+                        description: 'System automatically calculates and accrues bonuses',
+                        highlight: 'AUTO'
+                    }
+                ],
+                leaderboardTitle: 'Leaderboard',
+                thisWeek: 'This week',
+                managers: [
+                    { name: 'Aisha K.', score: 2450, deals: 12, avgResponse: '45s' },
+                    { name: 'Timur B.', score: 2180, deals: 10, avgResponse: '52s' },
+                    { name: 'Elena V.', score: 1920, deals: 8, avgResponse: '1m 15s' },
+                    { name: 'Marat S.', score: 1650, deals: 7, avgResponse: '1m 30s' }
+                ],
+                scoreLabel: 'points',
+                dealsLabel: 'deals',
+                responseLabel: 'avg response'
+            }
+        } else if (locale === 'ky') {
+            return {
+                badge: 'Мотивация системасы',
+                title: 'Ачык бонус системасы',
+                subtitle: 'Командаңызды адилеттүү жана түшүнүктүү сыйлык эрежелери менен мотивациялаңыз',
+                features: [
+                    {
+                        icon: 'speed',
+                        title: 'Тез жооп үчүн ×1.5 бонус',
+                        description: '1 мүнөттүн ичинде жооп — 50% бонус көбөйтмө',
+                        highlight: '×1.5'
+                    },
+                    {
+                        icon: 'money',
+                        title: 'Сатуу комиссиясы',
+                        description: 'Ар бир жабылган сделкадан настройкалуу пайыз',
+                        highlight: '%'
+                    },
+                    {
+                        icon: 'rating',
+                        title: 'Ачык рейтинг',
+                        description: 'Бардыгы өз позициясын жана метрикаларын реалдуу убакытта көрөт',
+                        highlight: 'TOP'
+                    },
+                    {
+                        icon: 'reward',
+                        title: 'Автоматтык сыйлыктар',
+                        description: 'Система автоматтык түрдө бонустарды эсептейт жана топтойт',
+                        highlight: 'AUTO'
+                    }
+                ],
+                leaderboardTitle: 'Лидерборд',
+                thisWeek: 'Бул жума',
+                managers: [
+                    { name: 'Айша К.', score: 2450, deals: 12, avgResponse: '45с' },
+                    { name: 'Тимур Б.', score: 2180, deals: 10, avgResponse: '52с' },
+                    { name: 'Елена В.', score: 1920, deals: 8, avgResponse: '1м 15с' },
+                    { name: 'Марат С.', score: 1650, deals: 7, avgResponse: '1м 30с' }
+                ],
+                scoreLabel: 'упай',
+                dealsLabel: 'сделка',
+                responseLabel: 'орточо жооп'
+            }
+        } else {
+            return {
+                badge: 'Система мотивации',
+                title: 'Прозрачная система бонусов',
+                subtitle: 'Мотивируйте команду понятными и справедливыми правилами вознаграждения',
+                features: [
+                    {
+                        icon: 'speed',
+                        title: '×1.5 бонус за быстрый ответ',
+                        description: 'Ответ в течение 1 минуты — 50% к бонусу',
+                        highlight: '×1.5'
+                    },
+                    {
+                        icon: 'money',
+                        title: 'Комиссия с продаж',
+                        description: 'Настраиваемый процент от каждой закрытой сделки',
+                        highlight: '%'
+                    },
+                    {
+                        icon: 'rating',
+                        title: 'Прозрачный рейтинг',
+                        description: 'Каждый видит свою позицию и метрики в реальном времени',
+                        highlight: 'TOP'
+                    },
+                    {
+                        icon: 'reward',
+                        title: 'Автоматические награды',
+                        description: 'Система сама считает и начисляет бонусы',
+                        highlight: 'AUTO'
+                    }
+                ],
+                leaderboardTitle: 'Лидерборд',
+                thisWeek: 'Эта неделя',
+                managers: [
+                    { name: 'Айша К.', score: 2450, deals: 12, avgResponse: '45с' },
+                    { name: 'Тимур Б.', score: 2180, deals: 10, avgResponse: '52с' },
+                    { name: 'Елена В.', score: 1920, deals: 8, avgResponse: '1м 15с' },
+                    { name: 'Марат С.', score: 1650, deals: 7, avgResponse: '1м 30с' }
+                ],
+                scoreLabel: 'очков',
+                dealsLabel: 'сделок',
+                responseLabel: 'ср. ответ'
+            }
+        }
+    }
+
+    const translations = getTranslations()
 
     const getIcon = (icon: string) => {
         switch (icon) {
@@ -141,7 +275,7 @@ const BonusSystemSection: React.FC = () => {
                                         <div className={`font-bold ${index === 0 ? 'text-amber-400' : 'text-white'}`}>
                                             {manager.score.toLocaleString()}
                                         </div>
-                                        <div className="text-xs text-white/55">{translations.scoreLabel}</div>
+                                        <div className="text-xs text-white/40">{translations.scoreLabel}</div>
                                     </div>
                                 </div>
                             ))}

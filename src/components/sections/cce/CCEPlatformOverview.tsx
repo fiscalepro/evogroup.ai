@@ -14,8 +14,189 @@ const platforms = [
 ]
 
 const CCEPlatformOverview: React.FC = () => {
-    const { tObj } = useTranslation()
-    const t = tObj('ccePlatform')
+    const { locale } = useTranslation()
+
+    const translations = {
+        ru: {
+            badge: 'Платформа',
+            title: 'Три столпа CCE',
+            pillars: [
+                {
+                    title: 'Мультиплатформенность',
+                    description: 'CCE работает с любой AI CLI системой. Не привязывайтесь к одному провайдеру — управляйте всеми AI-агентами из единого центра.',
+                    gradient: 'from-violet-500 to-violet-600',
+                    borderHover: 'hover:border-violet-500/30',
+                    iconBg: 'bg-violet-500/10',
+                    features: [
+                        'Поддержка всех популярных AI CLI',
+                        'Централизованное подключение агентов',
+                        'Разработка OpenClaw плагинов',
+                        'Единые стандарты для любого AI',
+                    ],
+                    showPlatforms: true,
+                },
+                {
+                    title: 'CCE Dashboard',
+                    description: '117+ инструментов управления, аналитика использования AI, автоматизация рутинных задач, мониторинг команды в реальном времени.',
+                    gradient: 'from-amber-500 to-amber-600',
+                    borderHover: 'hover:border-amber-500/30',
+                    iconBg: 'bg-amber-500/10',
+                    features: [
+                        '117+ MCP инструментов',
+                        'Аналитика и метрики команды',
+                        'Автоматизация workflow',
+                        'Управление шаблонами и агентами',
+                    ],
+                    showPlatforms: false,
+                },
+                {
+                    title: 'Enterprise Config',
+                    description: 'AI сам скачивает, анализирует и настраивает всё что нужно. Git-based конфигурация, версионируемая и отслеживаемая.',
+                    gradient: 'from-violet-500 to-amber-500',
+                    borderHover: 'hover:border-violet-500/30',
+                    iconBg: 'bg-gradient-to-br from-violet-500/10 to-amber-500/10',
+                    features: [
+                        'Автоматическая настройка без CLI',
+                        'Git-based версионирование',
+                        'Шаблоны по ролям и проектам',
+                        'Централизованные политики',
+                    ],
+                    showPlatforms: false,
+                },
+            ],
+            statusline: {
+                title: 'Командная строка состояния',
+                description: 'Уникальная 3-строчная строка состояния прямо в терминале. Третья линия — эксклюзив CCE: алерты от админа, версии, swarm pulse команды в реальном времени.',
+                features: [
+                    '21 виджет: модель, контекст, git, токены, стоимость',
+                    'Линия 3 — CCE: алерты, обновления, swarm pulse',
+                    'Цветные виджеты и powerline-режим',
+                    'Централизованные уведомления для всей команды',
+                ],
+                terminalHint: '> claude "реализуй новую фичу..."',
+            },
+        },
+        en: {
+            badge: 'Platform',
+            title: 'Three pillars of CCE',
+            pillars: [
+                {
+                    title: 'Multi-platform',
+                    description: 'CCE works with any AI CLI system. Don\'t be locked into one provider — manage all AI agents from a single hub.',
+                    gradient: 'from-violet-500 to-violet-600',
+                    borderHover: 'hover:border-violet-500/30',
+                    iconBg: 'bg-violet-500/10',
+                    features: [
+                        'Support for all popular AI CLIs',
+                        'Centralized agent management',
+                        'OpenClaw plugin development',
+                        'Unified standards for any AI',
+                    ],
+                    showPlatforms: true,
+                },
+                {
+                    title: 'CCE Dashboard',
+                    description: '117+ management tools, AI usage analytics, routine task automation, real-time team monitoring.',
+                    gradient: 'from-amber-500 to-amber-600',
+                    borderHover: 'hover:border-amber-500/30',
+                    iconBg: 'bg-amber-500/10',
+                    features: [
+                        '117+ MCP tools',
+                        'Team analytics and metrics',
+                        'Workflow automation',
+                        'Template and agent management',
+                    ],
+                    showPlatforms: false,
+                },
+                {
+                    title: 'Enterprise Config',
+                    description: 'AI downloads, analyzes, and configures everything on its own. Git-based configuration, versioned and trackable.',
+                    gradient: 'from-violet-500 to-amber-500',
+                    borderHover: 'hover:border-violet-500/30',
+                    iconBg: 'bg-gradient-to-br from-violet-500/10 to-amber-500/10',
+                    features: [
+                        'Automatic setup without CLI',
+                        'Git-based versioning',
+                        'Role and project templates',
+                        'Centralized policies',
+                    ],
+                    showPlatforms: false,
+                },
+            ],
+            statusline: {
+                title: 'Team Status Line',
+                description: 'A unique 3-line status bar right in your terminal. Line 3 is CCE-exclusive: admin alerts, versions, and real-time swarm pulse of your team.',
+                features: [
+                    '21 widgets: model, context, git, tokens, cost',
+                    'Line 3 — CCE: alerts, updates, swarm pulse',
+                    'Colored widgets and powerline mode',
+                    'Centralized notifications for the whole team',
+                ],
+                terminalHint: '> claude "implement new feature..."',
+            },
+        },
+        ky: {
+            badge: 'Платформа',
+            title: 'CCE\'нин үч тиреги',
+            pillars: [
+                {
+                    title: 'Мультиплатформа',
+                    description: 'CCE каалаган AI CLI системасы менен иштейт. Бир провайдерге байланбаңыз — бардык AI-агенттерди бир борбордон башкарыңыз.',
+                    gradient: 'from-violet-500 to-violet-600',
+                    borderHover: 'hover:border-violet-500/30',
+                    iconBg: 'bg-violet-500/10',
+                    features: [
+                        'Бардык популярдуу AI CLI колдоо',
+                        'Борбордоштурулган агент башкаруу',
+                        'OpenClaw плагин иштеп чыгуу',
+                        'Каалаган AI үчүн бирдиктүү стандарттар',
+                    ],
+                    showPlatforms: true,
+                },
+                {
+                    title: 'CCE Dashboard',
+                    description: '117+ башкаруу куралдары, AI колдонуу аналитикасы, тапшырмаларды автоматташтыруу.',
+                    gradient: 'from-amber-500 to-amber-600',
+                    borderHover: 'hover:border-amber-500/30',
+                    iconBg: 'bg-amber-500/10',
+                    features: [
+                        '117+ MCP куралдар',
+                        'Команда аналитикасы',
+                        'Workflow автоматташтыруу',
+                        'Шаблон жана агент башкаруу',
+                    ],
+                    showPlatforms: false,
+                },
+                {
+                    title: 'Enterprise Config',
+                    description: 'AI өзү жүктөп алат, анализдейт жана бардыгын жөндөйт. Git-based конфигурация, версияланган жана көзөмөлдөнгөн.',
+                    gradient: 'from-violet-500 to-amber-500',
+                    borderHover: 'hover:border-violet-500/30',
+                    iconBg: 'bg-gradient-to-br from-violet-500/10 to-amber-500/10',
+                    features: [
+                        'CLI\'сиз автоматтык жөндөө',
+                        'Git-based версиялоо',
+                        'Ролдор боюнча шаблондор',
+                        'Борбордоштурулган саясаттар',
+                    ],
+                    showPlatforms: false,
+                },
+            ],
+            statusline: {
+                title: 'Команда статус сызыгы',
+                description: 'Терминалда 3 саптуу уникалдуу статус тилкеси. 3-сап — CCE эксклюзиви: админ алерттери, версиялар, команданын swarm pulse реалдуу убакытта.',
+                features: [
+                    '21 виджет: модель, контекст, git, токендер, наркы',
+                    '3-сап — CCE: алерттер, жаңылоолор, swarm pulse',
+                    'Түстүү виджеттер жана powerline режими',
+                    'Бүт команда үчүн борбордоштурулган билдирмелер',
+                ],
+                terminalHint: '> claude "жаңы функцияны ишке ашыр..."',
+            },
+        }
+    }
+
+    const t = translations[locale] || translations.ru
 
     const pillarIcons = [
         // Multi-platform / globe icon
@@ -34,9 +215,10 @@ const CCEPlatformOverview: React.FC = () => {
     ]
 
     return (
-        <section className="py-20 sm:py-32 px-4 sm:px-6 lg:px-10 relative overflow-hidden">
+        <section className="py-20 sm:py-32 px-4 sm:px-6 lg:px-10 bg-black relative overflow-hidden">
             <div className="absolute inset-0 overflow-hidden pointer-events-none">
                 <div className="absolute top-[-30%] right-[-10%] w-[500px] h-[500px] bg-violet-500/8 rounded-full blur-[150px]" />
+                <div className="absolute bottom-[-20%] left-[-10%] w-[400px] h-[400px] bg-amber-500/5 rounded-full blur-[120px]" />
             </div>
 
             <div className="max-w-6xl mx-auto relative z-10">
@@ -156,12 +338,12 @@ const CCEPlatformOverview: React.FC = () => {
                                 <div className="w-3 h-3 rounded-full bg-red-500/70" />
                                 <div className="w-3 h-3 rounded-full bg-yellow-500/70" />
                                 <div className="w-3 h-3 rounded-full bg-green-500/70" />
-                                <span className="ml-2 text-xs text-white/55 font-mono">terminal</span>
+                                <span className="ml-2 text-xs text-white/40 font-mono">terminal</span>
                             </div>
 
                             {/* Terminal content area */}
                             <div className="px-4 py-3 min-h-[80px]">
-                                <p className="text-xs text-white/50 font-mono">{t.statusline.terminalHint}</p>
+                                <p className="text-xs text-white/30 font-mono">{t.statusline.terminalHint}</p>
                             </div>
 
                             {/* Status Line 1 */}
@@ -177,17 +359,17 @@ const CCEPlatformOverview: React.FC = () => {
 
                             {/* Status Line 2 */}
                             <div className="px-4 py-1.5 bg-[#0a0a14] border-t border-white/5 font-mono text-xs flex items-center gap-2 flex-wrap">
-                                <span className="text-white/55">In: 145</span>
+                                <span className="text-white/40">In: 145</span>
                                 <span className="text-white/20">|</span>
-                                <span className="text-white/55">Out: 56.7k</span>
+                                <span className="text-white/40">Out: 56.7k</span>
                                 <span className="text-white/20">|</span>
                                 <span className="text-green-400">Cached: 11.0M</span>
                                 <span className="text-white/20">|</span>
-                                <span className="text-white/55">Block: 3hr 33m</span>
+                                <span className="text-white/40">Block: 3hr 33m</span>
                                 <span className="text-white/20">|</span>
-                                <span className="text-white/55">Session: 32m</span>
+                                <span className="text-white/40">Session: 32m</span>
                                 <span className="text-white/20">|</span>
-                                <span className="text-white/55">v2.1.49</span>
+                                <span className="text-white/40">v2.1.49</span>
                             </div>
 
                             {/* Status Line 3 — CCE Enterprise */}

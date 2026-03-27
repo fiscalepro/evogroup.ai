@@ -10,8 +10,97 @@ interface Problem {
 }
 
 const ProblemCards: React.FC = () => {
-    const { tObj } = useTranslation()
-    const translations = tObj('whatsappProblems')
+    const { locale } = useTranslation()
+
+    const getTranslations = () => {
+        if (locale === 'en') {
+            return {
+                badge: 'Sound Familiar?',
+                title: 'Problems we solve',
+                subtitle: 'These issues cost you money and clients every day',
+                problems: [
+                    {
+                        title: 'Manager quit — clients gone',
+                        description: 'When a manager leaves, all their WhatsApp history and client relationships go with them.'
+                    },
+                    {
+                        title: 'No visibility into conversations',
+                        description: 'You have no idea what your managers are writing to clients. Could be losing sales or damaging reputation.'
+                    },
+                    {
+                        title: 'WhatsApp Web chaos',
+                        description: '50+ chats, constant notifications, missed messages. Impossible to keep track of everything.'
+                    },
+                    {
+                        title: 'Slow response times',
+                        description: 'Clients wait hours for a response. By then, they\'ve already gone to a competitor.'
+                    },
+                    {
+                        title: 'No performance metrics',
+                        description: 'Who\'s selling? Who\'s slacking? How fast do they respond? You don\'t know.'
+                    }
+                ]
+            }
+        } else if (locale === 'ky') {
+            return {
+                badge: 'Тааныштыгы барбы?',
+                title: 'Биз чечкен көйгөйлөр',
+                subtitle: 'Бул маселелер күн сайын акча жана кардарларды жоготууга алып келет',
+                problems: [
+                    {
+                        title: 'Менеджер кетти — кардарлар жоголду',
+                        description: 'Менеджер кеткенде, алардын бардык WhatsApp тарыхы жана кардар мамилелери алар менен кетет.'
+                    },
+                    {
+                        title: 'Жазышмаларды көрө албайсыз',
+                        description: 'Менеджерлериңиз кардарларга эмне жазып жатканын билбейсиз. Сатууларды жоготуп же репутацияга зыян келтирип жаткан болушу мүмкүн.'
+                    },
+                    {
+                        title: 'WhatsApp Web хаосу',
+                        description: '50+ чат, дайыма билдирмелер, өткөрүп жиберилген билдирүүлөр. Бардыгын көзөмөлдөө мүмкүн эмес.'
+                    },
+                    {
+                        title: 'Жай жооп берүү',
+                        description: 'Кардарлар жооп үчүн сааттап күтүшөт. Ошол убакка чейин алар атаандашка барып калышкан.'
+                    },
+                    {
+                        title: 'Натыйжалуулук метрикасы жок',
+                        description: 'Ким сатып жатат? Ким жалкоолонуп жатат? Канчалык тез жооп берет? Билбейсиз.'
+                    }
+                ]
+            }
+        } else {
+            return {
+                badge: 'Знакомо?',
+                title: 'Проблемы, которые мы решаем',
+                subtitle: 'Эти проблемы стоят вам денег и клиентов каждый день',
+                problems: [
+                    {
+                        title: 'Менеджер уволился — клиенты ушли',
+                        description: 'Когда менеджер уходит, вся история WhatsApp и клиентские связи уходят вместе с ним.'
+                    },
+                    {
+                        title: 'Не видите переписки',
+                        description: 'Вы не знаете, что ваши менеджеры пишут клиентам. Возможно, теряете продажи или портите репутацию.'
+                    },
+                    {
+                        title: 'WhatsApp Web — хаос',
+                        description: '50+ чатов, постоянные уведомления, пропущенные сообщения. Невозможно за всем уследить.'
+                    },
+                    {
+                        title: 'Медленные ответы',
+                        description: 'Клиенты ждут ответа часами. К этому времени они уже ушли к конкуренту.'
+                    },
+                    {
+                        title: 'Нет статистики',
+                        description: 'Кто продаёт? Кто сливает? Как быстро отвечают? Вы не знаете.'
+                    }
+                ]
+            }
+        }
+    }
+
+    const translations = getTranslations()
 
     const icons = [
         // User leaving
@@ -76,9 +165,9 @@ const ProblemCards: React.FC = () => {
 
                 {/* Arrow to solution */}
                 <div className="flex justify-center mt-12">
-                    <div className="flex flex-col items-center text-white/55">
+                    <div className="flex flex-col items-center text-white/40">
                         <span className="text-sm mb-2">
-                            {translations.hasSolution}
+                            {locale === 'en' ? 'We have a solution' : locale === 'ky' ? 'Бизде чечим бар' : 'У нас есть решение'}
                         </span>
                         <svg className="w-6 h-6 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />

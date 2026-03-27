@@ -66,9 +66,6 @@ const CCEContactForm: React.FC = () => {
                 description: 'Мы свяжемся с вами в ближайшее время для обсуждения CCE Enterprise.',
                 back: 'Отправить ещё',
             },
-            apiPrefix: '[CCE Enterprise] ',
-            teamSizePrefix: 'Размер команды: ',
-            notSpecified: 'Не указан',
         },
         en: {
             badge: 'Enterprise',
@@ -111,9 +108,6 @@ const CCEContactForm: React.FC = () => {
                 description: 'We\'ll contact you soon to discuss CCE Enterprise.',
                 back: 'Send another',
             },
-            apiPrefix: '[CCE Enterprise] ',
-            teamSizePrefix: 'Team size: ',
-            notSpecified: 'Not specified',
         },
         ky: {
             badge: 'Enterprise',
@@ -156,9 +150,6 @@ const CCEContactForm: React.FC = () => {
                 description: 'CCE Enterprise боюнча талкуулоо үчүн жакын арада байланышабыз.',
                 back: 'Дагы жөнөтүү',
             },
-            apiPrefix: '[CCE Enterprise] ',
-            teamSizePrefix: 'Команда көлөмү: ',
-            notSpecified: 'Көрсөтүлгөн эмес',
         }
     }
 
@@ -230,11 +221,11 @@ const CCEContactForm: React.FC = () => {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
-                    name: `${t.apiPrefix}${formData.name}`,
+                    name: `[CCE Enterprise] ${formData.name}`,
                     email: formData.email,
                     phone: formData.phone,
                     company: formData.company,
-                    description: `${t.teamSizePrefix}${formData.teamSize || t.notSpecified}\n\n${formData.message}`,
+                    description: `Размер команды: ${formData.teamSize || 'Не указан'}\n\n${formData.message}`,
                 }),
             })
 
@@ -290,7 +281,7 @@ const CCEContactForm: React.FC = () => {
     }
 
     return (
-        <section id="cce-contact" className="py-20 sm:py-32 px-4 sm:px-6 lg:px-10 relative overflow-hidden">
+        <section id="cce-contact" className="py-20 sm:py-32 px-4 sm:px-6 lg:px-10 bg-[#12121a] relative overflow-hidden">
             <div className="absolute inset-0 overflow-hidden pointer-events-none">
                 <div className="absolute bottom-0 left-1/4 w-[500px] h-[500px] bg-violet-500/5 rounded-full blur-[150px]" />
                 <div className="absolute top-1/4 right-0 w-[400px] h-[400px] bg-amber-500/5 rounded-full blur-[120px]" />

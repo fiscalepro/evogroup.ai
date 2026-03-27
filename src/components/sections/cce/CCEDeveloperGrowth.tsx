@@ -4,21 +4,88 @@ import React from 'react'
 import { motion } from 'framer-motion'
 import { useTranslation } from '@/components/providers/I18nProvider'
 
-const dimensionGradients = [
-    'linear-gradient(to right, #8b5cf6, #a78bfa)',
-    'linear-gradient(to right, #8b5cf6, #fbbf24)',
-    'linear-gradient(to right, #f59e0b, #fbbf24)',
-    'linear-gradient(to right, #a78bfa, #f59e0b)',
-    'linear-gradient(to right, #fbbf24, #8b5cf6)',
-    'linear-gradient(to right, #8b5cf6, #f59e0b)',
-]
-
 const CCEDeveloperGrowth: React.FC = () => {
-    const { tObj } = useTranslation()
-    const t = tObj('cceDeveloperGrowth')
+    const { locale } = useTranslation()
+
+    const translations = {
+        ru: {
+            badge: 'Developer Growth',
+            title: 'Рост каждого разработчика — измерим',
+            subtitle: 'Шесть измерений профессионального роста. Автоматический сбор метрик, персональные рекомендации, отчёты для руководства.',
+            dimensions: [
+                { name: 'Продуктивность', value: 87, color: 'from-violet-500 to-violet-400' },
+                { name: 'Качество кода', value: 92, color: 'from-violet-500 to-amber-400' },
+                { name: 'AI-мастерство', value: 78, color: 'from-amber-500 to-amber-400' },
+                { name: 'Командная работа', value: 85, color: 'from-violet-400 to-amber-500' },
+                { name: 'Инновации', value: 71, color: 'from-amber-400 to-violet-500' },
+                { name: 'Техническая глубина', value: 83, color: 'from-violet-500 to-amber-500' },
+            ],
+            benefits: [
+                'Автоматический сбор метрик — без ручного ввода',
+                'Персональные рекомендации роста для каждого',
+                'Отчёты для руководства — видимость прогресса',
+                'Адаптивные цели — система учится вместе с командой',
+            ],
+            profileTitle: 'Профиль разработчика',
+            profileName: 'Алексей К.',
+            profileRole: 'Senior Developer',
+            overallLabel: 'Общий уровень',
+            overallValue: '82/100',
+        },
+        en: {
+            badge: 'Developer Growth',
+            title: 'Measure every developer\'s growth',
+            subtitle: 'Six dimensions of professional growth. Automatic metrics collection, personalized recommendations, management reports.',
+            dimensions: [
+                { name: 'Productivity', value: 87, color: 'from-violet-500 to-violet-400' },
+                { name: 'Code Quality', value: 92, color: 'from-violet-500 to-amber-400' },
+                { name: 'AI Mastery', value: 78, color: 'from-amber-500 to-amber-400' },
+                { name: 'Teamwork', value: 85, color: 'from-violet-400 to-amber-500' },
+                { name: 'Innovation', value: 71, color: 'from-amber-400 to-violet-500' },
+                { name: 'Technical Depth', value: 83, color: 'from-violet-500 to-amber-500' },
+            ],
+            benefits: [
+                'Automatic metrics collection — no manual input',
+                'Personalized growth recommendations for everyone',
+                'Management reports — progress visibility',
+                'Adaptive goals — the system learns with the team',
+            ],
+            profileTitle: 'Developer Profile',
+            profileName: 'Alex K.',
+            profileRole: 'Senior Developer',
+            overallLabel: 'Overall Level',
+            overallValue: '82/100',
+        },
+        ky: {
+            badge: 'Developer Growth',
+            title: 'Ар бир иштеп чыгуучунун өсүшүн өлчөңүз',
+            subtitle: 'Кесиптик өсүүнүн алты өлчөмү. Метрикаларды автоматтык түрдө чогултуу, жеке сунуштар, жетекчилик үчүн отчёттор.',
+            dimensions: [
+                { name: 'Өндүрүмдүүлүк', value: 87, color: 'from-violet-500 to-violet-400' },
+                { name: 'Код сапаты', value: 92, color: 'from-violet-500 to-amber-400' },
+                { name: 'AI чеберчилиги', value: 78, color: 'from-amber-500 to-amber-400' },
+                { name: 'Командалык иш', value: 85, color: 'from-violet-400 to-amber-500' },
+                { name: 'Инновациялар', value: 71, color: 'from-amber-400 to-violet-500' },
+                { name: 'Техникалык тереңдик', value: 83, color: 'from-violet-500 to-amber-500' },
+            ],
+            benefits: [
+                'Метрикаларды автоматтык чогултуу — кол менен киргизүү жок',
+                'Ар бир адам үчүн жеке өсүү сунуштары',
+                'Жетекчилик үчүн отчёттор — прогрессти көрүү',
+                'Адаптивдүү максаттар — система команда менен бирге үйрөнөт',
+            ],
+            profileTitle: 'Иштеп чыгуучунун профили',
+            profileName: 'Алексей К.',
+            profileRole: 'Senior Developer',
+            overallLabel: 'Жалпы деңгээл',
+            overallValue: '82/100',
+        }
+    }
+
+    const t = translations[locale] || translations.ru
 
     return (
-        <section className="py-20 sm:py-32 px-4 sm:px-6 lg:px-10 relative overflow-hidden">
+        <section className="py-20 sm:py-32 px-4 sm:px-6 lg:px-10 bg-black relative overflow-hidden">
             <div className="absolute inset-0 overflow-hidden pointer-events-none">
                 <div className="absolute top-1/4 right-0 w-[500px] h-[500px] bg-amber-500/5 rounded-full blur-[150px]" />
             </div>
@@ -116,7 +183,7 @@ const CCEDeveloperGrowth: React.FC = () => {
                                 <p className="text-white/50 text-sm">{t.profileRole}</p>
                             </div>
                             <div className="ml-auto text-right">
-                                <p className="text-xs text-white/55">{t.overallLabel}</p>
+                                <p className="text-xs text-white/40">{t.overallLabel}</p>
                                 <p className="text-lg font-bold bg-gradient-to-r from-violet-400 to-amber-400 bg-clip-text text-transparent">{t.overallValue}</p>
                             </div>
                         </div>
@@ -135,8 +202,7 @@ const CCEDeveloperGrowth: React.FC = () => {
                                             whileInView={{ width: `${dim.value}%` }}
                                             viewport={{ once: true }}
                                             transition={{ delay: 0.5 + index * 0.1, duration: 0.8, ease: 'easeOut' }}
-                                            className="h-full rounded-full"
-                                            style={{ background: dimensionGradients[index] }}
+                                            className={`h-full bg-gradient-to-r ${dim.color} rounded-full`}
                                         />
                                     </div>
                                 </div>

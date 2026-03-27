@@ -5,8 +5,87 @@ import { motion } from 'framer-motion'
 import { useTranslation } from '@/components/providers/I18nProvider'
 
 const CCESwarmIntelligence: React.FC = () => {
-    const { tObj } = useTranslation()
-    const t = tObj('cceSwarm')
+    const { locale } = useTranslation()
+
+    const translations = {
+        ru: {
+            badge: 'Swarm Intelligence',
+            title: 'Паттерн одного — знание всех',
+            subtitle: 'CCE автоматически обнаруживает эффективные паттерны работы и распространяет их на всю команду. Коллективный интеллект растёт с каждым днём.',
+            features: [
+                {
+                    title: 'Автообнаружение паттернов',
+                    description: 'Система анализирует, как каждый разработчик использует Claude Code, и выявляет эффективные практики.',
+                },
+                {
+                    title: 'Умные рекомендации',
+                    description: 'Каждый получает персональные рекомендации на основе лучших практик команды.',
+                },
+                {
+                    title: 'Усиление и затухание',
+                    description: 'Популярные паттерны усиливаются, неэффективные — автоматически затухают. Эволюция знаний.',
+                },
+                {
+                    title: 'Метрики эффективности',
+                    description: 'Измеряйте влияние каждого паттерна на продуктивность команды в реальном времени.',
+                },
+            ],
+            hubLabel: 'CCE Hub',
+            nodes: ['Dev 1', 'Dev 2', 'Dev 3', 'Dev 4', 'Dev 5'],
+        },
+        en: {
+            badge: 'Swarm Intelligence',
+            title: 'One pattern — everyone\'s knowledge',
+            subtitle: 'CCE automatically discovers effective work patterns and spreads them across the entire team. Collective intelligence grows every day.',
+            features: [
+                {
+                    title: 'Auto-discovery of patterns',
+                    description: 'The system analyzes how each developer uses Claude Code and identifies effective practices.',
+                },
+                {
+                    title: 'Smart recommendations',
+                    description: 'Everyone gets personalized recommendations based on team best practices.',
+                },
+                {
+                    title: 'Reinforcement and decay',
+                    description: 'Popular patterns are reinforced, ineffective ones automatically decay. Knowledge evolution.',
+                },
+                {
+                    title: 'Effectiveness metrics',
+                    description: 'Measure the impact of each pattern on team productivity in real time.',
+                },
+            ],
+            hubLabel: 'CCE Hub',
+            nodes: ['Dev 1', 'Dev 2', 'Dev 3', 'Dev 4', 'Dev 5'],
+        },
+        ky: {
+            badge: 'Swarm Intelligence',
+            title: 'Бирөөнүн паттерни — бардыгынын билими',
+            subtitle: 'CCE натыйжалуу иш паттерндерин автоматтык түрдө аныктайт жана бүт командага жайылтат.',
+            features: [
+                {
+                    title: 'Паттерндерди авто-аныктоо',
+                    description: 'Система ар бир иштеп чыгуучу Claude Code\'ду кандай колдонуп жатканын анализдейт.',
+                },
+                {
+                    title: 'Акылдуу сунуштар',
+                    description: 'Ар ким команданын мыкты практикаларынын негизинде жеке сунуштарды алат.',
+                },
+                {
+                    title: 'Күчөтүү жана сөнүү',
+                    description: 'Популярдуу паттерндер күчөтүлөт, натыйжасыздар автоматтык түрдө сөнөт.',
+                },
+                {
+                    title: 'Натыйжалуулук метрикалары',
+                    description: 'Ар бир паттерндин команда өндүрүмдүүлүгүнө тийгизген таасирин реалдуу убакытта өлчөңүз.',
+                },
+            ],
+            hubLabel: 'CCE Hub',
+            nodes: ['Dev 1', 'Dev 2', 'Dev 3', 'Dev 4', 'Dev 5'],
+        }
+    }
+
+    const t = translations[locale] || translations.ru
 
     const featureIcons = [
         <svg key="search" className="w-6 h-6 text-violet-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -33,7 +112,7 @@ const CCESwarmIntelligence: React.FC = () => {
     ]
 
     return (
-        <section className="py-20 sm:py-32 px-4 sm:px-6 lg:px-10 relative overflow-hidden">
+        <section className="py-20 sm:py-32 px-4 sm:px-6 lg:px-10 bg-[#12121a] relative overflow-hidden">
             <div className="max-w-6xl mx-auto relative z-10">
                 {/* Badge */}
                 <motion.span

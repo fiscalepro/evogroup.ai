@@ -1,7 +1,7 @@
 'use client'
 
 import React from 'react'
-import { Button } from '@nextui-org/react'
+import { Card, CardBody, Button } from '@nextui-org/react'
 import { useTranslation } from '@/components/providers/I18nProvider'
 
 const CompetitiveAdvantages: React.FC = () => {
@@ -101,60 +101,69 @@ const CompetitiveAdvantages: React.FC = () => {
     const translations = getTranslations()
 
     return (
-        <section className="relative py-24 lg:py-32 overflow-hidden">
+        <section className="relative py-32 overflow-hidden">
             {/* Section header */}
-            <div className="relative z-10 max-w-5xl mx-auto px-6 mb-14 text-center">
-                <span className="inline-flex items-center gap-2 mb-6 px-4 py-2 rounded-full bg-[#F0F0F5]/[0.04] border border-[#F0F0F5]/[0.08] text-sm font-medium text-[#F0F0F5]/60">
+            <div className="relative z-10 max-w-7xl mx-auto px-6 mb-20 text-center">
+                <span className="inline-block mb-6 px-4 py-2 rounded-full bg-white/5 backdrop-blur-xl border border-white/10 text-sm font-medium text-white/90">
                     {translations.preTitle}
                 </span>
-                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#F0F0F5] mb-4 tracking-tight">
+                <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6">
                     {translations.title}
                 </h2>
-                <p className="text-base lg:text-lg text-[#F0F0F5]/50 max-w-xl mx-auto">
+                <p className="text-lg sm:text-xl text-white/60 max-w-2xl mx-auto">
                     {translations.subtitle}
                 </p>
             </div>
 
             {/* Advantages grid */}
-            <div className="relative z-10 max-w-5xl mx-auto px-6 mb-10">
-                <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            <div className="relative z-10 max-w-7xl mx-auto px-6 mb-16">
+                <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
                     {translations.advantages.map((advantage, index) => (
-                        <div
+                        <Card
                             key={index}
-                            className="group p-6 rounded-2xl bg-[#F0F0F5]/[0.02] border border-[#F0F0F5]/[0.06] hover:bg-[#F0F0F5]/[0.04] hover:border-[#F0F0F5]/[0.12] transition-all duration-300 text-center"
+                            className="group bg-white/5 backdrop-blur-xl border-white/10 hover:bg-white/10 hover:border-white/20 transition-all duration-500 hover:scale-105"
                         >
-                            <div className="text-3xl font-bold text-[#F0F0F5] mb-1">
-                                {advantage.title}
-                            </div>
-                            <div className="text-sm font-semibold text-[#F0F0F5]/60 mb-3">
-                                {advantage.subtitle}
-                            </div>
-                            <p className="text-xs text-[#F0F0F5]/35 leading-relaxed">
-                                {advantage.description}
-                            </p>
-                        </div>
+                            <CardBody className="p-8 text-center">
+                                <div className="text-5xl font-bold bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent mb-2">
+                                    {advantage.title}
+                                </div>
+                                <div className="text-lg font-semibold text-white mb-4">
+                                    {advantage.subtitle}
+                                </div>
+                                <p className="text-sm text-white/60 leading-relaxed">
+                                    {advantage.description}
+                                </p>
+                            </CardBody>
+                        </Card>
                     ))}
                 </div>
             </div>
 
             {/* CTA Section */}
-            <div className="relative z-10 max-w-3xl mx-auto px-6">
-                <div className="flex flex-col items-center text-center p-8 sm:p-10 rounded-2xl border border-[#F0F0F5]/[0.06] bg-[#F0F0F5]/[0.02]">
-                    <h3 className="text-2xl sm:text-3xl font-bold text-[#F0F0F5] mb-3">
-                        {locale === 'en' ? 'Ready to transform your business?' : locale === 'ky' ? 'Бизнесиңизди өзгөртүүгө даярсызбы?' : 'Готовы трансформировать бизнес?'}
-                    </h3>
-                    <p className="text-[#F0F0F5]/45 mb-8 max-w-lg text-sm sm:text-base">
-                        {locale === 'en' ? 'Get a free consultation and see how AI can help your company' : locale === 'ky' ? 'Акысыз консультация алыңыз жана ИИ компаниягыңызга кандай жардам бере аларын көрүңүз' : 'Получите бесплатную консультацию и узнайте, как AI может помочь вашей компании'}
-                    </p>
-                    <Button
-                        size="lg"
-                        className="text-sm font-semibold px-8 h-12 bg-[#F0F0F5] text-[#0A0E1A] hover:bg-white"
-                        radius="lg"
-                    >
-                        {translations.cta}
-                    </Button>
-                </div>
+            <div className="relative z-10 max-w-4xl mx-auto px-6">
+                <Card className="bg-gradient-to-r from-blue-500/20 via-purple-500/20 to-indigo-500/20 backdrop-blur-xl border-white/20">
+                    <CardBody className="p-12 text-center">
+                        <h3 className="text-3xl font-bold text-white mb-4">
+                            {locale === 'en' ? 'Ready to transform your business?' : locale === 'ky' ? 'Бизнесиңизди өзгөртүүгө даярсызбы?' : 'Готовы трансформировать бизнес?'}
+                        </h3>
+                        <p className="text-white/70 mb-8 max-w-2xl mx-auto">
+                            {locale === 'en' ? 'Get a free consultation and see how AI can help your company' : locale === 'ky' ? 'Акысыз консультация алыңыз жана ИИ компаниягыңызга кандай жардам бере аларын көрүңүз' : 'Получите бесплатную консультацию и узнайте, как AI может помочь вашей компании'}
+                        </p>
+                        <Button
+                            size="lg"
+                            color="primary"
+                            className="text-base font-semibold px-8 h-14 bg-blue-600 hover:bg-blue-700"
+                            radius="full"
+                        >
+                            {translations.cta}
+                        </Button>
+                    </CardBody>
+                </Card>
             </div>
+
+            {/* Background */}
+            <div className="absolute top-1/4 left-0 w-[600px] h-[600px] bg-green-500/10 rounded-full blur-[150px] pointer-events-none" />
+            <div className="absolute bottom-1/4 right-0 w-[600px] h-[600px] bg-blue-500/10 rounded-full blur-[150px] pointer-events-none" />
         </section>
     )
 }

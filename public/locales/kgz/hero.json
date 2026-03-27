@@ -12,20 +12,20 @@
   "scroll_hint": "Төмөн жылдыруу",
   "metrics": {
     "projects": {
-      "value": "68+",
+      "value": "50+",
       "label": "Долбоор"
     },
     "savings": {
-      "value": "16",
-      "label": "Универсалдуу Кабинет микросервистери"
+      "value": "$10M+",
+      "label": "Кардарлардын үнөмү"
     },
     "uptime": {
-      "value": "600+",
-      "label": "Pull Requests"
+      "value": "99.9%",
+      "label": "Жумуштоо убактысы"
     },
     "experts": {
-      "value": "5+",
-      "label": "AI-боттор продакшнде"
+      "value": "25+",
+      "label": "Адис"
     }
   },
   "features": [
