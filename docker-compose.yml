@@ -3,19 +3,17 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-      args:
-        APP_PORT: ${APP_PORT:-4598}
     container_name: evogroup-landing
     ports:
-      - "${APP_PORT:-4598}:${APP_PORT:-4598}"
+      - "4599:4599"
     environment:
       - NODE_ENV=production
-      - PORT=${APP_PORT:-4598}
+      - PORT=4599
       - HOSTNAME=0.0.0.0
       - NEXT_TELEMETRY_DISABLED=1
     restart: unless-stopped
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:${APP_PORT:-4598}/api/health"]
+      test: ["CMD", "curl", "-f", "http://localhost:4599/api/health"]
       interval: 30s
       timeout: 10s
       retries: 3
