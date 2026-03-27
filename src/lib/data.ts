@@ -46,7 +46,7 @@ export const solutions: Solution[] = [
     description: 'Специализированные продукты для ресторанов, клиник, отелей и логистики',
     icon: 'cog',
     features: [
-      'EvoResto — QR-меню, заказы, онлайн-оплата',
+      'EvoPay — QR-меню, заказы, онлайн-оплата',
       'EvoClinic — управление клиникой с WhatsApp-ботом',
       'SmartStay — управление гостиницами',
       'Cargo CRM — логистика и грузоперевозки'

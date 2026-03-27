@@ -489,16 +489,16 @@ export const en = {
         subtitle: 'Every day without automation costs you clients, money, and time',
         problems: [
             {
-                title: 'One system for team and profit growth',
-                description: 'Monitoring, analytics, quality control, employee training and sales — one tool that grows your team and profit at the same time.',
+                title: 'Clients write — no one answers',
+                description: 'Messages in WhatsApp, Instagram, Telegram pile up. Managers miss requests, respond late, forget to follow up. You lose sales every day.',
             },
             {
-                title: 'Payment fraud risks',
-                description: 'Manual transaction monitoring misses threats. Fraud costs pile up undetected.',
+                title: 'Waiters are slow, checks are low',
+                description: 'Guests wait to order. The waiter is busy. No upsells, no analytics. Average check stays flat, service quality drops at peak hours.',
             },
             {
-                title: 'Code reviews bottleneck',
-                description: 'Developers wait days for reviews. Knowledge stays siloed. Standards drift.',
+                title: 'Development is slow and chaotic',
+                description: 'Code reviews take days. No shared standards. Knowledge stays in people\'s heads. The team grows but velocity doesn\'t.',
             },
         ],
         solveWith: 'Solve with {solution}',
@@ -641,7 +641,7 @@ export const en = {
             title: 'Solutions',
             items: [
                 { label: 'EvoAI CRM', sublabel: 'AI bots for WhatsApp/Instagram/Telegram' },
-                { label: 'EvoResto', sublabel: 'QR menu, orders, online payments' },
+                { label: 'EvoPay', sublabel: 'QR menu, orders, online payments' },
                 { label: 'CCE Platform', sublabel: 'Claude Code Enterprise for teams' },
                 { label: 'Universal Cabinet', sublabel: 'ESF, ETTN, tax reporting & analytics' },
             ],
@@ -677,7 +677,7 @@ export const en = {
                 metricLabel: 'bots in production',
             },
             {
-                title: 'EvoResto',
+                title: 'EvoPay',
                 description: 'Restaurant automation: QR-menu, online orders, online payments, table management. Kitchen Display System included.',
                 features: ['QR-menu & ordering', 'Online payments', 'Kitchen Display (KDS)', 'Multi-language (RU/KY/EN)'],
                 metricValue: '+30%',

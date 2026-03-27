@@ -74,7 +74,7 @@ function getCaseData(locale: string): { cases: CaseCard[]; overline: string; tit
                     tag: 'HoReCa · Automation',
                     company: 'HoReCa Automation',
                     headline: 'Full restaurant automation: QR menu, online payments, and real-time analytics',
-                    teaser: 'A premium restaurant was losing time on manual orders, cashier queues during rush hours, and had zero analytics. We deployed EvoRest — QR menu with online payments, automatic order routing to kitchen screens, a loyalty system, and a real-time management dashboard.',
+                    teaser: 'A premium restaurant was losing time on manual orders, cashier queues during rush hours, and had zero analytics. We deployed EvoPay — QR menu with online payments, automatic order routing to kitchen screens, a loyalty system, and a real-time management dashboard.',
                     results: [
                         { value: '−40%', label: 'Service time' },
                         { value: '+18%', label: 'Average check' },
@@ -134,7 +134,7 @@ function getCaseData(locale: string): { cases: CaseCard[]; overline: string; tit
                     tag: 'Тамак-аш · Автоматташтыруу',
                     company: 'HoReCa Автоматташтыруу',
                     headline: 'Ресторанды толук автоматташтыруу: QR-меню, онлайн төлөм жана реал убакыттагы аналитика',
-                    teaser: 'Ресторан заказдарды кол менен кабыл алууга убакыт жоготуп, кассада кезектер, аналитика жок болгон. EvoRest орноттук — онлайн төлөм менен QR-меню, заказдарды ашканага автоматтык жөнөтүү, лоялдуулук системасы жана реал убакыттагы башкаруу дашборду.',
+                    teaser: 'Ресторан заказдарды кол менен кабыл алууга убакыт жоготуп, кассада кезектер, аналитика жок болгон. EvoPay орноттук — онлайн төлөм менен QR-меню, заказдарды ашканага автоматтык жөнөтүү, лоялдуулук системасы жана реал убакыттагы башкаруу дашборду.',
                     results: [
                         { value: '−40%', label: 'Тейлөө убактысы' },
                         { value: '+18%', label: 'Орточо чек' },
@@ -194,7 +194,7 @@ function getCaseData(locale: string): { cases: CaseCard[]; overline: string; tit
                 tag: 'Общепит · Автоматизация',
                 company: 'HoReCa Автоматизация',
                 headline: 'Полная автоматизация ресторана: QR-меню, онлайн-оплата и аналитика в реальном времени',
-                teaser: 'Премиальный ресторан терял время на ручном приёме заказов, очереди на кассе в часы пик, нулевая аналитика. Внедрили EvoRest — QR-меню с онлайн-оплатой, автопередача заказов на кухню, система лояльности и дашборд управляющего в реальном времени.',
+                teaser: 'Премиальный ресторан терял время на ручном приёме заказов, очереди на кассе в часы пик, нулевая аналитика. Внедрили EvoPay — QR-меню с онлайн-оплатой, автопередача заказов на кухню, система лояльности и дашборд управляющего в реальном времени.',
                 results: [
                     { value: '−40%', label: 'Время обслуживания' },
                     { value: '+18%', label: 'Средний чек' },
