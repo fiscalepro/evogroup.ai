@@ -40,7 +40,7 @@ function getCaseData(locale: string): { cases: CaseCard[]; overline: string; tit
                     number: '01',
                     color: 'green',
                     tag: 'Banking · Fintech',
-                    company: 'Bakai Bank — SmartUchet',
+                    company: 'Bakai Bank — Universal Cabinet',
                     headline: 'Full ecosystem of government e-services for small business banking',
                     teaser: 'Bakai Bank needed to offer ESF, ETTN, tax reports, HR, ERP and IP registration inside their mobile app. We built 16 microservices on Spring Cloud with Tunduk X-Road integration and OECP digital signing.',
                     results: [
@@ -100,7 +100,7 @@ function getCaseData(locale: string): { cases: CaseCard[]; overline: string; tit
                     number: '01',
                     color: 'green',
                     tag: 'Банктар · Финтех',
-                    company: 'Бакай Банк — SmartUchet',
+                    company: 'Бакай Банк — Универсалдуу Кабинет',
                     headline: 'Чакан бизнес үчүн мамлекеттик электрондук кызматтардын толук экосистемасы',
                     teaser: 'Бакай Банкка кардарларга ЭСФ, ЭТТН, салык отчёттору, HR, ERP жана ИП каттоону мобилдик тиркемеден берүү керек болду. Биз Tunduk X-Road интеграциясы менен 16 микросервис курдук.',
                     results: [
@@ -160,7 +160,7 @@ function getCaseData(locale: string): { cases: CaseCard[]; overline: string; tit
                 number: '01',
                 color: 'green',
                 tag: 'Банки · Финтех',
-                company: 'Бакай Банк — SmartUchet',
+                company: 'Бакай Банк — Универсальный Кабинет',
                 headline: 'Полная экосистема госуслуг для малого бизнеса в банковском приложении',
                 teaser: 'Бакай Банку нужно было дать клиентам ЭСФ, ЭТТН, налоговые отчёты, HR, ERP и регистрацию ИП прямо в мобильном приложении. Мы построили 16 микросервисов на Spring Cloud с интеграцией через Tunduk X-Road и ОЭЦП подписанием.',
                 results: [

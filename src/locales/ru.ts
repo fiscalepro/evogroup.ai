@@ -5,7 +5,7 @@ export const ru = {
         whatsappCrm: 'EvoAI CRM',
         evopay: 'EvoPay',
         evoclinic: 'EvoClinic',
-        smartuchet: 'Smart Учёт',
+        smartuchet: 'Универсальный Кабинет',
         cce: 'CCE',
         cases: 'Кейсы',
         technology: 'Технологии',
@@ -533,7 +533,7 @@ export const ru = {
                 { label: 'EvoAI CRM', sublabel: 'AI-боты WhatsApp/Instagram/Telegram' },
                 { label: 'EvoResto', sublabel: 'QR-меню, заказы, оплата Bakai24' },
                 { label: 'CCE Platform', sublabel: 'Claude Code Enterprise для команд' },
-                { label: 'Smart Учёт', sublabel: 'ЭСФ, ЭТТН, налоговая отчётность и аналитика' },
+                { label: 'Универсальный Кабинет', sublabel: 'ЭСФ, ЭТТН, налоговая отчётность и аналитика' },
             ],
         },
         company: {

@@ -16,7 +16,7 @@ export const solutions: Solution[] = [
   },
   {
     id: 'fintech-ecosystem',
-    title: 'SmartUchet — платформа для Бакай Банка',
+    title: 'Универсальный Кабинет — платформа для Бакай Банка',
     description: 'Комплексная экосистема микросервисов для банковского малого бизнеса',
     icon: 'bank',
     features: [
@@ -65,7 +65,7 @@ export const clients: Client[] = [
 export const caseStudies: CaseStudy[] = [
   {
     id: 'bakai-smartuchet',
-    title: 'SmartUchet — экосистема для малого бизнеса',
+    title: 'Универсальный Кабинет — экосистема для малого бизнеса',
     client: 'Бакай Банк',
     industry: 'Банковский сектор',
     challenge: 'Банку необходимо предоставить клиентам малого бизнеса полный цикл электронных госуслуг в мобильном приложении',
