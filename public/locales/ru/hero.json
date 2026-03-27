@@ -12,20 +12,20 @@
   "scroll_hint": "Прокрутите вниз",
   "metrics": {
     "projects": {
-      "value": "50+",
+      "value": "68+",
       "label": "Проектов"
     },
     "savings": {
-      "value": "$10M+",
-      "label": "Экономии клиентов"
+      "value": "16",
+      "label": "Микросервисов Универсальный Кабинет"
     },
     "uptime": {
-      "value": "99.9%",
-      "label": "Аптайм"
+      "value": "600+",
+      "label": "Pull Requests"
     },
     "experts": {
-      "value": "25+",
-      "label": "Экспертов"
+      "value": "5+",
+      "label": "AI-ботов в продакшне"
     }
   },
   "features": [

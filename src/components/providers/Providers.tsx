@@ -3,6 +3,7 @@
 import React from 'react'
 import { NextUIProvider } from '@nextui-org/react'
 import { useRouter } from 'next/navigation'
+import { I18nProvider } from '@/components/providers/I18nProvider'
 
 export const Providers = React.memo(({ children }: { children: React.ReactNode }) => {
     const router = useRouter()
@@ -13,9 +14,11 @@ export const Providers = React.memo(({ children }: { children: React.ReactNode }
     }, [router])
 
     return (
-        <NextUIProvider navigate={navigate}>
-            {children}
-        </NextUIProvider>
+        <I18nProvider initialLocale="ru">
+            <NextUIProvider navigate={navigate}>
+                {children}
+            </NextUIProvider>
+        </I18nProvider>
     )
 })
 

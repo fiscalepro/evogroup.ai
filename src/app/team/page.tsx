@@ -1,6 +1,6 @@
 'use client'
 
-import { I18nProvider, useTranslation } from '@/components/providers/I18nProvider'
+import { useTranslation } from '@/components/providers/I18nProvider'
 import ModernHeader from '@/components/sections/ModernHeader'
 import Team from '@/components/sections/Team'
 import TrustSignals from '@/components/sections/TrustSignals'
@@ -90,8 +90,6 @@ function TeamContent() {
 
 export default function TeamPage() {
     return (
-        <I18nProvider initialLocale="ru">
-            <TeamContent />
-        </I18nProvider>
+        <TeamContent />
     )
 }

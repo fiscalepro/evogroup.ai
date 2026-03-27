@@ -11,16 +11,12 @@ import CCEDeveloperGrowth from '@/components/sections/cce/CCEDeveloperGrowth'
 import CCESecuritySection from '@/components/sections/cce/CCESecuritySection'
 import CCEHowItWorks from '@/components/sections/cce/CCEHowItWorks'
 import CCEContactForm from '@/components/sections/cce/CCEContactForm'
+import PageBackground from '@/components/sections/PageBackground'
 
 function CCEContent() {
     return (
-        <div className="relative min-h-screen bg-black">
-            {/* Background gradients */}
-            <div className="fixed inset-0 overflow-hidden pointer-events-none">
-                <div className="absolute top-0 left-1/4 w-[800px] h-[800px] bg-violet-500/10 rounded-full blur-[120px] animate-float" />
-                <div className="absolute top-1/3 right-1/4 w-[600px] h-[600px] bg-amber-500/10 rounded-full blur-[100px] animate-float" style={{animationDelay: '2s'}} />
-                <div className="absolute bottom-1/4 left-1/3 w-[500px] h-[500px] bg-violet-500/8 rounded-full blur-[100px] animate-float" style={{animationDelay: '4s'}} />
-            </div>
+        <div className="relative min-h-screen bg-[#0A0E1A]">
+            <PageBackground accent="purple" />
 
             <ModernHeader />
 

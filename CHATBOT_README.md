@@ -95,7 +95,7 @@ npm run dev
 
 ```env
 DEEPSEEK_API_KEY=sk-8dc300d8eb824d2fb93787261bcc6766
-NEXT_PUBLIC_SITE_URL=http://localhost:4599
+NEXT_PUBLIC_SITE_URL=http://localhost:
 ```
 
 ### Настройка System Prompt

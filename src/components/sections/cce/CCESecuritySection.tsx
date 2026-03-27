@@ -5,102 +5,8 @@ import { motion } from 'framer-motion'
 import { useTranslation } from '@/components/providers/I18nProvider'
 
 const CCESecuritySection: React.FC = () => {
-    const { locale } = useTranslation()
-
-    const translations = {
-        ru: {
-            badge: 'Enterprise Security',
-            title: 'Безопасность без компромиссов',
-            features: [
-                {
-                    title: 'Политики безопасности',
-                    description: 'Централизованные правила доступа. Определите, что можно и нельзя — политики применятся ко всей команде автоматически.',
-                },
-                {
-                    title: 'Аудит и мониторинг',
-                    description: 'Полная история действий каждого разработчика. Кто, что и когда сделал с AI — всё в логе.',
-                },
-                {
-                    title: 'Секреты под контролем',
-                    description: 'Pre-commit hooks предотвращают утечку секретов. Автоматическое сканирование промптов и ответов AI.',
-                },
-                {
-                    title: 'Code Review AI',
-                    description: 'Автоматический review по стандартам компании. AI проверяет код до того, как его увидит тимлид.',
-                },
-                {
-                    title: 'Compliance Ready',
-                    description: 'Генерация отчётов для аудиторов. Готовые шаблоны для SOC2, ISO 27001, GDPR.',
-                },
-                {
-                    title: 'Self-hosted опция',
-                    description: 'Данные остаются в вашем периметре. Полный контроль над инфраструктурой и конфиденциальностью.',
-                },
-            ],
-        },
-        en: {
-            badge: 'Enterprise Security',
-            title: 'Security without compromise',
-            features: [
-                {
-                    title: 'Security Policies',
-                    description: 'Centralized access rules. Define what\'s allowed and what isn\'t — policies apply to the entire team automatically.',
-                },
-                {
-                    title: 'Audit & Monitoring',
-                    description: 'Complete action history for every developer. Who did what and when with AI — everything is logged.',
-                },
-                {
-                    title: 'Secrets Under Control',
-                    description: 'Pre-commit hooks prevent secret leaks. Automatic scanning of prompts and AI responses.',
-                },
-                {
-                    title: 'AI Code Review',
-                    description: 'Automatic review by company standards. AI checks code before the team lead sees it.',
-                },
-                {
-                    title: 'Compliance Ready',
-                    description: 'Report generation for auditors. Ready-made templates for SOC2, ISO 27001, GDPR.',
-                },
-                {
-                    title: 'Self-hosted Option',
-                    description: 'Data stays within your perimeter. Full control over infrastructure and confidentiality.',
-                },
-            ],
-        },
-        ky: {
-            badge: 'Enterprise Security',
-            title: 'Компромисссиз коопсуздук',
-            features: [
-                {
-                    title: 'Коопсуздук саясаттары',
-                    description: 'Борбордоштурулган кирүү эрежелери. Эмнеге уруксат жана тыюу — саясаттар бүт командага автоматтык колдонулат.',
-                },
-                {
-                    title: 'Аудит жана мониторинг',
-                    description: 'Ар бир иштеп чыгуучунун толук аракеттер тарыхы. Ким, эмне жана качан AI менен жасады.',
-                },
-                {
-                    title: 'Сырлар контролдо',
-                    description: 'Pre-commit hooks сырлардын агып кетишин алдын алат. Промпттарды жана AI жоопторун автоматтык сканерлөө.',
-                },
-                {
-                    title: 'AI Code Review',
-                    description: 'Компания стандарттары боюнча автоматтык review. AI кодду тимлид көрөрдөн мурун текшерет.',
-                },
-                {
-                    title: 'Compliance Ready',
-                    description: 'Аудиторлор үчүн отчёттор. SOC2, ISO 27001, GDPR үчүн даяр шаблондор.',
-                },
-                {
-                    title: 'Self-hosted опция',
-                    description: 'Маалыматтар сиздин периметрде калат. Инфраструктура жана купуялуулук боюнча толук контрол.',
-                },
-            ],
-        }
-    }
-
-    const t = translations[locale] || translations.ru
+    const { tObj } = useTranslation()
+    const t = tObj('cceSecurity')
 
     const featureIcons = [
         // Shield
@@ -131,7 +37,7 @@ const CCESecuritySection: React.FC = () => {
     ]
 
     return (
-        <section className="py-20 sm:py-32 px-4 sm:px-6 lg:px-10 bg-[#12121a] relative overflow-hidden">
+        <section className="py-20 sm:py-32 px-4 sm:px-6 lg:px-10 relative overflow-hidden">
             <div className="max-w-6xl mx-auto relative z-10">
                 {/* Badge */}
                 <motion.span

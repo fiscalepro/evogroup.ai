@@ -38,7 +38,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(({
         baseClasses += ' h-14 px-8 text-lg'
     } else {
         baseClasses += ' h-10 px-4 text-sm' // default
-    }
+    } 
 
     return (
         <button

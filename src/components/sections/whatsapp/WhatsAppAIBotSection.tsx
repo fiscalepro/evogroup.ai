@@ -9,81 +9,10 @@ interface QuickReply {
 }
 
 const WhatsAppAIBotSection: React.FC = () => {
-    const { locale } = useTranslation()
+    const { tObj } = useTranslation()
+    const translations = tObj('whatsappAiBot')
     const [selectedReply, setSelectedReply] = useState<number | null>(null)
     const [isTyping, setIsTyping] = useState(false)
-
-    const getTranslations = () => {
-        if (locale === 'en') {
-            return {
-                badge: 'AI Bot',
-                title: 'AI assistant that works 24/7',
-                subtitle: 'Handles 40-60% of inquiries automatically. Complex cases go to managers.',
-                features: [
-                    { title: 'Works around the clock', description: 'Responds even at night and on weekends' },
-                    { title: 'Learns your business', description: 'Trained on your FAQs and products' },
-                    { title: 'Passes to managers', description: 'Complex questions go to humans' },
-                    { title: 'Saves time', description: '40-60% of questions handled automatically' }
-                ],
-                quickReplies: [
-                    { text: 'How much is delivery?', response: 'Delivery within Bishkek is free for orders over 5,000 som. For smaller orders, delivery is 200 som. Outside the city — calculated individually. When would you like delivery?' },
-                    { text: 'Is it in stock?', response: 'Please specify which product you\'re interested in, and I\'ll check availability immediately. You can also send a photo if you have one!' },
-                    { text: 'When will my order arrive?', response: 'To check your order status, please provide your order number or the phone number used for the order. I\'ll find all the information right away!' },
-                    { text: 'How to pay?', response: 'We accept: bank cards, cash on delivery, bank transfer, Elsom, O!Money. For orders over 50,000 som, installment payment is available. Which method works best for you?' }
-                ],
-                tryIt: 'Try asking a question',
-                botName: 'AI Assistant',
-                botStatus: 'Online • Responds instantly',
-                placeholder: 'Click on a question above...'
-            }
-        } else if (locale === 'ky') {
-            return {
-                badge: 'AI Бот',
-                title: '24/7 иштеген AI жардамчы',
-                subtitle: 'Сурамдардын 40-60%ын автоматтык түрдө иштетет. Татаал учурлар менеджерлерге өтөт.',
-                features: [
-                    { title: 'Күнү-түнү иштейт', description: 'Түнкүсүн жана дем алыш күндөрү да жооп берет' },
-                    { title: 'Бизнесиңизди үйрөнөт', description: 'Көп берилүүчү суроолорго жана товарларга үйрөтүлгөн' },
-                    { title: 'Менеджерлерге өткөрөт', description: 'Татаал суроолор адамдарга өтөт' },
-                    { title: 'Убакытты үнөмдөйт', description: 'Суроолордун 40-60%ы автоматтык түрдө иштелет' }
-                ],
-                quickReplies: [
-                    { text: 'Жеткирүү канча?', response: 'Бишкек ичинде 5,000 сомдон жогору буйрутмалар үчүн жеткирүү акысыз. Кичине буйрутмалар үчүн - 200 сом. Шаардан тышкары - жекече эсептелет. Качан жеткирүүнү каалайсыз?' },
-                    { text: 'Бар белең?', response: 'Кайсы товар сизди кызыктырарын так көрсөтүңүз, мен дароо бар экендигин текшерем. Сүрөт жөнөтсөңүз да болот!' },
-                    { text: 'Буйрутмам качан келет?', response: 'Буйрутмаңыздын статусун текшерүү үчүн буйрутма номерин же буйрутма берүүдө колдонулган телефон номерин айтыңыз. Бардык маалыматты дароо табам!' },
-                    { text: 'Кантип төлөйм?', response: 'Биз кабыл алабыз: банк карталары, жеткирүүдө накталай, банк которуусу, Элсом, О!Деньги. 50,000 сомдон жогору буйрутмалар үчүн бөлүп төлөө бар. Кайсы ыкма сизге ыңгайлуу?' }
-                ],
-                tryIt: 'Суроо берип көрүңүз',
-                botName: 'AI Жардамчы',
-                botStatus: 'Онлайн • Тез жооп берет',
-                placeholder: 'Жогорудагы суроону басыңыз...'
-            }
-        } else {
-            return {
-                badge: 'AI Бот',
-                title: 'AI-ассистент, который работает 24/7',
-                subtitle: 'Обрабатывает 40-60% запросов автоматически. Сложные случаи передаёт менеджерам.',
-                features: [
-                    { title: 'Работает круглосуточно', description: 'Отвечает даже ночью и в выходные' },
-                    { title: 'Знает ваш бизнес', description: 'Обучен на ваших FAQ и товарах' },
-                    { title: 'Передаёт менеджерам', description: 'Сложные вопросы идут к людям' },
-                    { title: 'Экономит время', description: '40-60% вопросов обрабатываются автоматически' }
-                ],
-                quickReplies: [
-                    { text: 'Сколько стоит доставка?', response: 'Доставка по Бишкеку бесплатная при заказе от 5,000 сом. При меньшем заказе — 200 сом. За пределы города — рассчитывается индивидуально. Когда вам удобно получить заказ?' },
-                    { text: 'Есть ли в наличии?', response: 'Уточните, пожалуйста, какой товар вас интересует, и я сразу проверю наличие. Можете также прислать фото, если есть!' },
-                    { text: 'Когда привезёте заказ?', response: 'Для проверки статуса заказа укажите номер заказа или телефон, на который оформляли. Сразу найду всю информацию!' },
-                    { text: 'Как оплатить?', response: 'Принимаем: банковские карты, наличные при доставке, банковский перевод, Элсом, О!Деньги. При заказе от 50,000 сом доступна рассрочка. Какой способ вам удобнее?' }
-                ],
-                tryIt: 'Попробуйте задать вопрос',
-                botName: 'AI Ассистент',
-                botStatus: 'Онлайн • Отвечает мгновенно',
-                placeholder: 'Нажмите на вопрос выше...'
-            }
-        }
-    }
-
-    const translations = getTranslations()
 
     const handleQuickReply = async (index: number) => {
         setSelectedReply(null)
@@ -94,7 +23,7 @@ const WhatsAppAIBotSection: React.FC = () => {
     }
 
     return (
-        <section id="ai-bot" className="py-12 sm:py-24 bg-slate-900/30 relative overflow-hidden">
+        <section id="ai-bot" className="py-12 sm:py-24 relative overflow-hidden">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
                 {/* Header */}
                 <div className="text-center mb-12 sm:mb-16">
@@ -192,7 +121,7 @@ const WhatsAppAIBotSection: React.FC = () => {
                                 </div>
                             )}
                             {selectedReply === null && !isTyping && (
-                                <div className="flex items-center justify-center h-32 text-white/40 text-sm">
+                                <div className="flex items-center justify-center h-32 text-white/55 text-sm">
                                     {translations.placeholder}
                                 </div>
                             )}

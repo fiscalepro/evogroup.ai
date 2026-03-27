@@ -12,20 +12,20 @@
   "scroll_hint": "Scroll down",
   "metrics": {
     "projects": {
-      "value": "50+",
+      "value": "68+",
       "label": "Projects"
     },
     "savings": {
-      "value": "$10M+",
-      "label": "Client Savings"
+      "value": "16",
+      "label": "Universal Cabinet Microservices"
     },
     "uptime": {
-      "value": "99.9%",
-      "label": "Uptime"
+      "value": "600+",
+      "label": "Pull Requests"
     },
     "experts": {
-      "value": "25+",
-      "label": "Experts"
+      "value": "5+",
+      "label": "AI Bots in Production"
     }
   },
   "features": [

@@ -5,93 +5,11 @@ import { motion } from 'framer-motion'
 import { useTranslation } from '@/components/providers/I18nProvider'
 
 const CCEProblemSection: React.FC = () => {
-    const { locale } = useTranslation()
-
-    const translations = {
-        ru: {
-            badge: 'Знакомые проблемы?',
-            title: 'AI без координации = хаос',
-            problems: [
-                {
-                    icon: '🔧',
-                    title: 'Каждый настраивает сам',
-                    description: '10 разработчиков — 10 разных конфигураций Claude Code. Нет единых стандартов, каждый изобретает свой workflow.',
-                },
-                {
-                    icon: '🔄',
-                    title: 'Знания не передаются',
-                    description: 'Один разработчик нашёл идеальный паттерн — остальные об этом не знают. Постоянное переизобретение велосипеда.',
-                },
-                {
-                    icon: '📊',
-                    title: 'Нет видимости и метрик',
-                    description: 'Руководство не видит, как команда использует AI. Слепая зона — невозможно оптимизировать то, что не измеряешь.',
-                },
-                {
-                    icon: '🔒',
-                    title: 'Безопасность под вопросом',
-                    description: 'Секреты в промптах, неконтролируемые MCP серверы, отсутствие аудита. Enterprise-риски без enterprise-контроля.',
-                },
-            ],
-        },
-        en: {
-            badge: 'Sound familiar?',
-            title: 'AI without coordination = chaos',
-            problems: [
-                {
-                    icon: '🔧',
-                    title: 'Everyone configures their own',
-                    description: '10 developers — 10 different Claude Code configurations. No unified standards, everyone invents their own workflow.',
-                },
-                {
-                    icon: '🔄',
-                    title: 'Knowledge doesn\'t transfer',
-                    description: 'One developer found the perfect pattern — the rest don\'t know. Constant reinvention of the wheel.',
-                },
-                {
-                    icon: '📊',
-                    title: 'No visibility or metrics',
-                    description: 'Management can\'t see how the team uses AI. A blind spot — you can\'t optimize what you don\'t measure.',
-                },
-                {
-                    icon: '🔒',
-                    title: 'Security in question',
-                    description: 'Secrets in prompts, uncontrolled MCP servers, no audit trail. Enterprise risks without enterprise controls.',
-                },
-            ],
-        },
-        ky: {
-            badge: 'Тааныш маселелер?',
-            title: 'Координациясыз AI = баш аламандык',
-            problems: [
-                {
-                    icon: '🔧',
-                    title: 'Ар ким өзү жөндөйт',
-                    description: '10 иштеп чыгуучу — 10 түрдүү Claude Code конфигурациясы. Бирдиктүү стандарттар жок.',
-                },
-                {
-                    icon: '🔄',
-                    title: 'Билим берилбейт',
-                    description: 'Бир иштеп чыгуучу идеалдуу паттерн тапты — калгандары билбейт. Дөңгөлөктү кайра ойлоп табуу.',
-                },
-                {
-                    icon: '📊',
-                    title: 'Көрүнүштүүлүк жок',
-                    description: 'Жетекчилик команда AI кандай колдонуп жатканын көрбөйт. Сокур чекит — өлчөбөгөндү оптималдаштыруу мүмкүн эмес.',
-                },
-                {
-                    icon: '🔒',
-                    title: 'Коопсуздук суроо астында',
-                    description: 'Промпттарда сырлар, көзөмөлсүз MCP серверлер, аудит жок. Enterprise тобокелдиктер контролсуз.',
-                },
-            ],
-        }
-    }
-
-    const t = translations[locale] || translations.ru
+    const { tObj } = useTranslation()
+    const t = tObj('cceProblem')
 
     return (
-        <section className="py-20 sm:py-32 px-4 sm:px-6 lg:px-10 bg-[#12121a] relative overflow-hidden">
+        <section className="py-20 sm:py-32 px-4 sm:px-6 lg:px-10 relative overflow-hidden">
             <div className="max-w-6xl mx-auto relative z-10">
                 {/* Badge */}
                 <motion.span

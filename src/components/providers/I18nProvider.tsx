@@ -1,67 +1,21 @@
 'use client'
 
 import React, { createContext, useContext, useState, useMemo, ReactNode, useEffect } from 'react'
+import { locales, type Translations, type LocaleKey } from '@/locales'
 
 // Тип для локалей
-export type Locale = 'ru' | 'en' | 'ky'
-
-// Простые типы для переводов
-type TranslationValue = string | number | boolean | { [key: string]: unknown } | unknown[]
-type NamespaceTranslations = Record<string, TranslationValue>
-type AllTranslations = Record<Locale, Record<string, NamespaceTranslations>>
+export type Locale = LocaleKey
 
 // Контекст
 interface I18nContextType {
     locale: Locale
     changeLanguage: (locale: Locale) => void
     t: (key: string, namespace?: string) => string
+    tObj: <T extends keyof Translations>(section: T) => Translations[T]
     isHydrated: boolean
 }
 
 const I18nContext = createContext<I18nContextType | undefined>(undefined)
-
-// Встроенные переводы (без загрузки файлов)
-const EMBEDDED_TRANSLATIONS: AllTranslations = {
-    ru: {
-        common: {
-            company_name: 'Evolution Group',
-            tagline: 'AI Solutions',
-        },
-        navigation: {
-            solutions: 'Решения',
-            cases: 'Кейсы',
-            technology: 'Технологии',
-            team: 'Команда',
-            contact: 'Контакты'
-        }
-    },
-    en: {
-        common: {
-            company_name: 'Evolution Group',
-            tagline: 'AI Solutions',
-        },
-        navigation: {
-            solutions: 'Solutions',
-            cases: 'Cases',
-            technology: 'Technology',
-            team: 'Team',
-            contact: 'Contact'
-        }
-    },
-    ky: {
-        common: {
-            company_name: 'Evolution Group',
-            tagline: 'AI чечимдери',
-        },
-        navigation: {
-            solutions: 'Чечимдер',
-            cases: 'Мисалдар',
-            technology: 'Технологиялар',
-            team: 'Команда',
-            contact: 'Байланыш'
-        }
-    }
-}
 
 // Провайдер
 interface I18nProviderProps {
@@ -93,14 +47,14 @@ const I18nProviderComponent = ({ children, initialLocale = 'ru' }: I18nProviderP
 
     // Простая функция перевода - всегда возвращает строку
     const t = React.useCallback((key: string, namespace: string = 'common'): string => {
-        const localeTranslations = EMBEDDED_TRANSLATIONS[locale]
-        if (!localeTranslations) return key
+        const localeData = locales[locale]
+        if (!localeData) return key
 
-        const namespaceTranslations = localeTranslations[namespace]
-        if (!namespaceTranslations) return key
+        const ns = (localeData as Record<string, unknown>)[namespace]
+        if (!ns || typeof ns !== 'object') return key
 
         const keys = key.split('.')
-        let value: unknown = namespaceTranslations
+        let value: unknown = ns
 
         for (const k of keys) {
             if (value && typeof value === 'object' && value !== null && k in value) {
@@ -110,7 +64,6 @@ const I18nProviderComponent = ({ children, initialLocale = 'ru' }: I18nProviderP
             }
         }
 
-        // Всегда возвращаем строку
         if (typeof value === 'string') return value
         if (typeof value === 'number') return String(value)
         if (typeof value === 'boolean') return String(value)
@@ -120,12 +73,18 @@ const I18nProviderComponent = ({ children, initialLocale = 'ru' }: I18nProviderP
         return key
     }, [locale])
 
+    // Типизированная функция для получения объекта переводов секции
+    const tObj = React.useCallback(<T extends keyof Translations>(section: T): Translations[T] => {
+        return locales[locale][section]
+    }, [locale])
+
     const contextValue = useMemo<I18nContextType>(() => ({
         locale,
         changeLanguage,
         t,
+        tObj,
         isHydrated,
-    }), [locale, changeLanguage, t, isHydrated])
+    }), [locale, changeLanguage, t, tObj, isHydrated])
 
     return (
         <I18nContext.Provider value={contextValue}>
@@ -153,5 +112,6 @@ export function useTranslation(namespace?: string) {
         changeLanguage: context.changeLanguage,
         isHydrated: context.isHydrated,
         t: namespace ? t : context.t,
-    }), [context.locale, context.changeLanguage, context.isHydrated, namespace, t, context.t])
+        tObj: context.tObj,
+    }), [context.locale, context.changeLanguage, context.isHydrated, context.tObj, namespace, t, context.t])
 }

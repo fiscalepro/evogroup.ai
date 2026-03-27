@@ -1,8 +1,9 @@
 'use client'
 
-import { I18nProvider, useTranslation } from '@/components/providers/I18nProvider'
+import { useTranslation } from '@/components/providers/I18nProvider'
 import ModernHeader from '@/components/sections/ModernHeader'
 import Footer from '@/components/sections/Footer'
+import PageBackground from '@/components/sections/PageBackground'
 
 function PrivacyContent() {
     const { locale } = useTranslation()
@@ -302,25 +303,21 @@ Email: privacy@evogroup.ai
     const content = getContent()
 
     return (
-        <div className="relative min-h-screen bg-black">
-            {/* Background gradients */}
-            <div className="fixed inset-0 overflow-hidden pointer-events-none">
-                <div className="absolute top-0 left-1/4 w-[800px] h-[800px] bg-blue-500/10 rounded-full blur-[120px] animate-float" />
-                <div className="absolute top-1/3 right-1/4 w-[600px] h-[600px] bg-purple-500/10 rounded-full blur-[100px] animate-float" style={{animationDelay: '2s'}} />
-            </div>
+        <div className="relative min-h-screen bg-[#0A0E1A]">
+            <PageBackground aurora={false} />
 
             <ModernHeader />
 
             {/* Header */}
             <div className="relative pt-32 pb-12">
-                <div className="max-w-4xl mx-auto px-6">
-                    <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
+                <div className="max-w-3xl mx-auto px-6">
+                    <h1 className="text-3xl md:text-4xl font-bold text-[#F0F0F5] mb-3">
                         {content.title}
                     </h1>
-                    <p className="text-lg text-white/60 mb-2">
+                    <p className="text-base text-[#F0F0F5]/50 mb-1">
                         {content.subtitle}
                     </p>
-                    <p className="text-sm text-white/40">
+                    <p className="text-sm text-[#F0F0F5]/30">
                         {content.effectiveDate}
                     </p>
                 </div>
@@ -328,14 +325,14 @@ Email: privacy@evogroup.ai
 
             {/* Content */}
             <div className="relative pb-20">
-                <div className="max-w-4xl mx-auto px-6">
-                    <div className="space-y-8">
+                <div className="max-w-3xl mx-auto px-6">
+                    <div className="space-y-5">
                         {content.sections.map((section, index) => (
-                            <div key={index} className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 md:p-8 border border-white/10">
-                                <h2 className="text-xl md:text-2xl font-semibold text-white mb-4">
+                            <div key={index} className="rounded-2xl p-6 md:p-7 border border-[#F0F0F5]/[0.06] bg-[#F0F0F5]/[0.02]">
+                                <h2 className="text-lg md:text-xl font-semibold text-[#F0F0F5] mb-3">
                                     {section.title}
                                 </h2>
-                                <div className="text-white/70 whitespace-pre-line leading-relaxed">
+                                <div className="text-sm text-[#F0F0F5]/50 whitespace-pre-line leading-relaxed">
                                     {section.content}
                                 </div>
                             </div>
@@ -351,8 +348,6 @@ Email: privacy@evogroup.ai
 
 export default function PrivacyPage() {
     return (
-        <I18nProvider initialLocale="ru">
-            <PrivacyContent />
-        </I18nProvider>
+        <PrivacyContent />
     )
 }

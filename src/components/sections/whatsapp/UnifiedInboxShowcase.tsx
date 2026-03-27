@@ -4,73 +4,8 @@ import React from 'react'
 import { useTranslation } from '@/components/providers/I18nProvider'
 
 const UnifiedInboxShowcase: React.FC = () => {
-    const { locale } = useTranslation()
-
-    const getTranslations = () => {
-        if (locale === 'en') {
-            return {
-                badge: 'Unified Inbox',
-                title: 'All chats in one place',
-                subtitle: 'No more switching between phones. See all conversations from any device.',
-                features: [
-                    { title: 'All message types', description: 'Text, photos, videos, documents, locations, contacts' },
-                    { title: 'Interactive buttons', description: 'Quick replies and menu selection' },
-                    { title: 'Delivery status', description: 'Sent → Delivered → Read tracking' },
-                    { title: 'Full-text search', description: 'Find any message in history instantly' },
-                    { title: 'Smart filters', description: 'All / Assigned to me / Unanswered / Archive' }
-                ],
-                chatPreview: {
-                    name: 'Anna Petrova',
-                    message: 'When will my order arrive?',
-                    time: '2 min ago',
-                    unread: 3
-                },
-                messageExample: 'Hi! Your order #1234 will be delivered tomorrow between 10:00-14:00. Is that convenient?'
-            }
-        } else if (locale === 'ky') {
-            return {
-                badge: 'Бирдиктүү Inbox',
-                title: 'Бардык чаттар бир жерде',
-                subtitle: 'Телефондордун ортосунда которулуунун кереги жок. Бардык жазышмаларды каалаган түзүлүштөн көрүңүз.',
-                features: [
-                    { title: 'Бардык билдирүү түрлөрү', description: 'Текст, сүрөттөр, видеолор, документтер, жайгашкан жерлер, байланыштар' },
-                    { title: 'Интерактивдүү баскычтар', description: 'Тез жооптор жана меню тандоо' },
-                    { title: 'Жеткирүү статусу', description: 'Жөнөтүлдү → Жеткирилди → Окулду көзөмөлдөө' },
-                    { title: 'Толук текст издөө', description: 'Тарыхтан каалаган билдирүүнү дароо табыңыз' },
-                    { title: 'Акылдуу чыпкалар', description: 'Бардыгы / Мага дайындалган / Жоопсуз / Архив' }
-                ],
-                chatPreview: {
-                    name: 'Анна Петрова',
-                    message: 'Буйрутмам качан жетет?',
-                    time: '2 мүн мурун',
-                    unread: 3
-                },
-                messageExample: 'Салам! Сиздин буйрутма #1234 эртең 10:00-14:00 ортосунда жеткирилет. Бул сизге ыңгайлуубу?'
-            }
-        } else {
-            return {
-                badge: 'Единый Inbox',
-                title: 'Все чаты в одном месте',
-                subtitle: 'Больше не нужно переключаться между телефонами. Видите все переписки с любого устройства.',
-                features: [
-                    { title: 'Все типы сообщений', description: 'Текст, фото, видео, документы, геолокация, контакты' },
-                    { title: 'Интерактивные кнопки', description: 'Быстрые ответы и меню выбора' },
-                    { title: 'Статус доставки', description: 'Отправлено → Доставлено → Прочитано' },
-                    { title: 'Полнотекстовый поиск', description: 'Найдите любое сообщение в истории мгновенно' },
-                    { title: 'Умные фильтры', description: 'Все / Назначенные мне / Без ответа / Архив' }
-                ],
-                chatPreview: {
-                    name: 'Анна Петрова',
-                    message: 'Когда придёт мой заказ?',
-                    time: '2 мин назад',
-                    unread: 3
-                },
-                messageExample: 'Здравствуйте! Ваш заказ #1234 будет доставлен завтра с 10:00 до 14:00. Вам удобно?'
-            }
-        }
-    }
-
-    const translations = getTranslations()
+    const { tObj } = useTranslation()
+    const translations = tObj('whatsappInbox')
 
     return (
         <section id="whatsapp-demo" className="py-12 sm:py-24 relative overflow-hidden">
@@ -98,7 +33,7 @@ const UnifiedInboxShowcase: React.FC = () => {
                                 <div className="w-3 h-3 rounded-full bg-yellow-500" />
                                 <div className="w-3 h-3 rounded-full bg-green-500" />
                             </div>
-                            <span className="text-white/40 text-sm">WhatsApp CRM</span>
+                            <span className="text-white/55 text-sm">{translations.mockUI.windowTitle}</span>
                         </div>
 
                         {/* Content */}
@@ -108,7 +43,7 @@ const UnifiedInboxShowcase: React.FC = () => {
                                 <div className="p-3 border-b border-white/10">
                                     <input
                                         type="text"
-                                        placeholder="Search..."
+                                        placeholder={translations.mockUI.searchPlaceholder}
                                         className="w-full px-3 py-2 bg-white/5 rounded-lg text-sm text-white/60 placeholder-white/30"
                                         readOnly
                                     />
@@ -154,7 +89,7 @@ const UnifiedInboxShowcase: React.FC = () => {
                                     </div>
                                     <div>
                                         <div className="text-white font-medium">{translations.chatPreview.name}</div>
-                                        <div className="text-green-400 text-xs">Online</div>
+                                        <div className="text-green-400 text-xs">{translations.mockUI.online}</div>
                                     </div>
                                 </div>
 
@@ -164,7 +99,7 @@ const UnifiedInboxShowcase: React.FC = () => {
                                     <div className="flex justify-start">
                                         <div className="bg-white/10 rounded-lg rounded-tl-none px-3 py-2 max-w-[70%]">
                                             <p className="text-white text-sm">{translations.chatPreview.message}</p>
-                                            <span className="text-white/40 text-xs">10:32</span>
+                                            <span className="text-white/55 text-xs">10:32</span>
                                         </div>
                                     </div>
                                     {/* Outgoing message */}
@@ -185,7 +120,7 @@ const UnifiedInboxShowcase: React.FC = () => {
                                 <div className="px-4 py-3 border-t border-white/10 flex gap-2">
                                     <input
                                         type="text"
-                                        placeholder="Type a message..."
+                                        placeholder={translations.mockUI.typePlaceholder}
                                         className="flex-1 px-3 py-2 bg-white/5 rounded-lg text-sm text-white/60 placeholder-white/30"
                                         readOnly
                                     />

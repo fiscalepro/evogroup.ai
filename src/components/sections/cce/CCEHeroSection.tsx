@@ -5,52 +5,9 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { useTranslation } from '@/components/providers/I18nProvider'
 
 const CCEHeroSection: React.FC = () => {
-    const { locale } = useTranslation()
+    const { tObj } = useTranslation()
+    const t = tObj('cceHero')
     const [currentWord, setCurrentWord] = useState(0)
-
-    const translations = {
-        ru: {
-            badge: 'Claude Code Enterprise',
-            titleStart: 'Один AI-ассистент хорош. Команда AI-ассистентов',
-            words: ['непобедима.', 'синхронна.', 'эффективна.'],
-            subtitle: 'CCE превращает AI-кодинг из инструмента для одиночки в координированный командный интеллект. Работает с Claude Code, OpenAI Codex, Gemini CLI, OpenCode, Qwen Code. Паттерн одного разработчика становится знанием всей команды.',
-            cta: 'Связаться с нами',
-            stat1value: '117+',
-            stat1label: 'MCP инструментов',
-            stat2value: '6',
-            stat2label: 'измерений роста',
-            stat3value: '1 cmd',
-            stat3label: 'для настройки',
-        },
-        en: {
-            badge: 'Claude Code Enterprise',
-            titleStart: 'One AI assistant is good. A team of AI assistants is',
-            words: ['unstoppable.', 'synchronized.', 'efficient.'],
-            subtitle: 'CCE transforms AI coding from a solo tool into coordinated team intelligence. Works with Claude Code, OpenAI Codex, Gemini CLI, OpenCode, Qwen Code. One developer\'s pattern becomes the whole team\'s knowledge.',
-            cta: 'Contact Us',
-            stat1value: '117+',
-            stat1label: 'MCP tools',
-            stat2value: '6',
-            stat2label: 'growth dimensions',
-            stat3value: '1 cmd',
-            stat3label: 'to set up',
-        },
-        ky: {
-            badge: 'Claude Code Enterprise',
-            titleStart: 'Бир AI-жардамчы жакшы. AI-жардамчылар командасы',
-            words: ['жеңилгис.', 'синхрондуу.', 'натыйжалуу.'],
-            subtitle: 'CCE AI-кодингди жалгыз адамдын куралынан координацияланган команда интеллектине айландырат. Claude Code, OpenAI Codex, Gemini CLI, OpenCode, Qwen Code менен иштейт. Бир иштеп чыгуучунун паттерни бүт команданын билимине айланат.',
-            cta: 'Биз менен байланышыңыз',
-            stat1value: '117+',
-            stat1label: 'MCP куралдар',
-            stat2value: '6',
-            stat2label: 'өсүү өлчөмдөрү',
-            stat3value: '1 cmd',
-            stat3label: 'жөндөө үчүн',
-        }
-    }
-
-    const t = translations[locale] || translations.ru
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -68,11 +25,11 @@ const CCEHeroSection: React.FC = () => {
     return (
         <section className="relative min-h-screen flex items-center justify-center py-32 sm:py-40 px-4 sm:px-6 lg:px-10 overflow-hidden">
             {/* Background gradient orbs */}
-            <div className="absolute inset-0 overflow-hidden pointer-events-none">
+            {/* <div className="absolute inset-0 overflow-hidden pointer-events-none">
                 <div className="absolute top-[-20%] left-[-10%] w-[600px] h-[600px] bg-violet-500/15 rounded-full blur-[150px]" />
                 <div className="absolute bottom-[-10%] right-[-10%] w-[500px] h-[500px] bg-amber-500/10 rounded-full blur-[120px]" />
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-violet-500/5 rounded-full blur-[100px]" />
-            </div>
+            </div> */}
 
             <div className="max-w-5xl mx-auto text-center relative z-10">
                 {/* Badge */}

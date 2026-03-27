@@ -113,88 +113,97 @@ const Solutions: React.FC = () => {
             title: translations.banking.title,
             description: translations.banking.description,
             iconSvg: '/bank.svg',
-            gradient: 'from-blue-500/20 to-cyan-500/20',
-            hoverGradient: 'group-hover:from-blue-500/30 group-hover:to-cyan-500/30'
+            gradient: 'from-cyan-500/15 to-sky-500/15',
+            hoverGradient: 'group-hover:from-cyan-500/25 group-hover:to-sky-500/25',
+            accentText: 'text-cyan-400',
+            accentBorder: 'hover:border-cyan-400/25',
         },
         {
             id: 'government',
             title: translations.government.title,
             description: translations.government.description,
             iconSvg: '/bank_2.svg',
-            gradient: 'from-purple-500/20 to-pink-500/20',
-            hoverGradient: 'group-hover:from-purple-500/30 group-hover:to-pink-500/30'
+            gradient: 'from-violet-500/15 to-fuchsia-500/15',
+            hoverGradient: 'group-hover:from-violet-500/25 group-hover:to-fuchsia-500/25',
+            accentText: 'text-violet-400',
+            accentBorder: 'hover:border-violet-400/25',
         },
         {
             id: 'energy',
             title: translations.energy.title,
             description: translations.energy.description,
             iconSvg: '/neft-gas.svg',
-            gradient: 'from-green-500/20 to-emerald-500/20',
-            hoverGradient: 'group-hover:from-green-500/30 group-hover:to-emerald-500/30'
+            gradient: 'from-amber-500/15 to-orange-500/15',
+            hoverGradient: 'group-hover:from-amber-500/25 group-hover:to-orange-500/25',
+            accentText: 'text-amber-400',
+            accentBorder: 'hover:border-amber-400/25',
         },
         {
             id: 'logistics',
             title: translations.logistics.title,
             description: translations.logistics.description,
             iconSvg: '/logistics.svg',
-            gradient: 'from-orange-500/20 to-amber-500/20',
-            hoverGradient: 'group-hover:from-orange-500/30 group-hover:to-amber-500/30'
+            gradient: 'from-emerald-500/15 to-teal-500/15',
+            hoverGradient: 'group-hover:from-emerald-500/25 group-hover:to-teal-500/25',
+            accentText: 'text-emerald-400',
+            accentBorder: 'hover:border-emerald-400/25',
         }
     ]
 
     return (
-        <section id="solutions" className="relative py-32 overflow-hidden">
+        <section id="solutions" className="relative py-28 lg:py-32 overflow-hidden">
             {/* Section header */}
-            <div className="relative z-10 max-w-7xl mx-auto px-6 mb-20 text-center">
-                <span className="inline-block mb-6 px-4 py-2 rounded-full bg-white/5 backdrop-blur-xl border border-white/10 text-sm font-medium text-white/90 animate-fade-in">
-                    {translations.preTitle}
-                </span>
-                <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6 animate-slide-up">
+            <div className="relative z-10 max-w-7xl mx-auto px-6 mb-16 text-center">
+                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/10 bg-white/[0.04] mb-6">
+                    <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
+                    <span className="text-xs text-white/55 uppercase tracking-widest font-medium">{translations.preTitle}</span>
+                </div>
+                <h2 className="text-4xl sm:text-5xl font-bold text-white mb-4 tracking-tight">
                     {translations.title}
                 </h2>
-                <p className="text-lg sm:text-xl text-white/60 max-w-2xl mx-auto animate-slide-up" style={{animationDelay: '0.1s'}}>
+                <p className="text-base sm:text-lg text-white/50 max-w-xl mx-auto leading-relaxed">
                     {translations.subtitle}
                 </p>
             </div>
 
             {/* Solutions grid */}
             <div className="relative z-10 max-w-7xl mx-auto px-6">
-                <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+                <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
                     {solutions.map((solution, index) => (
                         <Card
                             key={solution.id}
                             isPressable
                             onPress={() => handleSolutionClick(solution.id)}
                             onClick={() => handleSolutionClick(solution.id)}
-                            className="group bg-white/5 backdrop-blur-xl border-white/10 hover:bg-white/10 hover:border-white/20 transition-all duration-500 hover:scale-105 animate-slide-up cursor-pointer"
+                            className={`group bg-white/[0.025] border border-white/[0.07] ${solution.accentBorder} hover:bg-white/[0.05] rounded-2xl transition-all duration-400 cursor-pointer`}
                             style={{animationDelay: `${index * 0.1}s`}}
                         >
-                            <CardBody className="p-8">
+                            <CardBody className="p-7">
                                 {/* Icon */}
-                                <div className={`mb-6 w-16 h-16 rounded-2xl bg-gradient-to-br ${solution.gradient} ${solution.hoverGradient} flex items-center justify-center transition-all duration-500 group-hover:scale-110 group-hover:rotate-3`}>
+                                <div className={`mb-5 w-12 h-12 rounded-xl bg-gradient-to-br ${solution.gradient} ${solution.hoverGradient} flex items-center justify-center transition-all duration-400 group-hover:scale-105`}>
                                     <Image
                                         src={solution.iconSvg}
                                         alt={solution.title}
-                                        width={40}
-                                        height={40}
-                                        className="w-10 h-10"
+                                        width={28}
+                                        height={28}
+                                        className="w-7 h-7"
                                     />
                                 </div>
 
                                 {/* Title */}
-                                <h3 className="text-2xl font-bold text-white mb-4 group-hover:text-blue-400 transition-colors duration-300">
+                                <h3 className={`text-lg font-bold text-white mb-3 group-hover:${solution.accentText.replace('text-', 'text-')} transition-colors duration-300`}>
                                     {solution.title}
                                 </h3>
 
                                 {/* Description */}
-                                <p className="text-white/60 leading-relaxed group-hover:text-white/80 transition-colors duration-300">
+                                <p className="text-sm text-white/45 leading-relaxed group-hover:text-white/60 transition-colors duration-300">
                                     {solution.description}
                                 </p>
 
                                 {/* Hover indicator */}
-                                <div className="mt-6 flex items-center text-blue-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                    <span className="text-sm font-medium">Learn more</span>
-                                    <svg className="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <div className={`mt-5 flex items-center ${solution.accentText} opacity-0 group-hover:opacity-100 transition-opacity duration-300`}>
+                                    <span className="text-xs font-medium">Learn more</span>
+                                    <svg className="w-3.5 h-3.5 ml-1.5 transform group-hover:translate-x-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                                     </svg>
                                 </div>
@@ -205,7 +214,8 @@ const Solutions: React.FC = () => {
             </div>
 
             {/* Background decoration */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-blue-500/10 rounded-full blur-[150px] pointer-events-none" />
+            <div className="absolute top-1/3 left-1/4 w-[500px] h-[500px] bg-cyan-500/[0.06] rounded-full blur-[180px] pointer-events-none" />
+            <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-violet-500/[0.05] rounded-full blur-[160px] pointer-events-none" />
 
             {/* Modal */}
             <Modal
@@ -235,10 +245,10 @@ const Solutions: React.FC = () => {
                             : translations.logistics.fullDescription
 
                         const getIconGradientClass = () => {
-                            if (selectedSolution === 'banking') return 'from-blue-500/20 to-cyan-500/20'
-                            if (selectedSolution === 'government') return 'from-purple-500/20 to-pink-500/20'
-                            if (selectedSolution === 'energy') return 'from-green-500/20 to-emerald-500/20'
-                            return 'from-orange-500/20 to-amber-500/20'
+                            if (selectedSolution === 'banking') return 'from-cyan-500/15 to-sky-500/15'
+                            if (selectedSolution === 'government') return 'from-violet-500/15 to-fuchsia-500/15'
+                            if (selectedSolution === 'energy') return 'from-amber-500/15 to-orange-500/15'
+                            return 'from-emerald-500/15 to-teal-500/15'
                         }
 
                         return (

@@ -1,52 +1,31 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Bricolage+Grotesque:wght@400;500;600;700&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Smooth scrolling для всего документа */
-html {
-    scroll-behavior: smooth;
+/*
+  Explicit h1 font-size to prevent deprecated browser UA stylesheet behavior.
+  Chrome warns when h1 inside <section>/<article>/<nav>/<aside> relies on the
+  UA-stylesheet outline algorithm (being removed). Utility classes override this.
+*/
+h1 {
+    font-size: 2.25rem;
 }
 
-/* Для браузеров которые не поддерживают scroll-behavior */
+/* Smooth scrolling */
 @media (prefers-reduced-motion: no-preference) {
     html {
         scroll-behavior: smooth;
     }
 }
 
-:root {
-    --foreground-rgb: 0, 0, 0;
-    --background-start-rgb: 214, 219, 220;
-    --background-end-rgb: 255, 255, 255;
+/* Hardware acceleration for animations */
+.language-switcher button,
+[data-slot="wrapper"],
+[data-slot="base"] {
+    transform: translateZ(0);
+    backface-visibility: hidden;
 }
 
-@media (prefers-color-scheme: dark) {
-    :root {
-        --foreground-rgb: 255, 255, 255;
-        --background-start-rgb: 0, 0, 0;
-        --background-end-rgb: 0, 0, 0;
-    }
-}
-
-body {
-    color: rgb(var(--foreground-rgb));
-    background: linear-gradient(
-            to bottom,
-            transparent,
-            rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
-}
-
-* {
-    box-sizing: border-box;
-    padding: 0;
-    margin: 0;
-}
-
-/* Optimize burger menu performance */
 [data-slot="menu"] {
     transition: transform 0.15s ease-out, opacity 0.15s ease-out !important;
     will-change: transform, opacity;
@@ -59,21 +38,16 @@ body {
     will-change: transform;
 }
 
-/* Hardware acceleration for smooth animations */
-.language-switcher button,
-[data-slot="wrapper"],
-[data-slot="base"] {
-    transform: translateZ(0);
-    backface-visibility: hidden;
-}
-
-/* Optimize all transitions */
+/* Font smoothing */
 * {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
 }
 
-/* Reduce motion for accessibility while keeping performance */
+/* Respect reduced motion preference */
 @media (prefers-reduced-motion: reduce) {
     *,
     *::before,
