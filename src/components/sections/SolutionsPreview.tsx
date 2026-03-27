@@ -86,7 +86,7 @@ const SolutionsPreview: React.FC = () => {
                     transition={{ duration: 0.6 }}
                     className="text-center mb-16"
                 >
-                    <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#F0F0F5] tracking-tight mb-4">
+                    <h2 className="text-2xl sm:text-3xl lg:text-5xl font-bold text-[#F0F0F5] tracking-tight mb-4">
                         {t.title as string}
                     </h2>
                     <p className="text-base lg:text-lg text-[#F0F0F5]/50 max-w-xl mx-auto">
@@ -100,7 +100,7 @@ const SolutionsPreview: React.FC = () => {
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: true, margin: '-50px' }}
-                    className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5"
+                    className="grid sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-5"
                 >
                     {solutions.map((solution, index) => {
                         const meta = cardMeta[index]
@@ -108,7 +108,7 @@ const SolutionsPreview: React.FC = () => {
                             <motion.div
                                 key={index}
                                 variants={itemVariants}
-                                className="group relative flex flex-col p-7 rounded-2xl border border-[#F0F0F5]/[0.06] hover:border-[#F0F0F5]/[0.12] bg-[#F0F0F5]/[0.02] hover:bg-[#F0F0F5]/[0.04] transition-all duration-300"
+                                className="group relative flex flex-col p-4 sm:p-5 lg:p-7 rounded-2xl border border-[#F0F0F5]/[0.06] hover:border-[#F0F0F5]/[0.12] bg-[#F0F0F5]/[0.02] hover:bg-[#F0F0F5]/[0.04] transition-all duration-300"
                             >
                                 {/* Top accent line */}
                                 <div className={`absolute top-0 left-6 right-6 h-px bg-gradient-to-r ${meta.gradient} opacity-0 group-hover:opacity-40 transition-opacity duration-300`} />
@@ -127,7 +127,7 @@ const SolutionsPreview: React.FC = () => {
                                 </div>
 
                                 {/* Title & description */}
-                                <h3 className="text-xl font-bold text-[#F0F0F5] mb-2">
+                                <h3 className="text-lg sm:text-xl font-bold text-[#F0F0F5] mb-2">
                                     {solution.title}
                                 </h3>
                                 <p className="text-sm text-[#F0F0F5]/45 leading-relaxed mb-6 flex-grow">

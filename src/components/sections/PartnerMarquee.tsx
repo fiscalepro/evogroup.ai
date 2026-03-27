@@ -23,9 +23,9 @@ export function PartnersMarquee() {
 	const PartnerItem = ({ partner, prefix }: { partner: string; prefix: string }) => (
 		<div
 			key={`${prefix}`}
-			className='flex-shrink-0 px-10 flex flex-col items-center gap-3 cursor-default group'
+			className='flex-shrink-0 px-5 sm:px-10 flex flex-col items-center gap-2 sm:gap-3 cursor-default group'
 		>
-			<div className='h-10 w-28 relative flex items-center justify-center'>
+			<div className='h-8 w-20 sm:h-10 sm:w-28 relative flex items-center justify-center'>
 				{partnerLogos[partner] ? (
 					<Image
 						src={partnerLogos[partner]}
@@ -36,14 +36,14 @@ export function PartnersMarquee() {
 					/>
 				) : null}
 			</div>
-			<span className='text-sm font-medium text-white/50 group-hover:text-white/80 transition-colors'>
+			<span className='text-xs sm:text-sm font-medium text-white/50 group-hover:text-white/80 transition-colors'>
 				{partner}
 			</span>
 		</div>
 	)
 
 	return (
-		<section className='py-20 border-y border-white/10 overflow-hidden my-12'>
+		<section className='py-12 sm:py-20 border-y border-white/10 overflow-hidden my-8 sm:my-12'>
 			<div className='max-w-7xl mx-auto px-6 mb-12'>
 				<p className='text-center text-white/80 uppercase tracking-wider text-sm'>
 					{t.heading}

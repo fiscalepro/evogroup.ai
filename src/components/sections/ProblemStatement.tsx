@@ -67,7 +67,7 @@ const ProblemStatement: React.FC = () => {
                     transition={{ duration: 0.6 }}
                     className="text-center mb-16"
                 >
-                    <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#F0F0F5] tracking-tight mb-4">
+                    <h2 className="text-2xl sm:text-3xl lg:text-5xl font-bold text-[#F0F0F5] tracking-tight mb-4">
                         {t.title}
                     </h2>
                     <p className="text-base lg:text-lg text-[#F0F0F5]/50 max-w-xl mx-auto">
@@ -87,7 +87,7 @@ const ProblemStatement: React.FC = () => {
                         <motion.div
                             key={index}
                             variants={itemVariants}
-                            className="group relative p-7 rounded-2xl border border-[#F0F0F5]/[0.06] hover:border-[#F0F0F5]/[0.12] bg-[#F0F0F5]/[0.02] hover:bg-[#F0F0F5]/[0.04] transition-all duration-300"
+                            className="group relative p-4 sm:p-7 rounded-2xl border border-[#F0F0F5]/[0.06] hover:border-[#F0F0F5]/[0.12] bg-[#F0F0F5]/[0.02] hover:bg-[#F0F0F5]/[0.04] transition-all duration-300"
                         >
                             {/* Icon */}
                             <div className="w-11 h-11 rounded-lg bg-red-500/[0.08] border border-red-400/[0.1] flex items-center justify-center text-red-400/80 mb-5">
@@ -95,7 +95,7 @@ const ProblemStatement: React.FC = () => {
                             </div>
 
                             {/* Content */}
-                            <h3 className="text-lg font-semibold text-[#F0F0F5] mb-2">
+                            <h3 className="text-base sm:text-lg font-semibold text-[#F0F0F5] mb-2">
                                 {problem.title}
                             </h3>
                             <p className="text-sm text-[#F0F0F5]/45 leading-relaxed mb-5">

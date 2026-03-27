@@ -16,7 +16,7 @@ export const solutions: Solution[] = [
   },
   {
     id: 'fintech-ecosystem',
-    title: 'Универсальный Кабинет — платформа для Бакай Банка',
+    title: 'Универсальный Кабинет — платформа для банковского сектора',
     description: 'Комплексная экосистема микросервисов для банковского малого бизнеса',
     icon: 'bank',
     features: [
@@ -33,8 +33,8 @@ export const solutions: Solution[] = [
     description: 'Автоматизация бизнес-процессов для предприятий любого масштаба',
     icon: 'building',
     features: [
-      'Управление нефтебазами (10 баз, 152 резервуара)',
-      'Тех. поддержка сети из 70+ АЗС',
+      'Управление нефтебазами и резервуарами',
+      'Тех. поддержка сети АЗС',
       'Электронный документооборот (ЭДО)',
       'AI-автоматизация разработки через Claude Code'
     ],
@@ -46,7 +46,7 @@ export const solutions: Solution[] = [
     description: 'Специализированные продукты для ресторанов, клиник, отелей и логистики',
     icon: 'cog',
     features: [
-      'EvoResto — QR-меню, заказы, оплата через Bakai24',
+      'EvoResto — QR-меню, заказы, онлайн-оплата',
       'EvoClinic — управление клиникой с WhatsApp-ботом',
       'SmartStay — управление гостиницами',
       'Cargo CRM — логистика и грузоперевозки'
@@ -56,9 +56,9 @@ export const solutions: Solution[] = [
 ]
 
 export const clients: Client[] = [
-  { id: 'bakai', name: 'Бакай Банк', logo: '/logos/bank1.svg', industry: 'banking' },
-  { id: 'bpetroleum', name: 'Бишкек Петролеум', logo: '/logos/oil1.svg', industry: 'oil' },
-  { id: 'partnerneft', name: 'Партнёр Нефть', logo: '/logos/oil1.svg', industry: 'oil' },
+  { id: 'banking', name: 'Банковский сектор', logo: '/logos/bank1.svg', industry: 'banking' },
+  { id: 'oilgas', name: 'Нефтегазовая отрасль', logo: '/logos/oil1.svg', industry: 'oil' },
+  { id: 'edms', name: 'Документооборот', logo: '/logos/oil1.svg', industry: 'oil' },
   { id: 'minedu', name: 'Мин. образования КР', logo: '/logos/gov1.svg', industry: 'government' }
 ]
 
@@ -66,7 +66,7 @@ export const caseStudies: CaseStudy[] = [
   {
     id: 'bakai-smartuchet',
     title: 'Универсальный Кабинет — экосистема для малого бизнеса',
-    client: 'Бакай Банк',
+    client: 'Банковский сектор',
     industry: 'Банковский сектор',
     challenge: 'Банку необходимо предоставить клиентам малого бизнеса полный цикл электронных госуслуг в мобильном приложении',
     solution: 'Разработали 16 микросервисов на Spring Boot/React: ЭСФ, ЭТТН, HR, ERP, налоговая отчётность, регистрация ИП, мониторинг — с интеграцией через Tunduk X-Road и ОЭЦП подписание',
@@ -80,12 +80,12 @@ export const caseStudies: CaseStudy[] = [
   {
     id: 'petro-depot',
     title: 'Цифровизация сети нефтебаз Кыргызстана',
-    client: 'Бишкек Петролеум',
+    client: 'Нефтегазовое предприятие',
     industry: 'Нефтегазовая отрасль',
-    challenge: 'Управление 10 нефтебазами с 152 резервуарами и 70+ АЗС без единой цифровой системы',
+    challenge: 'Управление нефтебазами, резервуарами и сетью АЗС без единой цифровой системы',
     solution: 'Создали комплексную платформу: учёт приёмки/отпуска топлива, контроль качества, AI-аналитика, интеграция с ЭТТН и ЭСФ, система техподдержки с мобильными приложениями',
     results: [
-      { metric: 'Резервуаров под контролем', value: '152', description: '142 РВС + 10 РГС на 10 нефтебазах' },
+      { metric: 'Резервуаров под контролем', value: '150+', description: 'РВС и РГС на нефтебазах' },
       { metric: 'Тикетов техподдержки', value: '600+', description: 'PR в основном репозитории' },
       { metric: 'Ролей пользователей', value: '10', description: 'От оператора АЗС до аудитора' }
     ],
@@ -159,7 +159,7 @@ export const competitiveAdvantages = [
   },
   {
     title: 'Проверено крупнейшими',
-    description: 'Бакай Банк, Бишкек Петролеум, Министерство образования КР',
+    description: 'Банки, нефтегазовые компании, государственные организации',
     icon: 'shield'
   }
 ]

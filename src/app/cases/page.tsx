@@ -44,17 +44,17 @@ function getContent(locale: string) {
                     number: '01',
                     color: 'green' as const,
                     tag: 'Oil & Gas \u00b7 EDO',
-                    company: 'Partner Neft',
+                    company: 'Oil & Gas EDO',
                     headline: 'Full EDO system automated document workflow for an oil & gas company',
-                    teaser: 'Partner Neft needed a complete electronic document management system. We built a Spring Boot 3.2.5 backend with React 18 frontend (FSD architecture), JWT auth with HttpOnly cookies, MinIO file storage, Redis caching, and PostgreSQL with Flyway migrations.',
+                    teaser: 'An oil & gas company needed a complete electronic document management system. We built a Spring Boot 3.2.5 backend with React 18 frontend (FSD architecture), JWT auth with HttpOnly cookies, MinIO file storage, Redis caching, and PostgreSQL with Flyway migrations.',
                     results: [
                         { value: '226+', label: 'PRs shipped' },
                         { value: '100%', label: 'Digital document workflow' },
                         { value: 'JWT', label: 'Secure token management' },
                         { value: 'MinIO', label: 'S3-compatible file storage' },
                     ],
-                    quoteAuthor: '\u2014 Partner Neft team',
-                    instagram: { handle: 'partnerneft.kg', url: 'https://partnerneft.kg' },
+                    quoteAuthor: '\u2014 EDO project team',
+                    instagram: { handle: '@evogroup.ai', url: 'https://instagram.com/evogroup.ai' },
                 },
                 {
                     number: '02',
@@ -130,7 +130,7 @@ function getContent(locale: string) {
                         { value: 'MinIO', label: 'S3-\u0441\u043e\u0432\u043c\u0435\u0441\u0442\u0438\u043c\u043e\u0435 \u0445\u0440\u0430\u043d\u0438\u043b\u0438\u0449\u0435' },
                     ],
                     quoteAuthor: '\u2014 \u041a\u043e\u043c\u0430\u043d\u0434\u0430 \u041f\u0430\u0440\u0442\u043d\u0451\u0440 \u041d\u0435\u0444\u0442\u044c',
-                    instagram: { handle: 'partnerneft.kg', url: 'https://partnerneft.kg' },
+                    instagram: { handle: '@evogroup.ai', url: 'https://instagram.com/evogroup.ai' },
                 },
                 {
                     number: '02',
@@ -206,7 +206,7 @@ function getContent(locale: string) {
                         { value: 'MinIO', label: 'S3-\u0448\u0430\u0439\u043a\u0435\u0448 \u0444\u0430\u0439\u043b \u0441\u0430\u043a\u0442\u043e\u043e' },
                     ],
                     quoteAuthor: '\u2014 \u041f\u0430\u0440\u0442\u043d\u0451\u0440 \u041d\u0435\u0444\u0442\u044c \u043a\u043e\u043c\u0430\u043d\u0434\u0430\u0441\u044b',
-                    instagram: { handle: 'partnerneft.kg', url: 'https://partnerneft.kg' },
+                    instagram: { handle: '@evogroup.ai', url: 'https://instagram.com/evogroup.ai' },
                 },
                 {
                     number: '02',
@@ -290,7 +290,7 @@ export default function CasesPage() {
                     transition={{ duration: 0.6 }}
                     className="relative z-10 max-w-4xl mx-auto px-6 text-center"
                 >
-                    <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-[#F0F0F5] tracking-tight mb-4">
+                    <h1 className="text-2xl sm:text-4xl lg:text-6xl font-bold text-[#F0F0F5] tracking-tight mb-4">
                         {content.heroTitle}
                     </h1>
                     <p className="text-base lg:text-lg text-[#F0F0F5]/50 max-w-lg mx-auto leading-relaxed">
@@ -306,9 +306,9 @@ export default function CasesPage() {
                         {content.stats.map((s, i) => (
                             <motion.div
                                 key={i} custom={i} variants={itemVariants} initial="hidden" whileInView="visible" viewport={{ once: true }}
-                                className="p-5 rounded-xl border border-[#F0F0F5]/[0.06] bg-[#F0F0F5]/[0.02]"
+                                className="p-3 sm:p-5 rounded-xl border border-[#F0F0F5]/[0.06] bg-[#F0F0F5]/[0.02]"
                             >
-                                <div className="text-2xl font-bold text-[#F0F0F5] mb-0.5">{s.value}</div>
+                                <div className="text-lg sm:text-2xl font-bold text-[#F0F0F5] mb-0.5">{s.value}</div>
                                 <div className="text-sm font-medium text-[#F0F0F5]/55 mb-0.5">{s.label}</div>
                                 <div className="text-xs text-[#F0F0F5]/30">{s.detail}</div>
                             </motion.div>

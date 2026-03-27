@@ -79,7 +79,7 @@ export function CaseCard({ card, index }: { card: CaseCard; index: number }) {
 				className={`h-[1.5px] w-full bg-gradient-to-r ${g.accentFrom} to-transparent`}
 			/>
 
-			<div className='p-7 lg:p-10'>
+			<div className='p-4 sm:p-7 lg:p-10'>
 				{/* Top row: tag + case number */}
 				<div className='flex items-start justify-between mb-5'>
 					<span
@@ -88,7 +88,7 @@ export function CaseCard({ card, index }: { card: CaseCard; index: number }) {
 						{card.tag}
 					</span>
 					<span
-						className={`text-5xl font-black leading-none select-none ${g.numText}`}
+						className={`text-3xl sm:text-4xl lg:text-5xl font-black leading-none select-none ${g.numText}`}
 					>
 						{card.number}
 					</span>
@@ -108,7 +108,7 @@ export function CaseCard({ card, index }: { card: CaseCard; index: number }) {
 						<div
 							key={i}
 							className={[
-								'px-5 py-4 text-center',
+								'px-3 py-3 sm:px-5 sm:py-4 text-center',
 								i < 3 ? 'border-r border-white/[0.07]' : '',
 								i < 2 ? 'border-b border-white/[0.07] sm:border-b-0' : '',
 								i === 2 ? 'sm:border-r border-white/[0.07] border-b-0' : '',
@@ -116,7 +116,7 @@ export function CaseCard({ card, index }: { card: CaseCard; index: number }) {
 							].join(' ')}
 						>
 							<div
-								className={`text-2xl lg:text-3xl font-bold font-mono leading-none mb-1.5 ${g.metricText}`}
+								className={`text-lg sm:text-2xl lg:text-3xl font-bold font-mono leading-none mb-1.5 ${g.metricText}`}
 							>
 								{r.value}
 							</div>
@@ -135,7 +135,7 @@ export function CaseCard({ card, index }: { card: CaseCard; index: number }) {
 				</div>
 
 				{/* Footer: Instagram + CTA */}
-				<div className='flex items-center justify-between pt-5 border-t border-white/[0.06]'>
+				<div className='flex flex-wrap items-center justify-between gap-3 pt-5 border-t border-white/[0.06]'>
 					<Link
 						href={card.instagram.url}
 						target='_blank'
@@ -147,7 +147,7 @@ export function CaseCard({ card, index }: { card: CaseCard; index: number }) {
 					</Link>
 					<Link
 						href='/contact'
-						className={`inline-flex items-center gap-1.5 px-5 py-2.5 rounded-lg text-[13px] font-bold text-black no-underline transition-colors ${g.ctaBg}`}
+						className={`inline-flex items-center gap-1.5 px-3 py-2 sm:px-5 sm:py-2.5 rounded-lg text-[12px] sm:text-[13px] font-bold text-black no-underline transition-colors ${g.ctaBg}`}
 					>
 						{ctaText}
 						<svg width='12' height='12' viewBox='0 0 12 12' fill='none'>

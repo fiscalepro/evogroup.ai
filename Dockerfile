@@ -46,12 +46,14 @@ RUN chown -R nextjs:nodejs /app
 # Switch to non-root user
 USER nextjs
 
+# Port configuration (override via Coolify env or --build-arg)
+ENV PORT=4599
+
 # Expose port
 EXPOSE 4599
 
 # Set environment variables
 ENV NODE_ENV=production
-ENV PORT=4599
 ENV HOSTNAME=0.0.0.0
 ENV NEXT_TELEMETRY_DISABLED=1
 
