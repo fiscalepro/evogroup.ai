@@ -97,6 +97,12 @@ setInterval(() => {
       dailyMessageMap.delete(key);
     }
   }
+
+  for (const [key, value] of sessionMap.entries()) {
+    if (now - value.lastUsed > SESSION_TTL) {
+      sessionMap.delete(key);
+    }
+  }
 }, 600_000);
 
 function checkChatRateLimit(ip: string): boolean {
@@ -142,8 +148,9 @@ function sanitizeInput(text: string): string {
     .trim();
 }
 
-// Session key storage per user (hashed IP -> session_key)
-const sessionMap = new Map<string, string>();
+// Session key storage per user (hashed IP -> { session_key, lastUsed })
+const sessionMap = new Map<string, { key: string; lastUsed: number }>();
+const SESSION_TTL = 30 * 60 * 1000; // 30 minutes
 
 export async function POST(req: NextRequest) {
   try {
@@ -266,8 +273,11 @@ export async function POST(req: NextRequest) {
     // Reuse session key if available
     const existingSession = sessionMap.get(userId);
     if (existingSession) {
-      webhookBody.session_key = existingSession;
+      webhookBody.session_key = existingSession.key;
     }
+
+    // Track usage before making the call
+    checkGlobalBudget();
 
     // Call OpenClaw webhook
     const response = await fetch(OPENCLAW_WEBHOOK_URL, {
@@ -295,11 +305,8 @@ export async function POST(req: NextRequest) {
 
     // Store session key for conversation continuity
     if (data.session_key) {
-      sessionMap.set(userId, data.session_key);
+      sessionMap.set(userId, { key: data.session_key, lastUsed: Date.now() });
     }
-
-    // Track usage
-    checkGlobalBudget();
 
     return NextResponse.json({
       message: assistantMessage,
