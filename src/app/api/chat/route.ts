@@ -1,27 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server';
-import OpenAI from 'openai';
 import { createHash } from 'crypto';
 
-// Lazy initialization of OpenClaw client (OpenAI-compatible API)
-let client: OpenAI | null = null;
+// OpenClaw webhook endpoint
+const OPENCLAW_WEBHOOK_URL = process.env.OPENCLAW_API_URL || 'https://platform2.evogroup.ai/plugins/webhook/chat';
+const OPENCLAW_GATEWAY_TOKEN = process.env.OPENCLAW_GATEWAY_TOKEN || '';
+const OPENCLAW_AGENT_ID = process.env.OPENCLAW_AGENT_ID || 'demo_bot';
 
-function getClient(): OpenAI {
-  if (!client) {
-    const token = process.env.OPENCLAW_GATEWAY_TOKEN;
-    if (!token) {
-      throw new Error('OPENCLAW_GATEWAY_TOKEN is not configured');
-    }
-    client = new OpenAI({
-      apiKey: token,
-      baseURL: process.env.OPENCLAW_API_URL || 'https://platform2.evogroup.ai/v1',
-      timeout: 60000,
-      maxRetries: 2,
-    });
-  }
-  return client;
-}
-
-// Allowed origins for CSRF protection (configurable via ALLOWED_ORIGINS env var)
+// Allowed origins for CSRF protection
 const DEFAULT_ORIGINS = 'https://evogroup.ai,https://www.evogroup.ai';
 const ALLOWED_ORIGINS = (process.env.ALLOWED_ORIGINS || DEFAULT_ORIGINS)
   .split(',')
@@ -32,7 +17,6 @@ function isAllowedOrigin(request: NextRequest): boolean {
   const origin = request.headers.get('origin');
   const referer = request.headers.get('referer');
 
-  // In production, require valid origin
   if (process.env.NODE_ENV === 'production') {
     if (origin) {
       return ALLOWED_ORIGINS.some(allowed => origin === allowed);
@@ -40,16 +24,16 @@ function isAllowedOrigin(request: NextRequest): boolean {
     if (referer) {
       return ALLOWED_ORIGINS.some(allowed => referer.startsWith(allowed));
     }
-    return false; // No origin/referer in production = blocked
+    return false;
   }
 
-  return true; // Allow all in development
+  return true;
 }
 
 // --- Cloudflare Turnstile verification ---
 async function verifyTurnstile(token: string, ip: string): Promise<boolean> {
   const secret = process.env.TURNSTILE_SECRET_KEY;
-  if (!secret) return true; // Graceful fallback: skip if not configured (dev mode)
+  if (!secret) return true;
 
   try {
     const response = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
@@ -70,31 +54,30 @@ async function verifyTurnstile(token: string, ip: string): Promise<boolean> {
 }
 
 // Global daily token budget protection
-const globalUsage = { tokens: 0, date: '' };
-const MAX_DAILY_TOKENS = 2_000_000; // 2M tokens per day max
+const globalUsage = { count: 0, date: '' };
+const MAX_DAILY_MESSAGES = 5000;
 
-function checkGlobalBudget(tokensUsed: number): boolean {
+function checkGlobalBudget(): boolean {
   const today = new Date().toISOString().slice(0, 10);
   if (globalUsage.date !== today) {
-    globalUsage.tokens = 0;
+    globalUsage.count = 0;
     globalUsage.date = today;
   }
-  globalUsage.tokens += tokensUsed;
-  return globalUsage.tokens <= MAX_DAILY_TOKENS;
+  globalUsage.count++;
+  return globalUsage.count <= MAX_DAILY_MESSAGES;
 }
 
 function isGlobalBudgetExceeded(): boolean {
   const today = new Date().toISOString().slice(0, 10);
   if (globalUsage.date !== today) return false;
-  return globalUsage.tokens >= MAX_DAILY_TOKENS;
+  return globalUsage.count >= MAX_DAILY_MESSAGES;
 }
 
-// Rate limiting per IP — stricter limits + periodic cleanup
+// Rate limiting per IP
 const chatRateLimitMap = new Map<string, { count: number; timestamp: number }>();
-const CHAT_RATE_LIMIT_WINDOW = 60 * 1000; // 1 minute
-const MAX_CHAT_REQUESTS = 3; // 3 messages per minute
+const CHAT_RATE_LIMIT_WINDOW = 60 * 1000;
+const MAX_CHAT_REQUESTS = 3;
 
-// Daily per-IP message counter
 const dailyMessageMap = new Map<string, { count: number; date: string }>();
 const MAX_DAILY_MESSAGES_PER_IP = 50;
 
@@ -150,21 +133,21 @@ function checkDailyLimit(ip: string): boolean {
   return true;
 }
 
-// Input validation — trim length, strip control chars
+// Input validation
 function sanitizeInput(text: string): string {
   if (typeof text !== 'string') return '';
   return text
-    .slice(0, 1000) // Max 1000 chars per message (reduced from 2000 to limit token usage)
-    .replace(/[\x00-\x08\x0B\x0C\x0E-\x1F\x7F]/g, '') // Strip control characters
+    .slice(0, 1000)
+    .replace(/[\x00-\x08\x0B\x0C\x0E-\x1F\x7F]/g, '')
     .trim();
 }
 
-// Agent ID for the OpenClaw demo bot
-const OPENCLAW_AGENT_ID = process.env.OPENCLAW_AGENT_ID || 'demo_bot';
+// Session key storage per user (hashed IP -> session_key)
+const sessionMap = new Map<string, string>();
 
 export async function POST(req: NextRequest) {
   try {
-    // CSRF: check origin/referer
+    // CSRF check
     if (!isAllowedOrigin(req)) {
       return NextResponse.json(
         { error: 'Forbidden', userMessage: 'Запрос отклонён.' },
@@ -246,7 +229,6 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // Validate and sanitize messages — limit to 10 (was 20)
     if (messages.length > 10) {
       return NextResponse.json(
         { error: 'Too many messages in conversation' },
@@ -254,33 +236,70 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // Sanitize all message contents
-    const sanitizedMessages = messages.map((m: { role: string; content: string }) => ({
-      role: m.role === 'user' || m.role === 'assistant' ? m.role : 'user',
-      content: sanitizeInput(m.content || '')
-    })).filter((m: { content: string }) => m.content.length > 0);
+    // Get the last user message
+    const lastUserMessage = [...messages].reverse().find((m: { role: string }) => m.role === 'user');
+    if (!lastUserMessage) {
+      return NextResponse.json(
+        { error: 'No user message found' },
+        { status: 400 }
+      );
+    }
 
-    // Generate anonymized user ID (hashed IP, not raw)
-    const salt = process.env.OPENCLAW_GATEWAY_TOKEN || 'default-salt';
+    const sanitizedMessage = sanitizeInput(lastUserMessage.content || '');
+    if (!sanitizedMessage) {
+      return NextResponse.json(
+        { error: 'Empty message' },
+        { status: 400 }
+      );
+    }
+
+    // Generate user ID for session tracking
+    const salt = OPENCLAW_GATEWAY_TOKEN || 'default-salt';
     const userId = createHash('sha256').update(`${ip}:${salt}`).digest('hex').slice(0, 16);
 
-    // Call OpenClaw API (system prompt is configured in the agent's CLAUDE.md)
-    const completion = await getClient().chat.completions.create({
-      model: `openclaw:${OPENCLAW_AGENT_ID}`,
-      messages: sanitizedMessages as OpenAI.Chat.Completions.ChatCompletionMessageParam[],
-      user: userId,
-      stream: false,
+    // Build request body for OpenClaw webhook
+    const webhookBody: Record<string, string> = {
+      agent_id: OPENCLAW_AGENT_ID,
+      message: sanitizedMessage,
+    };
+
+    // Reuse session key if available
+    const existingSession = sessionMap.get(userId);
+    if (existingSession) {
+      webhookBody.session_key = existingSession;
+    }
+
+    // Call OpenClaw webhook
+    const response = await fetch(OPENCLAW_WEBHOOK_URL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${OPENCLAW_GATEWAY_TOKEN}`,
+      },
+      body: JSON.stringify(webhookBody),
+      signal: AbortSignal.timeout(60000),
     });
 
-    const assistantMessage = completion.choices[0]?.message?.content;
+    if (!response.ok) {
+      const errorText = await response.text().catch(() => 'Unknown error');
+      console.error(`OpenClaw API Error: ${response.status} ${errorText}`);
+      throw new Error(`OpenClaw API returned ${response.status}`);
+    }
 
+    const data = await response.json();
+
+    const assistantMessage = data.response;
     if (!assistantMessage) {
       throw new Error('No response from AI');
     }
 
-    // Track token usage against daily budget
-    const totalTokens = completion.usage?.total_tokens || 0;
-    checkGlobalBudget(totalTokens);
+    // Store session key for conversation continuity
+    if (data.session_key) {
+      sessionMap.set(userId, data.session_key);
+    }
+
+    // Track usage
+    checkGlobalBudget();
 
     return NextResponse.json({
       message: assistantMessage,
@@ -288,17 +307,14 @@ export async function POST(req: NextRequest) {
   } catch (error: unknown) {
     console.error('Chat API Error:', error);
 
-    // User-friendly error messages without leaking internals
     let userMessage = 'Упс, что-то пошло не так. Попробуйте еще раз через пару секунд.';
 
     if (error instanceof Error) {
-      const httpError = error as Error & { status?: number; code?: string };
-
-      if (httpError.status === 502 || httpError.status === 503) {
+      if (error.message.includes('502') || error.message.includes('503')) {
         userMessage = 'Сервер AI временно недоступен. Попробуйте через минуту или напишите нам напрямую.';
-      } else if (httpError.status === 429) {
+      } else if (error.message.includes('429')) {
         userMessage = 'Слишком много запросов. Подождите несколько секунд и попробуйте снова.';
-      } else if (httpError.code === 'ECONNABORTED' || httpError.code === 'ETIMEDOUT') {
+      } else if (error.name === 'TimeoutError' || error.message.includes('timeout')) {
         userMessage = 'Запрос занял слишком много времени. Попробуйте задать вопрос покороче.';
       }
     }
@@ -318,6 +334,6 @@ export async function GET() {
   return NextResponse.json({
     status: 'ok',
     service: 'EvoGroup AI Chat (OpenClaw)',
-    version: '1.1.0'
+    version: '1.2.0'
   });
 }
