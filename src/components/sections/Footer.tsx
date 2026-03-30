@@ -14,9 +14,11 @@ const InstagramIcon = () => (
     </svg>
 )
 
-const TelegramIcon = () => (
+const WhatsAppIcon = () => (
     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M21 5L2 12.5l7 1M21 5l-5 15-4.5-5.5M21 5L9 13.5m0 0V19l3-3" />
+        <path strokeLinecap="round" strokeLinejoin="round" d="M3 21l1.65-3.8a9 9 0 113.4 2.9L3 21" />
+        <path strokeLinecap="round" strokeLinejoin="round" d="M9 10a.5.5 0 001 0V9a.5.5 0 00-1 0v1zm5 5a.5.5 0 000-1h-1a.5.5 0 000 1h1z" />
+        <path strokeLinecap="round" strokeLinejoin="round" d="M9.5 9c0 1.5 1 3.5 2.5 5 1.5 1.5 3.5 2.5 5 2.5" />
     </svg>
 )
 
@@ -48,11 +50,11 @@ const MapIcon = () => (
 
 const socials = [
     { icon: <InstagramIcon />, label: 'Instagram', href: 'https://instagram.com/evogroup.ai' },
-    { icon: <TelegramIcon />, label: 'Telegram', href: 'https://t.me/evogroup_ai' },
+    { icon: <WhatsAppIcon />, label: 'WhatsApp', href: 'https://wa.me/996552343333' },
     { icon: <LinkedInIcon />, label: 'LinkedIn', href: 'https://linkedin.com/company/evogroup-ai' },
 ]
 
-const solutionHrefs = ['/solutions/whatsapp', '/solutions/evopay', '/solutions/cce', '/solutions/smartuchet']
+const solutionHrefs = ['/solutions/whatsapp', '/solutions/evopay', '/solutions/smartuchet', '/solutions/edo', '/solutions/cce']
 
 const companyHrefs = ['/about', '/technology', '/cases', '#career']
 

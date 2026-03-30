@@ -23,10 +23,12 @@ const ModernHeader = () => {
 		{ href: '/solutions/evopay', label: t.evopay },
 		{ href: '/solutions/evoclinic', label: t.evoclinic },
 		{ href: '/solutions/smartuchet', label: t.smartuchet },
+		{ href: '/solutions/edo', label: t.edo },
 		{ href: '/solutions/cce', label: t.cce },
 	]
 
 	const navItems = [
+		{ href: '/about', label: t.about },
 		{ href: '/cases', label: t.cases },
 		{ href: '/technology', label: t.technology },
 		{ href: '/contact', label: t.contact },

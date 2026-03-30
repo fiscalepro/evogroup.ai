@@ -265,7 +265,7 @@ const TrustSignals: React.FC = () => {
                                 className="overflow-hidden"
                             >
                                 <div className="px-3 sm:px-5 lg:px-6 pb-3 sm:pb-5 lg:pb-6 pt-1">
-                                    <div className="grid grid-cols-2 gap-2 sm:gap-3">
+                                    <div className="flex flex-wrap gap-2 sm:gap-3">
                                         {content.smb.categories.map((cat, i) => (
                                             <motion.div
                                                 key={i}

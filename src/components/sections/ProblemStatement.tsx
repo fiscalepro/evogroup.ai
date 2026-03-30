@@ -27,6 +27,24 @@ const problemsMeta = [
     {
         icon: (
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-6 h-6">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+        ),
+        solution: 'EvoClinic',
+        href: '/solutions/evoclinic',
+    },
+    {
+        icon: (
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-6 h-6">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+            </svg>
+        ),
+        solution: 'EDO',
+        href: '/solutions/edo',
+    },
+    {
+        icon: (
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-6 h-6">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M14.25 9.75L16.5 12l-2.25 2.25m-4.5 0L7.5 12l2.25-2.25M6 20.25h12A2.25 2.25 0 0020.25 18V6A2.25 2.25 0 0018 3.75H6A2.25 2.25 0 003.75 6v12A2.25 2.25 0 006 20.25z" />
             </svg>
         ),
@@ -81,13 +99,13 @@ const ProblemStatement: React.FC = () => {
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: true, margin: '-50px' }}
-                    className="grid md:grid-cols-3 gap-5"
+                    className="grid sm:grid-cols-2 lg:grid-cols-6 gap-5"
                 >
                     {t.problems.map((problem, index) => (
                         <motion.div
                             key={index}
                             variants={itemVariants}
-                            className="group relative p-4 sm:p-7 rounded-2xl border border-[#F0F0F5]/[0.06] hover:border-[#F0F0F5]/[0.12] bg-[#F0F0F5]/[0.02] hover:bg-[#F0F0F5]/[0.04] transition-all duration-300"
+                            className={`group relative flex flex-col p-4 sm:p-7 rounded-2xl border border-[#F0F0F5]/[0.06] hover:border-[#F0F0F5]/[0.12] bg-[#F0F0F5]/[0.02] hover:bg-[#F0F0F5]/[0.04] transition-all duration-300 ${index < 3 ? 'lg:col-span-2' : 'lg:col-span-3'}`}
                         >
                             {/* Icon */}
                             <div className="w-11 h-11 rounded-lg bg-red-500/[0.08] border border-red-400/[0.1] flex items-center justify-center text-red-400/80 mb-5">
@@ -105,7 +123,7 @@ const ProblemStatement: React.FC = () => {
                             {/* Solution link */}
                             <Link
                                 href={problemsMeta[index].href}
-                                className="inline-flex items-center gap-2 text-sm font-medium text-blue-400/80 hover:text-blue-400 no-underline transition-colors"
+                                className="inline-flex items-center gap-2 mt-auto text-sm font-medium text-blue-400/80 hover:text-blue-400 no-underline transition-colors"
                             >
                                 {t.solveWith.replace('{solution}', problemsMeta[index].solution)}
                                 <svg width="14" height="14" viewBox="0 0 14 14" fill="none">

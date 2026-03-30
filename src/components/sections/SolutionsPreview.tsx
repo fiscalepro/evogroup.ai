@@ -19,16 +19,22 @@ const cardMeta = [
         iconColor: 'text-emerald-400',
     },
     {
-        href: '/solutions/cce',
-        gradient: 'from-purple-400 to-violet-400',
-        iconBg: 'bg-purple-500/[0.08]',
-        iconColor: 'text-purple-400',
-    },
-    {
         href: '/solutions/evoclinic',
         gradient: 'from-pink-400 to-cyan-400',
         iconBg: 'bg-pink-500/[0.08]',
         iconColor: 'text-pink-400',
+    },
+    {
+        href: '/solutions/edo',
+        gradient: 'from-amber-400 to-orange-400',
+        iconBg: 'bg-amber-500/[0.08]',
+        iconColor: 'text-amber-400',
+    },
+    {
+        href: '/solutions/cce',
+        gradient: 'from-purple-400 to-violet-400',
+        iconBg: 'bg-purple-500/[0.08]',
+        iconColor: 'text-purple-400',
     },
 ]
 
@@ -39,11 +45,14 @@ const icons = [
     <svg key="pay" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-6 h-6">
         <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 002.25-2.25V6.75A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25v10.5A2.25 2.25 0 004.5 19.5z" />
     </svg>,
-    <svg key="cce" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-6 h-6">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5" />
-    </svg>,
     <svg key="clinic" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-6 h-6">
         <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+    </svg>,
+    <svg key="edo" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-6 h-6">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+    </svg>,
+    <svg key="cce" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-6 h-6">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5" />
     </svg>,
 ]
 
@@ -100,7 +109,7 @@ const SolutionsPreview: React.FC = () => {
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: true, margin: '-50px' }}
-                    className="grid sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-5"
+                    className="grid sm:grid-cols-2 lg:grid-cols-6 gap-3 sm:gap-5"
                 >
                     {solutions.map((solution, index) => {
                         const meta = cardMeta[index]
@@ -108,7 +117,7 @@ const SolutionsPreview: React.FC = () => {
                             <motion.div
                                 key={index}
                                 variants={itemVariants}
-                                className="group relative flex flex-col p-4 sm:p-5 lg:p-7 rounded-2xl border border-[#F0F0F5]/[0.06] hover:border-[#F0F0F5]/[0.12] bg-[#F0F0F5]/[0.02] hover:bg-[#F0F0F5]/[0.04] transition-all duration-300"
+                                className={`group relative flex flex-col p-4 sm:p-5 lg:p-7 rounded-2xl border border-[#F0F0F5]/[0.06] hover:border-[#F0F0F5]/[0.12] bg-[#F0F0F5]/[0.02] hover:bg-[#F0F0F5]/[0.04] transition-all duration-300 ${index < 3 ? 'lg:col-span-2' : 'lg:col-span-3'}`}
                             >
                                 {/* Top accent line */}
                                 <div className={`absolute top-0 left-6 right-6 h-px bg-gradient-to-r ${meta.gradient} opacity-0 group-hover:opacity-40 transition-opacity duration-300`} />
