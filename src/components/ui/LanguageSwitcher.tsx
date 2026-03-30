@@ -42,7 +42,7 @@ const LanguageSwitcher: React.FC = React.memo(() => {
 
     return (
         <div
-            className="language-switcher flex items-center gap-0.5 p-1 bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl"
+            className="language-switcher flex items-center gap-0.5 p-1 bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-xl"
             role="group"
             aria-label="Выбрать язык"
         >
@@ -56,8 +56,8 @@ const LanguageSwitcher: React.FC = React.memo(() => {
                         aria-label={language.name}
                         className={`relative px-2.5 py-1 rounded-lg text-xs font-semibold tracking-wide transition-all duration-200 ${
                             isActive
-                                ? 'bg-white/15 text-white shadow-sm'
-                                : 'text-white/40 hover:text-white/70 hover:bg-white/5'
+                                ? 'bg-white dark:bg-white/15 text-gray-900 dark:text-white shadow-sm'
+                                : 'text-gray-400 dark:text-white/40 hover:text-gray-700 dark:hover:text-white/70 hover:bg-gray-50 dark:hover:bg-white/5'
                         }`}
                     >
                         {language.code.toUpperCase()}

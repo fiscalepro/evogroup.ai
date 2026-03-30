@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google'
 import './globals.css'
 import { Providers } from '@/components/providers/Providers'
 import ChatBot from '@/components/ChatBot'
+import SplashScreen from '@/components/ui/SplashScreen'
 
 const inter = Inter({
     subsets: ['latin', 'cyrillic'],
@@ -103,14 +104,25 @@ export default function RootLayout({
     children: React.ReactNode
 }) {
     return (
-        <html lang="ru" className="dark">
+        <html lang="ru" suppressHydrationWarning>
         <head>
             <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
             <link rel="apple-touch-icon" href="/favicon.svg" />
-            <meta name="theme-color" content="#0a0a0a" />
+            <meta name="theme-color" content="#FAFAFA" />
+            <script dangerouslySetInnerHTML={{ __html: `
+                (function(){
+                    try {
+                        var t = localStorage.getItem('theme');
+                        if (t === 'dark' || (!t && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                            document.documentElement.classList.add('dark');
+                        }
+                    } catch(e) {}
+                })();
+            `}} />
         </head>
-        <body className={`${inter.className} antialiased dark bg-[#0A0E1A] text-[#F0F0F5]`}>
+        <body suppressHydrationWarning className={`${inter.className} antialiased bg-[#FAFAFA] dark:bg-[#0A0E1A] text-gray-900 dark:text-[#F0F0F5] transition-colors duration-300`}>
         <Providers>
+            <SplashScreen />
             {children}
             <ChatBot />
         </Providers>

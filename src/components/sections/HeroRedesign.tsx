@@ -38,14 +38,13 @@ const HeroRedesign: React.FC = () => {
 
     return (
         <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-            {/* Subtle top-down gradient light */}
+            {/* Subtle gradient orb */}
             <div
-                className="absolute inset-0 pointer-events-none"
+                className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/4 w-[800px] h-[600px] pointer-events-none"
                 style={{
-                    background: 'radial-gradient(ellipse 60% 40% at 50% 0%, rgba(59, 130, 246, 0.06), transparent 70%)',
+                    background: 'radial-gradient(ellipse at center, rgba(59, 130, 246, 0.06) 0%, transparent 70%)',
                 }}
             />
-
             <div className="relative z-10 max-w-5xl mx-auto px-6 pt-32 pb-24 text-center">
                 {/* Badge */}
                 <motion.div
@@ -58,9 +57,9 @@ const HeroRedesign: React.FC = () => {
                         href="https://main.evogroup.ai/demo"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/[0.04] border border-white/[0.08] text-sm text-[#F0F0F5]/70 hover:bg-white/[0.07] transition-colors"
+                        className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gray-100 dark:bg-white/[0.04] border border-gray-200 dark:border-white/[0.08] text-sm text-gray-600 dark:text-[#F0F0F5]/70 hover:bg-gray-200 transition-colors"
                     >
-                        <span className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse" />
+                        <span className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse" />
                         {translations.preTitle}
                     </a>
                 </motion.div>
@@ -72,11 +71,11 @@ const HeroRedesign: React.FC = () => {
                     transition={{ duration: 0.6, delay: 0.1 }}
                     className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6"
                 >
-                    <span className="text-[#F0F0F5]">{translations.title}</span>
+                    <span className="text-gray-900 dark:text-[#F0F0F5]">{translations.title}</span>
                     <br />
-                    <span className="bg-gradient-to-r from-blue-400 via-blue-500 to-indigo-400 bg-clip-text text-transparent">
+                    <span className="bg-gradient-to-r from-blue-600 to-blue-500 bg-clip-text text-transparent">
                         {displayText}
-                        <span className="animate-pulse text-[#F0F0F5]/60">|</span>
+                        <span className="animate-pulse text-gray-400 dark:text-[#F0F0F5]/40">|</span>
                     </span>
                 </motion.h1>
 
@@ -85,7 +84,7 @@ const HeroRedesign: React.FC = () => {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: 0.2 }}
-                    className="text-sm sm:text-base md:text-lg text-[#F0F0F5]/55 max-w-2xl mx-auto mb-12 leading-relaxed"
+                    className="text-sm sm:text-base md:text-lg text-gray-500 dark:text-[#F0F0F5]/55 max-w-2xl mx-auto mb-12 leading-relaxed"
                 >
                     {translations.subtitle}
                 </motion.p>
@@ -99,7 +98,7 @@ const HeroRedesign: React.FC = () => {
                 >
                     <Link
                         href="/contact"
-                        className="inline-flex items-center justify-center gap-2 bg-[#F0F0F5] text-[#0A0E1A] px-6 py-3 sm:px-8 sm:py-4 rounded-xl text-sm sm:text-base font-semibold no-underline transition-all duration-200 hover:bg-white"
+                        className="arrow-hover inline-flex items-center justify-center gap-2 bg-gray-900 dark:bg-[#F0F0F5] dark:text-[#0A0E1A] text-white px-6 py-3 sm:px-8 sm:py-4 rounded-xl text-sm sm:text-base font-semibold no-underline shadow-md hover:shadow-lg transition-all duration-200 hover:bg-black dark:hover:bg-white"
                     >
                         {translations.ctaPrimary}
                         <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
@@ -108,7 +107,7 @@ const HeroRedesign: React.FC = () => {
                     </Link>
                     <Link
                         href="/solutions"
-                        className="inline-flex items-center justify-center gap-2 px-6 py-3 sm:px-8 sm:py-4 rounded-xl text-sm sm:text-base font-semibold text-[#F0F0F5]/70 border border-[#F0F0F5]/[0.1] hover:bg-[#F0F0F5]/[0.05] hover:text-[#F0F0F5] no-underline transition-all duration-200"
+                        className="inline-flex items-center justify-center gap-2 px-6 py-3 sm:px-8 sm:py-4 rounded-xl text-sm sm:text-base font-semibold text-gray-900 border border-gray-900 dark:border-[#F0F0F5]/[0.1] dark:text-[#F0F0F5]/70 hover:bg-gray-900 hover:text-white dark:hover:bg-[#F0F0F5]/[0.05] dark:hover:text-[#F0F0F5] no-underline shadow-sm hover:shadow-md transition-all duration-200"
                     >
                         {translations.ctaSecondary}
                     </Link>
@@ -123,10 +122,10 @@ const HeroRedesign: React.FC = () => {
                 >
                     {translations.stats.map((stat: { value: string; label: string }, index: number) => (
                         <div key={index} className="text-center">
-                            <div className="text-2xl sm:text-4xl font-bold text-[#F0F0F5] mb-1">
+                            <div className="text-2xl sm:text-4xl font-bold text-gray-900 dark:text-[#F0F0F5] mb-1">
                                 {stat.value}
                             </div>
-                            <div className="text-sm text-[#F0F0F5]/40 font-medium">
+                            <div className="text-sm text-gray-400 dark:text-[#F0F0F5]/40 font-medium">
                                 {stat.label}
                             </div>
                         </div>

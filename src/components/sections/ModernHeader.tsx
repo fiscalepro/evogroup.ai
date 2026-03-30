@@ -6,6 +6,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useTranslation } from '@/components/providers/I18nProvider'
 import LanguageSwitcher from '@/components/ui/LanguageSwitcher'
+import ThemeToggle from '@/components/ui/ThemeToggle'
 
 const ModernHeader = () => {
 	const { tObj } = useTranslation()
@@ -29,6 +30,7 @@ const ModernHeader = () => {
 	const navItems = [
 		{ href: '/cases', label: t.cases },
 		{ href: '/technology', label: t.technology },
+		{ href: '/about', label: t.about },
 		{ href: '/contact', label: t.contact },
 	]
 
@@ -44,14 +46,11 @@ const ModernHeader = () => {
 		hoverTimeout.current = setTimeout(() => setIsOpen(false), 200)
 	}
 
-	// Lock body scroll when mobile menu is open (Safari-compatible, no scroll jump)
 	useEffect(() => {
 		if (isMobileMenuOpen) {
-			// Prevent background scrolling without position:fixed hack
 			document.documentElement.style.overflow = 'hidden'
 			document.body.style.overflow = 'hidden'
 			document.body.style.overscrollBehavior = 'none'
-			// Prevent touch scroll on iOS Safari
 			const preventTouch = (e: TouchEvent) => {
 				const sidebar = document.getElementById('mobile-sidebar')
 				if (sidebar && sidebar.contains(e.target as Node)) return
@@ -67,7 +66,6 @@ const ModernHeader = () => {
 		}
 	}, [isMobileMenuOpen])
 
-	// Close mobile menu on route change
 	useEffect(() => {
 		setIsMobileMenuOpen(false)
 		setIsSolutionsExpanded(false)
@@ -75,7 +73,7 @@ const ModernHeader = () => {
 
 	useEffect(() => {
 		const handleScroll = () => setIsScrolled(window.scrollY > 50)
-		handleScroll() // Check initial scroll position on mount (e.g. after page refresh)
+		handleScroll()
 		window.addEventListener('scroll', handleScroll)
 		return () => window.removeEventListener('scroll', handleScroll)
 	}, [])
@@ -85,7 +83,7 @@ const ModernHeader = () => {
 			<header
 				className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
 					isScrolled
-						? 'bg-[#0A0E1A]/80 backdrop-blur-xl border-b border-white/[0.06]'
+						? 'bg-white/80 dark:bg-[#0A0E1A]/80 backdrop-blur-xl border-b border-gray-200 dark:border-white/[0.06]'
 						: 'bg-transparent border-b border-transparent'
 				}`}
 			>
@@ -102,7 +100,7 @@ const ModernHeader = () => {
 									className='object-contain'
 								/>
 							</div>
-							<span className='font-semibold text-[#F0F0F5] text-base'>
+							<span className='font-semibold text-gray-900 dark:text-[#F0F0F5] text-base'>
 								{t.company}
 							</span>
 						</Link>
@@ -118,8 +116,8 @@ const ModernHeader = () => {
 								<div
 									className={`flex cursor-pointer items-center gap-1 px-4 py-2 rounded-lg text-sm font-medium transition-colors duration-150 ${
 										isSolutions
-											? 'text-[#F0F0F5]'
-											: 'text-[#F0F0F5]/60 hover:text-[#F0F0F5]'
+											? 'text-gray-900 dark:text-[#F0F0F5]'
+											: 'text-gray-500 dark:text-[#F0F0F5]/60 hover:text-gray-900 dark:hover:text-[#F0F0F5]'
 									}`}
 								>
 									{t.solutions}
@@ -141,15 +139,15 @@ const ModernHeader = () => {
 
 								{/* Dropdown */}
 								<div className={`absolute top-full pt-2 left-0 z-50 transition-all duration-200 ${isOpen ? 'opacity-100 translate-y-0 visible' : 'opacity-0 -translate-y-1 invisible pointer-events-none'}`}>
-									<div className='w-56 bg-[#0F1423] border border-white/[0.08] rounded-xl shadow-2xl shadow-black/40 p-2'>
+									<div className='w-56 bg-white dark:bg-[#0F1423] border border-gray-200 dark:border-white/[0.08] rounded-xl shadow-lg shadow-black/10 dark:shadow-black/40 p-2'>
 										{solutionItems.map(item => (
 											<Link
 												key={item.href}
 												href={item.href}
 												className={`block px-3 py-2.5 rounded-lg text-sm font-medium transition-colors duration-150 ${
 													isActive(item.href)
-														? 'text-[#F0F0F5] bg-white/[0.06]'
-														: 'text-[#F0F0F5]/55 hover:text-[#F0F0F5] hover:bg-white/[0.04]'
+														? 'text-gray-900 dark:text-[#F0F0F5] bg-gray-100 dark:bg-white/[0.06]'
+														: 'text-gray-500 dark:text-[#F0F0F5]/60 hover:text-gray-900 dark:hover:text-[#F0F0F5] hover:bg-gray-50 dark:hover:bg-white/[0.04]'
 												}`}
 											>
 												{item.label}
@@ -166,8 +164,8 @@ const ModernHeader = () => {
 									href={item.href}
 									className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors duration-150 ${
 										isActive(item.href)
-											? 'text-[#F0F0F5]'
-											: 'text-[#F0F0F5]/60 hover:text-[#F0F0F5]'
+											? 'text-gray-900 dark:text-[#F0F0F5]'
+											: 'text-gray-500 dark:text-[#F0F0F5]/60 hover:text-gray-900 dark:hover:text-[#F0F0F5]'
 									}`}
 								>
 									{item.label}
@@ -176,13 +174,14 @@ const ModernHeader = () => {
 						</nav>
 
 						{/* Right side */}
-						<div className='flex items-center gap-3'>
+						<div className='flex items-center gap-2'>
+							<ThemeToggle />
 							<LanguageSwitcher />
 
 							{/* Desktop CTA */}
 							<Link
 								href='/contact'
-								className='hidden sm:inline-flex items-center px-5 py-2 bg-[#F0F0F5] text-[#0A0E1A] rounded-lg text-sm font-semibold transition-all duration-150 hover:bg-white'
+								className='hidden sm:inline-flex items-center px-5 py-2 bg-gray-900 dark:bg-[#F0F0F5] text-white dark:text-[#0A0E1A] rounded-lg text-sm font-semibold transition-all duration-150 hover:bg-black dark:hover:bg-white'
 							>
 								{t.cta}
 							</Link>
@@ -190,7 +189,7 @@ const ModernHeader = () => {
 							{/* Mobile Menu Button */}
 							<button
 								onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-								className='lg:hidden p-2 text-[#F0F0F5] hover:bg-white/[0.06] rounded-lg transition-colors'
+								className='lg:hidden p-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-white/[0.06] rounded-lg transition-colors'
 								aria-label='Toggle menu'
 							>
 								<svg
@@ -214,7 +213,7 @@ const ModernHeader = () => {
 
 			{/* Mobile Sidebar Overlay */}
 			<div
-				className={`lg:hidden fixed inset-0 z-[60] bg-black/60 backdrop-blur-sm transition-opacity duration-300 ${
+				className={`lg:hidden fixed inset-0 z-[60] bg-black/40 backdrop-blur-sm transition-opacity duration-300 ${
 					isMobileMenuOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
 				}`}
 				onClick={() => setIsMobileMenuOpen(false)}
@@ -224,19 +223,19 @@ const ModernHeader = () => {
 			{/* Mobile Sidebar - slides from right */}
 			<aside
 				id='mobile-sidebar'
-				className={`lg:hidden fixed top-0 right-0 z-[70] h-[100dvh] w-[280px] max-w-[80vw] bg-[#0F1423] border-l border-white/[0.08] shadow-2xl shadow-black/50 transition-transform duration-300 ease-out will-change-transform ${
+				className={`lg:hidden fixed top-0 right-0 z-[70] h-[100dvh] w-[280px] max-w-[80vw] bg-white dark:bg-[#0F1423] border-l border-gray-200 dark:border-white/[0.08] shadow-2xl transition-transform duration-300 ease-out will-change-transform ${
 					isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
 				}`}
 			>
 				<div className='flex flex-col h-full overflow-y-auto' style={{ WebkitOverflowScrolling: 'touch' }}>
 					{/* Sidebar header */}
-					<div className='flex items-center justify-between px-6 py-4 border-b border-white/[0.06]'>
-						<span className='font-semibold text-[#F0F0F5] text-base'>
+					<div className='flex items-center justify-between px-6 py-4 border-b border-gray-100 dark:border-white/[0.06]'>
+						<span className='font-semibold text-gray-900 dark:text-[#F0F0F5] text-base'>
 							{t.company}
 						</span>
 						<button
 							onClick={() => setIsMobileMenuOpen(false)}
-							className='p-2 text-[#F0F0F5]/60 hover:text-[#F0F0F5] hover:bg-white/[0.06] rounded-lg transition-colors'
+							className='p-2 text-gray-400 dark:text-[#F0F0F5]/60 hover:text-gray-700 dark:hover:text-[#F0F0F5] hover:bg-gray-100 dark:hover:bg-white/[0.06] rounded-lg transition-colors'
 							aria-label='Close menu'
 						>
 							<svg className='w-5 h-5' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
@@ -252,8 +251,8 @@ const ModernHeader = () => {
 							onClick={() => setIsSolutionsExpanded(!isSolutionsExpanded)}
 							className={`flex items-center justify-between w-full px-4 py-3 rounded-lg text-sm transition-colors ${
 								isSolutions
-									? 'text-[#F0F0F5] font-semibold bg-white/[0.06]'
-									: 'text-[#F0F0F5]/70 hover:text-[#F0F0F5] hover:bg-white/[0.04]'
+									? 'text-gray-900 dark:text-[#F0F0F5] font-semibold bg-gray-100 dark:bg-white/[0.06]'
+									: 'text-gray-600 dark:text-[#F0F0F5]/70 hover:text-gray-900 dark:hover:text-[#F0F0F5] hover:bg-gray-50 dark:hover:bg-white/[0.04]'
 							}`}
 						>
 							{t.solutions}
@@ -281,8 +280,8 @@ const ModernHeader = () => {
 										onClick={() => setIsMobileMenuOpen(false)}
 										className={`px-4 py-2.5 rounded-lg text-sm transition-colors ${
 											isActive(item.href)
-												? 'text-[#F0F0F5] font-semibold bg-white/[0.06]'
-												: 'text-[#F0F0F5]/50 hover:text-[#F0F0F5] hover:bg-white/[0.04]'
+												? 'text-gray-900 dark:text-[#F0F0F5] font-semibold bg-gray-100 dark:bg-white/[0.06]'
+												: 'text-gray-500 dark:text-[#F0F0F5]/60 hover:text-gray-900 dark:hover:text-[#F0F0F5] hover:bg-gray-50 dark:hover:bg-white/[0.04]'
 										}`}
 									>
 										{item.label}
@@ -299,8 +298,8 @@ const ModernHeader = () => {
 								onClick={() => setIsMobileMenuOpen(false)}
 								className={`px-4 py-3 rounded-lg text-sm transition-colors ${
 									isActive(item.href)
-										? 'text-[#F0F0F5] font-semibold bg-white/[0.06]'
-										: 'text-[#F0F0F5]/70 hover:text-[#F0F0F5] hover:bg-white/[0.04]'
+										? 'text-gray-900 dark:text-[#F0F0F5] font-semibold bg-gray-100 dark:bg-white/[0.06]'
+										: 'text-gray-600 dark:text-[#F0F0F5]/70 hover:text-gray-900 dark:hover:text-[#F0F0F5] hover:bg-gray-50 dark:hover:bg-white/[0.04]'
 								}`}
 							>
 								{item.label}
@@ -309,11 +308,11 @@ const ModernHeader = () => {
 					</nav>
 
 					{/* CTA at bottom */}
-					<div className='mt-auto px-4 py-6 border-t border-white/[0.06]'>
+					<div className='mt-auto px-4 py-6 border-t border-gray-100 dark:border-white/[0.06]'>
 						<Link
 							href='/contact'
 							onClick={() => setIsMobileMenuOpen(false)}
-							className='block w-full px-4 py-3 bg-[#F0F0F5] text-[#0A0E1A] rounded-lg text-sm font-semibold text-center transition-colors hover:bg-white'
+							className='block w-full px-4 py-3 bg-gray-900 dark:bg-[#F0F0F5] text-white dark:text-[#0A0E1A] rounded-lg text-sm font-semibold text-center transition-colors hover:bg-black dark:hover:bg-white'
 						>
 							{t.cta}
 						</Link>

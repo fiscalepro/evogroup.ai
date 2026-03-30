@@ -52,6 +52,45 @@ h1 {
     margin: 0;
 }
 
+/* Subtle dot grid background */
+.dot-grid {
+    background-image: radial-gradient(circle, rgba(0, 0, 0, 0.04) 1px, transparent 1px);
+    background-size: 20px 20px;
+}
+.dark .dot-grid {
+    background-image: radial-gradient(circle, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+}
+
+/* Section with slightly tinted background */
+.section-tinted {
+    background-color: rgba(0, 0, 0, 0.015);
+}
+.dark .section-tinted {
+    background-color: rgba(255, 255, 255, 0.02);
+}
+
+/* Arrow slide right on hover */
+.arrow-hover svg {
+    transition: transform 0.2s ease;
+}
+.arrow-hover:hover svg {
+    transform: translateX(3px);
+}
+
+/* Link with opacity hover */
+.link-hover {
+    transition: opacity 0.2s ease;
+}
+.link-hover:hover {
+    opacity: 0.6;
+}
+
+/* Splash screen loading bar */
+@keyframes loadBar {
+    0% { width: 0; }
+    100% { width: 100%; }
+}
+
 /* Respect reduced motion preference */
 @media (prefers-reduced-motion: reduce) {
     *,

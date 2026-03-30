@@ -71,9 +71,9 @@ const Certifications: React.FC = () => {
 					transition={{ duration: 0.5 }}
 					className="text-center mb-8 sm:mb-14"
 				>
-					<div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/10 bg-white/[0.04] mb-5">
+					<div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-gray-400 dark:border-white/[0.1] bg-white dark:bg-white/[0.02] mb-5">
 						<span className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse" />
-						<span className="text-xs text-white/55 uppercase tracking-widest font-medium">
+						<span className="text-xs text-gray-500 dark:text-[#F0F0F5]/50 uppercase tracking-widest font-medium">
 							{data.overline}
 						</span>
 					</div>
@@ -87,15 +87,15 @@ const Certifications: React.FC = () => {
 							whileInView={{ opacity: 1, y: 0 }}
 							viewport={{ once: true }}
 							transition={{ duration: 0.4, delay: i * 0.1 }}
-							className="group relative rounded-2xl border border-white/[0.07] bg-white/[0.02] p-4 sm:p-5 lg:p-6 hover:bg-white/[0.04] hover:border-white/[0.12] transition-all duration-200"
+							className="group relative rounded-2xl border border-transparent bg-white dark:bg-white/[0.02] p-4 sm:p-5 lg:p-6 hover:border-gray-700 dark:hover:border-white/[0.12] shadow-sm dark:shadow-none hover:shadow-lg dark:hover:shadow-none transition-all duration-200"
 						>
-							<div className="text-blue-400/70 group-hover:text-blue-400 transition-colors mb-4">
+							<div className="text-blue-500 dark:text-blue-400 group-hover:text-blue-700 dark:group-hover:text-blue-400 transition-colors mb-4">
 								{icons[i]}
 							</div>
-							<h3 className="text-base font-semibold text-white mb-1.5">
+							<h3 className="text-base font-semibold text-gray-900 dark:text-[#F0F0F5] mb-1.5">
 								{item.title}
 							</h3>
-							<p className="text-sm text-white/50 leading-relaxed">
+							<p className="text-sm text-gray-500 dark:text-[#F0F0F5]/50 leading-relaxed">
 								{item.description}
 							</p>
 						</motion.div>

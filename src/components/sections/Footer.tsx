@@ -76,12 +76,9 @@ const Footer: React.FC = () => {
     ]
 
     return (
-			<footer className='relative overflow-hidden border-t border-white/[0.06]'>
+			<footer className='relative overflow-hidden bg-black text-white'>
 				{/* Pre-footer CTA */}
 				<div className='relative py-20 lg:py-28 border-b border-white/[0.06]'>
-					<div className='absolute inset-0 pointer-events-none'>
-						<div className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[300px] bg-blue-500/[0.06] rounded-full blur-[120px]' />
-					</div>
 					<motion.div
 						initial={{ opacity: 0, y: 24 }}
 						whileInView={{ opacity: 1, y: 0 }}
@@ -102,7 +99,7 @@ const Footer: React.FC = () => {
 						<div className='flex flex-col sm:flex-row gap-3 justify-center'>
 							<Link
 								href='/contact'
-								className='inline-flex items-center justify-center gap-2 bg-white text-black px-7 py-3.5 rounded-xl text-sm font-bold no-underline hover:bg-white/90 transition-colors'
+								className='arrow-hover inline-flex items-center justify-center gap-2 bg-white text-black px-7 py-3.5 rounded-xl text-sm font-bold no-underline hover:bg-white/90 shadow-md hover:shadow-lg transition-all'
 							>
 								{t.cta.primaryButton}
 								<svg width='14' height='14' viewBox='0 0 14 14' fill='none'>
@@ -163,14 +160,14 @@ const Footer: React.FC = () => {
 
 						{/* Solutions */}
 						<div>
-							<p className='text-xs text-blue-400 uppercase tracking-[0.15em] font-medium mb-5'>
+							<p className='text-xs text-white/40 uppercase tracking-[0.15em] font-medium mb-5'>
 								{t.solutions.title}
 							</p>
 							<ul className='space-y-3.5'>
 								{t.solutions.items.map((s, i) => (
 									<li key={s.label}>
-										<Link href={solutionHrefs[i]} className='group no-underline'>
-											<span className='block text-sm text-white group-hover:text-blue-400 transition-colors leading-tight'>
+										<Link href={solutionHrefs[i]} className='group no-underline hover:underline decoration-white/80 underline-offset-2'>
+											<span className='block text-sm text-white/70 group-hover:text-white transition-colors leading-tight'>
 												{s.label}
 											</span>
 											<span className='block text-[11px] text-white/60 mt-0.5'>
@@ -184,7 +181,7 @@ const Footer: React.FC = () => {
 
 						{/* Company */}
 						<div>
-							<p className='text-xs text-purple-400 uppercase tracking-[0.15em] font-medium mb-5'>
+							<p className='text-xs text-white/40 uppercase tracking-[0.15em] font-medium mb-5'>
 								{t.company.title}
 							</p>
 							<ul className='space-y-3'>
@@ -192,7 +189,7 @@ const Footer: React.FC = () => {
 									<li key={label}>
 										<Link
 											href={companyHrefs[i]}
-											className='text-sm text-white hover:text-purple-400 transition-colors no-underline'
+											className='text-sm text-white/70 hover:text-white hover:underline decoration-white/80 underline-offset-2 transition-colors no-underline'
 										>
 											{label}
 										</Link>
@@ -203,7 +200,7 @@ const Footer: React.FC = () => {
 
 						{/* Contact */}
 						<div>
-							<p className='text-xs text-emerald-400 uppercase tracking-[0.15em] font-medium mb-5'>
+							<p className='text-xs text-white/40 uppercase tracking-[0.15em] font-medium mb-5'>
 								{t.contact.title}
 							</p>
 							<ul className='space-y-3.5'>
@@ -211,7 +208,7 @@ const Footer: React.FC = () => {
 									<li key={c.href}>
 										<a
 											href={c.href}
-											className='inline-flex items-center gap-2.5 text-sm text-white hover:text-emerald-400 transition-colors no-underline'
+											className='inline-flex items-center gap-2.5 text-sm text-white/70 hover:text-white hover:underline decoration-white/80 underline-offset-2 transition-colors no-underline'
 										>
 											<span className='text-white/50'>{c.icon}</span>
 											{c.label}
@@ -249,8 +246,6 @@ const Footer: React.FC = () => {
 					</div>
 				</div>
 
-				{/* Background */}
-				<div className='absolute bottom-0 left-1/2 -translate-x-1/2 w-[800px] h-[300px] bg-blue-500/[0.04] rounded-full blur-[120px] pointer-events-none' />
 			</footer>
 		)
 }

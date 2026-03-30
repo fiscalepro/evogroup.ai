@@ -224,14 +224,14 @@ const CaseStudies: React.FC = () => {
                     transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
                     className="mb-12"
                 >
-                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/10 bg-white/[0.04] mb-5">
-                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                        <span className="text-xs text-white/55 uppercase tracking-widest font-medium">{content.overline}</span>
+                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-gray-400 bg-white dark:bg-white/[0.02] mb-5">
+                        <span className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse" />
+                        <span className="text-xs text-gray-500 dark:text-[#F0F0F5]/55 uppercase tracking-widest font-medium">{content.overline}</span>
                     </div>
-                    <h2 className="text-2xl sm:text-4xl lg:text-5xl font-bold text-white tracking-tight leading-tight mb-3">
+                    <h2 className="text-2xl sm:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-[#F0F0F5] tracking-tight leading-tight mb-3">
                         {content.title}
                     </h2>
-                    <p className="text-base text-white/55 max-w-md leading-relaxed">
+                    <p className="text-base text-gray-500 dark:text-[#F0F0F5]/55 max-w-md leading-relaxed">
                         {content.subtitle}
                     </p>
                 </motion.div>
@@ -249,17 +249,20 @@ const CaseStudies: React.FC = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.5, delay: 0.2 }}
-                    className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border border-white/[0.07] rounded-2xl px-4 py-4 sm:px-7 sm:py-6 bg-white/[0.02]"
+                    className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border border-transparent hover:border-gray-900/40 dark:hover:border-white/[0.12] rounded-2xl px-4 py-4 sm:px-7 sm:py-6 bg-white dark:bg-white/[0.02] shadow-sm dark:shadow-none hover:shadow-lg dark:hover:shadow-none transition-all duration-300"
                 >
                     <div>
-                        <p className="text-base font-semibold text-white mb-1">{content.ctaTitle}</p>
-                        <p className="text-sm text-white/55 leading-relaxed">{content.ctaSub}</p>
+                        <p className="text-base font-semibold text-gray-900 dark:text-[#F0F0F5] mb-1">{content.ctaTitle}</p>
+                        <p className="text-sm text-gray-500 dark:text-[#F0F0F5]/55 leading-relaxed">{content.ctaSub}</p>
                     </div>
                     <Link
                         href="/contact"
-                        className="flex-shrink-0 bg-white text-black px-6 py-3 rounded-xl text-sm font-bold no-underline hover:bg-white/90 transition-colors"
+                        className="arrow-hover flex-shrink-0 inline-flex items-center gap-2 bg-gray-900 dark:bg-[#F0F0F5] dark:text-[#0A0E1A] text-white px-6 py-3 rounded-xl text-sm font-bold no-underline shadow-sm dark:shadow-none hover:shadow-lg dark:hover:shadow-none hover:bg-black dark:hover:bg-white transition-all"
                     >
                         {content.ctaBtn}
+                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                            <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                        </svg>
                     </Link>
                 </motion.div>
 

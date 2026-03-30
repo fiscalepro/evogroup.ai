@@ -5,8 +5,10 @@ export const en = {
         whatsappCrm: 'EvoAI CRM',
         evopay: 'EvoPay',
         evoclinic: 'EvoClinic',
-        smartuchet: 'Universal Cabinet',
+        smartuchet: 'EvoCabinet',
+        edo: 'EDO',
         cce: 'CCE',
+        about: 'About Us',
         cases: 'Cases',
         technology: 'Technology',
         team: 'Team',
@@ -489,16 +491,24 @@ export const en = {
         subtitle: 'Every day without automation costs you clients, money, and time',
         problems: [
             {
-                title: 'Clients write — no one answers',
-                description: 'Messages in WhatsApp, Instagram, Telegram pile up. Managers miss requests, respond late, forget to follow up. You lose sales every day.',
+                title: 'One system for team and profit growth',
+                description: 'Monitoring, analytics, quality control, employee training and sales — one tool that grows your team and profit at the same time.',
             },
             {
-                title: 'Waiters are slow, checks are low',
-                description: 'Guests wait to order. The waiter is busy. No upsells, no analytics. Average check stays flat, service quality drops at peak hours.',
+                title: 'EvoPay — one platform for venues and guests',
+                description: 'A unified platform connecting venues and their guests. Online orders, cashless payments, QR menus, and a loyalty program with up to 10% cashback — all in one place.',
             },
             {
-                title: 'Development is slow and chaotic',
-                description: 'Code reviews take days. No shared standards. Knowledge stays in people\'s heads. The team grows but velocity doesn\'t.',
+                title: 'Clinic chaos — patients leave',
+                description: 'Phone-based booking, lost records, missed appointments. Doctors waste time on routine instead of treatment. Patients switch to competitors.',
+            },
+            {
+                title: 'Documents get lost, approvals drag on',
+                description: 'Paper-based workflows, lost versions, missed deadlines. No one knows the document status or who is responsible.',
+            },
+            {
+                title: 'Code reviews bottleneck',
+                description: 'Developers wait days for reviews. Knowledge stays siloed. Standards drift.',
             },
         ],
         solveWith: 'Solve with {solution}',
@@ -642,8 +652,9 @@ export const en = {
             items: [
                 { label: 'EvoAI CRM', sublabel: 'AI bots for WhatsApp/Instagram/Telegram' },
                 { label: 'EvoPay', sublabel: 'QR menu, orders, online payments' },
+                { label: 'EvoCabinet', sublabel: 'ESF, ETTN, tax reporting & analytics' },
+                { label: 'EDO', sublabel: 'Electronic document management' },
                 { label: 'CCE Platform', sublabel: 'Claude Code Enterprise for teams' },
-                { label: 'Universal Cabinet', sublabel: 'ESF, ETTN, tax reporting & analytics' },
             ],
         },
         company: {
@@ -665,7 +676,7 @@ export const en = {
     },
     solutionsPreview: {
         title: 'Our solutions',
-        subtitle: 'Four products to automate customer service, payments, healthcare, and development',
+        subtitle: 'Five products to automate customer service, payments, healthcare, development, and document management',
         learnMore: 'Learn more',
         compare: 'Compare all solutions',
         solutions: [
@@ -684,18 +695,25 @@ export const en = {
                 metricLabel: 'average check',
             },
             {
-                title: 'CCE Platform',
-                description: 'Claude Code Enterprise — centralized AI dev tooling. Skills, hooks, swarm intelligence, ADR workflow for teams.',
-                features: ['18 enterprise skills', '5 MCP servers', 'Swarm Intelligence', 'DORA metrics (DevPulse)'],
-                metricValue: '68+',
-                metricLabel: 'repos managed',
-            },
-            {
                 title: 'EvoClinic',
                 description: 'Clinic management with WhatsApp Business integration. Patient records, scheduling, and AI-powered bot for appointments.',
                 features: ['WhatsApp Business API', 'Patient records', 'Appointment booking', 'Multi-clinic support'],
                 metricValue: '10+',
                 metricLabel: 'modules',
+            },
+            {
+                title: 'EDO',
+                description: 'Corporate electronic document management platform. Full lifecycle: creation, approval, execution control, and audit with multi-tenancy.',
+                features: ['Flexible approval routes', 'Controller dashboard', 'Multi-tenancy', 'SSO & RBAC'],
+                metricValue: '5',
+                metricLabel: 'system roles',
+            },
+            {
+                title: 'CCE Platform',
+                description: 'Claude Code Enterprise — centralized AI dev tooling. Skills, hooks, swarm intelligence, ADR workflow for teams.',
+                features: ['18 enterprise skills', '5 MCP servers', 'Swarm Intelligence', 'DORA metrics (DevPulse)'],
+                metricValue: '68+',
+                metricLabel: 'repos managed',
             },
         ],
     },

@@ -1,8 +1,8 @@
 'use client'
 
-import React, { useState } from 'react'
+import React from 'react'
 import { useTranslation } from '@/components/providers/I18nProvider'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion } from 'framer-motion'
 
 const Icons: Record<string, React.ReactNode> = {
     bank: (
@@ -84,27 +84,9 @@ const Icons: Record<string, React.ReactNode> = {
     ),
 }
 
-const ChevronIcon = ({ open }: { open: boolean }) => (
-    <motion.svg
-        width="20"
-        height="20"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        animate={{ rotate: open ? 180 : 0 }}
-        transition={{ duration: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
-        className="text-white/40"
-    >
-        <polyline points="6 9 12 15 18 9" />
-    </motion.svg>
-)
 
 const TrustSignals: React.FC = () => {
     const { locale } = useTranslation()
-    const [smbOpen, setSmbOpen] = useState(false)
 
     const getContent = () => {
         if (locale === 'en') {
@@ -114,7 +96,7 @@ const TrustSignals: React.FC = () => {
                     { icon: 'bank', name: 'Banking Sector', sub: 'Working with banking wallets — 16 microservices' },
                     { icon: 'oil', name: 'Oil & Gas', sub: 'Gas stations and oil depots' },
                     { icon: 'horeca', name: 'HoReCa', sub: 'Restaurant & hotel automation' },
-                    { icon: 'medicine', name: 'EvoClinic', sub: 'Clinic management + WhatsApp' },
+                    { icon: 'medicine', name: 'Health/Clinic', sub: 'Clinic management + WhatsApp' },
                 ],
                 smb: {
                     icon: 'home',
@@ -139,7 +121,7 @@ const TrustSignals: React.FC = () => {
                     { icon: 'bank', name: 'Банк тармагы', sub: 'Банк капчыктары менен иш — 16 микросервис' },
                     { icon: 'oil', name: 'Мунай жана газ', sub: 'АЗС жана мунай базалары' },
                     { icon: 'horeca', name: 'HoReCa', sub: 'Ресторан жана мейманкана автоматташтыруу' },
-                    { icon: 'medicine', name: 'EvoClinic', sub: 'Клиника башкаруу + WhatsApp' },
+                    { icon: 'medicine', name: 'Саламаттык/Клиника', sub: 'Клиника башкаруу + WhatsApp' },
                 ],
                 smb: {
                     icon: 'home',
@@ -164,7 +146,7 @@ const TrustSignals: React.FC = () => {
                 { icon: 'bank', name: 'Банковский сектор', sub: 'Работа с банковскими кошельками — 16 микросервисов' },
                 { icon: 'oil', name: 'Нефть и газ', sub: 'АЗС и нефтебазы' },
                 { icon: 'horeca', name: 'HoReCa', sub: 'Автоматизация ресторанов и отелей' },
-                { icon: 'medicine', name: 'EvoClinic', sub: 'Управление клиникой + WhatsApp' },
+                { icon: 'medicine', name: 'Здоровье/Клиника', sub: 'Управление клиникой + WhatsApp' },
             ],
             smb: {
                 icon: 'home',
@@ -205,7 +187,7 @@ const TrustSignals: React.FC = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: '-60px' }}
                     transition={{ duration: 0.5 }}
-                    className="text-center text-xs text-white/40 uppercase tracking-[0.25em] font-medium mb-10"
+                    className="text-center text-xs text-gray-500 dark:text-[#F0F0F5]/50 uppercase tracking-[0.25em] font-medium mb-10"
                 >
                     {content.title}
                 </motion.p>
@@ -220,13 +202,13 @@ const TrustSignals: React.FC = () => {
                             initial="hidden"
                             whileInView="visible"
                             viewport={{ once: true, margin: '-40px' }}
-                            className="group p-3 sm:p-5 lg:p-6 rounded-2xl bg-white/[0.03] border border-white/[0.07] hover:bg-white/[0.06] hover:border-white/[0.12] transition-all duration-300"
+                            className="group p-3 sm:p-5 lg:p-6 rounded-2xl bg-white dark:bg-white/[0.02] border border-transparent hover:border-gray-900 dark:hover:border-white/[0.12] hover:border-opacity-40 shadow-sm dark:shadow-none hover:shadow-lg dark:hover:shadow-none transition-all duration-300"
                         >
-                            <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-white/[0.06] border border-white/[0.08] flex items-center justify-center mb-4 text-white/50 group-hover:text-white/70 group-hover:bg-white/[0.1] transition-all duration-300 p-2.5">
+                            <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-gray-200 dark:bg-white/[0.08] border border-gray-400 dark:border-white/[0.1] flex items-center justify-center mb-4 text-gray-500 dark:text-[#F0F0F5]/50 group-hover:text-gray-900 dark:group-hover:text-[#F0F0F5] group-hover:bg-gray-300 dark:group-hover:bg-white/[0.12] transition-all duration-300 p-2.5">
                                 {Icons[partner.icon]}
                             </div>
-                            <h3 className="text-sm sm:text-base font-bold text-white mb-0.5">{partner.name}</h3>
-                            <p className="text-xs text-white/40">{partner.sub}</p>
+                            <h3 className="text-sm sm:text-base font-bold text-gray-900 dark:text-[#F0F0F5] mb-0.5">{partner.name}</h3>
+                            <p className="text-xs text-gray-500 dark:text-[#F0F0F5]/50">{partner.sub}</p>
                         </motion.div>
                     ))}
                 </div>
@@ -237,33 +219,21 @@ const TrustSignals: React.FC = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: '-40px' }}
                     transition={{ duration: 0.5, delay: 0.3 }}
-                    className="rounded-2xl bg-white/[0.03] border border-white/[0.07] overflow-hidden transition-colors duration-300"
+                    className="rounded-2xl bg-white dark:bg-white/[0.02] border border-transparent overflow-hidden shadow-sm dark:shadow-none transition-colors duration-300"
                 >
-                    {/* SMB Header — always visible, clickable */}
-                    <button
-                        onClick={() => setSmbOpen(!smbOpen)}
-                        className="w-full flex items-center gap-3 sm:gap-4 p-3 sm:p-5 lg:p-6 text-left cursor-pointer transition-colors duration-200"
-                    >
-                        <div className="w-11 h-11 rounded-xl bg-white/[0.06] border border-white/[0.08] flex items-center justify-center text-white/50 p-2.5 flex-shrink-0">
+                    {/* SMB Header */}
+                    <div className="flex items-center gap-3 sm:gap-4 p-3 sm:p-5 lg:p-6">
+                        <div className="w-11 h-11 rounded-xl bg-gray-200 dark:bg-white/[0.08] border border-gray-400 dark:border-white/[0.1] flex items-center justify-center text-gray-500 dark:text-[#F0F0F5]/50 p-2.5 flex-shrink-0">
                             {Icons[content.smb.icon]}
                         </div>
                         <div className="flex-grow min-w-0">
-                            <h3 className="text-sm sm:text-base font-bold text-white">{content.smb.name}</h3>
-                            <p className="text-xs text-white/40">{content.smb.sub}</p>
+                            <h3 className="text-sm sm:text-base font-bold text-gray-900 dark:text-[#F0F0F5]">{content.smb.name}</h3>
+                            <p className="text-xs text-gray-500 dark:text-[#F0F0F5]/50">{content.smb.sub}</p>
                         </div>
-                        <ChevronIcon open={smbOpen} />
-                    </button>
+                    </div>
 
-                    {/* Expandable sub-categories */}
-                    <AnimatePresence initial={false}>
-                        {smbOpen && (
-                            <motion.div
-                                initial={{ height: 0, opacity: 0 }}
-                                animate={{ height: 'auto', opacity: 1 }}
-                                exit={{ height: 0, opacity: 0 }}
-                                transition={{ duration: 0.35, ease: [0.25, 0.1, 0.25, 1] }}
-                                className="overflow-hidden"
-                            >
+                    {/* Sub-categories */}
+                    <div>
                                 <div className="px-3 sm:px-5 lg:px-6 pb-3 sm:pb-5 lg:pb-6 pt-1">
                                     <div className="grid grid-cols-2 gap-2 sm:gap-3">
                                         {content.smb.categories.map((cat, i) => (
@@ -272,19 +242,17 @@ const TrustSignals: React.FC = () => {
                                                 initial={{ opacity: 0, y: 12 }}
                                                 animate={{ opacity: 1, y: 0 }}
                                                 transition={{ duration: 0.3, delay: i * 0.04 }}
-                                                className="flex items-center gap-2 sm:gap-3 p-2 sm:p-3 rounded-xl bg-white/[0.03] border border-white/[0.06] hover:bg-white/[0.06] transition-colors duration-200"
+                                                className="flex items-center gap-2 sm:gap-3 p-2 sm:p-3 rounded-xl bg-white dark:bg-white/[0.02] border border-gray-200 dark:border-white/[0.06] hover:bg-gray-50 dark:hover:bg-white/[0.04] transition-colors duration-200"
                                             >
-                                                <div className="w-7 h-7 rounded-lg bg-white/[0.06] flex items-center justify-center text-white/45 p-1.5 flex-shrink-0">
+                                                <div className="w-7 h-7 rounded-lg bg-gray-100 dark:bg-white/[0.06] flex items-center justify-center text-gray-400 dark:text-[#F0F0F5]/40 p-1.5 flex-shrink-0">
                                                     {Icons[cat.icon]}
                                                 </div>
-                                                <span className="text-xs sm:text-sm text-white/65 font-medium leading-tight">{cat.name}</span>
+                                                <span className="text-xs sm:text-sm text-gray-600 dark:text-[#F0F0F5]/60 font-medium leading-tight">{cat.name}</span>
                                             </motion.div>
                                         ))}
                                     </div>
                                 </div>
-                            </motion.div>
-                        )}
-                    </AnimatePresence>
+                    </div>
                 </motion.div>
 
             </div>
