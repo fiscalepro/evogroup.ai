@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm run:*)",
+      "Bash(dd if=.next/server/chunks/991.js bs=1 skip=5600 count=400)"
+    ]
+  }
+}
