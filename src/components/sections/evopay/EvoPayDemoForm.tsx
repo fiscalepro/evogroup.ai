@@ -165,7 +165,7 @@ const EvoPayDemoForm: React.FC = () => {
     // Success state
     if (isSubmitted) {
         return (
-            <section id="evopay-demo" className="py-20 sm:py-32 px-4 sm:px-6 lg:px-10 bg-black relative overflow-hidden">
+            <section id="evopay-demo" className="py-20 sm:py-32 px-4 sm:px-6 lg:px-10 bg-white dark:bg-black relative overflow-hidden">
                 <div className="max-w-2xl mx-auto relative z-10 text-center">
                     <motion.div
                         initial={{ opacity: 0, scale: 0.9 }}
@@ -173,19 +173,19 @@ const EvoPayDemoForm: React.FC = () => {
                         className="bg-emerald-500/10 backdrop-blur-sm border border-emerald-500/20 rounded-3xl p-8 sm:p-12"
                     >
                         <div className="w-20 h-20 bg-emerald-500/20 rounded-full flex items-center justify-center mx-auto mb-6">
-                            <svg className="w-10 h-10 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg className="w-10 h-10 text-emerald-600 dark:text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                             </svg>
                         </div>
-                        <h3 className="text-3xl font-bold text-white mb-4">{t.successTitle}</h3>
-                        <p className="text-white/70 text-lg mb-8">
+                        <h3 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">{t.successTitle}</h3>
+                        <p className="text-gray-600 dark:text-white/70 text-lg mb-8">
                             {t.successMessage}
                         </p>
 
                         <div className="grid sm:grid-cols-2 gap-4 mb-8">
                             {t.successSteps.map((step, index) => (
-                                <div key={index} className="flex items-center gap-3 text-left text-white/80 p-4 bg-white/5 rounded-xl border border-white/10">
-                                    <span className="flex-shrink-0 w-8 h-8 bg-emerald-500/20 rounded-full flex items-center justify-center text-sm text-emerald-400 font-bold">
+                                <div key={index} className="flex items-center gap-3 text-left text-gray-700 dark:text-white/80 p-4 bg-gray-50 dark:bg-white/5 rounded-xl border border-gray-200 dark:border-white/10">
+                                    <span className="flex-shrink-0 w-8 h-8 bg-emerald-500/20 rounded-full flex items-center justify-center text-sm text-emerald-600 dark:text-emerald-400 font-bold">
                                         {index + 1}
                                     </span>
                                     <span className="text-sm">{step}</span>
@@ -195,7 +195,7 @@ const EvoPayDemoForm: React.FC = () => {
 
                         <button
                             onClick={() => setIsSubmitted(false)}
-                            className="px-8 py-3 bg-white/10 hover:bg-white/15 text-white rounded-full font-semibold transition-all"
+                            className="px-8 py-3 bg-gray-100 dark:bg-white/10 hover:bg-gray-200 dark:hover:bg-white/15 text-gray-900 dark:text-white rounded-full font-semibold transition-all"
                         >
                             {t.sendAnother}
                         </button>
@@ -221,7 +221,7 @@ const EvoPayDemoForm: React.FC = () => {
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="bg-[#1a1a24] border border-white/10 rounded-3xl p-8 sm:p-12 lg:p-16"
+                    className="bg-white dark:bg-[#1a1a24] border border-gray-200 dark:border-white/10 rounded-3xl p-8 sm:p-12 lg:p-16"
                 >
                     <div className="grid lg:grid-cols-2 gap-12 items-start">
                         {/* Left: Info */}
@@ -230,7 +230,7 @@ const EvoPayDemoForm: React.FC = () => {
                                 initial={{ opacity: 0, y: 20 }}
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
-                                className="inline-block px-4 py-2 bg-cyan-500/10 rounded-full text-xs font-bold text-cyan-400 uppercase tracking-wider mb-6"
+                                className="inline-block px-4 py-2 bg-cyan-500/10 rounded-full text-xs font-bold text-cyan-600 dark:text-cyan-400 uppercase tracking-wider mb-6"
                             >
                                 {t.badge}
                             </motion.span>
@@ -239,7 +239,7 @@ const EvoPayDemoForm: React.FC = () => {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ delay: 0.1 }}
-                                className="text-3xl sm:text-4xl font-extrabold text-white mb-4"
+                                className="text-3xl sm:text-4xl font-extrabold text-gray-900 dark:text-white mb-4"
                             >
                                 {t.title}
                             </motion.h2>
@@ -248,7 +248,7 @@ const EvoPayDemoForm: React.FC = () => {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ delay: 0.2 }}
-                                className="text-lg text-white/60 mb-8"
+                                className="text-lg text-gray-500 dark:text-white/60 mb-8"
                             >
                                 {t.subtitle}
                             </motion.p>
@@ -263,11 +263,11 @@ const EvoPayDemoForm: React.FC = () => {
                                 {t.features.map((item, index) => (
                                     <li key={index} className="flex items-center gap-3">
                                         <div className="w-6 h-6 bg-emerald-500/20 rounded-full flex items-center justify-center flex-shrink-0">
-                                            <svg className="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <svg className="w-4 h-4 text-emerald-600 dark:text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                                             </svg>
                                         </div>
-                                        <span className="text-white/80">{item}</span>
+                                        <span className="text-gray-700 dark:text-white/80">{item}</span>
                                     </li>
                                 ))}
                             </motion.ul>
@@ -279,12 +279,12 @@ const EvoPayDemoForm: React.FC = () => {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: 0.2 }}
-                            className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 sm:p-8"
+                            className="bg-gray-50 dark:bg-white/5 backdrop-blur-sm border border-gray-200 dark:border-white/10 rounded-2xl p-6 sm:p-8"
                         >
                             <form onSubmit={handleSubmit} className="space-y-5" noValidate>
                                 {/* General Error */}
                                 {errors.general && (
-                                    <div className="p-4 bg-red-500/10 border border-red-500/20 rounded-xl text-red-400 text-sm">
+                                    <div className="p-4 bg-red-500/10 border border-red-500/20 rounded-xl text-red-600 dark:text-red-400 text-sm">
                                         {errors.general}
                                     </div>
                                 )}
@@ -298,12 +298,12 @@ const EvoPayDemoForm: React.FC = () => {
                                         value={formData.name}
                                         onChange={handleInputChange}
                                         maxLength={100}
-                                        className={`w-full px-4 py-3 bg-white/5 border rounded-xl text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent transition-all ${
-                                            errors.name ? 'border-red-500/50' : 'border-white/10'
+                                        className={`w-full px-4 py-3 bg-gray-50 dark:bg-white/5 border rounded-xl text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent transition-all ${
+                                            errors.name ? 'border-red-500/50' : 'border-gray-200 dark:border-white/10'
                                         }`}
                                     />
                                     {errors.name && (
-                                        <p className="mt-1 text-sm text-red-400">{errors.name}</p>
+                                        <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.name}</p>
                                     )}
                                 </div>
 
@@ -316,12 +316,12 @@ const EvoPayDemoForm: React.FC = () => {
                                         value={formData.email}
                                         onChange={handleInputChange}
                                         maxLength={254}
-                                        className={`w-full px-4 py-3 bg-white/5 border rounded-xl text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent transition-all ${
-                                            errors.email ? 'border-red-500/50' : 'border-white/10'
+                                        className={`w-full px-4 py-3 bg-gray-50 dark:bg-white/5 border rounded-xl text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent transition-all ${
+                                            errors.email ? 'border-red-500/50' : 'border-gray-200 dark:border-white/10'
                                         }`}
                                     />
                                     {errors.email && (
-                                        <p className="mt-1 text-sm text-red-400">{errors.email}</p>
+                                        <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.email}</p>
                                     )}
                                 </div>
 
@@ -334,12 +334,12 @@ const EvoPayDemoForm: React.FC = () => {
                                         value={formData.phone}
                                         onChange={handleInputChange}
                                         maxLength={20}
-                                        className={`w-full px-4 py-3 bg-white/5 border rounded-xl text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent transition-all ${
-                                            errors.phone ? 'border-red-500/50' : 'border-white/10'
+                                        className={`w-full px-4 py-3 bg-gray-50 dark:bg-white/5 border rounded-xl text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent transition-all ${
+                                            errors.phone ? 'border-red-500/50' : 'border-gray-200 dark:border-white/10'
                                         }`}
                                     />
                                     {errors.phone && (
-                                        <p className="mt-1 text-sm text-red-400">{errors.phone}</p>
+                                        <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.phone}</p>
                                     )}
                                 </div>
 
@@ -352,18 +352,18 @@ const EvoPayDemoForm: React.FC = () => {
                                         value={formData.company}
                                         onChange={handleInputChange}
                                         maxLength={200}
-                                        className={`w-full px-4 py-3 bg-white/5 border rounded-xl text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent transition-all ${
-                                            errors.company ? 'border-red-500/50' : 'border-white/10'
+                                        className={`w-full px-4 py-3 bg-gray-50 dark:bg-white/5 border rounded-xl text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent transition-all ${
+                                            errors.company ? 'border-red-500/50' : 'border-gray-200 dark:border-white/10'
                                         }`}
                                     />
                                     {errors.company && (
-                                        <p className="mt-1 text-sm text-red-400">{errors.company}</p>
+                                        <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.company}</p>
                                     )}
                                 </div>
 
                                 {/* Tables */}
                                 <div>
-                                    <label className="block text-sm text-white/60 mb-2">
+                                    <label className="block text-sm text-gray-500 dark:text-white/60 mb-2">
                                         {t.tablesLabel}
                                     </label>
                                     <div className="grid grid-cols-4 gap-2">
@@ -375,7 +375,7 @@ const EvoPayDemoForm: React.FC = () => {
                                                 className={`px-3 py-2 rounded-lg text-sm font-medium transition-all ${
                                                     formData.tables === option
                                                         ? 'bg-gradient-to-r from-cyan-500 to-emerald-500 text-black'
-                                                        : 'bg-white/5 text-white/60 hover:bg-white/10'
+                                                        : 'bg-gray-50 dark:bg-white/5 text-gray-500 dark:text-white/60 hover:bg-gray-100 dark:hover:bg-white/10'
                                                 }`}
                                             >
                                                 {option}
@@ -393,7 +393,7 @@ const EvoPayDemoForm: React.FC = () => {
                                         onChange={handleInputChange}
                                         maxLength={1000}
                                         rows={3}
-                                        className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent transition-all resize-none"
+                                        className="w-full px-4 py-3 bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-xl text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent transition-all resize-none"
                                     />
                                 </div>
 
@@ -416,7 +416,7 @@ const EvoPayDemoForm: React.FC = () => {
                                     )}
                                 </button>
 
-                                <p className="text-xs text-white/55 text-center">
+                                <p className="text-xs text-gray-500 dark:text-white/55 text-center">
                                     {t.privacy}
                                 </p>
                             </form>

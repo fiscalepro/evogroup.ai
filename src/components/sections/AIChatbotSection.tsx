@@ -299,21 +299,21 @@ const AIChatbotSection: React.FC = () => {
 
             <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
                 <div className="text-center mb-12 sm:mb-16">
-                    <div className="inline-flex items-center gap-2 bg-[#F0F0F5]/[0.04] border border-[#F0F0F5]/[0.08] rounded-full px-4 py-2 text-sm text-[#F0F0F5]/60 mb-4 sm:mb-6">
+                    <div className="inline-flex items-center gap-2 bg-gray-100 dark:bg-[#F0F0F5]/[0.04] border border-gray-200 dark:border-[#F0F0F5]/[0.08] rounded-full px-4 py-2 text-sm text-gray-500 dark:text-[#F0F0F5]/60 mb-4 sm:mb-6">
                         <div className="w-1.5 h-1.5 bg-blue-400 rounded-full animate-pulse" />
                         {translations.badge}
                     </div>
-                    <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold text-[#F0F0F5] mb-4 sm:mb-6 px-4">
+                    <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold text-gray-900 dark:text-[#F0F0F5] mb-4 sm:mb-6 px-4">
                         {translations.title}
                     </h2>
-                    <p className="text-lg sm:text-xl text-[#F0F0F5]/50 max-w-3xl mx-auto px-4">
+                    <p className="text-lg sm:text-xl text-gray-400 dark:text-[#F0F0F5]/50 max-w-3xl mx-auto px-4">
                         {translations.subtitle}
                     </p>
                 </div>
 
                 <div className="max-w-4xl mx-auto">
-                    <div className="bg-[#F0F0F5]/[0.02] rounded-2xl p-4 sm:p-8 border border-[#F0F0F5]/[0.06] mb-6 sm:mb-8">
-                        <h3 className="text-xl sm:text-2xl font-bold text-[#F0F0F5] mb-4 sm:mb-6 text-center">{translations.demoTitle}</h3>
+                    <div className="bg-gray-50 dark:bg-[#F0F0F5]/[0.02] rounded-2xl p-4 sm:p-8 border border-gray-200 dark:border-[#F0F0F5]/[0.06] mb-6 sm:mb-8">
+                        <h3 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-[#F0F0F5] mb-4 sm:mb-6 text-center">{translations.demoTitle}</h3>
 
                         <div className="grid sm:grid-cols-2 gap-3 sm:gap-4 mb-6 sm:mb-8">
                             {quickReplies.map((reply) => (
@@ -323,7 +323,7 @@ const AIChatbotSection: React.FC = () => {
                                         setIsOpen(true)
                                         setTimeout(() => handleQuickReply(reply), 300)
                                     }}
-                                    className="p-3 sm:p-4 bg-[#F0F0F5]/[0.02] border border-[#F0F0F5]/[0.06] rounded-xl text-left hover:bg-[#F0F0F5]/[0.05] hover:border-[#F0F0F5]/[0.12] transition-all duration-200 group"
+                                    className="p-3 sm:p-4 bg-gray-50 dark:bg-[#F0F0F5]/[0.02] border border-gray-200 dark:border-[#F0F0F5]/[0.06] rounded-xl text-left hover:bg-gray-100 dark:hover:bg-[#F0F0F5]/[0.05] hover:border-gray-300 dark:hover:border-[#F0F0F5]/[0.12] transition-all duration-200 group"
                                 >
                                     <div className="flex items-center gap-3">
                                         <div className="w-8 h-8 sm:w-10 sm:h-10 bg-blue-500/[0.08] rounded-lg flex items-center justify-center group-hover:bg-blue-500/[0.12] transition-colors flex-shrink-0">
@@ -332,8 +332,8 @@ const AIChatbotSection: React.FC = () => {
                                             </svg>
                                         </div>
                                         <div className="flex-1 min-w-0">
-                                            <div className="text-[#F0F0F5] font-medium text-sm sm:text-base">{reply.text}</div>
-                                            <div className="text-[#F0F0F5]/40 text-xs sm:text-sm">
+                                            <div className="text-gray-900 dark:text-[#F0F0F5] font-medium text-sm sm:text-base">{reply.text}</div>
+                                            <div className="text-gray-400 dark:text-[#F0F0F5]/40 text-xs sm:text-sm">
                                                 {locale === 'en' ? 'Click for example' :
                                                     locale === 'ky' ? 'Мисал үчүн басыңыз' :
                                                         'Нажмите для примера'}
@@ -349,7 +349,7 @@ const AIChatbotSection: React.FC = () => {
                                 onClick={() => setIsOpen(true)}
                                 variant="primary"
                                 size="lg"
-                                className="bg-blue-600 hover:bg-blue-700 text-base sm:text-lg px-6 sm:px-8 w-full sm:w-auto"
+                                className="text-base sm:text-lg px-6 sm:px-8 w-full sm:w-auto"
                             >
                                 {translations.openChatbot}
                             </Button>
@@ -358,8 +358,8 @@ const AIChatbotSection: React.FC = () => {
 
                     <div className="grid sm:grid-cols-3 gap-4 sm:gap-5">
                         {translations.features.map((feature, index) => (
-                            <div key={index} className="text-center bg-[#F0F0F5]/[0.02] rounded-2xl p-4 sm:p-6 border border-[#F0F0F5]/[0.06]">
-                                <div className="w-10 h-10 sm:w-11 sm:h-11 bg-[#F0F0F5]/[0.04] border border-[#F0F0F5]/[0.06] rounded-xl flex items-center justify-center mx-auto mb-3 sm:mb-4">
+                            <div key={index} className="text-center bg-gray-50 dark:bg-[#F0F0F5]/[0.02] rounded-2xl p-4 sm:p-6 border border-gray-200 dark:border-[#F0F0F5]/[0.06]">
+                                <div className="w-10 h-10 sm:w-11 sm:h-11 bg-gray-100 dark:bg-[#F0F0F5]/[0.04] border border-gray-200 dark:border-[#F0F0F5]/[0.06] rounded-xl flex items-center justify-center mx-auto mb-3 sm:mb-4">
                                     {index === 0 && (
                                         <svg className="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
                                             <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
@@ -376,8 +376,8 @@ const AIChatbotSection: React.FC = () => {
                                         </svg>
                                     )}
                                 </div>
-                                <h4 className="text-base sm:text-lg font-bold text-[#F0F0F5] mb-2">{feature.title}</h4>
-                                <p className="text-[#F0F0F5]/45 text-xs sm:text-sm">{feature.description}</p>
+                                <h4 className="text-base sm:text-lg font-bold text-gray-900 dark:text-[#F0F0F5] mb-2">{feature.title}</h4>
+                                <p className="text-gray-400 dark:text-[#F0F0F5]/45 text-xs sm:text-sm">{feature.description}</p>
                             </div>
                         ))}
                     </div>

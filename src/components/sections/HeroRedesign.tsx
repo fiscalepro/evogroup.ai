@@ -1,9 +1,9 @@
 'use client'
 
 import React, { useState, useEffect } from 'react'
-import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { useTranslation } from '@/components/providers/I18nProvider'
+import { Button } from '@/components/ui/Button'
 
 const HeroRedesign: React.FC = () => {
     const { tObj } = useTranslation()
@@ -96,21 +96,15 @@ const HeroRedesign: React.FC = () => {
                     transition={{ duration: 0.5, delay: 0.3 }}
                     className="flex flex-col sm:flex-row gap-4 justify-center mb-20"
                 >
-                    <Link
-                        href="/contact"
-                        className="arrow-hover inline-flex items-center justify-center gap-2 bg-gray-900 dark:bg-[#F0F0F5] dark:text-[#0A0E1A] text-white px-6 py-3 sm:px-8 sm:py-4 rounded-xl text-sm sm:text-base font-semibold no-underline shadow-md hover:shadow-lg transition-all duration-200 hover:bg-black dark:hover:bg-white"
-                    >
+                    <Button href="/contact" variant="primary" size="xl" className="arrow-hover sm:px-8">
                         {translations.ctaPrimary}
                         <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                             <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                         </svg>
-                    </Link>
-                    <Link
-                        href="/solutions"
-                        className="inline-flex items-center justify-center gap-2 px-6 py-3 sm:px-8 sm:py-4 rounded-xl text-sm sm:text-base font-semibold text-gray-900 border border-gray-900 dark:border-[#F0F0F5]/[0.1] dark:text-[#F0F0F5]/70 hover:bg-gray-900 hover:text-white dark:hover:bg-[#F0F0F5]/[0.05] dark:hover:text-[#F0F0F5] no-underline shadow-sm hover:shadow-md transition-all duration-200"
-                    >
+                    </Button>
+                    <Button href="/solutions" variant="outline" size="xl" className="sm:px-8">
                         {translations.ctaSecondary}
-                    </Link>
+                    </Button>
                 </motion.div>
 
                 {/* Stats row */}

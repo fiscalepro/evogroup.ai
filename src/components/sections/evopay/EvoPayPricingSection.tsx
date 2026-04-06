@@ -44,7 +44,7 @@ const EvoPayPricingSection: React.FC = () => {
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        className="inline-block px-4 py-2 bg-cyan-500/10 rounded-full text-xs font-bold text-cyan-400 uppercase tracking-wider mb-6"
+                        className="inline-block px-4 py-2 bg-cyan-500/10 rounded-full text-xs font-bold text-cyan-600 dark:text-cyan-400 uppercase tracking-wider mb-6"
                     >
                         {t.badge}
                     </motion.span>
@@ -53,7 +53,7 @@ const EvoPayPricingSection: React.FC = () => {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ delay: 0.1 }}
-                        className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white mb-6"
+                        className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-gray-900 dark:text-white mb-6"
                     >
                         {t.title}
                     </motion.h2>
@@ -62,7 +62,7 @@ const EvoPayPricingSection: React.FC = () => {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ delay: 0.2 }}
-                        className="text-lg text-white/60 max-w-xl mx-auto"
+                        className="text-lg text-gray-500 dark:text-white/60 max-w-xl mx-auto"
                     >
                         {t.subtitle}
                     </motion.p>
@@ -75,23 +75,21 @@ const EvoPayPricingSection: React.FC = () => {
                         transition={{ delay: 0.3 }}
                         className="flex items-center justify-center gap-4 mt-8"
                     >
-                        <span className={`text-sm font-medium transition-colors ${!isYearly ? 'text-white' : 'text-white/50'}`}>
+                        <span className={`text-sm font-medium transition-colors ${!isYearly ? 'text-gray-900 dark:text-white' : 'text-gray-400 dark:text-white/50'}`}>
                             {t.monthly}
                         </span>
                         <button
                             onClick={() => setIsYearly(!isYearly)}
-                            className={`relative w-14 h-7 rounded-full transition-colors ${isYearly ? 'bg-cyan-600' : 'bg-white/20'}`}
+                            className={`relative w-14 h-7 rounded-full transition-colors ${isYearly ? 'bg-cyan-600' : 'bg-gray-200 dark:bg-white/20'}`}
                         >
                             <div className={`absolute top-1 w-5 h-5 bg-white rounded-full transition-all ${isYearly ? 'left-8' : 'left-1'}`} />
                         </button>
-                        <span className={`text-sm font-medium transition-colors ${isYearly ? 'text-white' : 'text-white/50'}`}>
+                        <span className={`text-sm font-medium transition-colors ${isYearly ? 'text-gray-900 dark:text-white' : 'text-gray-400 dark:text-white/50'}`}>
                             {t.yearly}
                         </span>
-                        {isYearly && (
-                            <span className="text-xs bg-emerald-500/20 text-emerald-400 px-3 py-1 rounded-full font-semibold">
-                                {t.save}
-                            </span>
-                        )}
+                        <span className={`text-xs bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 px-3 py-1 rounded-full font-semibold transition-opacity ${isYearly ? 'opacity-100' : 'opacity-0'}`}>
+                            {t.save}
+                        </span>
                     </motion.div>
                 </div>
 
@@ -107,7 +105,7 @@ const EvoPayPricingSection: React.FC = () => {
                             className={`relative rounded-2xl p-6 border transition-all duration-300 hover:scale-105 ${
                                 plan.recommended
                                     ? 'bg-gradient-to-b from-cyan-500/20 to-cyan-500/5 border-cyan-500/50'
-                                    : 'bg-[#1a1a24] border-white/10 hover:border-white/20'
+                                    : 'bg-white dark:bg-[#1a1a24] border-gray-200 dark:border-white/10 hover:border-gray-300 dark:hover:border-white/20'
                             }`}
                         >
                             {plan.recommended && (
@@ -119,21 +117,21 @@ const EvoPayPricingSection: React.FC = () => {
                             )}
 
                             <div className="text-center mb-6">
-                                <h3 className="text-xl font-bold text-white mb-2">{plan.name}</h3>
-                                <p className="text-sm text-white/60 mb-4">{plan.description}</p>
+                                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">{plan.name}</h3>
+                                <p className="text-sm text-gray-500 dark:text-white/60 mb-4">{plan.description}</p>
                                 <div className="flex items-baseline justify-center gap-1">
                                     {plan.price !== 'custom' ? (
                                         <>
-                                            <span className="text-4xl font-bold text-white">
+                                            <span className="text-4xl font-bold text-gray-900 dark:text-white">
                                                 {formatPrice(plan as PricingPlan)}
                                             </span>
-                                            <span className="text-white/60 text-sm">{t.currency}</span>
-                                            <span className="text-white/60 text-sm">
+                                            <span className="text-gray-500 dark:text-white/60 text-sm">{t.currency}</span>
+                                            <span className="text-gray-500 dark:text-white/60 text-sm">
                                                 {isYearly ? t.perYear : t.perMonth}
                                             </span>
                                         </>
                                     ) : (
-                                        <span className="text-2xl font-bold text-white">{t.customPrice}</span>
+                                        <span className="text-2xl font-bold text-gray-900 dark:text-white">{t.customPrice}</span>
                                     )}
                                 </div>
                             </div>
@@ -142,15 +140,15 @@ const EvoPayPricingSection: React.FC = () => {
                                 {plan.features.map((feature, featureIndex) => (
                                     <li key={featureIndex} className="flex items-center gap-3">
                                         {feature.included ? (
-                                            <svg className="w-5 h-5 text-emerald-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <svg className="w-5 h-5 text-emerald-600 dark:text-emerald-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                                             </svg>
                                         ) : (
-                                            <svg className="w-5 h-5 text-white/50 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <svg className="w-5 h-5 text-gray-400 dark:text-white/50 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                                             </svg>
                                         )}
-                                        <span className={`text-sm ${feature.included ? 'text-white/80' : 'text-white/55'}`}>
+                                        <span className={`text-sm ${feature.included ? 'text-gray-700 dark:text-white/80' : 'text-gray-500 dark:text-white/55'}`}>
                                             {feature.name}
                                         </span>
                                     </li>
@@ -162,7 +160,7 @@ const EvoPayPricingSection: React.FC = () => {
                                 className={`w-full py-3 rounded-xl font-semibold transition-all ${
                                     plan.recommended
                                         ? 'bg-gradient-to-r from-cyan-500 to-emerald-500 text-black hover:shadow-lg hover:shadow-cyan-500/30'
-                                        : 'bg-white/10 hover:bg-white/20 text-white'
+                                        : 'bg-gray-100 dark:bg-white/10 hover:bg-gray-200 dark:hover:bg-white/20 text-gray-900 dark:text-white'
                                 }`}
                             >
                                 {plan.price === 'custom' ? t.contactUs : t.tryFree}
@@ -177,7 +175,7 @@ const EvoPayPricingSection: React.FC = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: 0.5 }}
-                    className="mt-12 text-center text-sm text-white/50"
+                    className="mt-12 text-center text-sm text-gray-400 dark:text-white/50"
                 >
                     <p>
                         {t.footer}

@@ -17,7 +17,7 @@ export const en = {
     },
     hero: {
         preTitle: 'EvoAI CRM Demo',
-        title: 'We implement AI and automate businesses for',
+        title: 'We implement AI in business for',
         titleHighlight: ['profitable scaling', 'maximum efficiency', 'your goals'],
         subtitle: 'We audit your business, organize your operations and install AI automations to eliminate bottlenecks and boost your team productivity',
         ctaPrimary: 'Get Started',
@@ -41,8 +41,8 @@ export const en = {
             { value: 24, suffix: '/7', decimals: 0, label: 'Support', sublabel: 'Always available' },
         ],
         clients: [
-            { icon: 'bank' as const, name: 'Banking', description: 'Financial institutions', metric: '20+ banks & credit unions' },
-            { icon: 'oil' as const, name: 'Oil & Gas', description: 'Industrial sector', metric: '8 major companies' },
+            { icon: 'bank' as const, name: 'Fin Tech', description: 'Financial institutions', metric: '20+ banks & credit unions' },
+            { icon: 'oil' as const, name: 'Energy OS', description: 'Industrial sector', metric: '8 major companies' },
             { icon: 'gov' as const, name: 'Government', description: 'Public sector', metric: '15+ state agencies' },
             { icon: 'telecom' as const, name: 'Telecom', description: 'Communications', metric: '5 national operators' },
         ],

@@ -156,11 +156,11 @@ const QualityControlSection: React.FC = () => {
 
     const getColorClass = (color: string) => {
         switch (color) {
-            case 'red': return 'bg-red-500/20 text-red-400 border-red-500/30'
-            case 'orange': return 'bg-orange-500/20 text-orange-400 border-orange-500/30'
+            case 'red': return 'bg-red-500/20 text-red-600 dark:text-red-400 border-red-500/30'
+            case 'orange': return 'bg-orange-500/20 text-orange-600 dark:text-orange-400 border-orange-500/30'
             case 'yellow': return 'bg-yellow-500/20 text-yellow-400 border-yellow-500/30'
-            case 'blue': return 'bg-blue-500/20 text-blue-400 border-blue-500/30'
-            default: return 'bg-white/10 text-white/60 border-white/20'
+            case 'blue': return 'bg-blue-500/20 text-blue-600 dark:text-blue-400 border-blue-500/30'
+            default: return 'bg-gray-100 dark:bg-white/10 text-gray-500 dark:text-white/60 border-gray-300 dark:border-white/20'
         }
     }
 
@@ -169,13 +169,13 @@ const QualityControlSection: React.FC = () => {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
                 {/* Header */}
                 <div className="text-center mb-12 sm:mb-16">
-                    <div className="inline-flex items-center gap-2 bg-orange-500/10 backdrop-blur-sm border border-orange-500/20 rounded-full px-4 py-2 text-sm text-orange-400 shadow-sm mb-4 sm:mb-6">
+                    <div className="inline-flex items-center gap-2 bg-orange-500/10 backdrop-blur-sm border border-orange-500/20 rounded-full px-4 py-2 text-sm text-orange-600 dark:text-orange-400 shadow-sm mb-4 sm:mb-6">
                         {translations.badge}
                     </div>
-                    <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold text-white mb-4 sm:mb-6">
+                    <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4 sm:mb-6">
                         {translations.title}
                     </h2>
-                    <p className="text-lg sm:text-xl text-white/70 max-w-2xl mx-auto">
+                    <p className="text-lg sm:text-xl text-gray-600 dark:text-white/70 max-w-2xl mx-auto">
                         {translations.subtitle}
                     </p>
                 </div>
@@ -186,33 +186,33 @@ const QualityControlSection: React.FC = () => {
                         {translations.features.map((feature, index) => (
                             <div
                                 key={index}
-                                className="p-5 bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl hover:border-orange-500/30 transition-all duration-300"
+                                className="p-5 bg-gray-50 dark:bg-white/5 backdrop-blur-sm border border-gray-200 dark:border-white/10 rounded-xl hover:border-orange-500/30 transition-all duration-300"
                             >
-                                <div className="w-12 h-12 bg-orange-500/20 rounded-lg flex items-center justify-center mb-4 text-orange-400">
+                                <div className="w-12 h-12 bg-orange-500/20 rounded-lg flex items-center justify-center mb-4 text-orange-600 dark:text-orange-400">
                                     {getIcon(feature.icon)}
                                 </div>
-                                <h3 className="text-white font-semibold mb-2">{feature.title}</h3>
-                                <p className="text-white/60 text-sm">{feature.description}</p>
+                                <h3 className="text-gray-900 dark:text-white font-semibold mb-2">{feature.title}</h3>
+                                <p className="text-gray-500 dark:text-white/60 text-sm">{feature.description}</p>
                             </div>
                         ))}
                     </div>
 
                     {/* Right: Demo Dashboard */}
-                    <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6">
+                    <div className="bg-gray-50 dark:bg-white/5 backdrop-blur-sm border border-gray-200 dark:border-white/10 rounded-2xl p-6">
                         {/* Score */}
                         <div className="mb-6">
                             <div className="flex items-center justify-between mb-3">
-                                <span className="text-white/60 text-sm">{translations.scoreLabel}</span>
-                                <span className="text-2xl font-bold text-green-400">8.5/10</span>
+                                <span className="text-gray-500 dark:text-white/60 text-sm">{translations.scoreLabel}</span>
+                                <span className="text-2xl font-bold text-green-600 dark:text-green-400">8.5/10</span>
                             </div>
-                            <div className="h-2 bg-white/10 rounded-full overflow-hidden">
+                            <div className="h-2 bg-gray-100 dark:bg-white/10 rounded-full overflow-hidden">
                                 <div className="h-full bg-gradient-to-r from-green-500 to-emerald-400 rounded-full" style={{ width: '85%' }} />
                             </div>
                         </div>
 
                         {/* Red Flags */}
                         <div>
-                            <span className="text-white/60 text-sm block mb-3">{translations.flagsLabel}</span>
+                            <span className="text-gray-500 dark:text-white/60 text-sm block mb-3">{translations.flagsLabel}</span>
                             <div className="space-y-2">
                                 {translations.redFlags.map((flag, index) => (
                                     <div

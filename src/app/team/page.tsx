@@ -34,7 +34,7 @@ function TeamContent() {
     const translations = getHeaderTranslations()
 
     return (
-        <div className="relative min-h-screen bg-black">
+        <div className="relative min-h-screen bg-[#eeeeee] dark:bg-black transition-colors duration-300">
             {/* Background gradients */}
             <div className="fixed inset-0 overflow-hidden pointer-events-none">
                 <div className="absolute top-0 left-1/4 w-[800px] h-[800px] bg-pink-500/20 rounded-full blur-[120px] animate-float" />
@@ -49,11 +49,11 @@ function TeamContent() {
                     <div className="grid lg:grid-cols-2 gap-12 items-center">
                         {/* Left: Text */}
                         <div>
-                            <p className="text-sm uppercase tracking-wider text-white/50 mb-3">{translations.category}</p>
-                            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4">
+                            <p className="text-sm uppercase tracking-wider text-gray-400 dark:text-white/50 mb-3">{translations.category}</p>
+                            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white mb-4">
                                 {translations.title}
                             </h1>
-                            <p className="text-lg text-white/60 max-w-xl">
+                            <p className="text-lg text-gray-500 dark:text-white/60 max-w-xl">
                                 {translations.subtitle}
                             </p>
                         </div>
@@ -70,7 +70,7 @@ function TeamContent() {
                                                 className="w-20 h-20 rounded-full bg-gradient-to-br from-pink-500/20 to-purple-500/20 border border-pink-500/30 backdrop-blur-sm animate-pulse flex items-center justify-center"
                                                 style={{animationDelay: `${i * 0.2}s`}}
                                             >
-                                                <div className="w-8 h-8 rounded-full bg-white/10" />
+                                                <div className="w-8 h-8 rounded-full bg-gray-100 dark:bg-white/10" />
                                             </div>
                                         ))}
                                     </div>

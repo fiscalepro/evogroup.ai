@@ -6,6 +6,7 @@ import ModernHeader from '@/components/sections/ModernHeader'
 import Footer from '@/components/sections/Footer'
 import PageBackground from '@/components/sections/PageBackground'
 import { useTranslation } from '@/components/providers/I18nProvider'
+import { Button } from '@/components/ui/Button'
 
 // ─── Icons ────────────────────────────────────────────────────────────────────
 
@@ -252,8 +253,8 @@ function ContactFormBlock({ content }: { content: ReturnType<typeof getContent> 
         }
     }
 
-    const inputBase = 'w-full bg-white/[0.04] border border-white/[0.08] rounded-xl px-4 py-3 text-sm text-white placeholder-white/25 outline-none focus:border-white/20 focus:bg-white/[0.06] transition-all duration-200'
-    const labelBase = 'block text-xs text-white/55 uppercase tracking-wider font-medium mb-1.5'
+    const inputBase = 'w-full bg-gray-50 dark:bg-white/[0.04] border border-gray-200 dark:border-white/[0.08] rounded-xl px-4 py-3 text-sm text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-white/25 outline-none focus:border-gray-400 dark:focus:border-white/20 focus:bg-gray-100 dark:focus:bg-white/[0.06] transition-all duration-200'
+    const labelBase = 'block text-xs text-gray-900 dark:text-white/55 uppercase tracking-wider font-medium mb-1.5'
 
     if (isSubmitted) {
         return (
@@ -261,7 +262,7 @@ function ContactFormBlock({ content }: { content: ReturnType<typeof getContent> 
                 initial={{ opacity: 0, scale: 0.97 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.4 }}
-                className="bg-white/[0.025] border border-white/[0.07] rounded-2xl overflow-hidden"
+                className="bg-gray-50 dark:bg-white/[0.025] border border-gray-200 dark:border-white/[0.07] rounded-2xl overflow-hidden"
             >
                 <div className="h-[1.5px] bg-gradient-to-r from-emerald-500 to-transparent" />
                 <div className="p-8 text-center">
@@ -270,21 +271,21 @@ function ContactFormBlock({ content }: { content: ReturnType<typeof getContent> 
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                         </svg>
                     </div>
-                    <h3 className="text-2xl font-bold text-white mb-2">{content.success.title}</h3>
-                    <p className="text-sm text-white/50 mb-8">{content.success.subtitle}</p>
+                    <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">{content.success.title}</h3>
+                    <p className="text-sm text-gray-600 dark:text-white/50 mb-8">{content.success.subtitle}</p>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-8 text-left">
                         {content.nextSteps.map((step, i) => (
-                            <div key={i} className="flex items-center gap-3 bg-white/[0.03] border border-white/[0.06] rounded-xl px-4 py-3">
+                            <div key={i} className="flex items-center gap-3 bg-gray-50 dark:bg-white/[0.03] border border-gray-200 dark:border-white/[0.06] rounded-xl px-4 py-3">
                                 <span className="flex-shrink-0 w-5 h-5 rounded-full bg-emerald-500/10 text-emerald-400 flex items-center justify-center">
                                     <CheckIcon />
                                 </span>
-                                <span className="text-sm text-white/60">{step}</span>
+                                <span className="text-sm text-gray-600 dark:text-white/60">{step}</span>
                             </div>
                         ))}
                     </div>
                     <button
                         onClick={() => setIsSubmitted(false)}
-                        className="text-sm text-white/55 hover:text-white/70 transition-colors"
+                        className="text-sm text-gray-500 dark:text-white/55 hover:text-gray-700 dark:hover:text-white/70 transition-colors"
                     >
                         {content.success.sendAnother}
                     </button>
@@ -294,7 +295,7 @@ function ContactFormBlock({ content }: { content: ReturnType<typeof getContent> 
     }
 
     return (
-        <div className="bg-white/[0.025] border border-white/[0.07] rounded-2xl overflow-hidden">
+        <div className="bg-gray-50 dark:bg-white/[0.025] border border-gray-200 dark:border-white/[0.07] rounded-2xl overflow-hidden">
             <div className="h-[1.5px] bg-gradient-to-r from-blue-500 to-transparent" />
             <div className="p-7 lg:p-9">
                 {errors.general && (
@@ -355,15 +356,17 @@ function ContactFormBlock({ content }: { content: ReturnType<typeof getContent> 
                         {errors.description && <p className="mt-1 text-xs text-red-400">{errors.description}</p>}
                     </div>
 
-                    <button
+                    <Button
                         type="submit"
                         disabled={isSubmitting}
-                        className="w-full bg-white text-black py-3.5 rounded-xl text-sm font-bold hover:bg-white/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                        variant="primary"
+                        size="lg"
+                        className="w-full"
                     >
                         {isSubmitting ? content.form.submitting : content.form.submitButton}
-                    </button>
+                    </Button>
 
-                    <p className="mt-4 text-xs text-white/50 text-center">
+                    <p className="mt-4 text-xs text-gray-500 dark:text-white/50 text-center">
                         {content.form.consent}
                     </p>
                 </form>
@@ -379,7 +382,7 @@ function ContactContent() {
     const content = getContent(locale)
 
     return (
-        <div className="relative min-h-screen bg-[#0A0E1A]">
+        <div className="relative min-h-screen bg-[#eeeeee] dark:bg-[#0A0E1A] transition-colors duration-300">
             <PageBackground accent="blue" />
 
             <ModernHeader />
@@ -395,14 +398,14 @@ function ContactContent() {
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.7, ease: [0.25, 0.1, 0.25, 1] }}
                         >
-                            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-[#F0F0F5]/[0.08] bg-[#F0F0F5]/[0.04] mb-6">
+                            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-gray-200 dark:border-[#F0F0F5]/[0.08] bg-gray-100 dark:bg-[#F0F0F5]/[0.04] mb-6">
                                 <span className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse" />
-                                <span className="text-xs text-[#F0F0F5]/40 uppercase tracking-widest font-medium">{content.badge}</span>
+                                <span className="text-xs text-gray-500 dark:text-[#F0F0F5]/40 uppercase tracking-widest font-medium">{content.badge}</span>
                             </div>
-                            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-[#F0F0F5] tracking-tight leading-[1.05] mb-4">
+                            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-[#F0F0F5] tracking-tight leading-[1.05] mb-4">
                                 {content.heroTitle}<br />{content.heroTitleBr}
                             </h1>
-                            <p className="text-base text-[#F0F0F5]/50 leading-relaxed mb-10 max-w-sm">
+                            <p className="text-base text-gray-600 dark:text-[#F0F0F5]/50 leading-relaxed mb-10 max-w-sm">
                                 {content.heroSubtitle}
                             </p>
 
@@ -414,24 +417,24 @@ function ContactContent() {
                                         href={c.href}
                                         target={c.href.startsWith('http') ? '_blank' : undefined}
                                         rel="noopener noreferrer"
-                                        className="inline-flex items-center gap-3 text-sm text-[#F0F0F5]/50 hover:text-[#F0F0F5] transition-colors no-underline"
+                                        className="inline-flex items-center gap-3 text-sm text-gray-700 dark:text-[#F0F0F5]/50 hover:text-gray-900 dark:hover:text-[#F0F0F5] transition-colors no-underline"
                                     >
-                                        <span className="text-[#F0F0F5]/30">{c.icon}</span>
+                                        <span className="text-gray-700 dark:text-[#F0F0F5]/30">{c.icon}</span>
                                         {c.label}
                                     </a>
                                 ))}
                             </div>
 
                             {/* What happens next */}
-                            <div className="border border-[#F0F0F5]/[0.06] rounded-2xl overflow-hidden">
-                                <div className="px-6 py-4 border-b border-[#F0F0F5]/[0.06]">
-                                    <p className="text-xs text-[#F0F0F5]/35 uppercase tracking-widest font-medium">{content.whatsNext}</p>
+                            <div className="border border-gray-200 dark:border-[#F0F0F5]/[0.06] rounded-2xl overflow-hidden">
+                                <div className="px-6 py-4 border-b border-gray-200 dark:border-[#F0F0F5]/[0.06]">
+                                    <p className="text-xs text-gray-500 dark:text-[#F0F0F5]/35 uppercase tracking-widest font-medium">{content.whatsNext}</p>
                                 </div>
-                                <div className="divide-y divide-[#F0F0F5]/[0.04]">
+                                <div className="divide-y divide-gray-100 dark:divide-[#F0F0F5]/[0.04]">
                                     {content.nextSteps.map((step, i) => (
                                         <div key={i} className="flex items-center gap-4 px-6 py-4">
-                                            <span className="flex-shrink-0 text-xs font-bold text-[#F0F0F5]/15 tabular-nums w-5">{String(i + 1).padStart(2, '0')}</span>
-                                            <span className="text-sm text-[#F0F0F5]/45">{step}</span>
+                                            <span className="flex-shrink-0 text-xs font-bold text-gray-400 dark:text-[#F0F0F5]/15 tabular-nums w-5">{String(i + 1).padStart(2, '0')}</span>
+                                            <span className="text-sm text-gray-600 dark:text-[#F0F0F5]/45">{step}</span>
                                         </div>
                                     ))}
                                 </div>

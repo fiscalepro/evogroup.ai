@@ -32,7 +32,7 @@ const CCEHowItWorks: React.FC = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: 0.1 }}
-                    className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-16"
+                    className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-16"
                 >
                     {t.title}
                 </motion.h2>
@@ -58,9 +58,9 @@ const CCEHowItWorks: React.FC = () => {
                                 </div>
 
                                 {/* Step content */}
-                                <div className="flex-1 bg-[#1a1a24] border border-white/5 rounded-2xl p-6 sm:p-8 transition-all hover:border-violet-500/20">
-                                    <h3 className="text-xl sm:text-2xl font-bold text-white mb-3">{step.title}</h3>
-                                    <p className="text-white/60 leading-relaxed mb-5">{step.description}</p>
+                                <div className="flex-1 bg-white dark:bg-[#1a1a24] border border-gray-100 dark:border-white/5 rounded-2xl p-6 sm:p-8 transition-all hover:border-violet-500/20">
+                                    <h3 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-3">{step.title}</h3>
+                                    <p className="text-gray-500 dark:text-white/60 leading-relaxed mb-5">{step.description}</p>
 
                                     <div className="flex flex-wrap gap-3">
                                         {step.details.map((detail, dIndex) => (

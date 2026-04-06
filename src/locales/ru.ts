@@ -17,7 +17,7 @@ export const ru = {
     },
     hero: {
         preTitle: 'Демо EvoAI CRM',
-        title: 'Внедряем AI и автоматизируем бизнесы для',
+        title: 'Внедряем AI в бизнес для',
         titleHighlight: ['прибыльного роста', 'максимальной эффективности', 'ваших целей'] as string[],
         subtitle: 'Мы проводим аудит вашего бизнеса, выстраиваем процессы и внедряем AI-автоматизации, чтобы устранить узкие места и повысить продуктивность команды',
         ctaPrimary: 'Начать проект',
@@ -41,8 +41,8 @@ export const ru = {
             { value: 24, suffix: '/7', decimals: 0, label: 'Поддержка', sublabel: 'Всегда на связи' },
         ],
         clients: [
-            { icon: 'bank' as const, name: 'Банки', description: 'Финансовые учреждения', metric: '20+ банков и кредитных союзов' },
-            { icon: 'oil' as const, name: 'Нефть и газ', description: 'Промышленный сектор', metric: '8 крупных компаний' },
+            { icon: 'bank' as const, name: 'Fin Tech', description: 'Финансовые учреждения', metric: '20+ банков и кредитных союзов' },
+            { icon: 'oil' as const, name: 'Energy OS', description: 'Промышленный сектор', metric: '8 крупных компаний' },
             { icon: 'gov' as const, name: 'Госорганы', description: 'Государственный сектор', metric: '15+ государственных органов' },
             { icon: 'telecom' as const, name: 'Телеком', description: 'Связь и коммуникации', metric: '5 национальных операторов' },
         ],
@@ -472,8 +472,8 @@ export const ru = {
     partnerMarquee: {
         heading: 'Нам доверяют ведущие организации',
         partners: [
-            'Банковский сектор',
-            'Нефть и газ',
+            'Fin Tech',
+            'Energy OS',
             'Документооборот',
             'BIAST.KG',
             'Таурас-Феникс',

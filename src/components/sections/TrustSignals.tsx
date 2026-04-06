@@ -93,14 +93,14 @@ const TrustSignals: React.FC = () => {
             return {
                 title: 'OUR KEY PARTNERS',
                 partners: [
-                    { icon: 'bank', name: 'Banking Sector', sub: 'Working with banking wallets — 16 microservices' },
-                    { icon: 'oil', name: 'Oil & Gas', sub: 'Gas stations and oil depots' },
+                    { icon: 'bank', name: 'Fin Tech', sub: 'Working with banking wallets — 16 microservices' },
+                    { icon: 'oil', name: 'Energy OS', sub: 'Gas stations and oil depots' },
                     { icon: 'horeca', name: 'HoReCa', sub: 'Restaurant & hotel automation' },
-                    { icon: 'medicine', name: 'Health/Clinic', sub: 'Clinic management + WhatsApp' },
+                    { icon: 'medicine', name: 'Clinic OS', sub: 'Clinic management + WhatsApp' },
                 ],
                 smb: {
                     icon: 'home',
-                    name: 'SMB',
+                    name: 'Business OS',
                     sub: 'Small & medium business',
                     categories: [
                         { icon: 'retail', name: 'Retail' },
@@ -118,14 +118,14 @@ const TrustSignals: React.FC = () => {
             return {
                 title: 'БИЗДИН НЕГИЗГИ ӨНӨКТӨШТӨР',
                 partners: [
-                    { icon: 'bank', name: 'Банк тармагы', sub: 'Банк капчыктары менен иш — 16 микросервис' },
-                    { icon: 'oil', name: 'Мунай жана газ', sub: 'АЗС жана мунай базалары' },
+                    { icon: 'bank', name: 'Fin Tech', sub: 'Банк капчыктары менен иш — 16 микросервис' },
+                    { icon: 'oil', name: 'Energy OS', sub: 'АЗС жана мунай базалары' },
                     { icon: 'horeca', name: 'HoReCa', sub: 'Ресторан жана мейманкана автоматташтыруу' },
-                    { icon: 'medicine', name: 'Саламаттык/Клиника', sub: 'Клиника башкаруу + WhatsApp' },
+                    { icon: 'medicine', name: 'Clinic OS', sub: 'Клиника башкаруу + WhatsApp' },
                 ],
                 smb: {
                     icon: 'home',
-                    name: 'МСБ',
+                    name: 'Business OS',
                     sub: 'Чакан жана орто бизнес',
                     categories: [
                         { icon: 'retail', name: 'Чекене соода' },
@@ -143,14 +143,14 @@ const TrustSignals: React.FC = () => {
         return {
             title: 'НАШИ КЛЮЧЕВЫЕ ПАРТНЁРЫ',
             partners: [
-                { icon: 'bank', name: 'Банковский сектор', sub: 'Работа с банковскими кошельками — 16 микросервисов' },
-                { icon: 'oil', name: 'Нефть и газ', sub: 'АЗС и нефтебазы' },
+                { icon: 'bank', name: 'Fin Tech', sub: 'Работа с банковскими кошельками — 16 микросервисов' },
+                { icon: 'oil', name: 'Energy OS', sub: 'АЗС и нефтебазы' },
                 { icon: 'horeca', name: 'HoReCa', sub: 'Автоматизация ресторанов и отелей' },
-                { icon: 'medicine', name: 'Здоровье/Клиника', sub: 'Управление клиникой + WhatsApp' },
+                { icon: 'medicine', name: 'Clinic OS', sub: 'Управление клиникой + WhatsApp' },
             ],
             smb: {
                 icon: 'home',
-                name: 'МСБ',
+                name: 'Business OS',
                 sub: 'Малый и средний бизнес',
                 categories: [
                     { icon: 'retail', name: 'Розничная торговля' },

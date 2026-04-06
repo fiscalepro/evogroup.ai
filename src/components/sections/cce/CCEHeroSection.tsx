@@ -48,7 +48,7 @@ const CCEHeroSection: React.FC = () => {
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: 0.2 }}
-                    className="text-3xl sm:text-4xl lg:text-6xl font-bold text-white leading-tight mb-6"
+                    className="text-3xl sm:text-4xl lg:text-6xl font-bold text-gray-900 dark:text-white leading-tight mb-6"
                 >
                     {t.titleStart}{' '}
                     <span className="inline-block relative">
@@ -72,7 +72,7 @@ const CCEHeroSection: React.FC = () => {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.4, duration: 0.8 }}
-                    className="text-lg sm:text-xl text-white/60 max-w-3xl mx-auto mb-10 leading-relaxed"
+                    className="text-lg sm:text-xl text-gray-500 dark:text-white/60 max-w-3xl mx-auto mb-10 leading-relaxed"
                 >
                     {t.subtitle}
                 </motion.p>
@@ -106,7 +106,7 @@ const CCEHeroSection: React.FC = () => {
                             <div className="text-2xl sm:text-3xl font-extrabold bg-gradient-to-r from-violet-400 to-amber-400 bg-clip-text text-transparent">
                                 {stat.value}
                             </div>
-                            <div className="text-xs sm:text-sm text-white/50 mt-1">{stat.label}</div>
+                            <div className="text-xs sm:text-sm text-gray-400 dark:text-white/50 mt-1">{stat.label}</div>
                         </div>
                     ))}
                 </motion.div>

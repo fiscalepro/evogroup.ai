@@ -101,12 +101,12 @@ const WhatsAppContactForm: React.FC = () => {
                 <div className="max-w-2xl mx-auto px-4 sm:px-6 relative z-10 text-center">
                     <div className="bg-green-500/10 backdrop-blur-sm border border-green-500/20 rounded-2xl p-8 sm:p-12">
                         <div className="w-16 h-16 bg-green-500/20 rounded-full flex items-center justify-center mx-auto mb-6">
-                            <svg className="w-8 h-8 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg className="w-8 h-8 text-green-600 dark:text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                             </svg>
                         </div>
-                        <h3 className="text-2xl font-bold text-white mb-4">{translations.successTitle}</h3>
-                        <p className="text-white/70">{translations.successMessage}</p>
+                        <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">{translations.successTitle}</h3>
+                        <p className="text-gray-600 dark:text-white/70">{translations.successMessage}</p>
                     </div>
                 </div>
             </section>
@@ -119,13 +119,13 @@ const WhatsAppContactForm: React.FC = () => {
                 <div className="grid lg:grid-cols-2 gap-12 items-center">
                     {/* Left: Info */}
                     <div>
-                        <div className="inline-flex items-center gap-2 bg-green-500/10 backdrop-blur-sm border border-green-500/20 rounded-full px-4 py-2 text-sm text-green-400 shadow-sm mb-6">
+                        <div className="inline-flex items-center gap-2 bg-green-500/10 backdrop-blur-sm border border-green-500/20 rounded-full px-4 py-2 text-sm text-green-600 dark:text-green-400 shadow-sm mb-6">
                             {translations.badge}
                         </div>
-                        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4">
+                        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
                             {translations.title}
                         </h2>
-                        <p className="text-lg text-white/70 mb-8">
+                        <p className="text-lg text-gray-600 dark:text-white/70 mb-8">
                             {translations.subtitle}
                         </p>
 
@@ -133,18 +133,18 @@ const WhatsAppContactForm: React.FC = () => {
                             {translations.features.map((feature, index) => (
                                 <li key={index} className="flex items-center gap-3">
                                     <div className="w-6 h-6 bg-green-500/20 rounded-full flex items-center justify-center flex-shrink-0">
-                                        <svg className="w-4 h-4 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <svg className="w-4 h-4 text-green-600 dark:text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                                         </svg>
                                     </div>
-                                    <span className="text-white/80">{feature}</span>
+                                    <span className="text-gray-700 dark:text-white/80">{feature}</span>
                                 </li>
                             ))}
                         </ul>
                     </div>
 
                     {/* Right: Form */}
-                    <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 sm:p-8">
+                    <div className="bg-gray-50 dark:bg-white/5 backdrop-blur-sm border border-gray-200 dark:border-white/10 rounded-2xl p-6 sm:p-8">
                         <form onSubmit={handleSubmit} className="space-y-5">
                             <div>
                                 <input
@@ -153,7 +153,7 @@ const WhatsAppContactForm: React.FC = () => {
                                     placeholder={translations.namePlaceholder}
                                     value={formData.name}
                                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                                    className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all"
+                                    className="w-full px-4 py-3 bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-xl text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all"
                                 />
                             </div>
 
@@ -164,7 +164,7 @@ const WhatsAppContactForm: React.FC = () => {
                                     placeholder={translations.phonePlaceholder}
                                     value={formData.phone}
                                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                                    className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all"
+                                    className="w-full px-4 py-3 bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-xl text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all"
                                 />
                             </div>
 
@@ -175,12 +175,12 @@ const WhatsAppContactForm: React.FC = () => {
                                     placeholder={translations.companyPlaceholder}
                                     value={formData.company}
                                     onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-                                    className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all"
+                                    className="w-full px-4 py-3 bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-xl text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all"
                                 />
                             </div>
 
                             <div>
-                                <label className="block text-sm text-white/60 mb-2">
+                                <label className="block text-sm text-gray-500 dark:text-white/60 mb-2">
                                     {translations.managersLabel}
                                 </label>
                                 <div className="grid grid-cols-4 gap-2">
@@ -192,7 +192,7 @@ const WhatsAppContactForm: React.FC = () => {
                                             className={`px-3 py-2 rounded-lg text-sm font-medium transition-all ${
                                                 formData.managers === option
                                                     ? 'bg-green-500 text-white'
-                                                    : 'bg-white/5 text-white/60 hover:bg-white/10'
+                                                    : 'bg-gray-50 dark:bg-white/5 text-gray-500 dark:text-white/60 hover:bg-gray-100 dark:hover:bg-white/10'
                                             }`}
                                         >
                                             {option}

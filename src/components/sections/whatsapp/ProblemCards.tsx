@@ -41,13 +41,13 @@ const ProblemCards: React.FC = () => {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
                 {/* Header */}
                 <div className="text-center mb-12 sm:mb-16">
-                    <div className="inline-flex items-center gap-2 bg-red-500/10 backdrop-blur-sm border border-red-500/20 rounded-full px-4 py-2 text-sm text-red-400 shadow-sm mb-4 sm:mb-6">
+                    <div className="inline-flex items-center gap-2 bg-red-500/10 backdrop-blur-sm border border-red-500/20 rounded-full px-4 py-2 text-sm text-red-600 dark:text-red-400 shadow-sm mb-4 sm:mb-6">
                         {translations.badge}
                     </div>
-                    <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold text-white mb-4 sm:mb-6">
+                    <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4 sm:mb-6">
                         {translations.title}
                     </h2>
-                    <p className="text-lg sm:text-xl text-white/70 max-w-2xl mx-auto">
+                    <p className="text-lg sm:text-xl text-gray-600 dark:text-white/70 max-w-2xl mx-auto">
                         {translations.subtitle}
                     </p>
                 </div>
@@ -57,17 +57,17 @@ const ProblemCards: React.FC = () => {
                     {translations.problems.map((problem, index) => (
                         <div
                             key={index}
-                            className={`group p-6 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 hover:border-red-500/30 transition-all duration-300 hover:scale-105 ${
+                            className={`group p-6 rounded-2xl bg-gray-50 dark:bg-white/5 backdrop-blur-sm border border-gray-200 dark:border-white/10 hover:border-red-500/30 transition-all duration-300 hover:scale-105 ${
                                 index === 4 ? 'sm:col-span-2 lg:col-span-1' : ''
                             }`}
                         >
-                            <div className="w-14 h-14 bg-red-500/10 rounded-xl flex items-center justify-center mb-4 text-red-400 group-hover:bg-red-500/20 transition-colors">
+                            <div className="w-14 h-14 bg-red-500/10 rounded-xl flex items-center justify-center mb-4 text-red-600 dark:text-red-400 group-hover:bg-red-500/20 transition-colors">
                                 {icons[index]}
                             </div>
-                            <h3 className="text-lg font-semibold text-white mb-2">
+                            <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
                                 {problem.title}
                             </h3>
-                            <p className="text-white/60 text-sm leading-relaxed">
+                            <p className="text-gray-500 dark:text-white/60 text-sm leading-relaxed">
                                 {problem.description}
                             </p>
                         </div>
@@ -76,7 +76,7 @@ const ProblemCards: React.FC = () => {
 
                 {/* Arrow to solution */}
                 <div className="flex justify-center mt-12">
-                    <div className="flex flex-col items-center text-white/55">
+                    <div className="flex flex-col items-center text-gray-500 dark:text-white/55">
                         <span className="text-sm mb-2">
                             {translations.hasSolution}
                         </span>

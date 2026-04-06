@@ -17,7 +17,7 @@ const accentStyles = {
 
 const PageBackground: React.FC<PageBackgroundProps> = ({ accent, aurora = true }) => {
     return (
-        <div className="fixed inset-0 pointer-events-none" aria-hidden="true">
+        <div className="fixed inset-0 pointer-events-none hidden dark:block" aria-hidden="true">
             {/* Layer 1: Base gradient mesh — multiple color points for rich depth */}
             <div
                 className="absolute inset-0"

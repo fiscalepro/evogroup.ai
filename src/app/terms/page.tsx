@@ -331,7 +331,7 @@ Email: legal@evogroup.ai
     const content = getContent()
 
     return (
-        <div className="relative min-h-screen bg-[#0A0E1A]">
+        <div className="relative min-h-screen bg-[#eeeeee] dark:bg-[#0A0E1A] transition-colors duration-300">
             <PageBackground aurora={false} />
 
             <ModernHeader />
@@ -339,13 +339,13 @@ Email: legal@evogroup.ai
             {/* Header */}
             <div className="relative pt-32 pb-12">
                 <div className="max-w-3xl mx-auto px-6">
-                    <h1 className="text-3xl md:text-4xl font-bold text-[#F0F0F5] mb-3">
+                    <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-[#F0F0F5] mb-3">
                         {content.title}
                     </h1>
-                    <p className="text-base text-[#F0F0F5]/50 mb-1">
+                    <p className="text-base text-gray-600 dark:text-[#F0F0F5]/50 mb-1">
                         {content.subtitle}
                     </p>
-                    <p className="text-sm text-[#F0F0F5]/30">
+                    <p className="text-sm text-gray-500 dark:text-[#F0F0F5]/30">
                         {content.effectiveDate}
                     </p>
                 </div>
@@ -356,11 +356,11 @@ Email: legal@evogroup.ai
                 <div className="max-w-3xl mx-auto px-6">
                     <div className="space-y-5">
                         {content.sections.map((section, index) => (
-                            <div key={index} className="rounded-2xl p-6 md:p-7 border border-[#F0F0F5]/[0.06] bg-[#F0F0F5]/[0.02]">
-                                <h2 className="text-lg md:text-xl font-semibold text-[#F0F0F5] mb-3">
+                            <div key={index} className="rounded-2xl p-6 md:p-7 border border-gray-200 dark:border-[#F0F0F5]/[0.06] bg-gray-50 dark:bg-[#F0F0F5]/[0.02]">
+                                <h2 className="text-lg md:text-xl font-semibold text-gray-900 dark:text-[#F0F0F5] mb-3">
                                     {section.title}
                                 </h2>
-                                <div className="text-sm text-[#F0F0F5]/50 whitespace-pre-line leading-relaxed">
+                                <div className="text-sm text-gray-600 dark:text-[#F0F0F5]/50 whitespace-pre-line leading-relaxed">
                                     {section.content}
                                 </div>
                             </div>

@@ -175,20 +175,20 @@ const WhatsAppCaseStudies: React.FC = () => {
     const translations = getTranslations()
 
     return (
-        <section id="cases" className="py-12 sm:py-24 bg-slate-900/30 relative overflow-hidden">
+        <section id="cases" className="py-12 sm:py-24 bg-gray-50 dark:bg-slate-900/30 relative overflow-hidden">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
                 {/* Header */}
                 <div className="text-center mb-12 sm:mb-16">
-                    <div className="inline-flex items-center gap-2 bg-green-500/10 backdrop-blur-sm border border-green-500/20 rounded-full px-4 py-2 text-sm text-green-400 shadow-sm mb-4 sm:mb-6">
+                    <div className="inline-flex items-center gap-2 bg-green-500/10 backdrop-blur-sm border border-green-500/20 rounded-full px-4 py-2 text-sm text-green-600 dark:text-green-400 shadow-sm mb-4 sm:mb-6">
                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                         </svg>
                         {translations.badge}
                     </div>
-                    <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold text-white mb-4 sm:mb-6">
+                    <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4 sm:mb-6">
                         {translations.title}
                     </h2>
-                    <p className="text-lg sm:text-xl text-white/70 max-w-2xl mx-auto">
+                    <p className="text-lg sm:text-xl text-gray-600 dark:text-white/70 max-w-2xl mx-auto">
                         {translations.subtitle}
                     </p>
                 </div>
@@ -198,7 +198,7 @@ const WhatsAppCaseStudies: React.FC = () => {
                     {translations.cases.map((caseStudy, index) => (
                         <div
                             key={index}
-                            className="group bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl overflow-hidden hover:border-green-500/30 transition-all duration-300"
+                            className="group bg-gray-50 dark:bg-white/5 backdrop-blur-sm border border-gray-200 dark:border-white/10 rounded-2xl overflow-hidden hover:border-green-500/30 transition-all duration-300"
                         >
                             {/* Header */}
                             <div className={`bg-gradient-to-r ${caseStudy.color} p-4`}>
@@ -221,23 +221,23 @@ const WhatsAppCaseStudies: React.FC = () => {
 
                             {/* Content */}
                             <div className="p-5">
-                                <p className="text-white/70 text-sm mb-4 leading-relaxed">
+                                <p className="text-gray-600 dark:text-white/70 text-sm mb-4 leading-relaxed">
                                     {caseStudy.description}
                                 </p>
 
                                 {/* Stats */}
                                 <div className="grid grid-cols-3 gap-2 mb-4">
                                     {caseStudy.stats.map((stat, statIndex) => (
-                                        <div key={statIndex} className="text-center p-2 bg-white/5 rounded-lg">
-                                            <div className="text-lg font-bold text-green-400">{stat.value}</div>
-                                            <div className="text-white/50 text-xs">{stat.label}</div>
+                                        <div key={statIndex} className="text-center p-2 bg-gray-50 dark:bg-white/5 rounded-lg">
+                                            <div className="text-lg font-bold text-green-600 dark:text-green-400">{stat.value}</div>
+                                            <div className="text-gray-400 dark:text-white/50 text-xs">{stat.label}</div>
                                         </div>
                                     ))}
                                 </div>
 
                                 {/* Quote */}
                                 <div className="border-l-2 border-green-500/30 pl-3">
-                                    <p className="text-white/60 text-sm italic">
+                                    <p className="text-gray-500 dark:text-white/60 text-sm italic">
                                         &ldquo;{caseStudy.quote}&rdquo;
                                     </p>
                                 </div>

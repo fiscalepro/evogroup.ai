@@ -31,35 +31,33 @@ const PricingSection: React.FC = () => {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
                 {/* Header */}
                 <div className="text-center mb-12 sm:mb-16">
-                    <div className="inline-flex items-center gap-2 bg-green-500/10 backdrop-blur-sm border border-green-500/20 rounded-full px-4 py-2 text-sm text-green-400 shadow-sm mb-4 sm:mb-6">
+                    <div className="inline-flex items-center gap-2 bg-green-500/10 backdrop-blur-sm border border-green-500/20 rounded-full px-4 py-2 text-sm text-green-600 dark:text-green-400 shadow-sm mb-4 sm:mb-6">
                         {translations.badge}
                     </div>
-                    <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold text-white mb-4 sm:mb-6">
+                    <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4 sm:mb-6">
                         {translations.title}
                     </h2>
-                    <p className="text-lg sm:text-xl text-white/70 max-w-2xl mx-auto">
+                    <p className="text-lg sm:text-xl text-gray-600 dark:text-white/70 max-w-2xl mx-auto">
                         {translations.subtitle}
                     </p>
 
                     {/* Billing toggle */}
                     <div className="flex items-center justify-center gap-4 mt-8">
-                        <span className={`text-sm ${!isYearly ? 'text-white' : 'text-white/50'}`}>
+                        <span className={`text-sm ${!isYearly ? 'text-gray-900 dark:text-white' : 'text-gray-400 dark:text-white/50'}`}>
                             {translations.monthly}
                         </span>
                         <button
                             onClick={() => setIsYearly(!isYearly)}
-                            className={`relative w-14 h-7 rounded-full transition-colors ${isYearly ? 'bg-green-600' : 'bg-white/20'}`}
+                            className={`relative w-14 h-7 rounded-full transition-colors ${isYearly ? 'bg-green-600' : 'bg-gray-200 dark:bg-white/20'}`}
                         >
                             <div className={`absolute top-1 w-5 h-5 bg-white rounded-full transition-transform ${isYearly ? 'left-8' : 'left-1'}`} />
                         </button>
-                        <span className={`text-sm ${isYearly ? 'text-white' : 'text-white/50'}`}>
+                        <span className={`text-sm ${isYearly ? 'text-gray-900 dark:text-white' : 'text-gray-400 dark:text-white/50'}`}>
                             {translations.yearly}
                         </span>
-                        {isYearly && (
-                            <span className="text-xs bg-green-500/20 text-green-400 px-2 py-1 rounded-full">
-                                {translations.yearlySave}
-                            </span>
-                        )}
+                        <span className={`text-xs bg-green-500/20 text-green-600 dark:text-green-400 px-2 py-1 rounded-full transition-opacity ${isYearly ? 'opacity-100' : 'opacity-0'}`}>
+                            {translations.yearlySave}
+                        </span>
                     </div>
                 </div>
 
@@ -71,7 +69,7 @@ const PricingSection: React.FC = () => {
                             className={`relative rounded-2xl p-6 border transition-all duration-300 hover:scale-105 ${
                                 plan.recommended
                                     ? 'bg-gradient-to-b from-green-500/20 to-green-500/5 border-green-500/50'
-                                    : 'bg-white/5 border-white/10 hover:border-white/20'
+                                    : 'bg-gray-50 dark:bg-white/5 border-gray-200 dark:border-white/10 hover:border-gray-300 dark:hover:border-white/20'
                             }`}
                         >
                             {plan.recommended && (
@@ -83,10 +81,10 @@ const PricingSection: React.FC = () => {
                             )}
 
                             <div className="text-center mb-6">
-                                <h3 className="text-xl font-bold text-white mb-2">{plan.name}</h3>
-                                <p className="text-sm text-white/60 mb-4">{plan.description}</p>
+                                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">{plan.name}</h3>
+                                <p className="text-sm text-gray-500 dark:text-white/60 mb-4">{plan.description}</p>
                                 <div className="flex items-baseline justify-center gap-1">
-                                    <span className="text-4xl font-bold text-white">
+                                    <span className="text-4xl font-bold text-gray-900 dark:text-white">
                                         {plan.price === 'Узнать цену' || plan.price === 'Get pricing' || plan.price === 'Бааны билүү'
                                             ? ''
                                             : isYearly
@@ -95,14 +93,14 @@ const PricingSection: React.FC = () => {
                                     </span>
                                     {plan.price !== 'По запросу' && plan.price !== 'Custom' && plan.price !== 'Суроо боюнча' && (
                                         <>
-                                            <span className="text-white/60 text-sm">{translations.currency}</span>
-                                            <span className="text-white/60 text-sm">
+                                            <span className="text-gray-500 dark:text-white/60 text-sm">{translations.currency}</span>
+                                            <span className="text-gray-500 dark:text-white/60 text-sm">
                                                 {isYearly ? translations.perYear : translations.perMonth}
                                             </span>
                                         </>
                                     )}
                                     {(plan.price === 'Узнать цену' || plan.price === 'Get pricing' || plan.price === 'Бааны билүү') && (
-                                        <span className="text-2xl font-bold text-white">{plan.price}</span>
+                                        <span className="text-2xl font-bold text-gray-900 dark:text-white">{plan.price}</span>
                                     )}
                                 </div>
                             </div>
@@ -111,15 +109,15 @@ const PricingSection: React.FC = () => {
                                 {plan.features.map((feature, featureIndex) => (
                                     <li key={featureIndex} className="flex items-center gap-3">
                                         {feature.included ? (
-                                            <svg className="w-5 h-5 text-green-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <svg className="w-5 h-5 text-green-600 dark:text-green-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                                             </svg>
                                         ) : (
-                                            <svg className="w-5 h-5 text-white/50 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <svg className="w-5 h-5 text-gray-400 dark:text-white/50 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                                             </svg>
                                         )}
-                                        <span className={`text-sm ${feature.included ? 'text-white/80' : 'text-white/55'}`}>
+                                        <span className={`text-sm ${feature.included ? 'text-gray-700 dark:text-white/80' : 'text-gray-500 dark:text-white/55'}`}>
                                             {feature.name}
                                         </span>
                                     </li>
@@ -130,7 +128,7 @@ const PricingSection: React.FC = () => {
                                 className={`w-full ${
                                     plan.recommended
                                         ? 'bg-green-600 hover:bg-green-700 text-white'
-                                        : 'bg-white/10 hover:bg-white/20 text-white'
+                                        : 'bg-gray-100 dark:bg-white/10 hover:bg-gray-200 dark:hover:bg-white/20 text-gray-900 dark:text-white'
                                 }`}
                                 onPress={scrollToContact}
                             >
@@ -143,7 +141,7 @@ const PricingSection: React.FC = () => {
                 </div>
 
                 {/* Additional info */}
-                <div className="mt-12 text-center text-sm text-white/50">
+                <div className="mt-12 text-center text-sm text-gray-400 dark:text-white/50">
                     <p>
                         {translations.additionalInfo}
                     </p>

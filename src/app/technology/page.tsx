@@ -227,7 +227,7 @@ export default function TechnologyPage() {
     const content = getContent(locale)
 
     return (
-        <div className="relative min-h-screen bg-[#0A0E1A]">
+        <div className="relative min-h-screen bg-[#eeeeee] dark:bg-[#0A0E1A] transition-colors duration-300">
             <PageBackground />
 
             <ModernHeader />
@@ -240,35 +240,35 @@ export default function TechnologyPage() {
                     transition={{ duration: 0.6 }}
                     className="relative z-10 max-w-5xl mx-auto px-6 text-center"
                 >
-                    <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-[#F0F0F5] tracking-tight mb-4">
+                    <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-[#F0F0F5] tracking-tight mb-4">
                         {content.heroTitle}
                     </h1>
-                    <p className="text-base lg:text-lg text-[#F0F0F5]/50 max-w-lg mx-auto leading-relaxed">
+                    <p className="text-base lg:text-lg text-gray-600 dark:text-[#F0F0F5]/50 max-w-lg mx-auto leading-relaxed">
                         {content.heroDesc}
                     </p>
                 </motion.div>
             </section>
 
             {/* Tech categories */}
-            <section className="pb-24 border-t border-[#F0F0F5]/[0.04]">
+            <section className="pb-24 border-t border-gray-100 dark:border-[#F0F0F5]/[0.04]">
                 <div className="max-w-5xl mx-auto px-6 pt-20">
                     <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="text-center mb-14">
-                        <h2 className="text-3xl sm:text-4xl font-bold text-[#F0F0F5] tracking-tight mb-3">{content.techTitle}</h2>
+                        <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-[#F0F0F5] tracking-tight mb-3">{content.techTitle}</h2>
                     </motion.div>
 
                     <div className="grid md:grid-cols-3 gap-5">
                         {content.techCategories.map((cat, i) => (
                             <motion.div
                                 key={i} custom={i} variants={itemVariants} initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-40px' }}
-                                className="p-7 rounded-2xl border border-[#F0F0F5]/[0.06] bg-[#F0F0F5]/[0.02] hover:bg-[#F0F0F5]/[0.04] hover:border-[#F0F0F5]/[0.1] transition-all duration-300"
+                                className="p-7 rounded-2xl border border-gray-200 dark:border-[#F0F0F5]/[0.06] bg-gray-50 dark:bg-[#F0F0F5]/[0.02] hover:bg-gray-100 dark:hover:bg-[#F0F0F5]/[0.04] hover:border-gray-300 dark:hover:border-[#F0F0F5]/[0.1] transition-all duration-300"
                             >
-                                <span className="text-xs font-medium text-[#F0F0F5]/35 uppercase tracking-wider mb-4 block">{cat.label}</span>
-                                <p className="text-sm text-[#F0F0F5]/45 leading-relaxed mb-6">{cat.desc}</p>
+                                <span className="text-xs font-medium text-gray-500 dark:text-[#F0F0F5]/35 uppercase tracking-wider mb-4 block">{cat.label}</span>
+                                <p className="text-sm text-gray-600 dark:text-[#F0F0F5]/45 leading-relaxed mb-6">{cat.desc}</p>
                                 <div className="flex flex-wrap gap-2">
                                     {cat.items.map((item, j) => (
-                                        <div key={j} className="px-3 py-1.5 rounded-lg border border-[#F0F0F5]/[0.06] bg-[#F0F0F5]/[0.02]">
-                                            <span className="text-xs font-medium text-[#F0F0F5]/60">{item.name}</span>
-                                            <span className="text-[10px] text-[#F0F0F5]/25 ml-1">{item.sub}</span>
+                                        <div key={j} className="px-3 py-1.5 rounded-lg border border-gray-200 dark:border-[#F0F0F5]/[0.06] bg-gray-50 dark:bg-[#F0F0F5]/[0.02]">
+                                            <span className="text-xs font-medium text-gray-500 dark:text-[#F0F0F5]/60">{item.name}</span>
+                                            <span className="text-[10px] text-gray-500 dark:text-[#F0F0F5]/25 ml-1">{item.sub}</span>
                                         </div>
                                     ))}
                                 </div>
@@ -279,20 +279,20 @@ export default function TechnologyPage() {
             </section>
 
             {/* Capabilities */}
-            <section className="py-24 border-t border-[#F0F0F5]/[0.04]">
+            <section className="py-24 border-t border-gray-100 dark:border-[#F0F0F5]/[0.04]">
                 <div className="max-w-5xl mx-auto px-6">
                     <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="text-center mb-14">
-                        <h2 className="text-3xl sm:text-4xl font-bold text-[#F0F0F5] tracking-tight mb-3">{content.capabilitiesTitle}</h2>
+                        <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-[#F0F0F5] tracking-tight mb-3">{content.capabilitiesTitle}</h2>
                     </motion.div>
 
                     <div className="grid md:grid-cols-2 gap-5">
                         {content.capabilities.map((c, i) => (
                             <motion.div
                                 key={i} custom={i} variants={itemVariants} initial="hidden" whileInView="visible" viewport={{ once: true }}
-                                className="p-7 rounded-2xl border border-[#F0F0F5]/[0.06] bg-[#F0F0F5]/[0.02] hover:bg-[#F0F0F5]/[0.04] hover:border-[#F0F0F5]/[0.1] transition-all duration-300"
+                                className="p-7 rounded-2xl border border-gray-200 dark:border-[#F0F0F5]/[0.06] bg-gray-50 dark:bg-[#F0F0F5]/[0.02] hover:bg-gray-100 dark:hover:bg-[#F0F0F5]/[0.04] hover:border-gray-300 dark:hover:border-[#F0F0F5]/[0.1] transition-all duration-300"
                             >
-                                <h3 className="text-base font-bold text-[#F0F0F5] mb-2">{c.title}</h3>
-                                <p className="text-sm text-[#F0F0F5]/45 leading-relaxed">{c.desc}</p>
+                                <h3 className="text-base font-bold text-gray-900 dark:text-[#F0F0F5] mb-2">{c.title}</h3>
+                                <p className="text-sm text-gray-600 dark:text-[#F0F0F5]/45 leading-relaxed">{c.desc}</p>
                             </motion.div>
                         ))}
                     </div>
@@ -300,21 +300,21 @@ export default function TechnologyPage() {
             </section>
 
             {/* Methodology */}
-            <section className="py-24 border-t border-[#F0F0F5]/[0.04]">
+            <section className="py-24 border-t border-gray-100 dark:border-[#F0F0F5]/[0.04]">
                 <div className="max-w-5xl mx-auto px-6">
                     <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="text-center mb-14">
-                        <h2 className="text-3xl sm:text-4xl font-bold text-[#F0F0F5] tracking-tight mb-3">{content.methodologyTitle}</h2>
+                        <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-[#F0F0F5] tracking-tight mb-3">{content.methodologyTitle}</h2>
                     </motion.div>
 
                     <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
                         {content.steps.map((s, i) => (
                             <motion.div
                                 key={i} custom={i} variants={itemVariants} initial="hidden" whileInView="visible" viewport={{ once: true }}
-                                className="p-6 rounded-2xl border border-[#F0F0F5]/[0.06] bg-[#F0F0F5]/[0.02]"
+                                className="p-6 rounded-2xl border border-gray-200 dark:border-[#F0F0F5]/[0.06] bg-gray-50 dark:bg-[#F0F0F5]/[0.02]"
                             >
-                                <span className="text-xs font-bold text-[#F0F0F5]/20 mb-3 block">{content.stepLabel} {i + 1}</span>
-                                <h3 className="text-base font-bold text-[#F0F0F5] mb-2">{s.title}</h3>
-                                <p className="text-sm text-[#F0F0F5]/40 leading-relaxed">{s.desc}</p>
+                                <span className="text-xs font-bold text-gray-500 dark:text-[#F0F0F5]/20 mb-3 block">{content.stepLabel} {i + 1}</span>
+                                <h3 className="text-base font-bold text-gray-900 dark:text-[#F0F0F5] mb-2">{s.title}</h3>
+                                <p className="text-sm text-gray-600 dark:text-[#F0F0F5]/40 leading-relaxed">{s.desc}</p>
                             </motion.div>
                         ))}
                     </div>
@@ -322,12 +322,12 @@ export default function TechnologyPage() {
             </section>
 
             {/* CTA */}
-            <section className="py-16 border-t border-[#F0F0F5]/[0.04]">
+            <section className="py-16 border-t border-gray-100 dark:border-[#F0F0F5]/[0.04]">
                 <div className="max-w-5xl mx-auto px-6">
-                    <div className="flex flex-col sm:flex-row items-center justify-between gap-5 p-6 rounded-2xl border border-[#F0F0F5]/[0.06] bg-[#F0F0F5]/[0.02]">
+                    <div className="flex flex-col sm:flex-row items-center justify-between gap-5 p-6 rounded-2xl border border-gray-200 dark:border-[#F0F0F5]/[0.06] bg-gray-50 dark:bg-[#F0F0F5]/[0.02]">
                         <div>
-                            <p className="text-sm font-semibold text-[#F0F0F5] mb-0.5">{content.ctaTitle}</p>
-                            <p className="text-sm text-[#F0F0F5]/40">{content.ctaDesc}</p>
+                            <p className="text-sm font-semibold text-gray-900 dark:text-[#F0F0F5] mb-0.5">{content.ctaTitle}</p>
+                            <p className="text-sm text-gray-600 dark:text-[#F0F0F5]/40">{content.ctaDesc}</p>
                         </div>
                         <Link
                             href="/contact"

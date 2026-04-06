@@ -40,7 +40,7 @@ const CCEDeveloperGrowth: React.FC = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: 0.1 }}
-                    className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4"
+                    className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-4"
                 >
                     {t.title}
                 </motion.h2>
@@ -50,7 +50,7 @@ const CCEDeveloperGrowth: React.FC = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: 0.15 }}
-                    className="text-lg text-white/60 max-w-2xl mb-16"
+                    className="text-lg text-gray-500 dark:text-white/60 max-w-2xl mb-16"
                 >
                     {t.subtitle}
                 </motion.p>
@@ -69,7 +69,7 @@ const CCEDeveloperGrowth: React.FC = () => {
                             {t.dimensions.map((dim, index) => (
                                 <span
                                     key={index}
-                                    className="px-4 py-2 bg-[#1a1a24] border border-white/10 rounded-full text-sm text-white/80 font-medium"
+                                    className="px-4 py-2 bg-white dark:bg-[#1a1a24] border border-gray-200 dark:border-white/10 rounded-full text-sm text-gray-700 dark:text-white/80 font-medium"
                                 >
                                     {dim.name}
                                 </span>
@@ -92,7 +92,7 @@ const CCEDeveloperGrowth: React.FC = () => {
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                                         </svg>
                                     </div>
-                                    <span className="text-white/70">{benefit}</span>
+                                    <span className="text-gray-600 dark:text-white/70">{benefit}</span>
                                 </motion.div>
                             ))}
                         </div>
@@ -104,19 +104,19 @@ const CCEDeveloperGrowth: React.FC = () => {
                         whileInView={{ opacity: 1, y: 0, scale: 1 }}
                         viewport={{ once: true }}
                         transition={{ delay: 0.3, duration: 0.8 }}
-                        className="bg-[#1a1a24] border border-white/10 rounded-2xl p-6 sm:p-8"
+                        className="bg-white dark:bg-[#1a1a24] border border-gray-200 dark:border-white/10 rounded-2xl p-6 sm:p-8"
                     >
                         {/* Profile header */}
-                        <div className="flex items-center gap-4 mb-6 pb-6 border-b border-white/10">
+                        <div className="flex items-center gap-4 mb-6 pb-6 border-b border-gray-200 dark:border-white/10">
                             <div className="w-12 h-12 bg-gradient-to-br from-violet-500 to-amber-500 rounded-full flex items-center justify-center">
                                 <span className="text-white font-bold text-lg">A</span>
                             </div>
                             <div>
-                                <h4 className="text-white font-bold">{t.profileName}</h4>
-                                <p className="text-white/50 text-sm">{t.profileRole}</p>
+                                <h4 className="text-gray-900 dark:text-white font-bold">{t.profileName}</h4>
+                                <p className="text-gray-400 dark:text-white/50 text-sm">{t.profileRole}</p>
                             </div>
                             <div className="ml-auto text-right">
-                                <p className="text-xs text-white/55">{t.overallLabel}</p>
+                                <p className="text-xs text-gray-500 dark:text-white/55">{t.overallLabel}</p>
                                 <p className="text-lg font-bold bg-gradient-to-r from-violet-400 to-amber-400 bg-clip-text text-transparent">{t.overallValue}</p>
                             </div>
                         </div>
@@ -126,10 +126,10 @@ const CCEDeveloperGrowth: React.FC = () => {
                             {t.dimensions.map((dim, index) => (
                                 <div key={index}>
                                     <div className="flex justify-between text-sm mb-1.5">
-                                        <span className="text-white/70">{dim.name}</span>
-                                        <span className="text-white/50">{dim.value}%</span>
+                                        <span className="text-gray-600 dark:text-white/70">{dim.name}</span>
+                                        <span className="text-gray-400 dark:text-white/50">{dim.value}%</span>
                                     </div>
-                                    <div className="h-2 bg-white/5 rounded-full overflow-hidden">
+                                    <div className="h-2 bg-gray-100 dark:bg-white/5 rounded-full overflow-hidden">
                                         <motion.div
                                             initial={{ width: 0 }}
                                             whileInView={{ width: `${dim.value}%` }}

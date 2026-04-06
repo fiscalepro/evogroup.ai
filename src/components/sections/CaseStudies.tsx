@@ -5,6 +5,7 @@ import { motion } from 'framer-motion'
 import { CaseCard } from './CaseCard'
 import Link from 'next/link'
 import { useTranslation } from '@/components/providers/I18nProvider'
+import { Button } from '@/components/ui/Button'
 
 interface ResultItem {
     value: string
@@ -160,7 +161,7 @@ function getCaseData(locale: string): { cases: CaseCard[]; overline: string; tit
                 number: '01',
                 color: 'green',
                 tag: 'Банки · Финтех',
-                company: 'Банковский сектор — Универсальный Кабинет',
+                company: 'Fin Tech — Универсальный Кабинет',
                 headline: 'Полная экосистема госуслуг для малого бизнеса в банковском приложении',
                 teaser: 'Ведущему банку нужно было дать клиентам ЭСФ, ЭТТН, налоговые отчёты, HR, ERP и регистрацию ИП прямо в мобильном приложении. Мы построили 16 микросервисов на Spring Cloud с интеграцией через Tunduk X-Road и ОЭЦП подписанием.',
                 results: [
@@ -255,15 +256,12 @@ const CaseStudies: React.FC = () => {
                         <p className="text-base font-semibold text-gray-900 dark:text-[#F0F0F5] mb-1">{content.ctaTitle}</p>
                         <p className="text-sm text-gray-500 dark:text-[#F0F0F5]/55 leading-relaxed">{content.ctaSub}</p>
                     </div>
-                    <Link
-                        href="/contact"
-                        className="arrow-hover flex-shrink-0 inline-flex items-center gap-2 bg-gray-900 dark:bg-[#F0F0F5] dark:text-[#0A0E1A] text-white px-6 py-3 rounded-xl text-sm font-bold no-underline shadow-sm dark:shadow-none hover:shadow-lg dark:hover:shadow-none hover:bg-black dark:hover:bg-white transition-all"
-                    >
+                    <Button href="/contact" variant="primary" size="lg" className="arrow-hover flex-shrink-0">
                         {content.ctaBtn}
                         <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
                             <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                         </svg>
-                    </Link>
+                    </Button>
                 </motion.div>
 
             </div>

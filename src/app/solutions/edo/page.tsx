@@ -265,7 +265,7 @@ function EDOContent() {
     const c = getContent(locale)
 
     return (
-        <div className="relative min-h-screen bg-[#0A0E1A]">
+        <div className="relative min-h-screen bg-[#eeeeee] dark:bg-[#0A0E1A] transition-colors duration-300">
             <PageBackground accent="blue" />
             <ModernHeader />
 
@@ -278,18 +278,18 @@ function EDOContent() {
                         transition={{ duration: 0.7, ease: [0.25, 0.1, 0.25, 1] }}
                         className="text-center"
                     >
-                        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-amber-400/20 bg-amber-400/[0.06] mb-6">
-                            <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse" />
-                            <span className="text-xs text-amber-400 font-medium">{c.badge}</span>
+                        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-amber-600/20 dark:border-amber-400/20 bg-amber-600/[0.06] dark:bg-amber-400/[0.06] mb-6">
+                            <span className="w-1.5 h-1.5 rounded-full bg-amber-600 dark:bg-amber-400 animate-pulse" />
+                            <span className="text-xs text-amber-600 dark:text-amber-400 font-medium">{c.badge}</span>
                         </div>
-                        <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold text-[#F0F0F5] tracking-tight leading-[1.1] mb-6">
+                        <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold text-gray-900 dark:text-[#F0F0F5] tracking-tight leading-[1.1] mb-6">
                             {c.heroTitle}
                             <br />
                             <span className="bg-gradient-to-r from-amber-400 to-orange-400 bg-clip-text text-transparent">
                                 {c.heroTitleLine2}
                             </span>
                         </h1>
-                        <p className="text-base lg:text-lg text-[#F0F0F5]/55 max-w-2xl mx-auto mb-10 leading-relaxed">
+                        <p className="text-base lg:text-lg text-gray-500 dark:text-[#F0F0F5]/55 max-w-2xl mx-auto mb-10 leading-relaxed">
                             {c.heroSubtitle}
                         </p>
                         <div className="flex flex-col sm:flex-row gap-3 justify-center">
@@ -302,7 +302,7 @@ function EDOContent() {
                             </Link>
                             <a
                                 href="#features"
-                                className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl text-sm font-semibold text-white/70 border border-white/10 bg-white/[0.04] hover:bg-white/[0.08] hover:text-white no-underline transition-all"
+                                className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl text-sm font-semibold text-gray-600 dark:text-white/70 border border-gray-200 dark:border-white/10 bg-gray-50 dark:bg-white/[0.04] hover:bg-gray-100 dark:hover:bg-white/[0.08] hover:text-gray-900 dark:hover:text-white no-underline transition-all"
                             >
                                 {c.ctaSecondary}
                             </a>
@@ -321,10 +321,10 @@ function EDOContent() {
                         transition={{ duration: 0.6 }}
                         className="text-center mb-16"
                     >
-                        <h2 className="text-2xl sm:text-3xl lg:text-5xl font-bold text-[#F0F0F5] tracking-tight mb-4">
+                        <h2 className="text-2xl sm:text-3xl lg:text-5xl font-bold text-gray-900 dark:text-[#F0F0F5] tracking-tight mb-4">
                             {c.featuresTitle}
                         </h2>
-                        <p className="text-base lg:text-lg text-[#F0F0F5]/50 max-w-xl mx-auto">
+                        <p className="text-base lg:text-lg text-gray-600 dark:text-[#F0F0F5]/50 max-w-xl mx-auto">
                             {c.featuresSubtitle}
                         </p>
                     </motion.div>
@@ -337,13 +337,13 @@ function EDOContent() {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true, margin: '-60px' }}
                                 transition={{ duration: 0.5, delay: i * 0.1 }}
-                                className="group bg-white/[0.025] border border-white/[0.07] rounded-2xl p-6 hover:bg-white/[0.04] hover:border-white/[0.12] transition-all duration-300"
+                                className="group bg-gray-50 dark:bg-white/[0.025] border border-gray-200 dark:border-white/[0.07] rounded-2xl p-6 hover:bg-gray-100 dark:hover:bg-white/[0.04] hover:border-gray-300 dark:hover:border-white/[0.12] transition-all duration-300"
                             >
-                                <div className="w-11 h-11 rounded-xl bg-amber-500/[0.08] flex items-center justify-center text-amber-400 mb-4">
+                                <div className="w-11 h-11 rounded-xl bg-amber-500/[0.08] flex items-center justify-center text-amber-600 dark:text-amber-400 mb-4">
                                     {featureIcons[i]}
                                 </div>
-                                <h3 className="text-base font-semibold text-[#F0F0F5] mb-2">{feature.title}</h3>
-                                <p className="text-sm text-[#F0F0F5]/50 leading-relaxed">{feature.description}</p>
+                                <h3 className="text-base font-semibold text-gray-900 dark:text-[#F0F0F5] mb-2">{feature.title}</h3>
+                                <p className="text-sm text-gray-600 dark:text-[#F0F0F5]/50 leading-relaxed">{feature.description}</p>
                             </motion.div>
                         ))}
                     </div>
@@ -351,7 +351,7 @@ function EDOContent() {
             </section>
 
             {/* Roles */}
-            <section className="relative py-24 lg:py-32 border-t border-white/[0.06]">
+            <section className="relative py-24 lg:py-32 border-t border-gray-200 dark:border-white/[0.06]">
                 <div className="max-w-4xl mx-auto px-6">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
@@ -360,7 +360,7 @@ function EDOContent() {
                         transition={{ duration: 0.6 }}
                         className="text-center mb-12"
                     >
-                        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#F0F0F5] tracking-tight">
+                        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 dark:text-[#F0F0F5] tracking-tight">
                             {c.rolesTitle}
                         </h2>
                     </motion.div>
@@ -373,12 +373,12 @@ function EDOContent() {
                                 whileInView={{ opacity: 1, x: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ duration: 0.4, delay: i * 0.08 }}
-                                className="flex items-start gap-4 bg-white/[0.025] border border-white/[0.07] rounded-xl px-5 py-4"
+                                className="flex items-start gap-4 bg-gray-50 dark:bg-white/[0.025] border border-gray-200 dark:border-white/[0.07] rounded-xl px-5 py-4"
                             >
-                                <span className="mt-0.5 text-amber-400 flex-shrink-0"><CheckIcon /></span>
+                                <span className="mt-0.5 text-amber-600 dark:text-amber-400 flex-shrink-0"><CheckIcon /></span>
                                 <div>
-                                    <span className="text-sm font-semibold text-[#F0F0F5]">{r.role}</span>
-                                    <span className="text-sm text-[#F0F0F5]/50 ml-2">— {r.desc}</span>
+                                    <span className="text-sm font-semibold text-gray-900 dark:text-[#F0F0F5]">{r.role}</span>
+                                    <span className="text-sm text-gray-600 dark:text-[#F0F0F5]/50 ml-2">— {r.desc}</span>
                                 </div>
                             </motion.div>
                         ))}
@@ -387,7 +387,7 @@ function EDOContent() {
             </section>
 
             {/* Security */}
-            <section className="relative py-24 lg:py-32 border-t border-white/[0.06]">
+            <section className="relative py-24 lg:py-32 border-t border-gray-200 dark:border-white/[0.06]">
                 <div className="max-w-4xl mx-auto px-6">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
@@ -396,7 +396,7 @@ function EDOContent() {
                         transition={{ duration: 0.6 }}
                         className="text-center mb-12"
                     >
-                        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#F0F0F5] tracking-tight">
+                        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 dark:text-[#F0F0F5] tracking-tight">
                             {c.securityTitle}
                         </h2>
                     </motion.div>
@@ -409,12 +409,12 @@ function EDOContent() {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ duration: 0.4, delay: i * 0.06 }}
-                                className="flex items-start gap-3 bg-white/[0.025] border border-white/[0.07] rounded-xl px-5 py-4"
+                                className="flex items-start gap-3 bg-gray-50 dark:bg-white/[0.025] border border-gray-200 dark:border-white/[0.07] rounded-xl px-5 py-4"
                             >
                                 <svg className="w-4 h-4 mt-0.5 text-emerald-400 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                                     <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
                                 </svg>
-                                <span className="text-sm text-[#F0F0F5]/70">{item}</span>
+                                <span className="text-sm text-gray-700 dark:text-[#F0F0F5]/70">{item}</span>
                             </motion.div>
                         ))}
                     </div>
@@ -422,7 +422,7 @@ function EDOContent() {
             </section>
 
             {/* Integrations */}
-            <section className="relative py-24 lg:py-32 border-t border-white/[0.06]">
+            <section className="relative py-24 lg:py-32 border-t border-gray-200 dark:border-white/[0.06]">
                 <div className="max-w-4xl mx-auto px-6">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
@@ -431,7 +431,7 @@ function EDOContent() {
                         transition={{ duration: 0.6 }}
                         className="text-center mb-12"
                     >
-                        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#F0F0F5] tracking-tight">
+                        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 dark:text-[#F0F0F5] tracking-tight">
                             {c.integrationsTitle}
                         </h2>
                     </motion.div>
@@ -444,10 +444,10 @@ function EDOContent() {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ duration: 0.4, delay: i * 0.08 }}
-                                className="bg-white/[0.025] border border-white/[0.07] rounded-xl p-5 hover:bg-white/[0.04] transition-all"
+                                className="bg-gray-50 dark:bg-white/[0.025] border border-gray-200 dark:border-white/[0.07] rounded-xl p-5 hover:bg-gray-100 dark:hover:bg-white/[0.04] transition-all"
                             >
-                                <h4 className="text-sm font-semibold text-[#F0F0F5] mb-1">{item.name}</h4>
-                                <p className="text-xs text-[#F0F0F5]/50">{item.desc}</p>
+                                <h4 className="text-sm font-semibold text-gray-900 dark:text-[#F0F0F5] mb-1">{item.name}</h4>
+                                <p className="text-xs text-gray-600 dark:text-[#F0F0F5]/50">{item.desc}</p>
                             </motion.div>
                         ))}
                     </div>
@@ -455,7 +455,7 @@ function EDOContent() {
             </section>
 
             {/* Bottom CTA */}
-            <section className="relative py-24 lg:py-32 border-t border-white/[0.06]">
+            <section className="relative py-24 lg:py-32 border-t border-gray-200 dark:border-white/[0.06]">
                 <div className="absolute inset-0 pointer-events-none">
                     <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[250px] bg-amber-500/[0.06] rounded-full blur-[120px]" />
                 </div>
@@ -466,10 +466,10 @@ function EDOContent() {
                     transition={{ duration: 0.7 }}
                     className="relative z-10 max-w-2xl mx-auto px-6 text-center"
                 >
-                    <h2 className="text-2xl sm:text-3xl lg:text-5xl font-bold text-white tracking-tight mb-5">
+                    <h2 className="text-2xl sm:text-3xl lg:text-5xl font-bold text-gray-900 dark:text-white tracking-tight mb-5">
                         {c.ctaBottomTitle}
                     </h2>
-                    <p className="text-base text-white/55 mb-10 max-w-lg mx-auto">
+                    <p className="text-base text-gray-500 dark:text-white/55 mb-10 max-w-lg mx-auto">
                         {c.ctaBottomSubtitle}
                     </p>
                     <Link

@@ -12,39 +12,39 @@ const UnifiedInboxShowcase: React.FC = () => {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
                 {/* Header */}
                 <div className="text-center mb-12 sm:mb-16">
-                    <div className="inline-flex items-center gap-2 bg-green-500/10 backdrop-blur-sm border border-green-500/20 rounded-full px-4 py-2 text-sm text-green-400 shadow-sm mb-4 sm:mb-6">
+                    <div className="inline-flex items-center gap-2 bg-green-500/10 backdrop-blur-sm border border-green-500/20 rounded-full px-4 py-2 text-sm text-green-600 dark:text-green-400 shadow-sm mb-4 sm:mb-6">
                         {translations.badge}
                     </div>
-                    <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold text-white mb-4 sm:mb-6">
+                    <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4 sm:mb-6">
                         {translations.title}
                     </h2>
-                    <p className="text-lg sm:text-xl text-white/70 max-w-2xl mx-auto">
+                    <p className="text-lg sm:text-xl text-gray-600 dark:text-white/70 max-w-2xl mx-auto">
                         {translations.subtitle}
                     </p>
                 </div>
 
                 <div className="grid lg:grid-cols-2 gap-8 items-center">
                     {/* Left: Mock UI */}
-                    <div className="bg-slate-900/80 backdrop-blur-sm border border-white/10 rounded-2xl overflow-hidden shadow-2xl">
+                    <div className="bg-white dark:bg-slate-900/80 backdrop-blur-sm border border-gray-200 dark:border-white/10 rounded-2xl overflow-hidden shadow-2xl">
                         {/* Header */}
-                        <div className="bg-slate-800/50 px-4 py-3 border-b border-white/10 flex items-center justify-between">
+                        <div className="bg-gray-100 dark:bg-slate-800/50 px-4 py-3 border-b border-gray-200 dark:border-white/10 flex items-center justify-between">
                             <div className="flex items-center gap-2">
                                 <div className="w-3 h-3 rounded-full bg-red-500" />
                                 <div className="w-3 h-3 rounded-full bg-yellow-500" />
                                 <div className="w-3 h-3 rounded-full bg-green-500" />
                             </div>
-                            <span className="text-white/55 text-sm">{translations.mockUI.windowTitle}</span>
+                            <span className="text-gray-500 dark:text-white/55 text-sm">{translations.mockUI.windowTitle}</span>
                         </div>
 
                         {/* Content */}
                         <div className="grid grid-cols-3">
                             {/* Chat list */}
-                            <div className="col-span-1 border-r border-white/10 h-80">
-                                <div className="p-3 border-b border-white/10">
+                            <div className="col-span-1 border-r border-gray-200 dark:border-white/10 h-80">
+                                <div className="p-3 border-b border-gray-200 dark:border-white/10">
                                     <input
                                         type="text"
                                         placeholder={translations.mockUI.searchPlaceholder}
-                                        className="w-full px-3 py-2 bg-white/5 rounded-lg text-sm text-white/60 placeholder-white/30"
+                                        className="w-full px-3 py-2 bg-gray-50 dark:bg-white/5 rounded-lg text-sm text-gray-500 dark:text-white/60 placeholder-gray-400 dark:placeholder-white/30"
                                         readOnly
                                     />
                                 </div>
@@ -56,10 +56,10 @@ const UnifiedInboxShowcase: React.FC = () => {
                                         </div>
                                         <div className="flex-1 min-w-0">
                                             <div className="flex justify-between items-center mb-1">
-                                                <span className="text-white text-sm font-medium truncate">{translations.chatPreview.name}</span>
-                                                <span className="text-green-400 text-xs">{translations.chatPreview.time}</span>
+                                                <span className="text-gray-900 dark:text-white text-sm font-medium truncate">{translations.chatPreview.name}</span>
+                                                <span className="text-green-600 dark:text-green-400 text-xs">{translations.chatPreview.time}</span>
                                             </div>
-                                            <p className="text-white/50 text-xs truncate">{translations.chatPreview.message}</p>
+                                            <p className="text-gray-400 dark:text-white/50 text-xs truncate">{translations.chatPreview.message}</p>
                                         </div>
                                         <span className="bg-green-500 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0">
                                             {translations.chatPreview.unread}
@@ -68,12 +68,12 @@ const UnifiedInboxShowcase: React.FC = () => {
                                 </div>
                                 {/* More chat items (placeholder) */}
                                 {[1, 2, 3].map((i) => (
-                                    <div key={i} className="p-3 border-b border-white/5">
+                                    <div key={i} className="p-3 border-b border-gray-100 dark:border-white/5">
                                         <div className="flex items-start gap-2">
-                                            <div className="w-10 h-10 bg-white/10 rounded-full flex-shrink-0" />
+                                            <div className="w-10 h-10 bg-gray-100 dark:bg-white/10 rounded-full flex-shrink-0" />
                                             <div className="flex-1">
-                                                <div className="h-3 bg-white/10 rounded w-20 mb-2" />
-                                                <div className="h-2 bg-white/5 rounded w-32" />
+                                                <div className="h-3 bg-gray-100 dark:bg-white/10 rounded w-20 mb-2" />
+                                                <div className="h-2 bg-gray-50 dark:bg-white/5 rounded w-32" />
                                             </div>
                                         </div>
                                     </div>
@@ -83,13 +83,13 @@ const UnifiedInboxShowcase: React.FC = () => {
                             {/* Chat window */}
                             <div className="col-span-2 h-80 flex flex-col">
                                 {/* Chat header */}
-                                <div className="px-4 py-3 border-b border-white/10 flex items-center gap-3">
+                                <div className="px-4 py-3 border-b border-gray-200 dark:border-white/10 flex items-center gap-3">
                                     <div className="w-10 h-10 bg-gradient-to-br from-green-400 to-emerald-500 rounded-full flex items-center justify-center text-white font-semibold">
                                         AP
                                     </div>
                                     <div>
-                                        <div className="text-white font-medium">{translations.chatPreview.name}</div>
-                                        <div className="text-green-400 text-xs">{translations.mockUI.online}</div>
+                                        <div className="text-gray-900 dark:text-white font-medium">{translations.chatPreview.name}</div>
+                                        <div className="text-green-600 dark:text-green-400 text-xs">{translations.mockUI.online}</div>
                                     </div>
                                 </div>
 
@@ -97,9 +97,9 @@ const UnifiedInboxShowcase: React.FC = () => {
                                 <div className="flex-1 p-4 space-y-3 overflow-y-auto">
                                     {/* Incoming message */}
                                     <div className="flex justify-start">
-                                        <div className="bg-white/10 rounded-lg rounded-tl-none px-3 py-2 max-w-[70%]">
-                                            <p className="text-white text-sm">{translations.chatPreview.message}</p>
-                                            <span className="text-white/55 text-xs">10:32</span>
+                                        <div className="bg-gray-100 dark:bg-white/10 rounded-lg rounded-tl-none px-3 py-2 max-w-[70%]">
+                                            <p className="text-gray-900 dark:text-white text-sm">{translations.chatPreview.message}</p>
+                                            <span className="text-gray-500 dark:text-white/55 text-xs">10:32</span>
                                         </div>
                                     </div>
                                     {/* Outgoing message */}
@@ -117,11 +117,11 @@ const UnifiedInboxShowcase: React.FC = () => {
                                 </div>
 
                                 {/* Input */}
-                                <div className="px-4 py-3 border-t border-white/10 flex gap-2">
+                                <div className="px-4 py-3 border-t border-gray-200 dark:border-white/10 flex gap-2">
                                     <input
                                         type="text"
                                         placeholder={translations.mockUI.typePlaceholder}
-                                        className="flex-1 px-3 py-2 bg-white/5 rounded-lg text-sm text-white/60 placeholder-white/30"
+                                        className="flex-1 px-3 py-2 bg-gray-50 dark:bg-white/5 rounded-lg text-sm text-gray-500 dark:text-white/60 placeholder-gray-400 dark:placeholder-white/30"
                                         readOnly
                                     />
                                     <button className="w-10 h-10 bg-green-500 rounded-lg flex items-center justify-center text-white">
@@ -139,16 +139,16 @@ const UnifiedInboxShowcase: React.FC = () => {
                         {translations.features.map((feature, index) => (
                             <div
                                 key={index}
-                                className="flex gap-4 p-4 bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl hover:border-green-500/30 transition-all duration-300"
+                                className="flex gap-4 p-4 bg-gray-50 dark:bg-white/5 backdrop-blur-sm border border-gray-200 dark:border-white/10 rounded-xl hover:border-green-500/30 transition-all duration-300"
                             >
                                 <div className="w-10 h-10 bg-green-500/20 rounded-lg flex items-center justify-center flex-shrink-0">
-                                    <svg className="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <svg className="w-5 h-5 text-green-600 dark:text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                                     </svg>
                                 </div>
                                 <div>
-                                    <h3 className="text-white font-medium mb-1">{feature.title}</h3>
-                                    <p className="text-white/60 text-sm">{feature.description}</p>
+                                    <h3 className="text-gray-900 dark:text-white font-medium mb-1">{feature.title}</h3>
+                                    <p className="text-gray-500 dark:text-white/60 text-sm">{feature.description}</p>
                                 </div>
                             </div>
                         ))}

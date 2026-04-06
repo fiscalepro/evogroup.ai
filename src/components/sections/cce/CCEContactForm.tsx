@@ -263,7 +263,7 @@ const CCEContactForm: React.FC = () => {
 
     if (isSubmitted) {
         return (
-            <section id="cce-contact" className="py-20 sm:py-32 px-4 sm:px-6 lg:px-10 bg-[#12121a]">
+            <section id="cce-contact" className="py-20 sm:py-32 px-4 sm:px-6 lg:px-10 bg-gray-50 dark:bg-[#12121a]">
                 <div className="max-w-3xl mx-auto">
                     <motion.div
                         initial={{ opacity: 0, scale: 0.9 }}
@@ -275,8 +275,8 @@ const CCEContactForm: React.FC = () => {
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                             </svg>
                         </div>
-                        <h3 className="text-2xl sm:text-3xl font-bold text-white mb-4">{t.success.title}</h3>
-                        <p className="text-white/60 text-lg mb-8">{t.success.description}</p>
+                        <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-4">{t.success.title}</h3>
+                        <p className="text-gray-500 dark:text-white/60 text-lg mb-8">{t.success.description}</p>
                         <button
                             onClick={() => setIsSubmitted(false)}
                             className="px-6 py-3 border border-violet-500/30 rounded-xl text-violet-300 font-medium hover:bg-violet-500/10 transition-colors"
@@ -313,7 +313,7 @@ const CCEContactForm: React.FC = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: 0.1 }}
-                    className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4"
+                    className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-4"
                 >
                     {t.title}
                 </motion.h2>
@@ -323,7 +323,7 @@ const CCEContactForm: React.FC = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: 0.15 }}
-                    className="text-lg text-white/60 max-w-2xl mb-16"
+                    className="text-lg text-gray-500 dark:text-white/60 max-w-2xl mb-16"
                 >
                     {t.subtitle}
                 </motion.p>
@@ -344,8 +344,8 @@ const CCEContactForm: React.FC = () => {
                                     <span className="text-white font-bold text-sm">{index + 1}</span>
                                 </div>
                                 <div>
-                                    <h4 className="text-white font-bold mb-1">{item.title}</h4>
-                                    <p className="text-white/50 text-sm leading-relaxed">{item.description}</p>
+                                    <h4 className="text-gray-900 dark:text-white font-bold mb-1">{item.title}</h4>
+                                    <p className="text-gray-400 dark:text-white/50 text-sm leading-relaxed">{item.description}</p>
                                 </div>
                             </motion.div>
                         ))}
@@ -358,11 +358,11 @@ const CCEContactForm: React.FC = () => {
                         viewport={{ once: true }}
                         transition={{ delay: 0.2 }}
                         onSubmit={handleSubmit}
-                        className="bg-[#1a1a24] border border-white/10 rounded-2xl p-6 sm:p-8 space-y-5"
+                        className="bg-white dark:bg-[#1a1a24] border border-gray-200 dark:border-white/10 rounded-2xl p-6 sm:p-8 space-y-5"
                     >
                         {/* Name */}
                         <div>
-                            <label className="block text-sm text-white/70 mb-2">{t.form.name}</label>
+                            <label className="block text-sm text-gray-600 dark:text-white/70 mb-2">{t.form.name}</label>
                             <input
                                 type="text"
                                 name="name"
@@ -370,8 +370,8 @@ const CCEContactForm: React.FC = () => {
                                 value={formData.name}
                                 onChange={handleInputChange}
                                 maxLength={100}
-                                className={`w-full px-4 py-3 bg-white/5 border rounded-xl text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-transparent transition-all ${
-                                    errors.name ? 'border-red-500/50' : 'border-white/10'
+                                className={`w-full px-4 py-3 bg-gray-50 dark:bg-white/5 border rounded-xl text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-transparent transition-all ${
+                                    errors.name ? 'border-red-500/50' : 'border-gray-200 dark:border-white/10'
                                 }`}
                             />
                             {errors.name && <p className="mt-1 text-sm text-red-400">{errors.name}</p>}
@@ -379,7 +379,7 @@ const CCEContactForm: React.FC = () => {
 
                         {/* Email */}
                         <div>
-                            <label className="block text-sm text-white/70 mb-2">{t.form.email}</label>
+                            <label className="block text-sm text-gray-600 dark:text-white/70 mb-2">{t.form.email}</label>
                             <input
                                 type="email"
                                 name="email"
@@ -387,8 +387,8 @@ const CCEContactForm: React.FC = () => {
                                 value={formData.email}
                                 onChange={handleInputChange}
                                 maxLength={200}
-                                className={`w-full px-4 py-3 bg-white/5 border rounded-xl text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-transparent transition-all ${
-                                    errors.email ? 'border-red-500/50' : 'border-white/10'
+                                className={`w-full px-4 py-3 bg-gray-50 dark:bg-white/5 border rounded-xl text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-transparent transition-all ${
+                                    errors.email ? 'border-red-500/50' : 'border-gray-200 dark:border-white/10'
                                 }`}
                             />
                             {errors.email && <p className="mt-1 text-sm text-red-400">{errors.email}</p>}
@@ -397,7 +397,7 @@ const CCEContactForm: React.FC = () => {
                         {/* Phone & Company row */}
                         <div className="grid sm:grid-cols-2 gap-5">
                             <div>
-                                <label className="block text-sm text-white/70 mb-2">{t.form.phone}</label>
+                                <label className="block text-sm text-gray-600 dark:text-white/70 mb-2">{t.form.phone}</label>
                                 <input
                                     type="tel"
                                     name="phone"
@@ -405,14 +405,14 @@ const CCEContactForm: React.FC = () => {
                                     value={formData.phone}
                                     onChange={handleInputChange}
                                     maxLength={20}
-                                    className={`w-full px-4 py-3 bg-white/5 border rounded-xl text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-transparent transition-all ${
-                                        errors.phone ? 'border-red-500/50' : 'border-white/10'
+                                    className={`w-full px-4 py-3 bg-gray-50 dark:bg-white/5 border rounded-xl text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-transparent transition-all ${
+                                        errors.phone ? 'border-red-500/50' : 'border-gray-200 dark:border-white/10'
                                     }`}
                                 />
                                 {errors.phone && <p className="mt-1 text-sm text-red-400">{errors.phone}</p>}
                             </div>
                             <div>
-                                <label className="block text-sm text-white/70 mb-2">{t.form.company}</label>
+                                <label className="block text-sm text-gray-600 dark:text-white/70 mb-2">{t.form.company}</label>
                                 <input
                                     type="text"
                                     name="company"
@@ -420,8 +420,8 @@ const CCEContactForm: React.FC = () => {
                                     value={formData.company}
                                     onChange={handleInputChange}
                                     maxLength={100}
-                                    className={`w-full px-4 py-3 bg-white/5 border rounded-xl text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-transparent transition-all ${
-                                        errors.company ? 'border-red-500/50' : 'border-white/10'
+                                    className={`w-full px-4 py-3 bg-gray-50 dark:bg-white/5 border rounded-xl text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-transparent transition-all ${
+                                        errors.company ? 'border-red-500/50' : 'border-gray-200 dark:border-white/10'
                                     }`}
                                 />
                                 {errors.company && <p className="mt-1 text-sm text-red-400">{errors.company}</p>}
@@ -430,23 +430,23 @@ const CCEContactForm: React.FC = () => {
 
                         {/* Team size */}
                         <div>
-                            <label className="block text-sm text-white/70 mb-2">{t.form.teamSize}</label>
+                            <label className="block text-sm text-gray-600 dark:text-white/70 mb-2">{t.form.teamSize}</label>
                             <select
                                 name="teamSize"
                                 value={formData.teamSize}
                                 onChange={handleInputChange}
-                                className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-transparent transition-all appearance-none cursor-pointer"
+                                className="w-full px-4 py-3 bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-xl text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-transparent transition-all appearance-none cursor-pointer"
                             >
-                                <option value="" className="bg-[#1a1a24]">{t.form.teamSizePlaceholder}</option>
+                                <option value="" className="bg-white dark:bg-[#1a1a24]">{t.form.teamSizePlaceholder}</option>
                                 {t.form.teamSizeOptions.map((option, i) => (
-                                    <option key={i} value={option} className="bg-[#1a1a24]">{option}</option>
+                                    <option key={i} value={option} className="bg-white dark:bg-[#1a1a24]">{option}</option>
                                 ))}
                             </select>
                         </div>
 
                         {/* Message */}
                         <div>
-                            <label className="block text-sm text-white/70 mb-2">{t.form.message}</label>
+                            <label className="block text-sm text-gray-600 dark:text-white/70 mb-2">{t.form.message}</label>
                             <textarea
                                 name="message"
                                 placeholder={t.form.messagePlaceholder}
@@ -454,7 +454,7 @@ const CCEContactForm: React.FC = () => {
                                 onChange={handleInputChange}
                                 maxLength={1000}
                                 rows={4}
-                                className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-transparent transition-all resize-none"
+                                className="w-full px-4 py-3 bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-xl text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-transparent transition-all resize-none"
                             />
                         </div>
 

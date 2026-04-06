@@ -56,8 +56,8 @@ export const solutions: Solution[] = [
 ]
 
 export const clients: Client[] = [
-  { id: 'banking', name: 'Банковский сектор', logo: '/logos/bank1.svg', industry: 'banking' },
-  { id: 'oilgas', name: 'Нефтегазовая отрасль', logo: '/logos/oil1.svg', industry: 'oil' },
+  { id: 'banking', name: 'Fin Tech', logo: '/logos/bank1.svg', industry: 'banking' },
+  { id: 'oilgas', name: 'Energy OS', logo: '/logos/oil1.svg', industry: 'oil' },
   { id: 'edms', name: 'Документооборот', logo: '/logos/oil1.svg', industry: 'oil' },
   { id: 'minedu', name: 'Мин. образования КР', logo: '/logos/gov1.svg', industry: 'government' }
 ]
@@ -66,8 +66,8 @@ export const caseStudies: CaseStudy[] = [
   {
     id: 'bakai-smartuchet',
     title: 'Универсальный Кабинет — экосистема для малого бизнеса',
-    client: 'Банковский сектор',
-    industry: 'Банковский сектор',
+    client: 'Fin Tech',
+    industry: 'Fin Tech',
     challenge: 'Банку необходимо предоставить клиентам малого бизнеса полный цикл электронных госуслуг в мобильном приложении',
     solution: 'Разработали 16 микросервисов на Spring Boot/React: ЭСФ, ЭТТН, HR, ERP, налоговая отчётность, регистрация ИП, мониторинг — с интеграцией через Tunduk X-Road и ОЭЦП подписание',
     results: [

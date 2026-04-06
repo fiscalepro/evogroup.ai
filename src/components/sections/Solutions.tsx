@@ -92,7 +92,7 @@ const Solutions: React.FC = () => {
                     fullDescription: 'Мы создаём мультиагентные ИИ-системы для клиентского сервиса телеком-операторов. Наши решения автоматизируют поддержку, ускоряют обработку обращений и обеспечивают персонализированное обслуживание в крупных абонентских сетях. ИИ-агенты распределяют нагрузку, предотвращают ошибки и повышают качество взаимодействия с клиентами.'
                 },
                 energy: {
-                    title: 'Нефть и газ',
+                    title: 'Energy OS',
                     description: 'Предиктивное обслуживание, оптимизация добычи и мониторинг безопасности',
                     fullDescription: 'Мы разрабатываем решения, повышающие эффективность производственных и управленческих процессов в нефтегазовой отрасли. Создаём системы для контроля добычи и логистики, оптимизации товароучёта, мониторинга оборудования и цифровизации ключевых операций. Наши технологии помогают снижать издержки, повышать точность данных и поддерживать стабильную работу инфраструктуры.'
                 },
@@ -115,8 +115,8 @@ const Solutions: React.FC = () => {
             iconSvg: '/bank.svg',
             gradient: 'from-cyan-500/15 to-sky-500/15',
             hoverGradient: 'group-hover:from-cyan-500/25 group-hover:to-sky-500/25',
-            accentText: 'text-cyan-400',
-            accentBorder: 'hover:border-cyan-400/25',
+            accentText: 'text-cyan-600 dark:text-cyan-400',
+            accentBorder: 'hover:border-cyan-600/25 dark:hover:border-cyan-400/25',
         },
         {
             id: 'government',
@@ -125,8 +125,8 @@ const Solutions: React.FC = () => {
             iconSvg: '/bank_2.svg',
             gradient: 'from-violet-500/15 to-fuchsia-500/15',
             hoverGradient: 'group-hover:from-violet-500/25 group-hover:to-fuchsia-500/25',
-            accentText: 'text-violet-400',
-            accentBorder: 'hover:border-violet-400/25',
+            accentText: 'text-violet-600 dark:text-violet-400',
+            accentBorder: 'hover:border-violet-600/25 dark:hover:border-violet-400/25',
         },
         {
             id: 'energy',
@@ -135,8 +135,8 @@ const Solutions: React.FC = () => {
             iconSvg: '/neft-gas.svg',
             gradient: 'from-amber-500/15 to-orange-500/15',
             hoverGradient: 'group-hover:from-amber-500/25 group-hover:to-orange-500/25',
-            accentText: 'text-amber-400',
-            accentBorder: 'hover:border-amber-400/25',
+            accentText: 'text-amber-600 dark:text-amber-400',
+            accentBorder: 'hover:border-amber-600/25 dark:hover:border-amber-400/25',
         },
         {
             id: 'logistics',
@@ -145,8 +145,8 @@ const Solutions: React.FC = () => {
             iconSvg: '/logistics.svg',
             gradient: 'from-emerald-500/15 to-teal-500/15',
             hoverGradient: 'group-hover:from-emerald-500/25 group-hover:to-teal-500/25',
-            accentText: 'text-emerald-400',
-            accentBorder: 'hover:border-emerald-400/25',
+            accentText: 'text-emerald-600 dark:text-emerald-400',
+            accentBorder: 'hover:border-emerald-600/25 dark:hover:border-emerald-400/25',
         }
     ]
 
@@ -154,14 +154,14 @@ const Solutions: React.FC = () => {
         <section id="solutions" className="relative py-28 lg:py-32 overflow-hidden">
             {/* Section header */}
             <div className="relative z-10 max-w-7xl mx-auto px-6 mb-16 text-center">
-                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/10 bg-white/[0.04] mb-6">
+                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-gray-200 dark:border-white/10 bg-gray-100 dark:bg-white/[0.04] mb-6">
                     <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
-                    <span className="text-xs text-white/55 uppercase tracking-widest font-medium">{translations.preTitle}</span>
+                    <span className="text-xs text-gray-400 dark:text-white/55 uppercase tracking-widest font-medium">{translations.preTitle}</span>
                 </div>
-                <h2 className="text-4xl sm:text-5xl font-bold text-white mb-4 tracking-tight">
+                <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 dark:text-white mb-4 tracking-tight">
                     {translations.title}
                 </h2>
-                <p className="text-base sm:text-lg text-white/50 max-w-xl mx-auto leading-relaxed">
+                <p className="text-base sm:text-lg text-gray-400 dark:text-white/50 max-w-xl mx-auto leading-relaxed">
                     {translations.subtitle}
                 </p>
             </div>
@@ -175,7 +175,7 @@ const Solutions: React.FC = () => {
                             isPressable
                             onPress={() => handleSolutionClick(solution.id)}
                             onClick={() => handleSolutionClick(solution.id)}
-                            className={`group bg-white/[0.025] border border-white/[0.07] ${solution.accentBorder} hover:bg-white/[0.05] rounded-2xl transition-all duration-400 cursor-pointer`}
+                            className={`group bg-gray-50 dark:bg-white/[0.025] border border-gray-200 dark:border-white/[0.07] ${solution.accentBorder} hover:bg-gray-100 dark:hover:bg-white/[0.05] rounded-2xl transition-all duration-400 cursor-pointer`}
                             style={{animationDelay: `${index * 0.1}s`}}
                         >
                             <CardBody className="p-7">
@@ -191,12 +191,12 @@ const Solutions: React.FC = () => {
                                 </div>
 
                                 {/* Title */}
-                                <h3 className={`text-lg font-bold text-white mb-3 group-hover:${solution.accentText.replace('text-', 'text-')} transition-colors duration-300`}>
+                                <h3 className={`text-lg font-bold text-gray-900 dark:text-white mb-3 group-hover:${solution.accentText.replace('text-', 'text-')} transition-colors duration-300`}>
                                     {solution.title}
                                 </h3>
 
                                 {/* Description */}
-                                <p className="text-sm text-white/45 leading-relaxed group-hover:text-white/60 transition-colors duration-300">
+                                <p className="text-sm text-gray-400 dark:text-white/45 leading-relaxed group-hover:text-gray-500 dark:group-hover:text-white/60 transition-colors duration-300">
                                     {solution.description}
                                 </p>
 

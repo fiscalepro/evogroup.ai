@@ -31,7 +31,7 @@ jest.mock('framer-motion', () => ({
 
 // Mock I18nProvider
 jest.mock('@/components/providers/I18nProvider', () => ({
-    useTranslation: () => ({ locale: 'ru' as const, changeLanguage: jest.fn(), isHydrated: true, t: (key: string) => key }),
+    useTranslation: () => ({ locale: 'ru' as const, changeLanguage: jest.fn(), isHydrated: true, t: (key: string) => key, tObj: (section: string) => require('../../../src/locales/ru').ru[section] }),
     I18nProvider: ({ children }: React.PropsWithChildren) => <>{children}</>,
 }))
 

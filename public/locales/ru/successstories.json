@@ -6,7 +6,7 @@
   "case_studies": [
     {
       "id": "banking-integration",
-      "industry": "Банковский сектор",
+      "industry": "Fin Tech",
       "title": "ИИ-система кредитования для крупнейшего банка КР",
       "client": "Ведущий банк Кыргызстана",
       "duration": "6 месяцев",
@@ -100,7 +100,7 @@
 
     {
       "id": "oil-automation",
-      "industry": "Нефтегазовая отрасль",
+      "industry": "Energy OS",
       "title": "Автоматизация производственных процессов",
       "client": "НефтеГаз Кыргызстан",
       "duration": "8 месяцев",

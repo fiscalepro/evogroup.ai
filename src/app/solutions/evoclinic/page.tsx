@@ -321,7 +321,7 @@ export default function EvoClinicPage() {
     }
 
     return (
-        <div className="relative min-h-screen bg-[#0A0E1A]">
+        <div className="relative min-h-screen bg-[#eeeeee] dark:bg-[#0A0E1A] transition-colors duration-300">
             <PageBackground accent="purple" />
             <ModernHeader />
 
@@ -355,7 +355,7 @@ export default function EvoClinicPage() {
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 0.2 }}
-                                className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight mb-6"
+                                className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-gray-900 dark:text-white leading-tight mb-6"
                             >
                                 {content.heroTitle1}{' '}
                                 <span className="bg-gradient-to-r from-pink-400 to-cyan-400 bg-clip-text text-transparent">
@@ -368,7 +368,7 @@ export default function EvoClinicPage() {
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 0.3 }}
-                                className="text-lg sm:text-xl text-white/65 mb-8 leading-relaxed"
+                                className="text-lg sm:text-xl text-gray-500 dark:text-white/65 mb-8 leading-relaxed"
                             >
                                 {content.heroDescription}
                             </motion.p>
@@ -391,7 +391,7 @@ export default function EvoClinicPage() {
                                 <Link
                                     href="https://clinic.evogroup.ai"
                                     target="_blank"
-                                    className="inline-flex items-center gap-2 px-8 py-4 border-2 border-white/10 rounded-xl text-white font-semibold text-lg transition-all hover:bg-pink-500/10 hover:border-pink-500/30 no-underline"
+                                    className="inline-flex items-center gap-2 px-8 py-4 border-2 border-gray-200 dark:border-white/10 rounded-xl text-gray-900 dark:text-white font-semibold text-lg transition-all hover:bg-pink-500/10 hover:border-pink-500/30 no-underline"
                                 >
                                     {content.openPlatform}
                                 </Link>
@@ -401,14 +401,14 @@ export default function EvoClinicPage() {
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 0.5 }}
-                                className="flex flex-wrap gap-8 sm:gap-12 mt-12 pt-8 border-t border-white/10"
+                                className="flex flex-wrap gap-8 sm:gap-12 mt-12 pt-8 border-t border-gray-200 dark:border-white/10"
                             >
                                 {content.heroStats.map((s, i) => (
                                     <div key={i}>
                                         <div className="text-3xl sm:text-4xl font-extrabold bg-gradient-to-r from-pink-400 to-cyan-400 bg-clip-text text-transparent">
                                             {s.v}
                                         </div>
-                                        <div className="text-sm text-white/50 mt-1">{s.l}</div>
+                                        <div className="text-sm text-gray-400 dark:text-white/50 mt-1">{s.l}</div>
                                     </div>
                                 ))}
                             </motion.div>
@@ -509,11 +509,11 @@ export default function EvoClinicPage() {
                         {content.stats.map((s, i) => (
                             <motion.div
                                 key={i} custom={i} variants={itemVariants} initial="hidden" whileInView="visible" viewport={{ once: true }}
-                                className="p-5 rounded-xl border border-[#F0F0F5]/[0.06] bg-[#F0F0F5]/[0.02]"
+                                className="p-5 rounded-xl border border-gray-200 dark:border-[#F0F0F5]/[0.06] bg-gray-50 dark:bg-[#F0F0F5]/[0.02]"
                             >
-                                <div className="text-2xl font-bold text-[#F0F0F5] mb-0.5">{s.value}</div>
-                                <div className="text-sm font-medium text-[#F0F0F5]/55 mb-0.5">{s.label}</div>
-                                <div className="text-xs text-[#F0F0F5]/30">{s.detail}</div>
+                                <div className="text-2xl font-bold text-gray-900 dark:text-[#F0F0F5] mb-0.5">{s.value}</div>
+                                <div className="text-sm font-medium text-gray-500 dark:text-[#F0F0F5]/55 mb-0.5">{s.label}</div>
+                                <div className="text-xs text-gray-300 dark:text-[#F0F0F5]/30">{s.detail}</div>
                             </motion.div>
                         ))}
                     </div>
@@ -521,7 +521,7 @@ export default function EvoClinicPage() {
             </section>
 
             {/* ── Modules ── */}
-            <section className="py-24 border-t border-white/[0.04]">
+            <section className="py-24 border-t border-gray-100 dark:border-white/[0.04]">
                 <div className="max-w-5xl mx-auto px-6">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
@@ -530,12 +530,12 @@ export default function EvoClinicPage() {
                         transition={{ duration: 0.6 }}
                         className="text-center mb-14"
                     >
-                        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/10 bg-white/[0.04] mb-5">
+                        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-gray-200 dark:border-white/10 bg-gray-50 dark:bg-white/[0.04] mb-5">
                             <span className="w-1.5 h-1.5 rounded-full bg-pink-400 animate-pulse" />
-                            <span className="text-xs text-white/55 uppercase tracking-widest font-medium">{content.modulesBadge}</span>
+                            <span className="text-xs text-gray-500 dark:text-white/55 uppercase tracking-widest font-medium">{content.modulesBadge}</span>
                         </div>
-                        <h2 className="text-3xl sm:text-4xl font-bold text-white tracking-tight mb-3">{content.modulesTitle}</h2>
-                        <p className="text-base text-white/50 max-w-xl mx-auto leading-relaxed">
+                        <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white tracking-tight mb-3">{content.modulesTitle}</h2>
+                        <p className="text-base text-gray-400 dark:text-white/50 max-w-xl mx-auto leading-relaxed">
                             {content.modulesDescription}
                         </p>
                     </motion.div>
@@ -546,13 +546,13 @@ export default function EvoClinicPage() {
                             return (
                                 <motion.div
                                     key={i} custom={i} variants={itemVariants} initial="hidden" whileInView="visible" viewport={{ once: true }}
-                                    className={`group p-7 rounded-2xl border border-white/[0.07] bg-white/[0.02] hover:bg-white/[0.04] ${a.border} transition-all duration-300`}
+                                    className={`group p-7 rounded-2xl border border-gray-200 dark:border-white/[0.07] bg-gray-50 dark:bg-white/[0.02] hover:bg-gray-100 dark:hover:bg-white/[0.04] ${a.border} transition-all duration-300`}
                                 >
-                                    <div className={`w-11 h-11 rounded-lg ${a.iconBg} border border-white/[0.06] flex items-center justify-center ${a.iconText} mb-5 group-hover:scale-105 transition-transform duration-300`}>
+                                    <div className={`w-11 h-11 rounded-lg ${a.iconBg} border border-gray-200 dark:border-white/[0.06] flex items-center justify-center ${a.iconText} mb-5 group-hover:scale-105 transition-transform duration-300`}>
                                         {moduleIcons[i]}
                                     </div>
-                                    <h3 className="text-base font-bold text-white mb-2">{m.title}</h3>
-                                    <p className="text-sm text-white/45 leading-relaxed">{m.description}</p>
+                                    <h3 className="text-base font-bold text-gray-900 dark:text-white mb-2">{m.title}</h3>
+                                    <p className="text-sm text-gray-400 dark:text-white/45 leading-relaxed">{m.description}</p>
                                 </motion.div>
                             )
                         })}
@@ -561,7 +561,7 @@ export default function EvoClinicPage() {
             </section>
 
             {/* ── User Roles ── */}
-            <section className="py-24 border-t border-white/[0.04]">
+            <section className="py-24 border-t border-gray-100 dark:border-white/[0.04]">
                 <div className="max-w-5xl mx-auto px-6">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
@@ -570,8 +570,8 @@ export default function EvoClinicPage() {
                         transition={{ duration: 0.6 }}
                         className="text-center mb-14"
                     >
-                        <h2 className="text-3xl sm:text-4xl font-bold text-white tracking-tight mb-3">{content.rolesTitle}</h2>
-                        <p className="text-base text-white/50 max-w-lg mx-auto leading-relaxed">
+                        <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white tracking-tight mb-3">{content.rolesTitle}</h2>
+                        <p className="text-base text-gray-400 dark:text-white/50 max-w-lg mx-auto leading-relaxed">
                             {content.rolesDescription}
                         </p>
                     </motion.div>
@@ -580,14 +580,14 @@ export default function EvoClinicPage() {
                         {content.roles.map((r, i) => (
                             <motion.div
                                 key={i} custom={i} variants={itemVariants} initial="hidden" whileInView="visible" viewport={{ once: true }}
-                                className="flex items-start gap-4 p-5 rounded-xl border border-white/[0.07] bg-white/[0.02]"
+                                className="flex items-start gap-4 p-5 rounded-xl border border-gray-200 dark:border-white/[0.07] bg-gray-50 dark:bg-white/[0.02]"
                             >
                                 <span className={`text-2xl font-black leading-none select-none ${roleColors[i]} opacity-20`}>
                                     {String(i + 1).padStart(2, '0')}
                                 </span>
                                 <div>
                                     <h3 className={`text-sm font-bold ${roleColors[i]} mb-0.5`}>{r.name}</h3>
-                                    <p className="text-xs text-white/40 leading-relaxed">{r.description}</p>
+                                    <p className="text-xs text-gray-400 dark:text-white/40 leading-relaxed">{r.description}</p>
                                 </div>
                             </motion.div>
                         ))}
@@ -596,7 +596,7 @@ export default function EvoClinicPage() {
             </section>
 
             {/* ── How it Works ── */}
-            <section className="py-24 border-t border-white/[0.04]">
+            <section className="py-24 border-t border-gray-100 dark:border-white/[0.04]">
                 <div className="max-w-5xl mx-auto px-6">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
@@ -605,18 +605,18 @@ export default function EvoClinicPage() {
                         transition={{ duration: 0.6 }}
                         className="text-center mb-14"
                     >
-                        <h2 className="text-3xl sm:text-4xl font-bold text-white tracking-tight mb-3">{content.stepsTitle}</h2>
+                        <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white tracking-tight mb-3">{content.stepsTitle}</h2>
                     </motion.div>
 
                     <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
                         {content.steps.map((s, i) => (
                             <motion.div
                                 key={i} custom={i} variants={itemVariants} initial="hidden" whileInView="visible" viewport={{ once: true }}
-                                className="p-6 rounded-2xl border border-white/[0.07] bg-white/[0.02]"
+                                className="p-6 rounded-2xl border border-gray-200 dark:border-white/[0.07] bg-gray-50 dark:bg-white/[0.02]"
                             >
-                                <span className="text-3xl font-black text-white/[0.07] block mb-3">{s.number}</span>
-                                <h3 className="text-sm font-bold text-white mb-2">{s.title}</h3>
-                                <p className="text-xs text-white/40 leading-relaxed">{s.description}</p>
+                                <span className="text-3xl font-black text-gray-200 dark:text-white/[0.07] block mb-3">{s.number}</span>
+                                <h3 className="text-sm font-bold text-gray-900 dark:text-white mb-2">{s.title}</h3>
+                                <p className="text-xs text-gray-400 dark:text-white/40 leading-relaxed">{s.description}</p>
                             </motion.div>
                         ))}
                     </div>
@@ -624,7 +624,7 @@ export default function EvoClinicPage() {
             </section>
 
             {/* ── Security ── */}
-            <section className="py-24 border-t border-white/[0.04]">
+            <section className="py-24 border-t border-gray-100 dark:border-white/[0.04]">
                 <div className="max-w-5xl mx-auto px-6">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
@@ -633,8 +633,8 @@ export default function EvoClinicPage() {
                         transition={{ duration: 0.6 }}
                         className="text-center mb-14"
                     >
-                        <h2 className="text-3xl sm:text-4xl font-bold text-white tracking-tight mb-3">{content.securityTitle}</h2>
-                        <p className="text-base text-white/50 max-w-lg mx-auto leading-relaxed">
+                        <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white tracking-tight mb-3">{content.securityTitle}</h2>
+                        <p className="text-base text-gray-400 dark:text-white/50 max-w-lg mx-auto leading-relaxed">
                             {content.securityDescription}
                         </p>
                     </motion.div>
@@ -643,11 +643,11 @@ export default function EvoClinicPage() {
                         {content.securityItems.map((item, i) => (
                             <motion.div
                                 key={i} custom={i} variants={itemVariants} initial="hidden" whileInView="visible" viewport={{ once: true }}
-                                className="p-7 rounded-2xl border border-white/[0.07] bg-white/[0.02] text-center"
+                                className="p-7 rounded-2xl border border-gray-200 dark:border-white/[0.07] bg-gray-50 dark:bg-white/[0.02] text-center"
                             >
                                 <div className="text-3xl mb-4">{securityIcons[i]}</div>
-                                <h3 className="text-base font-bold text-white mb-2">{item.title}</h3>
-                                <p className="text-sm text-white/45 leading-relaxed">{item.desc}</p>
+                                <h3 className="text-base font-bold text-gray-900 dark:text-white mb-2">{item.title}</h3>
+                                <p className="text-sm text-gray-400 dark:text-white/45 leading-relaxed">{item.desc}</p>
                             </motion.div>
                         ))}
                     </div>
@@ -655,18 +655,18 @@ export default function EvoClinicPage() {
             </section>
 
             {/* ── CTA ── */}
-            <section id="evoclinic-contact" className="py-16 border-t border-white/[0.04]">
+            <section id="evoclinic-contact" className="py-16 border-t border-gray-100 dark:border-white/[0.04]">
                 <div className="max-w-5xl mx-auto px-6">
                     <motion.div
                         initial={{ opacity: 0, y: 16 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.5, delay: 0.2 }}
-                        className="flex flex-col sm:flex-row items-center justify-between gap-5 p-6 rounded-2xl border border-[#F0F0F5]/[0.06] bg-[#F0F0F5]/[0.02]"
+                        className="flex flex-col sm:flex-row items-center justify-between gap-5 p-6 rounded-2xl border border-gray-200 dark:border-[#F0F0F5]/[0.06] bg-gray-50 dark:bg-[#F0F0F5]/[0.02]"
                     >
                         <div>
-                            <p className="text-sm font-semibold text-[#F0F0F5] mb-0.5">{content.ctaTitle}</p>
-                            <p className="text-sm text-[#F0F0F5]/40">{content.ctaSubtitle}</p>
+                            <p className="text-sm font-semibold text-gray-900 dark:text-[#F0F0F5] mb-0.5">{content.ctaTitle}</p>
+                            <p className="text-sm text-gray-400 dark:text-[#F0F0F5]/40">{content.ctaSubtitle}</p>
                         </div>
                         <Link
                             href="/contact"

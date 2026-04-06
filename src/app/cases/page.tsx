@@ -277,7 +277,7 @@ export default function CasesPage() {
     const content = getContent(locale)
 
     return (
-        <div className="relative min-h-screen bg-[#0A0E1A]">
+        <div className="relative min-h-screen bg-[#eeeeee] dark:bg-[#0A0E1A] transition-colors duration-300">
             <PageBackground />
 
             <ModernHeader />
@@ -290,10 +290,10 @@ export default function CasesPage() {
                     transition={{ duration: 0.6 }}
                     className="relative z-10 max-w-4xl mx-auto px-6 text-center"
                 >
-                    <h1 className="text-2xl sm:text-4xl lg:text-6xl font-bold text-[#F0F0F5] tracking-tight mb-4">
+                    <h1 className="text-2xl sm:text-4xl lg:text-6xl font-bold text-gray-900 dark:text-[#F0F0F5] tracking-tight mb-4">
                         {content.heroTitle}
                     </h1>
-                    <p className="text-base lg:text-lg text-[#F0F0F5]/50 max-w-lg mx-auto leading-relaxed">
+                    <p className="text-base lg:text-lg text-gray-600 dark:text-[#F0F0F5]/50 max-w-lg mx-auto leading-relaxed">
                         {content.heroSubtitle}
                     </p>
                 </motion.div>
@@ -306,11 +306,11 @@ export default function CasesPage() {
                         {content.stats.map((s, i) => (
                             <motion.div
                                 key={i} custom={i} variants={itemVariants} initial="hidden" whileInView="visible" viewport={{ once: true }}
-                                className="p-3 sm:p-5 rounded-xl border border-[#F0F0F5]/[0.06] bg-[#F0F0F5]/[0.02]"
+                                className="p-3 sm:p-5 rounded-xl border border-gray-200 dark:border-[#F0F0F5]/[0.06] bg-gray-50 dark:bg-[#F0F0F5]/[0.02]"
                             >
-                                <div className="text-lg sm:text-2xl font-bold text-[#F0F0F5] mb-0.5">{s.value}</div>
-                                <div className="text-sm font-medium text-[#F0F0F5]/55 mb-0.5">{s.label}</div>
-                                <div className="text-xs text-[#F0F0F5]/30">{s.detail}</div>
+                                <div className="text-lg sm:text-2xl font-bold text-gray-900 dark:text-[#F0F0F5] mb-0.5">{s.value}</div>
+                                <div className="text-sm font-medium text-gray-500 dark:text-[#F0F0F5]/55 mb-0.5">{s.label}</div>
+                                <div className="text-xs text-gray-500 dark:text-[#F0F0F5]/30">{s.detail}</div>
                             </motion.div>
                         ))}
                     </div>
@@ -318,7 +318,7 @@ export default function CasesPage() {
             </section>
 
             {/* Cases */}
-            <section className="pb-24 border-t border-[#F0F0F5]/[0.04]">
+            <section className="pb-24 border-t border-gray-100 dark:border-[#F0F0F5]/[0.04]">
                 <div className="max-w-4xl mx-auto px-6 pt-20">
                     <div className="flex flex-col gap-5 mb-12">
                         {content.cases.map((card, index) => (

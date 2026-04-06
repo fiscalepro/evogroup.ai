@@ -61,16 +61,16 @@ const BonusSystemSection: React.FC = () => {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
                 {/* Header */}
                 <div className="text-center mb-12 sm:mb-16">
-                    <div className="inline-flex items-center gap-2 bg-amber-500/10 backdrop-blur-sm border border-amber-500/20 rounded-full px-4 py-2 text-sm text-amber-400 shadow-sm mb-4 sm:mb-6">
+                    <div className="inline-flex items-center gap-2 bg-amber-500/10 backdrop-blur-sm border border-amber-500/20 rounded-full px-4 py-2 text-sm text-amber-600 dark:text-amber-400 shadow-sm mb-4 sm:mb-6">
                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7" />
                         </svg>
                         {translations.badge}
                     </div>
-                    <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold text-white mb-4 sm:mb-6">
+                    <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4 sm:mb-6">
                         {translations.title}
                     </h2>
-                    <p className="text-lg sm:text-xl text-white/70 max-w-2xl mx-auto">
+                    <p className="text-lg sm:text-xl text-gray-600 dark:text-white/70 max-w-2xl mx-auto">
                         {translations.subtitle}
                     </p>
                 </div>
@@ -81,24 +81,24 @@ const BonusSystemSection: React.FC = () => {
                         {translations.features.map((feature, index) => (
                             <div
                                 key={index}
-                                className="p-5 bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl hover:border-amber-500/30 transition-all duration-300 relative overflow-hidden group"
+                                className="p-5 bg-gray-50 dark:bg-white/5 backdrop-blur-sm border border-gray-200 dark:border-white/10 rounded-xl hover:border-amber-500/30 transition-all duration-300 relative overflow-hidden group"
                             >
                                 <div className="absolute top-3 right-3 text-2xl font-bold text-amber-500/20 group-hover:text-amber-500/30 transition-colors">
                                     {feature.highlight}
                                 </div>
-                                <div className="w-12 h-12 bg-amber-500/20 rounded-lg flex items-center justify-center mb-4 text-amber-400">
+                                <div className="w-12 h-12 bg-amber-500/20 rounded-lg flex items-center justify-center mb-4 text-amber-600 dark:text-amber-400">
                                     {getIcon(feature.icon)}
                                 </div>
-                                <h3 className="text-white font-semibold mb-2">{feature.title}</h3>
-                                <p className="text-white/60 text-sm">{feature.description}</p>
+                                <h3 className="text-gray-900 dark:text-white font-semibold mb-2">{feature.title}</h3>
+                                <p className="text-gray-500 dark:text-white/60 text-sm">{feature.description}</p>
                             </div>
                         ))}
                     </div>
 
                     {/* Right: Leaderboard Demo */}
-                    <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl overflow-hidden">
+                    <div className="bg-gray-50 dark:bg-white/5 backdrop-blur-sm border border-gray-200 dark:border-white/10 rounded-2xl overflow-hidden">
                         {/* Header */}
-                        <div className="px-4 py-3 border-b border-white/10 flex items-center justify-between bg-gradient-to-r from-amber-600/20 to-yellow-600/20">
+                        <div className="px-4 py-3 border-b border-gray-200 dark:border-white/10 flex items-center justify-between bg-gradient-to-r from-amber-600/20 to-yellow-600/20">
                             <div className="flex items-center gap-3">
                                 <div className="w-10 h-10 bg-gradient-to-br from-amber-400 to-yellow-500 rounded-full flex items-center justify-center">
                                     <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -106,8 +106,8 @@ const BonusSystemSection: React.FC = () => {
                                     </svg>
                                 </div>
                                 <div>
-                                    <div className="text-white font-medium">{translations.leaderboardTitle}</div>
-                                    <div className="text-amber-400 text-xs">{translations.thisWeek}</div>
+                                    <div className="text-gray-900 dark:text-white font-medium">{translations.leaderboardTitle}</div>
+                                    <div className="text-amber-600 dark:text-amber-400 text-xs">{translations.thisWeek}</div>
                                 </div>
                             </div>
                         </div>
@@ -118,7 +118,7 @@ const BonusSystemSection: React.FC = () => {
                                 <div
                                     key={index}
                                     className={`flex items-center gap-4 p-3 rounded-xl transition-all ${
-                                        index === 0 ? 'bg-amber-500/10 border border-amber-500/20' : 'bg-white/5'
+                                        index === 0 ? 'bg-amber-500/10 border border-amber-500/20' : 'bg-gray-50 dark:bg-white/5'
                                     }`}
                                 >
                                     {/* Medal/Position */}
@@ -128,8 +128,8 @@ const BonusSystemSection: React.FC = () => {
 
                                     {/* Manager Info */}
                                     <div className="flex-1">
-                                        <div className="text-white font-medium">{manager.name}</div>
-                                        <div className="flex items-center gap-3 text-xs text-white/60">
+                                        <div className="text-gray-900 dark:text-white font-medium">{manager.name}</div>
+                                        <div className="flex items-center gap-3 text-xs text-gray-500 dark:text-white/60">
                                             <span>{manager.deals} {translations.dealsLabel}</span>
                                             <span>•</span>
                                             <span>{translations.responseLabel}: {manager.avgResponse}</span>
@@ -138,10 +138,10 @@ const BonusSystemSection: React.FC = () => {
 
                                     {/* Score */}
                                     <div className="text-right">
-                                        <div className={`font-bold ${index === 0 ? 'text-amber-400' : 'text-white'}`}>
+                                        <div className={`font-bold ${index === 0 ? 'text-amber-400' : 'text-gray-900 dark:text-white'}`}>
                                             {manager.score.toLocaleString()}
                                         </div>
-                                        <div className="text-xs text-white/55">{translations.scoreLabel}</div>
+                                        <div className="text-xs text-gray-500 dark:text-white/55">{translations.scoreLabel}</div>
                                     </div>
                                 </div>
                             ))}

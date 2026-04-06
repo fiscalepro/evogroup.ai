@@ -15,7 +15,7 @@ import PageBackground from '@/components/sections/PageBackground'
 
 function CCEContent() {
     return (
-        <div className="relative min-h-screen bg-[#0A0E1A]">
+        <div className="relative min-h-screen bg-[#eeeeee] dark:bg-[#0A0E1A] transition-colors duration-300">
             <PageBackground accent="purple" />
 
             <ModernHeader />

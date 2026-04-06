@@ -51,7 +51,7 @@ const CCESwarmIntelligence: React.FC = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: 0.1 }}
-                    className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4"
+                    className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-4"
                 >
                     {t.title}
                 </motion.h2>
@@ -61,7 +61,7 @@ const CCESwarmIntelligence: React.FC = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: 0.15 }}
-                    className="text-lg text-white/60 max-w-2xl mb-16"
+                    className="text-lg text-gray-500 dark:text-white/60 max-w-2xl mb-16"
                 >
                     {t.subtitle}
                 </motion.p>
@@ -76,14 +76,14 @@ const CCESwarmIntelligence: React.FC = () => {
                                 whileInView={{ opacity: 1, x: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ delay: index * 0.1 }}
-                                className="flex gap-4 p-5 bg-[#1a1a24] border border-white/5 rounded-2xl transition-all hover:border-violet-500/30 hover:translate-x-1 group"
+                                className="flex gap-4 p-5 bg-white dark:bg-[#1a1a24] border border-gray-100 dark:border-white/5 rounded-2xl transition-all hover:border-violet-500/30 hover:translate-x-1 group"
                             >
                                 <div className="w-12 h-12 min-w-[48px] bg-violet-500/10 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform">
                                     {featureIcons[index]}
                                 </div>
                                 <div>
-                                    <h3 className="text-lg font-bold text-white mb-1">{feature.title}</h3>
-                                    <p className="text-sm text-white/60 leading-relaxed">{feature.description}</p>
+                                    <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-1">{feature.title}</h3>
+                                    <p className="text-sm text-gray-500 dark:text-white/60 leading-relaxed">{feature.description}</p>
                                 </div>
                             </motion.div>
                         ))}
@@ -121,14 +121,14 @@ const CCESwarmIntelligence: React.FC = () => {
                                     whileInView={{ scale: 1, opacity: 1 }}
                                     viewport={{ once: true }}
                                     transition={{ delay: 0.6 + i * 0.1, type: 'spring' }}
-                                    className="absolute w-12 h-12 bg-[#1a1a24] border border-violet-500/30 rounded-full flex items-center justify-center"
+                                    className="absolute w-12 h-12 bg-white dark:bg-[#1a1a24] border border-violet-500/30 rounded-full flex items-center justify-center"
                                     style={{
                                         left: `${pos.x}%`,
                                         top: `${pos.y}%`,
                                         transform: 'translate(-50%, -50%)',
                                     }}
                                 >
-                                    <span className="text-[10px] text-white/70 font-medium">{t.nodes[i]}</span>
+                                    <span className="text-[10px] text-gray-600 dark:text-white/70 font-medium">{t.nodes[i]}</span>
                                 </motion.div>
                             ))}
                         </div>
@@ -154,9 +154,9 @@ const CCESwarmIntelligence: React.FC = () => {
                                         whileInView={{ opacity: 1, y: 0 }}
                                         viewport={{ once: true }}
                                         transition={{ delay: 0.2 + i * 0.1 }}
-                                        className="w-11 h-11 bg-[#1a1a24] border border-violet-500/30 rounded-full flex items-center justify-center"
+                                        className="w-11 h-11 bg-white dark:bg-[#1a1a24] border border-violet-500/30 rounded-full flex items-center justify-center"
                                     >
-                                        <span className="text-[9px] text-white/70 font-medium">{node}</span>
+                                        <span className="text-[9px] text-gray-600 dark:text-white/70 font-medium">{node}</span>
                                     </motion.div>
                                 ))}
                             </div>

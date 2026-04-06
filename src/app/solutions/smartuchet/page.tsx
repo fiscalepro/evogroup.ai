@@ -252,7 +252,16 @@ const itemVariants = {
     }),
 }
 
-const integrationIcons = ['🏛', '🔐', '💳', '🛒']
+const integrationIcons = [
+    // Government / Salyk
+    <svg key="gov" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-blue-600 dark:text-blue-400"><path d="M3 21h18M3 10h18M5 6l7-3 7 3M4 10v11M20 10v11M8 14v3M12 14v3M16 14v3" /></svg>,
+    // Lock / auth
+    <svg key="lock" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-emerald-600 dark:text-emerald-400"><rect x="3" y="11" width="18" height="11" rx="2" /><path d="M7 11V7a5 5 0 0110 0v4" /></svg>,
+    // Credit card / billing
+    <svg key="card" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-amber-600 dark:text-amber-400"><rect x="1" y="4" width="22" height="16" rx="2" /><line x1="1" y1="10" x2="23" y2="10" /></svg>,
+    // Shopping cart / marketplace
+    <svg key="cart" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-violet-600 dark:text-violet-400"><circle cx="9" cy="21" r="1" /><circle cx="20" cy="21" r="1" /><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6" /></svg>,
+]
 
 /* ──────────── PAGE ──────────── */
 
@@ -266,7 +275,7 @@ export default function SmartUchetPage() {
     }
 
     return (
-        <div className="relative min-h-screen bg-[#0A0E1A]">
+        <div className="relative min-h-screen bg-[#eeeeee] dark:bg-[#0A0E1A] transition-colors duration-300">
             <PageBackground accent="purple" />
             <ModernHeader />
 
@@ -293,7 +302,7 @@ export default function SmartUchetPage() {
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.2 }}
-                            className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight mb-6"
+                            className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-gray-900 dark:text-white leading-tight mb-6"
                         >
                             {content.heroTitle1}{' '}
                             <span className="bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent">
@@ -306,7 +315,7 @@ export default function SmartUchetPage() {
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.3 }}
-                            className="text-lg sm:text-xl text-white/65 mb-8 leading-relaxed max-w-2xl mx-auto"
+                            className="text-lg sm:text-xl text-gray-500 dark:text-white/65 mb-8 leading-relaxed max-w-2xl mx-auto"
                         >
                             {content.heroDescription}
                         </motion.p>
@@ -328,7 +337,7 @@ export default function SmartUchetPage() {
                             </button>
                             <Link
                                 href="#smartuchet-modules"
-                                className="inline-flex items-center gap-2 px-8 py-4 border-2 border-white/10 rounded-xl text-white font-semibold text-lg transition-all hover:bg-blue-500/10 hover:border-blue-500/30 no-underline"
+                                className="inline-flex items-center gap-2 px-8 py-4 border-2 border-gray-200 dark:border-white/10 rounded-xl text-gray-900 dark:text-white font-semibold text-lg transition-all hover:bg-blue-500/10 hover:border-blue-500/30 no-underline"
                             >
                                 {content.learnMore}
                             </Link>
@@ -338,14 +347,14 @@ export default function SmartUchetPage() {
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.5 }}
-                            className="flex flex-wrap gap-8 sm:gap-12 mt-12 pt-8 border-t border-white/10 justify-center"
+                            className="flex flex-wrap gap-8 sm:gap-12 mt-12 pt-8 border-t border-gray-200 dark:border-white/10 justify-center"
                         >
                             {content.heroStats.map((s, i) => (
                                 <div key={i}>
                                     <div className="text-3xl sm:text-4xl font-extrabold bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent">
                                         {s.v}
                                     </div>
-                                    <div className="text-sm text-white/50 mt-1">{s.l}</div>
+                                    <div className="text-sm text-gray-400 dark:text-white/50 mt-1">{s.l}</div>
                                 </div>
                             ))}
                         </motion.div>
@@ -354,7 +363,7 @@ export default function SmartUchetPage() {
             </section>
 
             {/* ── Problems ── */}
-            <section className="py-24 border-t border-white/[0.04]">
+            <section className="py-24 border-t border-gray-100 dark:border-white/[0.04]">
                 <div className="max-w-5xl mx-auto px-6">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
@@ -363,12 +372,12 @@ export default function SmartUchetPage() {
                         transition={{ duration: 0.6 }}
                         className="text-center mb-14"
                     >
-                        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/10 bg-white/[0.04] mb-5">
+                        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-gray-200 dark:border-white/10 bg-gray-50 dark:bg-white/[0.04] mb-5">
                             <span className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse" />
-                            <span className="text-xs text-white/55 uppercase tracking-widest font-medium">{content.problemsBadge}</span>
+                            <span className="text-xs text-gray-500 dark:text-white/55 uppercase tracking-widest font-medium">{content.problemsBadge}</span>
                         </div>
-                        <h2 className="text-3xl sm:text-4xl font-bold text-white tracking-tight mb-3">{content.problemsTitle}</h2>
-                        <p className="text-base text-white/50 max-w-xl mx-auto leading-relaxed">
+                        <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white tracking-tight mb-3">{content.problemsTitle}</h2>
+                        <p className="text-base text-gray-400 dark:text-white/50 max-w-xl mx-auto leading-relaxed">
                             {content.problemsSubtitle}
                         </p>
                     </motion.div>
@@ -377,12 +386,12 @@ export default function SmartUchetPage() {
                         {content.problems.map((p, i) => (
                             <motion.div
                                 key={i} custom={i} variants={itemVariants} initial="hidden" whileInView="visible" viewport={{ once: true }}
-                                className="flex flex-col sm:flex-row items-start sm:items-center gap-4 p-6 rounded-2xl border border-white/[0.07] bg-white/[0.02]"
+                                className="flex flex-col sm:flex-row items-start sm:items-center gap-4 p-6 rounded-2xl border border-gray-200 dark:border-white/[0.07] bg-gray-50 dark:bg-white/[0.02]"
                             >
                                 <div className="flex-1">
                                     <div className="flex items-center gap-2 mb-1">
                                         <span className="w-2 h-2 rounded-full bg-red-400/60" />
-                                        <span className="text-sm font-semibold text-white/70 line-through decoration-red-400/40">{p.before}</span>
+                                        <span className="text-sm font-semibold text-gray-600 dark:text-white/70 line-through decoration-red-400/40">{p.before}</span>
                                     </div>
                                 </div>
                                 <svg className="hidden sm:block w-6 h-6 text-blue-400 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
@@ -401,7 +410,7 @@ export default function SmartUchetPage() {
             </section>
 
             {/* ── Modules ── */}
-            <section id="smartuchet-modules" className="py-24 border-t border-white/[0.04]">
+            <section id="smartuchet-modules" className="py-24 border-t border-gray-100 dark:border-white/[0.04]">
                 <div className="max-w-5xl mx-auto px-6">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
@@ -410,12 +419,12 @@ export default function SmartUchetPage() {
                         transition={{ duration: 0.6 }}
                         className="text-center mb-14"
                     >
-                        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/10 bg-white/[0.04] mb-5">
+                        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-gray-200 dark:border-white/10 bg-gray-50 dark:bg-white/[0.04] mb-5">
                             <span className="w-1.5 h-1.5 rounded-full bg-indigo-400 animate-pulse" />
-                            <span className="text-xs text-white/55 uppercase tracking-widest font-medium">{content.modulesBadge}</span>
+                            <span className="text-xs text-gray-500 dark:text-white/55 uppercase tracking-widest font-medium">{content.modulesBadge}</span>
                         </div>
-                        <h2 className="text-3xl sm:text-4xl font-bold text-white tracking-tight mb-3">{content.modulesTitle}</h2>
-                        <p className="text-base text-white/50 max-w-xl mx-auto leading-relaxed">
+                        <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white tracking-tight mb-3">{content.modulesTitle}</h2>
+                        <p className="text-base text-gray-400 dark:text-white/50 max-w-xl mx-auto leading-relaxed">
                             {content.modulesDescription}
                         </p>
                     </motion.div>
@@ -426,13 +435,13 @@ export default function SmartUchetPage() {
                             return (
                                 <motion.div
                                     key={i} custom={i} variants={itemVariants} initial="hidden" whileInView="visible" viewport={{ once: true }}
-                                    className={`group p-7 rounded-2xl border border-white/[0.07] bg-white/[0.02] hover:bg-white/[0.04] ${a.border} transition-all duration-300`}
+                                    className={`group p-7 rounded-2xl border border-gray-200 dark:border-white/[0.07] bg-gray-50 dark:bg-white/[0.02] hover:bg-gray-100 dark:hover:bg-white/[0.04] ${a.border} transition-all duration-300`}
                                 >
-                                    <div className={`w-11 h-11 rounded-lg ${a.iconBg} border border-white/[0.06] flex items-center justify-center ${a.iconText} mb-5 group-hover:scale-105 transition-transform duration-300`}>
+                                    <div className={`w-11 h-11 rounded-lg ${a.iconBg} border border-gray-200 dark:border-white/[0.06] flex items-center justify-center ${a.iconText} mb-5 group-hover:scale-105 transition-transform duration-300`}>
                                         {moduleIcons[i]}
                                     </div>
-                                    <h3 className="text-base font-bold text-white mb-2">{m.title}</h3>
-                                    <p className="text-sm text-white/45 leading-relaxed">{m.description}</p>
+                                    <h3 className="text-base font-bold text-gray-900 dark:text-white mb-2">{m.title}</h3>
+                                    <p className="text-sm text-gray-400 dark:text-white/45 leading-relaxed">{m.description}</p>
                                 </motion.div>
                             )
                         })}
@@ -441,7 +450,7 @@ export default function SmartUchetPage() {
             </section>
 
             {/* ── Advantages ── */}
-            <section className="py-24 border-t border-white/[0.04]">
+            <section className="py-24 border-t border-gray-100 dark:border-white/[0.04]">
                 <div className="max-w-5xl mx-auto px-6">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
@@ -450,8 +459,8 @@ export default function SmartUchetPage() {
                         transition={{ duration: 0.6 }}
                         className="text-center mb-14"
                     >
-                        <h2 className="text-3xl sm:text-4xl font-bold text-white tracking-tight mb-3">{content.advantagesTitle}</h2>
-                        <p className="text-base text-white/50 max-w-lg mx-auto leading-relaxed">
+                        <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white tracking-tight mb-3">{content.advantagesTitle}</h2>
+                        <p className="text-base text-gray-400 dark:text-white/50 max-w-lg mx-auto leading-relaxed">
                             {content.advantagesSubtitle}
                         </p>
                     </motion.div>
@@ -460,13 +469,13 @@ export default function SmartUchetPage() {
                         {content.advantages.map((adv, i) => (
                             <motion.div
                                 key={i} custom={i} variants={itemVariants} initial="hidden" whileInView="visible" viewport={{ once: true }}
-                                className="p-5 rounded-xl border border-white/[0.07] bg-white/[0.02] hover:bg-white/[0.04] transition-all duration-300"
+                                className="p-5 rounded-xl border border-gray-200 dark:border-white/[0.07] bg-gray-50 dark:bg-white/[0.02] hover:bg-gray-100 dark:hover:bg-white/[0.04] transition-all duration-300"
                             >
                                 <div className={`w-8 h-8 rounded-lg ${i % 2 === 0 ? 'bg-blue-500/[0.08]' : 'bg-indigo-500/[0.08]'} flex items-center justify-center mb-3`}>
                                     <span className={`text-sm font-bold ${i % 2 === 0 ? 'text-blue-400' : 'text-indigo-400'}`}>{String(i + 1).padStart(2, '0')}</span>
                                 </div>
-                                <h3 className="text-sm font-bold text-white mb-1">{adv.title}</h3>
-                                <p className="text-xs text-white/40 leading-relaxed">{adv.description}</p>
+                                <h3 className="text-sm font-bold text-gray-900 dark:text-white mb-1">{adv.title}</h3>
+                                <p className="text-xs text-gray-400 dark:text-white/40 leading-relaxed">{adv.description}</p>
                             </motion.div>
                         ))}
                     </div>
@@ -474,7 +483,7 @@ export default function SmartUchetPage() {
             </section>
 
             {/* ── Integrations ── */}
-            <section className="py-24 border-t border-white/[0.04]">
+            <section className="py-24 border-t border-gray-100 dark:border-white/[0.04]">
                 <div className="max-w-5xl mx-auto px-6">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
@@ -483,8 +492,8 @@ export default function SmartUchetPage() {
                         transition={{ duration: 0.6 }}
                         className="text-center mb-14"
                     >
-                        <h2 className="text-3xl sm:text-4xl font-bold text-white tracking-tight mb-3">{content.integrationsTitle}</h2>
-                        <p className="text-base text-white/50 max-w-lg mx-auto leading-relaxed">
+                        <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white tracking-tight mb-3">{content.integrationsTitle}</h2>
+                        <p className="text-base text-gray-400 dark:text-white/50 max-w-lg mx-auto leading-relaxed">
                             {content.integrationsSubtitle}
                         </p>
                     </motion.div>
@@ -493,11 +502,11 @@ export default function SmartUchetPage() {
                         {content.integrations.map((intg, i) => (
                             <motion.div
                                 key={i} custom={i} variants={itemVariants} initial="hidden" whileInView="visible" viewport={{ once: true }}
-                                className="p-6 rounded-2xl border border-white/[0.07] bg-white/[0.02] text-center"
+                                className="p-6 rounded-2xl border border-gray-200 dark:border-white/[0.07] bg-gray-50 dark:bg-white/[0.02] text-center"
                             >
-                                <div className="text-3xl mb-4">{integrationIcons[i]}</div>
-                                <h3 className="text-sm font-bold text-white mb-1">{intg.name}</h3>
-                                <p className="text-xs text-white/40 leading-relaxed">{intg.description}</p>
+                                <div className="mb-4 flex justify-center">{integrationIcons[i]}</div>
+                                <h3 className="text-sm font-bold text-gray-900 dark:text-white mb-1">{intg.name}</h3>
+                                <p className="text-xs text-gray-400 dark:text-white/40 leading-relaxed">{intg.description}</p>
                             </motion.div>
                         ))}
                     </div>
@@ -505,18 +514,18 @@ export default function SmartUchetPage() {
             </section>
 
             {/* ── CTA ── */}
-            <section id="smartuchet-contact" className="py-16 border-t border-white/[0.04]">
+            <section id="smartuchet-contact" className="py-16 border-t border-gray-100 dark:border-white/[0.04]">
                 <div className="max-w-5xl mx-auto px-6">
                     <motion.div
                         initial={{ opacity: 0, y: 16 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.5, delay: 0.2 }}
-                        className="flex flex-col sm:flex-row items-center justify-between gap-5 p-6 rounded-2xl border border-[#F0F0F5]/[0.06] bg-[#F0F0F5]/[0.02]"
+                        className="flex flex-col sm:flex-row items-center justify-between gap-5 p-6 rounded-2xl border border-gray-200 dark:border-[#F0F0F5]/[0.06] bg-gray-50 dark:bg-[#F0F0F5]/[0.02]"
                     >
                         <div>
-                            <p className="text-sm font-semibold text-[#F0F0F5] mb-0.5">{content.ctaTitle}</p>
-                            <p className="text-sm text-[#F0F0F5]/40">{content.ctaSubtitle}</p>
+                            <p className="text-sm font-semibold text-gray-900 dark:text-[#F0F0F5] mb-0.5">{content.ctaTitle}</p>
+                            <p className="text-sm text-gray-400 dark:text-[#F0F0F5]/40">{content.ctaSubtitle}</p>
                         </div>
                         <Link
                             href="/contact"

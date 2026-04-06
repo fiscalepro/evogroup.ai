@@ -5,6 +5,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { useTranslation } from '@/components/providers/I18nProvider'
+import { Button } from '@/components/ui/Button'
 
 const InstagramIcon = () => (
     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
@@ -76,9 +77,9 @@ const Footer: React.FC = () => {
     ]
 
     return (
-			<footer className='relative overflow-hidden bg-black text-white'>
+			<footer className='relative overflow-hidden bg-gray-100 dark:bg-black text-gray-900 dark:text-white'>
 				{/* Pre-footer CTA */}
-				<div className='relative py-20 lg:py-28 border-b border-white/[0.06]'>
+				<div className='relative py-20 lg:py-28 border-b border-gray-200 dark:border-white/[0.06]'>
 					<motion.div
 						initial={{ opacity: 0, y: 24 }}
 						whileInView={{ opacity: 1, y: 0 }}
@@ -86,21 +87,18 @@ const Footer: React.FC = () => {
 						transition={{ duration: 0.7, ease: [0.25, 0.1, 0.25, 1] }}
 						className='relative z-10 max-w-3xl mx-auto px-6 text-center'
 					>
-						<p className='text-xs text-white/50 uppercase tracking-[0.2em] font-medium mb-5'>
+						<p className='text-xs text-gray-400 dark:text-white/50 uppercase tracking-[0.2em] font-medium mb-5'>
 							{t.cta.overline}
 						</p>
-						<h2 className='text-2xl sm:text-4xl lg:text-6xl font-bold text-white tracking-tight leading-tight mb-5'>
+						<h2 className='text-2xl sm:text-4xl lg:text-6xl font-bold text-gray-900 dark:text-white tracking-tight leading-tight mb-5'>
 							{t.cta.title}
 							<br className='hidden sm:block' /> {t.cta.titleLine2}
 						</h2>
-						<p className='text-base lg:text-lg text-white/60 leading-relaxed mb-10 max-w-xl mx-auto'>
+						<p className='text-base lg:text-lg text-gray-500 dark:text-white/60 leading-relaxed mb-10 max-w-xl mx-auto'>
 							{t.cta.subtitle}
 						</p>
 						<div className='flex flex-col sm:flex-row gap-3 justify-center'>
-							<Link
-								href='/contact'
-								className='arrow-hover inline-flex items-center justify-center gap-2 bg-white text-black px-7 py-3.5 rounded-xl text-sm font-bold no-underline hover:bg-white/90 shadow-md hover:shadow-lg transition-all'
-							>
+							<Button href='/contact' variant='primary' size='lg' className='arrow-hover'>
 								{t.cta.primaryButton}
 								<svg width='14' height='14' viewBox='0 0 14 14' fill='none'>
 									<path
@@ -111,13 +109,10 @@ const Footer: React.FC = () => {
 										strokeLinejoin='round'
 									/>
 								</svg>
-							</Link>
-							<Link
-								href='mailto:info@evogroup.ai'
-								className='inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl text-sm font-semibold text-white/70 border border-white/10 bg-white/[0.04] hover:bg-white/[0.08] hover:text-white no-underline transition-all'
-							>
+							</Button>
+							<Button href='mailto:info@evogroup.ai' variant='ghost' size='lg' className='border border-gray-200 dark:border-white/10 bg-gray-50 dark:bg-white/[0.04]'>
 								{t.cta.secondaryButton}
-							</Link>
+							</Button>
 						</div>
 					</motion.div>
 				</div>
@@ -135,11 +130,11 @@ const Footer: React.FC = () => {
 									height={22}
 									className='object-contain opacity-90'
 								/>
-								<span className='text-white font-semibold text-base'>
+								<span className='text-gray-900 dark:text-white font-semibold text-base'>
 									Evolution Group
 								</span>
 							</div>
-							<p className='text-sm text-white/70 leading-relaxed mb-6 max-w-[220px]'>
+							<p className='text-sm text-gray-500 dark:text-white/70 leading-relaxed mb-6 max-w-[220px]'>
 								{t.brand.description}
 							</p>
 							<div className='flex items-center gap-3'>
@@ -150,7 +145,7 @@ const Footer: React.FC = () => {
 										target='_blank'
 										rel='noopener noreferrer'
 										aria-label={s.label}
-										className='w-9 h-9 rounded-lg bg-white/[0.05] border border-white/[0.07] flex items-center justify-center text-white/55 hover:text-white hover:bg-white/10 hover:border-white/15 transition-all duration-200'
+										className='w-9 h-9 rounded-lg bg-gray-200 dark:bg-white/[0.05] border border-gray-300 dark:border-white/[0.07] flex items-center justify-center text-gray-500 dark:text-white/55 hover:text-gray-900 dark:hover:text-white hover:bg-gray-300 dark:hover:bg-white/10 hover:border-gray-400 dark:hover:border-white/15 transition-all duration-200'
 									>
 										{s.icon}
 									</a>
@@ -160,17 +155,17 @@ const Footer: React.FC = () => {
 
 						{/* Solutions */}
 						<div>
-							<p className='text-xs text-white/40 uppercase tracking-[0.15em] font-medium mb-5'>
+							<p className='text-xs text-gray-400 dark:text-white/40 uppercase tracking-[0.15em] font-medium mb-5'>
 								{t.solutions.title}
 							</p>
 							<ul className='space-y-3.5'>
 								{t.solutions.items.map((s, i) => (
 									<li key={s.label}>
-										<Link href={solutionHrefs[i]} className='group no-underline hover:underline decoration-white/80 underline-offset-2'>
-											<span className='block text-sm text-white/70 group-hover:text-white transition-colors leading-tight'>
+										<Link href={solutionHrefs[i]} className='group no-underline hover:underline decoration-gray-800 dark:decoration-white/80 underline-offset-2'>
+											<span className='block text-sm text-gray-600 dark:text-white/70 group-hover:text-gray-900 dark:group-hover:text-white transition-colors leading-tight'>
 												{s.label}
 											</span>
-											<span className='block text-[11px] text-white/60 mt-0.5'>
+											<span className='block text-[11px] text-gray-400 dark:text-white/60 mt-0.5'>
 												{s.sublabel}
 											</span>
 										</Link>
@@ -181,7 +176,7 @@ const Footer: React.FC = () => {
 
 						{/* Company */}
 						<div>
-							<p className='text-xs text-white/40 uppercase tracking-[0.15em] font-medium mb-5'>
+							<p className='text-xs text-gray-400 dark:text-white/40 uppercase tracking-[0.15em] font-medium mb-5'>
 								{t.company.title}
 							</p>
 							<ul className='space-y-3'>
@@ -189,7 +184,7 @@ const Footer: React.FC = () => {
 									<li key={label}>
 										<Link
 											href={companyHrefs[i]}
-											className='text-sm text-white/70 hover:text-white hover:underline decoration-white/80 underline-offset-2 transition-colors no-underline'
+											className='text-sm text-gray-600 dark:text-white/70 hover:text-gray-900 dark:hover:text-white hover:underline decoration-gray-800 dark:decoration-white/80 underline-offset-2 transition-colors no-underline'
 										>
 											{label}
 										</Link>
@@ -200,7 +195,7 @@ const Footer: React.FC = () => {
 
 						{/* Contact */}
 						<div>
-							<p className='text-xs text-white/40 uppercase tracking-[0.15em] font-medium mb-5'>
+							<p className='text-xs text-gray-400 dark:text-white/40 uppercase tracking-[0.15em] font-medium mb-5'>
 								{t.contact.title}
 							</p>
 							<ul className='space-y-3.5'>
@@ -208,9 +203,9 @@ const Footer: React.FC = () => {
 									<li key={c.href}>
 										<a
 											href={c.href}
-											className='inline-flex items-center gap-2.5 text-sm text-white/70 hover:text-white hover:underline decoration-white/80 underline-offset-2 transition-colors no-underline'
+											className='inline-flex items-center gap-2.5 text-sm text-gray-600 dark:text-white/70 hover:text-gray-900 dark:hover:text-white hover:underline decoration-gray-800 dark:decoration-white/80 underline-offset-2 transition-colors no-underline'
 										>
-											<span className='text-white/50'>{c.icon}</span>
+											<span className='text-gray-400 dark:text-white/50'>{c.icon}</span>
 											{c.label}
 										</a>
 									</li>
@@ -221,27 +216,27 @@ const Footer: React.FC = () => {
 				</div>
 
 				{/* Bottom bar */}
-				<div className='relative z-10 border-t border-white/[0.05]'>
+				<div className='relative z-10 border-t border-gray-200 dark:border-white/[0.05]'>
 					<div className='max-w-7xl mx-auto px-6 py-5 flex flex-col sm:flex-row items-center justify-between gap-3'>
-						<p className='text-xs text-white/75'>
+						<p className='text-xs text-gray-500 dark:text-white/75'>
 							© {currentYear} Evolution Group. {t.bottom.rights}
 						</p>
 						<div className='flex items-center gap-4'>
 							<Link
 								href='/privacy'
-								className='text-xs text-white/75 hover:text-white/50 transition-colors no-underline'
+								className='text-xs text-gray-500 dark:text-white/75 hover:text-gray-400 dark:hover:text-white/50 transition-colors no-underline'
 							>
 								{t.bottom.privacy}
 							</Link>
-							<span className='text-white/10'>·</span>
+							<span className='text-gray-300 dark:text-white/10'>·</span>
 							<Link
 								href='/terms'
-								className='text-xs text-white/75 hover:text-white/50 transition-colors no-underline'
+								className='text-xs text-gray-500 dark:text-white/75 hover:text-gray-400 dark:hover:text-white/50 transition-colors no-underline'
 							>
 								{t.bottom.terms}
 							</Link>
-							<span className='text-white/10'>·</span>
-							<span className='text-xs text-white/75'>🇰🇬 {t.bottom.country}</span>
+							<span className='text-gray-300 dark:text-white/10'>·</span>
+							<span className='text-xs text-gray-500 dark:text-white/75'>🇰🇬 {t.bottom.country}</span>
 						</div>
 					</div>
 				</div>

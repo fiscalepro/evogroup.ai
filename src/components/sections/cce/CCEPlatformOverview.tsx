@@ -56,7 +56,7 @@ const CCEPlatformOverview: React.FC = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: 0.1 }}
-                    className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-16"
+                    className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-16"
                 >
                     {t.title}
                 </motion.h2>
@@ -70,7 +70,7 @@ const CCEPlatformOverview: React.FC = () => {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: index * 0.15 }}
-                            className={`bg-[#1a1a24] border border-white/5 rounded-2xl p-8 transition-all ${pillar.borderHover} hover:-translate-y-2 group relative overflow-hidden`}
+                            className={`bg-white dark:bg-[#1a1a24] border border-gray-100 dark:border-white/5 rounded-2xl p-8 transition-all ${pillar.borderHover} hover:-translate-y-2 group relative overflow-hidden`}
                         >
                             {/* Top gradient line */}
                             <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${pillar.gradient} opacity-0 group-hover:opacity-100 transition-opacity`} />
@@ -81,10 +81,10 @@ const CCEPlatformOverview: React.FC = () => {
                             </div>
 
                             {/* Title */}
-                            <h3 className="text-xl font-bold text-white mb-3">{pillar.title}</h3>
+                            <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">{pillar.title}</h3>
 
                             {/* Description */}
-                            <p className="text-white/60 leading-relaxed mb-6">{pillar.description}</p>
+                            <p className="text-gray-500 dark:text-white/60 leading-relaxed mb-6">{pillar.description}</p>
 
                             {/* Platform tags (only for first pillar) */}
                             {pillar.showPlatforms && (
@@ -92,10 +92,10 @@ const CCEPlatformOverview: React.FC = () => {
                                     {platforms.map((platform, pIndex) => (
                                         <span
                                             key={pIndex}
-                                            className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white/5 border border-white/10 rounded-full text-xs font-medium transition-all hover:border-white/25 hover:bg-white/10"
+                                            className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-full text-xs font-medium transition-all hover:border-gray-300 dark:hover:border-white/25 hover:bg-gray-100 dark:hover:bg-white/10"
                                         >
                                             <span className={`w-2 h-2 rounded-full bg-gradient-to-r ${platform.color}`} />
-                                            <span className="text-white/80">{platform.name}</span>
+                                            <span className="text-gray-700 dark:text-white/80">{platform.name}</span>
                                         </span>
                                     ))}
                                 </div>
@@ -110,7 +110,7 @@ const CCEPlatformOverview: React.FC = () => {
                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                                             </svg>
                                         </div>
-                                        <span className="text-sm text-white/70">{feature}</span>
+                                        <span className="text-sm text-gray-600 dark:text-white/70">{feature}</span>
                                     </li>
                                 ))}
                             </ul>
@@ -124,7 +124,7 @@ const CCEPlatformOverview: React.FC = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: 0.3 }}
-                    className="mt-12 bg-[#1a1a24] border border-white/5 rounded-2xl p-6 sm:p-8 overflow-hidden"
+                    className="mt-12 bg-white dark:bg-[#1a1a24] border border-gray-100 dark:border-white/5 rounded-2xl p-6 sm:p-8 overflow-hidden"
                 >
                     <div className="grid lg:grid-cols-2 gap-8 items-center">
                         {/* Left: description */}
@@ -133,8 +133,8 @@ const CCEPlatformOverview: React.FC = () => {
                                 <span className="w-1.5 h-1.5 bg-violet-400 rounded-full animate-pulse" />
                                 <span className="text-xs font-medium text-violet-300">ccstatusline</span>
                             </div>
-                            <h3 className="text-xl sm:text-2xl font-bold text-white mb-3">{t.statusline.title}</h3>
-                            <p className="text-white/60 leading-relaxed mb-5">{t.statusline.description}</p>
+                            <h3 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-3">{t.statusline.title}</h3>
+                            <p className="text-gray-500 dark:text-white/60 leading-relaxed mb-5">{t.statusline.description}</p>
                             <div className="space-y-3">
                                 {t.statusline.features.map((feat: string, i: number) => (
                                     <div key={i} className="flex items-start gap-3">
@@ -143,16 +143,16 @@ const CCEPlatformOverview: React.FC = () => {
                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                                             </svg>
                                         </div>
-                                        <span className="text-sm text-white/70">{feat}</span>
+                                        <span className="text-sm text-gray-600 dark:text-white/70">{feat}</span>
                                     </div>
                                 ))}
                             </div>
                         </div>
 
                         {/* Right: Terminal mock with 3 status lines */}
-                        <div className="bg-black/60 border border-white/10 rounded-xl overflow-hidden">
+                        <div className="bg-gray-900 dark:bg-black/60 border border-gray-200 dark:border-white/10 rounded-xl overflow-hidden">
                             {/* Terminal header */}
-                            <div className="flex items-center gap-2 px-4 py-2.5 bg-white/5 border-b border-white/10">
+                            <div className="flex items-center gap-2 px-4 py-2.5 bg-gray-800 dark:bg-white/5 border-b border-gray-700 dark:border-white/10">
                                 <div className="w-3 h-3 rounded-full bg-red-500/70" />
                                 <div className="w-3 h-3 rounded-full bg-yellow-500/70" />
                                 <div className="w-3 h-3 rounded-full bg-green-500/70" />

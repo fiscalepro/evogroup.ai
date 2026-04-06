@@ -255,13 +255,13 @@ export default function Team() {
         <section id="team" className="relative py-32 overflow-hidden">
             {/* Section header */}
             <div className="relative z-10 max-w-7xl mx-auto px-6 mb-20 text-center">
-                <span className="inline-block mb-6 px-4 py-2 rounded-full bg-white/5 backdrop-blur-xl border border-white/10 text-sm font-medium text-white/90 animate-fade-in">
+                <span className="inline-block mb-6 px-4 py-2 rounded-full bg-gray-50 dark:bg-white/5 backdrop-blur-xl border border-gray-200 dark:border-white/10 text-sm font-medium text-gray-800 dark:text-white/90 animate-fade-in">
                     {translations.preTitle}
                 </span>
-                <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6 animate-slide-up">
+                <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white mb-6 animate-slide-up">
                     {translations.title}
                 </h2>
-                <p className="text-lg sm:text-xl text-white/60 max-w-2xl mx-auto animate-slide-up" style={{animationDelay: '0.1s'}}>
+                <p className="text-lg sm:text-xl text-gray-500 dark:text-white/60 max-w-2xl mx-auto animate-slide-up" style={{animationDelay: '0.1s'}}>
                     {translations.subtitle}
                 </p>
             </div>
@@ -274,7 +274,7 @@ export default function Team() {
                             key={member.id}
                             isPressable
                             onPress={() => setSelectedMember(member.id)}
-                            className="group bg-white/5 backdrop-blur-xl border-white/10 hover:bg-white/10 hover:border-white/20 transition-all duration-500 hover:scale-105 animate-slide-up cursor-pointer"
+                            className="group bg-gray-50 dark:bg-white/5 backdrop-blur-xl border-gray-200 dark:border-white/10 hover:bg-gray-100 dark:hover:bg-white/10 hover:border-gray-300 dark:hover:border-white/20 transition-all duration-500 hover:scale-105 animate-slide-up cursor-pointer"
                             style={{animationDelay: `${index * 0.1}s`}}
                         >
                             <CardBody className="p-6 lg:p-8 text-center">
@@ -282,7 +282,7 @@ export default function Team() {
                                     <div className="relative">
                                         {'preview' in member && member.preview ? (
                                             <div
-                                                className="w-32 h-32 lg:w-36 lg:h-36 rounded-full overflow-hidden ring-4 ring-white/10 group-hover:ring-blue-500/20 transition-all group-hover:scale-110 duration-500"
+                                                className="w-32 h-32 lg:w-36 lg:h-36 rounded-full overflow-hidden ring-4 ring-gray-200 dark:ring-white/10 group-hover:ring-blue-500/20 transition-all group-hover:scale-110 duration-500"
                                                 onMouseDown={() => setLivePhotoPlaying(member.id)}
                                                 onMouseUp={() => setLivePhotoPlaying(null)}
                                                 onMouseLeave={() => setLivePhotoPlaying(null)}
@@ -309,7 +309,7 @@ export default function Team() {
                                                 name={'initials' in member ? String(member.initials) : undefined}
                                                 className={`w-32 h-32 lg:w-36 lg:h-36 text-4xl bg-gradient-to-br ${member.gradient} transition-all duration-500 group-hover:scale-110`}
                                                 classNames={{
-                                                    base: "ring-4 ring-white/10 group-hover:ring-blue-500/20 transition-all",
+                                                    base: "ring-4 ring-gray-200 dark:ring-white/10 group-hover:ring-blue-500/20 transition-all",
                                                     name: "text-white font-bold"
                                                 }}
                                             />
@@ -318,7 +318,7 @@ export default function Team() {
                                         <div className="absolute inset-0 rounded-full bg-gradient-to-br from-blue-500/0 to-purple-500/0 group-hover:from-blue-500/20 group-hover:to-purple-500/20 blur-2xl transition-all duration-500 -z-10" />
                                     </div>
                                 </div>
-                                <h3 className="text-base lg:text-lg font-bold text-white mb-3 group-hover:text-blue-400 transition-colors duration-300">
+                                <h3 className="text-base lg:text-lg font-bold text-gray-900 dark:text-white mb-3 group-hover:text-blue-400 transition-colors duration-300">
                                     {member.name.split(' ').map((part, i) => (
                                         <span key={i} className="block">{part}</span>
                                     ))}
@@ -326,7 +326,7 @@ export default function Team() {
                                 <div className="text-blue-400 font-semibold mb-3 text-base">
                                     {member.position}
                                 </div>
-                                <p className="text-white/60 text-sm leading-relaxed group-hover:text-white/80 transition-colors duration-300">
+                                <p className="text-gray-500 dark:text-white/60 text-sm leading-relaxed group-hover:text-gray-700 dark:group-hover:text-white/80 transition-colors duration-300">
                                     {member.experience}
                                 </p>
                             </CardBody>

@@ -55,7 +55,7 @@ const CCESecuritySection: React.FC = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: 0.1 }}
-                    className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-16"
+                    className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-16"
                 >
                     {t.title}
                 </motion.h2>
@@ -69,13 +69,13 @@ const CCESecuritySection: React.FC = () => {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: index * 0.1 }}
-                            className="bg-[#1a1a24] border border-white/5 rounded-2xl p-8 transition-all hover:border-violet-500/30 hover:scale-[1.03] group"
+                            className="bg-white dark:bg-[#1a1a24] border border-gray-100 dark:border-white/5 rounded-2xl p-8 transition-all hover:border-violet-500/30 hover:scale-[1.03] group"
                         >
                             <div className="w-14 h-14 bg-violet-500/10 rounded-xl flex items-center justify-center text-violet-400 mb-6 group-hover:scale-110 transition-transform">
                                 {featureIcons[index]}
                             </div>
-                            <h3 className="text-xl font-bold text-white mb-3">{feature.title}</h3>
-                            <p className="text-white/60 leading-relaxed">{feature.description}</p>
+                            <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">{feature.title}</h3>
+                            <p className="text-gray-500 dark:text-white/60 leading-relaxed">{feature.description}</p>
                         </motion.div>
                     ))}
                 </div>
