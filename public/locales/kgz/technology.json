@@ -1,46 +1,147 @@
 {
   "title": "Алдыңкы технологиялар",
   "subtitle": "Ишенимдүү жана эффективдүү чечимдерди түзүү үчүн эң заманбап технологияларды колдонобуз",
-  "ai_category": "Жасалма акыл",
-  "integrations_category": "Интеграциялар",
-  "security_category": "Коопсуздук",
-  "technologies": {
-    "machine_learning": {
-      "name": "Machine Learning",
-      "description": "Алдын ала аналитика жана автоматташтыруу"
+  "description": "Биздин технологиялык стек убакыт менен сыналган жана эң жаңы чечимдерди камтыйт",
+  "categories": {
+    "ai": {
+      "title": "Жасалма акыл",
+      "description": "Машина үйрөнүүнүн жана нейрон тармактарынын алдыңкы алгоритмдери"
     },
-    "nlp": {
-      "name": "NLP",
-      "description": "Табигый тилди иштетүү"
+    "integrations": {
+      "title": "Интеграциялар",
+      "description": "Учурдагы системаларга жана кызматтарга үзгүлтүксүз туташуу"
     },
-    "computer_vision": {
-      "name": "Computer Vision",
-      "description": "Көзөмөлдөө үчүн компьютердик көрүү"
-    },
-    "api_gateway": {
-      "name": "API Gateway",
-      "description": "Мамлекеттик кызматтарга бирдиктүү кирүү чекити"
-    },
-    "microservices": {
-      "name": "Microservices",
-      "description": "Масштабдалуучу архитектура"
-    },
-    "real_time_sync": {
-      "name": "Real-time Sync",
-      "description": "Реалдуу убакта синхрондоштуруу"
-    },
-    "encryption": {
-      "name": "Encryption",
-      "description": "256-бит маалыматтарды шифрлөө"
-    },
-    "compliance": {
-      "name": "Compliance",
-      "description": "Стандарттарга ылайыктуулук"
-    },
-    "monitoring": {
-      "name": "Monitoring",
-      "description": "24/7 системаларды көзөмөлдөө"
+    "security": {
+      "title": "Коопсуздук",
+      "description": "Маалыматтарды корпоративдик деңгээлде коргоо жана стандарттарга шайкештик"
     }
   },
-  "certification_text": "Бардык технологиялар сертификатталган жана сыналган"
+  "technologies": {
+    "machine_learning": {
+      "name": "Машина үйрөнүү",
+      "description": "Алдын ала аналитика жана чечимдерди автоматташтыруу",
+      "frameworks": ["TensorFlow", "PyTorch", "Scikit-learn", "XGBoost"],
+      "use_cases": [
+        "Тренддерди болжолдоо",
+        "Маалыматтарды классификациялоо",
+        "Регрессиялык анализ",
+        "Кластерлөө"
+      ]
+    },
+    "nlp": {
+      "name": "Табигый тилди иштетүү",
+      "description": "Адам тилиндеги текстти түшүнүү жана генерациялоо",
+      "frameworks": ["OpenAI GPT", "Transformers", "spaCy", "NLTK"],
+      "use_cases": [
+        "Маанайды анализдөө",
+        "Объекттерди бөлүп алуу",
+        "Автоматтык котормо",
+        "Чат-боттор жана виртуалдык жардамчылар"
+      ]
+    },
+    "computer_vision": {
+      "name": "Компьютердик көрүү",
+      "description": "Сүрөттөрдү жана видеолорду анализдөө жана иштетүү",
+      "frameworks": ["OpenCV", "YOLO", "ResNet", "MobileNet"],
+      "use_cases": [
+        "Объекттерди таануу",
+        "Документтерди анализдөө",
+        "Сапатты контролдоо",
+        "Биометрикалык идентификация"
+      ]
+    },
+    "deep_learning": {
+      "name": "Терең үйрөнүү",
+      "description": "Татаал тапшырмалар үчүн нейрон тармактары",
+      "frameworks": ["Keras", "PyTorch", "TensorFlow", "JAX"],
+      "use_cases": [
+        "Сүрөттөрдү иштетүү",
+        "Кепти таануу",
+        "Убакыт катарларын болжолдоо",
+        "Генеративдик моделдер"
+      ]
+    },
+    "api_gateway": {
+      "name": "API шлюзу",
+      "description": "Микросервистерге жана тышкы системаларга бирдиктүү кирүү чекити",
+      "technologies": ["Kong", "AWS API Gateway", "Nginx", "Traefik"],
+      "features": [
+        "Суроо-талаптарды багыттоо",
+        "Аутентификация жана авторизация",
+        "Мониторинг жана логдоо",
+        "Ылдамдыкты чектөө"
+      ]
+    },
+    "microservices": {
+      "name": "Микросервистер",
+      "description": "Масштабдалуучу жана ийкемдүү тиркеме архитектурасы",
+      "technologies": ["Docker", "Kubernetes", "Service Mesh", "gRPC"],
+      "benefits": [
+        "Көз карандысыз жайылтуу",
+        "Технологиялык ар түрдүүлүк",
+        "Каталарга туруктуулук",
+        "Горизонталдык масштабдоо"
+      ]
+    },
+    "real_time": {
+      "name": "Реалдуу убакыт режиминде иштетүү",
+      "description": "Агымдык маалыматтарды заматта иштетүү жана анализдөө",
+      "technologies": ["Apache Kafka", "Redis", "WebSockets", "Server-Sent Events"],
+      "applications": [
+        "Системаларды мониторинг",
+        "Алдамчылыкты аныктоо",
+        "Сунуш системалары",
+        "IoT аналитика"
+      ]
+    },
+    "encryption": {
+      "name": "Маалыматтарды шифрлөө",
+      "description": "Заманбап шифрлөө алгоритмдери менен маалыматтарды коргоо",
+      "standards": ["AES-256", "RSA", "TLS 1.3", "JWT"],
+      "features": [
+        "Сактоодо шифрлөө",
+        "Өткөрүүдө шифрлөө",
+        "Ачкычтарды башкаруу",
+        "Санариптик кол тамгалар"
+      ]
+    },
+    "compliance": {
+      "name": "Стандарттарга шайкештик",
+      "description": "Эл аралык коопсуздук жана сапат стандарттарын сактоо",
+      "standards": ["ISO 27001", "GDPR", "SOC 2", "PCI DSS"],
+      "areas": [
+        "Маалыматтык коопсуздукту башкаруу",
+        "Жеке маалыматтарды коргоо",
+        "Аудит жана отчеттуулук",
+        "Тобокелдиктерди башкаруу"
+      ]
+    },
+    "monitoring": {
+      "name": "Мониторинг жана байкоо",
+      "description": "Системаларды жана бизнес-метрикаларды 24/7 көзөмөлдөө",
+      "tools": ["Prometheus", "Grafana", "ELK Stack", "Jaeger"],
+      "capabilities": [
+        "Өндүрүмдүүлүк метрикалары",
+        "Окуяларды логдоо",
+        "Бөлүштүрүлгөн трассировка",
+        "Эскертүүлөр жана билдирмелер"
+      ]
+    }
+  },
+  "certification_text": "Бардык технологиялар сертификатталган жана production-чөйрөсүндө сыналган",
+  "cloud_platforms": {
+    "title": "Булут платформалары",
+    "aws": "Amazon Web Services",
+    "gcp": "Google Cloud Platform",
+    "azure": "Microsoft Azure",
+    "yandex_cloud": "Yandex.Cloud"
+  },
+  "databases": {
+    "title": "Маалымат базалары",
+    "postgresql": "PostgreSQL",
+    "mongodb": "MongoDB",
+    "redis": "Redis",
+    "elasticsearch": "Elasticsearch",
+    "clickhouse": "ClickHouse"
+  }
 }

@@ -88,11 +88,33 @@ const WhatsAppContactForm: React.FC = () => {
         e.preventDefault()
         setIsSubmitting(true)
 
-        // Simulate API call
-        await new Promise(resolve => setTimeout(resolve, 1500))
+        try {
+            const response = await fetch('/api/contact', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    name: formData.name,
+                    phone: formData.phone,
+                    company: formData.company,
+                    description: `WhatsApp Business: ${formData.managers} managers`,
+                }),
+            })
 
-        setIsSubmitting(false)
-        setIsSubmitted(true)
+            if (response.status === 429) {
+                return
+            }
+
+            const result = await response.json()
+
+            if (result.success) {
+                setIsSubmitted(true)
+                setFormData({ name: '', phone: '', company: '', managers: '1-2' })
+            }
+        } catch {
+            // Error handling - silently fail for now
+        } finally {
+            setIsSubmitting(false)
+        }
     }
 
     if (isSubmitted) {

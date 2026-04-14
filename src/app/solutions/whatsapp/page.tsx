@@ -1,6 +1,5 @@
 'use client'
 
-import { I18nProvider } from '@/components/providers/I18nProvider'
 import ModernHeader from '@/components/sections/ModernHeader'
 import Footer from '@/components/sections/Footer'
 import WhatsAppHeroSection from '@/components/sections/whatsapp/WhatsAppHeroSection'
@@ -41,9 +40,5 @@ function WhatsAppCRMContent() {
 }
 
 export default function WhatsAppCRMPage() {
-    return (
-        <I18nProvider initialLocale="ru">
-            <WhatsAppCRMContent />
-        </I18nProvider>
-    )
+    return <WhatsAppCRMContent />
 }

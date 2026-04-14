@@ -7,7 +7,7 @@ export async function GET() {
       { 
         status: 'ok',
         timestamp: new Date().toISOString(),
-        service: 'fiscalepro-landing'
+        service: 'evogroup-ai'
       },
       { status: 200 }
     )
@@ -16,7 +16,7 @@ export async function GET() {
       { 
         status: 'error',
         timestamp: new Date().toISOString(),
-        service: 'fiscalepro-landing'
+        service: 'evogroup-ai'
       },
       { status: 500 }
     )

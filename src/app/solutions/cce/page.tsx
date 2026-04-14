@@ -1,6 +1,5 @@
 'use client'
 
-import { I18nProvider } from '@/components/providers/I18nProvider'
 import ModernHeader from '@/components/sections/ModernHeader'
 import Footer from '@/components/sections/Footer'
 import CCEHeroSection from '@/components/sections/cce/CCEHeroSection'
@@ -35,9 +34,5 @@ function CCEContent() {
 }
 
 export default function CCEPage() {
-    return (
-        <I18nProvider initialLocale="ru">
-            <CCEContent />
-        </I18nProvider>
-    )
+    return <CCEContent />
 }

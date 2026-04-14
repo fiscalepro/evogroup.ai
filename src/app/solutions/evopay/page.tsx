@@ -1,6 +1,5 @@
 'use client'
 
-import { I18nProvider } from '@/components/providers/I18nProvider'
 import ModernHeader from '@/components/sections/ModernHeader'
 import Footer from '@/components/sections/Footer'
 import EvoPayHeroSection from '@/components/sections/evopay/EvoPayHeroSection'
@@ -33,9 +32,5 @@ function EvoPayContent() {
 }
 
 export default function EvoPayPage() {
-    return (
-        <I18nProvider initialLocale="ru">
-            <EvoPayContent />
-        </I18nProvider>
-    )
+    return <EvoPayContent />
 }

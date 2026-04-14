@@ -77,6 +77,8 @@ function checkRateLimit(ip: string): boolean {
 }
 
 // Получение IP адреса клиента
+// WARNING: x-forwarded-for can be spoofed by the client. In production,
+// use the platform's trusted header instead (e.g., CF-Connecting-IP for Cloudflare).
 function getClientIp(request: NextRequest): string {
     const forwardedFor = request.headers.get('x-forwarded-for')
     const realIp = request.headers.get('x-real-ip')

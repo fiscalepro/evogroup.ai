@@ -68,7 +68,8 @@ const AICalculatorSection: React.FC = () => {
                 orderConsultation: 'Request Consultation',
                 downloadEstimate: 'Download PDF Estimate',
                 configureProject: 'Configure Project Parameters',
-                selectOptions: 'Choose project type, complexity and additional options to get cost estimate'
+                selectOptions: 'Choose project type, complexity and additional options to get cost estimate',
+                from: 'from'
             }
         } else if (locale === 'ky') {
             return {
@@ -98,7 +99,8 @@ const AICalculatorSection: React.FC = () => {
                 orderConsultation: 'Консультация заказ берүү',
                 downloadEstimate: 'PDF смета жүктөө',
                 configureProject: 'Долбоор параметрлерин жөндөө',
-                selectOptions: 'Долбоордун түрүн, татаалдуулугун жана кошумча параметрлерди тандап, наркты эсептеп алыңыз'
+                selectOptions: 'Долбоордун түрүн, татаалдуулугун жана кошумча параметрлерди тандап, наркты эсептеп алыңыз',
+                from: 'ден'
             }
         } else {
             // Русский по умолчанию
@@ -129,7 +131,8 @@ const AICalculatorSection: React.FC = () => {
                 orderConsultation: 'Заказать консультацию',
                 downloadEstimate: 'Скачать смету PDF',
                 configureProject: 'Настройте параметры проекта',
-                selectOptions: 'Выберите тип проекта, сложность и дополнительные опции для получения расчета стоимости'
+                selectOptions: 'Выберите тип проекта, сложность и дополнительные опции для получения расчета стоимости',
+                from: 'от'
             }
         }
     }
@@ -299,7 +302,8 @@ const AICalculatorSection: React.FC = () => {
     }
 
     const formatPrice = (price: number) => {
-        return new Intl.NumberFormat('ru-RU', {
+        const loc = locale === 'en' ? 'en-US' : locale === 'ky' ? 'ky-KG' : 'ru-RU'
+        return new Intl.NumberFormat(loc, {
             style: 'currency',
             currency: 'USD',
             minimumFractionDigits: 0,
@@ -373,7 +377,7 @@ const AICalculatorSection: React.FC = () => {
                                                 <span className="text-2xl">{type.icon}</span>
                                                 <div>
                                                     <div className="font-medium">{type.label}</div>
-                                                    <div className="text-xs opacity-60">от {formatPrice(50000 * type.multiplier)}</div>
+                                                    <div className="text-xs opacity-60">{translations.from} {formatPrice(50000 * type.multiplier)}</div>
                                                 </div>
                                             </div>
                                         </button>

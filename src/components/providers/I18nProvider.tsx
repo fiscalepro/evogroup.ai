@@ -36,6 +36,12 @@ const I18nProviderComponent = ({ children, initialLocale = 'ru' }: I18nProviderP
         setIsHydrated(true)
     }, [])
 
+    // Обновление lang атрибута на <html> при смене локали
+    React.useEffect(() => {
+        const langMap: Record<string, string> = { ru: 'ru', en: 'en', ky: 'ky' };
+        document.documentElement.lang = langMap[locale] || 'ru';
+    }, [locale]);
+
     // Смена языка (оптимизированная)
     const changeLanguage = React.useCallback((newLocale: Locale) => {
         if (newLocale === locale) return

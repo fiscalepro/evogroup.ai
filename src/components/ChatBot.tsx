@@ -29,12 +29,20 @@ interface UserContext {
 export default function ChatBot() {
   const TURNSTILE_SITE_KEY = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
   const [isOpen, setIsOpen] = useState(false);
-  const getBrowserLang = () => {
+  const getBrowserLang = (): 'ru' | 'en' | 'ky' => {
     if (typeof navigator === 'undefined') return 'ru';
     const lang = navigator.language?.slice(0, 2);
     if (lang === 'en') return 'en';
     if (lang === 'ky') return 'ky';
     return 'ru';
+  };
+
+  const getStoredLang = (): 'ru' | 'en' | 'ky' => {
+    if (typeof window !== 'undefined') {
+      const stored = localStorage.getItem('locale');
+      if (stored === 'ru' || stored === 'en' || stored === 'ky') return stored;
+    }
+    return getBrowserLang();
   };
 
   const greetings: Record<string, string> = {
@@ -43,7 +51,7 @@ export default function ChatBot() {
     ru: 'Привет! Я AI-ассистент Evolution Group. Расскажу о наших услугах, команде или помогу связаться со специалистами. Что вас интересует?',
   };
 
-  const lang = getBrowserLang();
+  const lang = getStoredLang();
 
   const [messages, setMessages] = useState<Message[]>([
     {
@@ -237,7 +245,9 @@ export default function ChatBot() {
 
       setMessages((prev) => [...prev, assistantMessage]);
     } catch (error) {
-      console.error('Chat error:', error);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Chat error:', error);
+      }
 
       const errorMessage: Message = {
         role: 'assistant',
@@ -294,7 +304,7 @@ export default function ChatBot() {
         className="fixed bottom-6 right-6 z-50 w-14 h-14 bg-gradient-to-br from-blue-600 to-purple-600 rounded-full shadow-lg flex items-center justify-center text-white hover:shadow-xl transition-shadow"
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
-        aria-label="Open chat"
+        aria-label={isOpen ? "Close chat" : "Open chat"}
       >
         <AnimatePresence mode="wait">
           {isOpen ? (

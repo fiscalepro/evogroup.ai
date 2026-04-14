@@ -164,7 +164,7 @@ const AIChatbotSection: React.FC = () => {
                 'hello': 'Hello! I\'m the AI assistant of Evolution Group. I help answer questions about our AI services and solutions.',
                 'services': 'We provide:\n• Custom AI solution development\n• Big data analytics\n• Business process automation\n• Integration with existing systems\n• 24/7 technical support',
                 'price': 'Project costs start from $50,000. Use the calculator above or contact us for personal consultation.',
-                'contacts': 'Contact us:\n📧 info@fiscalepro.kg\n📞 +996 312 123-456\n🏢 Bishkek, Kievskaya str. 123\n\nOr fill out the contact form on our website.',
+                'contacts': 'Contact us:\n📧 info@evogroup.ai\n📞 +996 552 343 333\n🏢 Bishkek, Kievskaya str. 123\n\nOr fill out the contact form on our website.',
                 'team': 'Our team has 25+ experts:\n• ML Engineers\n• Data Scientists\n• Backend/Frontend Developers\n• DevOps Engineers\n• Business Analysts\n\nAverage team experience - 7+ years in AI.'
             }
         } else if (locale === 'ky') {
@@ -172,7 +172,7 @@ const AIChatbotSection: React.FC = () => {
                 'салам': 'Салам! Мен Evolution Group ИИ жардамчысымын. Биздин ИИ кызматтары жана чечимдери жөнүндө суракка жооп берүүгө жардам берем.',
                 'кызматтар': 'Биз сунуштайбыз:\n• Буйрутма боюнча ИИ чечимдерин иштеп чыгуу\n• Чоң маалыматтарды талдоо\n• Бизнес процесстерди автоматташтыруу\n• Учурдагы системалар менен интеграция\n• 24/7 техникалык колдоо',
                 'баа': 'Долбоорлордун баасы $50,000дон баштолат. Жогорудагы калькуляторду колдонуңуз же жеке консультация үчүн биз менен байланышыңыз.',
-                'байланыш': 'Биз менен байланыш:\n📧 info@fiscalepro.kg\n📞 +996 312 123-456\n🏢 Бишкек ш., Киев көч. 123\n\nЖе сайттагы байланыш формасын толтуруңуз.',
+                'байланыш': 'Биз менен байланыш:\n📧 info@evogroup.ai\n📞 +996 552 343 333\n🏢 Бишкек ш., Киев көч. 123\n\nЖе сайттагы байланыш формасын толтуруңуз.',
                 'команда': 'Биздин командада 25+ эксперт бар:\n• ML инженерлер\n• Маалымат окумуштуулары\n• Backend/Frontend өнүктүрүүчүлөр\n• DevOps инженерлер\n• Бизнес аналитиктер\n\nКомандынын ортоcho тажрыйбасы - ИИда 7+ жыл.'
             }
         } else {
@@ -180,7 +180,7 @@ const AIChatbotSection: React.FC = () => {
                 'привет': 'Привет! Я ИИ-ассистент Evolution Group. Помогу ответить на вопросы о наших услугах и решениях искусственного интеллекта.',
                 'услуги': 'Мы предоставляем:\n• Разработку ИИ-решений под заказ\n• Аналитику больших данных\n• Автоматизацию бизнес-процессов\n• Интеграцию с существующими системами\n• Техническую поддержку 24/7',
                 'цена': 'Стоимость проектов начинается от $50,000. Используйте калькулятор выше или оставьте заявку для персональной консультации.',
-                'контакты': 'Свяжитесь с нами:\n📧 info@fiscalepro.kg\n📞 +996 312 123-456\n🏢 г. Бишкек, ул. Киевская 123\n\nИли заполните форму обратной связи на сайте.',
+                'контакты': 'Свяжитесь с нами:\n📧 info@evogroup.ai\n📞 +996 552 343 333\n🏢 г. Бишкек, ул. Киевская 123\n\nИли заполните форму обратной связи на сайте.',
                 'команда': 'В нашей команде 25+ экспертов:\n• ML-инженеры\n• Data Scientists\n• Backend/Frontend разработчики\n• DevOps инженеры\n• Бизнес-аналитики\n\nСредний опыт команды - 7+ лет в ИИ.'
             }
         }
@@ -244,11 +244,11 @@ const AIChatbotSection: React.FC = () => {
 
         // Fallback ответ
         if (locale === 'en') {
-            return 'Interesting question! For detailed consultation, I recommend contacting our specialists at +996 312 123-456 or filling out the form on our website.'
+            return 'Interesting question! For detailed consultation, I recommend contacting our specialists at +996 552 343 333 or filling out the form on our website.'
         } else if (locale === 'ky') {
-            return 'Кызыктуу сурак! Толук консультация алуу үчүн адистерибиз менен +996 312 123-456 аркылуу байланышууну же сайтыбыздагы форманы толтурууну сунуштайм.'
+            return 'Кызыктуу сурак! Толук консультация алуу үчүн адистерибиз менен +996 552 343 333 аркылуу байланышууну же сайтыбыздагы форманы толтурууну сунуштайм.'
         } else {
-            return 'Интересный вопрос! Для получения детальной консультации рекомендую связаться с нашими специалистами по телефону +996 312 123-456 или заполнить форму на сайте.'
+            return 'Интересный вопрос! Для получения детальной консультации рекомендую связаться с нашими специалистами по телефону +996 552 343 333 или заполнить форму на сайте.'
         }
     }
 

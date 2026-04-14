@@ -51,8 +51,14 @@ const securityHeaders = [
 ]
 
 const nextConfig: NextConfig = {
-    // Source maps for production (required for Lighthouse and debugging)
-    productionBrowserSourceMaps: true,
+    // Disable X-Powered-By header
+    poweredByHeader: false,
+
+    // Compress responses
+    compress: true,
+
+    // Source maps disabled in production for security
+    productionBrowserSourceMaps: false,
 
     // Оптимизация production build
     compiler: {
@@ -64,7 +70,7 @@ const nextConfig: NextConfig = {
     // Оптимизация изображений
     images: {
         formats: ['image/webp', 'image/avif'],
-        minimumCacheTTL: 60,
+        minimumCacheTTL: 31536000, // 1 year cache
     },
 
     // Экспериментальные функции для производительности

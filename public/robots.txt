@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /test-video/
+
+Sitemap: https://evogroup.ai/sitemap.xml

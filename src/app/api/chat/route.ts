@@ -67,12 +67,6 @@ function checkGlobalBudget(): boolean {
   return globalUsage.count <= MAX_DAILY_MESSAGES;
 }
 
-function isGlobalBudgetExceeded(): boolean {
-  const today = new Date().toISOString().slice(0, 10);
-  if (globalUsage.date !== today) return false;
-  return globalUsage.count >= MAX_DAILY_MESSAGES;
-}
-
 // Rate limiting per IP
 const chatRateLimitMap = new Map<string, { count: number; timestamp: number }>();
 const CHAT_RATE_LIMIT_WINDOW = 60 * 1000;
@@ -163,8 +157,27 @@ export async function POST(req: NextRequest) {
     }
 
     // Get client IP
+    // WARNING: x-forwarded-for can be spoofed by the client. In production,
+    // use the platform's trusted header instead (e.g., CF-Connecting-IP for Cloudflare).
     const forwarded = req.headers.get('x-forwarded-for');
     const ip = forwarded ? forwarded.split(',')[0].trim() : 'unknown';
+
+    // Validate Content-Type before parsing body
+    const contentType = req.headers.get('content-type');
+    if (!contentType?.includes('application/json')) {
+      return NextResponse.json(
+        { error: 'Content-Type must be application/json' },
+        { status: 415 }
+      );
+    }
+
+    // Check gateway token configuration
+    if (!OPENCLAW_GATEWAY_TOKEN) {
+      return NextResponse.json(
+        { error: 'Service configuration error' },
+        { status: 500 }
+      );
+    }
 
     // Verify Turnstile token
     const body = await req.json();
@@ -187,17 +200,6 @@ export async function POST(req: NextRequest) {
       }
     }
 
-    // Check global daily budget
-    if (isGlobalBudgetExceeded()) {
-      return NextResponse.json(
-        {
-          error: 'Service temporarily unavailable',
-          userMessage: 'Сервис временно недоступен. Попробуйте завтра или напишите нам напрямую.'
-        },
-        { status: 503 }
-      );
-    }
-
     // Check per-minute rate limit
     if (!checkChatRateLimit(ip)) {
       return NextResponse.json(
@@ -217,15 +219,6 @@ export async function POST(req: NextRequest) {
           userMessage: 'Достигнут дневной лимит сообщений. Попробуйте завтра или напишите нам напрямую.'
         },
         { status: 429 }
-      );
-    }
-
-    // Validate Content-Type
-    const contentType = req.headers.get('content-type');
-    if (!contentType?.includes('application/json')) {
-      return NextResponse.json(
-        { error: 'Invalid Content-Type' },
-        { status: 400 }
       );
     }
 
@@ -276,8 +269,16 @@ export async function POST(req: NextRequest) {
       webhookBody.session_key = existingSession.key;
     }
 
-    // Track usage before making the call
-    checkGlobalBudget();
+    // Track usage and check global daily budget
+    if (!checkGlobalBudget()) {
+      return NextResponse.json(
+        {
+          error: 'Service temporarily unavailable',
+          userMessage: 'Сервис временно недоступен. Попробуйте завтра или напишите нам напрямую.'
+        },
+        { status: 503 }
+      );
+    }
 
     // Call OpenClaw webhook
     const response = await fetch(OPENCLAW_WEBHOOK_URL, {
@@ -334,13 +335,4 @@ export async function POST(req: NextRequest) {
       { status: 500 }
     );
   }
-}
-
-// Health check endpoint
-export async function GET() {
-  return NextResponse.json({
-    status: 'ok',
-    service: 'EvoGroup AI Chat (OpenClaw)',
-    version: '1.2.0'
-  });
 }

@@ -1,6 +1,6 @@
 'use client'
 
-import { I18nProvider, useTranslation } from '@/components/providers/I18nProvider'
+import { useTranslation } from '@/components/providers/I18nProvider'
 import ModernHeader from '@/components/sections/ModernHeader'
 import AIChatbotSection from '@/components/sections/AIChatbotSection'
 import CompetitiveAdvantages from '@/components/sections/CompetitiveAdvantages'
@@ -61,9 +61,5 @@ function SolutionsContent() {
 }
 
 export default function SolutionsPage() {
-    return (
-        <I18nProvider initialLocale="ru">
-            <SolutionsContent />
-        </I18nProvider>
-    )
+    return <SolutionsContent />
 }

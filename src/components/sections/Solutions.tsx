@@ -10,18 +10,12 @@ const Solutions: React.FC = () => {
     const [selectedSolution, setSelectedSolution] = useState<string | null>(null)
 
     const handleSolutionClick = (solutionId: string) => {
-        console.log('Solution clicked:', solutionId)
         setSelectedSolution(solutionId)
     }
 
     const handleModalClose = () => {
-        console.log('Modal closing')
         setSelectedSolution(null)
     }
-
-    React.useEffect(() => {
-        console.log('Selected solution changed:', selectedSolution)
-    }, [selectedSolution])
 
     const getTranslations = () => {
         if (locale === 'en') {
@@ -29,6 +23,7 @@ const Solutions: React.FC = () => {
                 preTitle: 'Industries',
                 title: 'Solutions for every business',
                 subtitle: 'We create AI systems tailored to the unique challenges of your industry',
+                learnMore: 'Learn more',
                 banking: {
                     title: 'Banking',
                     description: 'Intelligent credit scoring, fraud detection, and personalized financial services',
@@ -55,6 +50,7 @@ const Solutions: React.FC = () => {
                 preTitle: 'Тармактар',
                 title: 'Ар бир бизнес үчүн чечимдер',
                 subtitle: 'Тармагыңыздын уникалдуу маселелерине ылайыкташтырылган ИИ системаларын түзөбүз',
+                learnMore: 'Толугураак',
                 banking: {
                     title: 'Банктык',
                     description: 'Акылдуу кредиттик баалоо, алдамчылыкты аныктоо жана жекелештирилген финансылык кызматтар',
@@ -81,6 +77,7 @@ const Solutions: React.FC = () => {
                 preTitle: 'Отрасли',
                 title: 'Решения для каждого бизнеса',
                 subtitle: 'Создаем AI-системы под уникальные задачи вашей отрасли',
+                learnMore: 'Подробнее',
                 banking: {
                     title: 'Банкинг',
                     description: 'Интеллектуальный скоринг, детекция мошенничества и персонализированные финансовые услуги',
@@ -174,7 +171,6 @@ const Solutions: React.FC = () => {
                             key={solution.id}
                             isPressable
                             onPress={() => handleSolutionClick(solution.id)}
-                            onClick={() => handleSolutionClick(solution.id)}
                             className={`group bg-white/[0.025] border border-white/[0.07] ${solution.accentBorder} hover:bg-white/[0.05] rounded-2xl transition-all duration-400 cursor-pointer`}
                             style={{animationDelay: `${index * 0.1}s`}}
                         >
@@ -191,7 +187,7 @@ const Solutions: React.FC = () => {
                                 </div>
 
                                 {/* Title */}
-                                <h3 className={`text-lg font-bold text-white mb-3 group-hover:${solution.accentText.replace('text-', 'text-')} transition-colors duration-300`}>
+                                <h3 className="text-lg font-bold text-white mb-3 transition-colors duration-300">
                                     {solution.title}
                                 </h3>
 
@@ -202,7 +198,7 @@ const Solutions: React.FC = () => {
 
                                 {/* Hover indicator */}
                                 <div className={`mt-5 flex items-center ${solution.accentText} opacity-0 group-hover:opacity-100 transition-opacity duration-300`}>
-                                    <span className="text-xs font-medium">Learn more</span>
+                                    <span className="text-xs font-medium">{translations.learnMore}</span>
                                     <svg className="w-3.5 h-3.5 ml-1.5 transform group-hover:translate-x-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                                     </svg>

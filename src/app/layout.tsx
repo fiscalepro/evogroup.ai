@@ -92,6 +92,8 @@ const metadataByLocale = {
     }
 }
 
+// NOTE: metadata is static (server component limitation) — language-specific meta tags
+// would require per-locale route segments or middleware-based locale detection.
 export const metadata: Metadata = {
     ...metadataByLocale.ru,
     metadataBase: new URL('https://evogroup.ai'),
@@ -103,7 +105,7 @@ export default function RootLayout({
     children: React.ReactNode
 }) {
     return (
-        <html lang="ru" className="dark">
+        <html lang="ru" suppressHydrationWarning={true} className="dark">
         <head>
             <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
             <link rel="apple-touch-icon" href="/favicon.svg" />

@@ -8,6 +8,8 @@ interface ChartProps {
 
 // Линейный график роста
 export const LineChart: React.FC<ChartProps> = ({ className = '' }) => {
+    const uid = React.useId()
+    const lineGradientId = `lineGradient-${uid}`
     const data = [
         { x: 0, y: 20 },
         { x: 1, y: 35 },
@@ -32,7 +34,7 @@ export const LineChart: React.FC<ChartProps> = ({ className = '' }) => {
     return (
         <svg viewBox="0 0 300 100" className={className}>
             <defs>
-                <linearGradient id="lineGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                <linearGradient id={lineGradientId} x1="0%" y1="0%" x2="0%" y2="100%">
                     <stop offset="0%" stopColor="#3B82F6" stopOpacity="0.8" />
                     <stop offset="100%" stopColor="#3B82F6" stopOpacity="0.1" />
                 </linearGradient>
@@ -54,7 +56,7 @@ export const LineChart: React.FC<ChartProps> = ({ className = '' }) => {
             {/* Area under line */}
             <path
                 d={`${pathData} L 290 90 L 10 90 Z`}
-                fill="url(#lineGradient)"
+                fill={`url(#${lineGradientId})`}
             />
 
             {/* Line */}
@@ -87,6 +89,8 @@ export const LineChart: React.FC<ChartProps> = ({ className = '' }) => {
 
 // Столбчатая диаграмма
 export const BarChart: React.FC<ChartProps> = ({ className = '' }) => {
+    const uid = React.useId()
+    const barGradientId = `barGradient-${uid}`
     const data = [
         { label: 'Q1', value: 65 },
         { label: 'Q2', value: 78 },
@@ -97,7 +101,7 @@ export const BarChart: React.FC<ChartProps> = ({ className = '' }) => {
     return (
         <svg viewBox="0 0 320 140" className={className} preserveAspectRatio="xMidYMid meet">
             <defs>
-                <linearGradient id="barGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                <linearGradient id={barGradientId} x1="0%" y1="0%" x2="0%" y2="100%">
                     <stop offset="0%" stopColor="#8B5CF6" />
                     <stop offset="100%" stopColor="#3B82F6" />
                 </linearGradient>
@@ -139,7 +143,7 @@ export const BarChart: React.FC<ChartProps> = ({ className = '' }) => {
                             y={y}
                             width={barWidth}
                             height={barHeight}
-                            fill="url(#barGradient)"
+                            fill={`url(#${barGradientId})`}
                             rx="4"
                         />
                         <text
@@ -167,20 +171,28 @@ export const BarChart: React.FC<ChartProps> = ({ className = '' }) => {
 
 // Круговая диаграмма
 export const PieChart: React.FC<ChartProps> = ({ className = '' }) => {
+    // TODO: i18n — pie chart labels need translation
     const data = [
         { label: 'Эффективно', value: 75, color: '#3B82F6' },
         { label: 'В процессе', value: 20, color: '#8B5CF6' },
         { label: 'Ожидается', value: 5, color: '#EC4899' },
     ]
 
-    let cumulativePercentage = 0
+    // Pre-compute slices with cumulative percentages to avoid mutation during render
+    const slices = data.reduce<Array<{ slice: typeof data[number]; startPercentage: number; endPercentage: number }>>(
+        (acc, slice) => {
+            const startPercentage = acc.length > 0 ? acc[acc.length - 1].endPercentage : 0
+            acc.push({ slice, startPercentage, endPercentage: startPercentage + slice.value })
+            return acc
+        },
+        []
+    )
 
     return (
         <svg viewBox="0 0 200 200" className={className} preserveAspectRatio="xMidYMid meet">
-            {data.map((slice, index) => {
-                const startAngle = (cumulativePercentage * 360) / 100
-                const endAngle = ((cumulativePercentage + slice.value) * 360) / 100
-                cumulativePercentage += slice.value
+            {slices.map(({ slice, startPercentage, endPercentage }, index) => {
+                const startAngle = (startPercentage * 360) / 100
+                const endAngle = (endPercentage * 360) / 100
 
                 const startAngleRad = (startAngle * Math.PI) / 180
                 const endAngleRad = (endAngle * Math.PI) / 180
@@ -215,6 +227,7 @@ export const PieChart: React.FC<ChartProps> = ({ className = '' }) => {
             <text x="100" y="100" textAnchor="middle" className="text-2xl font-bold fill-gray-800">
                 75%
             </text>
+            {/* TODO: i18n — "эффективность" needs translation */}
             <text x="100" y="115" textAnchor="middle" className="text-xs fill-gray-600">
                 эффективность
             </text>
@@ -276,6 +289,10 @@ export const AnimatedMetric: React.FC<MetricProps> = ({
 
 // График сравнения показателей
 export const ComparisonChart: React.FC<ChartProps> = ({ className = '' }) => {
+    const uid = React.useId()
+    const oldGradientId = `oldGradient-${uid}`
+    const newGradientId = `newGradient-${uid}`
+    // TODO: i18n — categories need translation
     const categories = ['Скорость', 'Точность', 'Экономия', 'Масштаб']
     const oldValues = [60, 70, 40, 50]
     const newValues = [95, 98, 85, 90]
@@ -283,11 +300,11 @@ export const ComparisonChart: React.FC<ChartProps> = ({ className = '' }) => {
     return (
         <svg viewBox="0 0 320 200" className={className} preserveAspectRatio="xMidYMid meet">
             <defs>
-                <linearGradient id="oldGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                <linearGradient id={oldGradientId} x1="0%" y1="0%" x2="100%" y2="0%">
                     <stop offset="0%" stopColor="#9CA3AF" />
                     <stop offset="100%" stopColor="#6B7280" />
                 </linearGradient>
-                <linearGradient id="newGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                <linearGradient id={newGradientId} x1="0%" y1="0%" x2="100%" y2="0%">
                     <stop offset="0%" stopColor="#3B82F6" />
                     <stop offset="100%" stopColor="#8B5CF6" />
                 </linearGradient>
@@ -310,7 +327,7 @@ export const ComparisonChart: React.FC<ChartProps> = ({ className = '' }) => {
                             y={y - 8}
                             width={oldWidth}
                             height="8"
-                            fill="url(#oldGradient)"
+                            fill={`url(#${oldGradientId})`}
                             rx="4"
                         />
 
@@ -320,7 +337,7 @@ export const ComparisonChart: React.FC<ChartProps> = ({ className = '' }) => {
                             y={y + 2}
                             width={newWidth}
                             height="8"
-                            fill="url(#newGradient)"
+                            fill={`url(#${newGradientId})`}
                             rx="4"
                         />
 
@@ -338,10 +355,12 @@ export const ComparisonChart: React.FC<ChartProps> = ({ className = '' }) => {
 
             {/* Legend */}
             <g transform="translate(90, 180)">
-                <rect x="0" y="0" width="12" height="8" fill="url(#oldGradient)" rx="2" />
+                <rect x="0" y="0" width="12" height="8" fill={`url(#${oldGradientId})`} rx="2" />
+                {/* TODO: i18n — legend label needs translation */}
                 <text x="16" y="7" className="text-xs fill-gray-600">До внедрения</text>
 
-                <rect x="90" y="0" width="12" height="8" fill="url(#newGradient)" rx="2" />
+                <rect x="90" y="0" width="12" height="8" fill={`url(#${newGradientId})`} rx="2" />
+                {/* TODO: i18n — legend label needs translation */}
                 <text x="106" y="7" className="text-xs fill-gray-600">После внедрения</text>
             </g>
         </svg>
@@ -354,6 +373,8 @@ export const RadialProgress: React.FC<{ value: number; label: string; className?
                                                                                                    label,
                                                                                                    className = ''
                                                                                                }) => {
+    const uid = React.useId()
+    const radialGradientId = `radialGradient-${uid}`
     const radius = 45
     const circumference = 2 * Math.PI * radius
     const strokeDashoffset = circumference - (value / 100) * circumference
@@ -362,7 +383,7 @@ export const RadialProgress: React.FC<{ value: number; label: string; className?
         <div className={`relative ${className}`}>
             <svg viewBox="0 0 120 120" className="w-full h-full">
                 <defs>
-                    <linearGradient id="radialGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <linearGradient id={radialGradientId} x1="0%" y1="0%" x2="100%" y2="100%">
                         <stop offset="0%" stopColor="#8B5CF6" />
                         <stop offset="100%" stopColor="#3B82F6" />
                     </linearGradient>
@@ -384,7 +405,7 @@ export const RadialProgress: React.FC<{ value: number; label: string; className?
                     cy="60"
                     r={radius}
                     fill="none"
-                    stroke="url(#radialGradient)"
+                    stroke={`url(#${radialGradientId})`}
                     strokeWidth="8"
                     strokeLinecap="round"
                     strokeDasharray={circumference}
@@ -406,6 +427,8 @@ export const RadialProgress: React.FC<{ value: number; label: string; className?
 
 // Real-time метрики
 export const RealtimeMetrics: React.FC<ChartProps> = ({ className = '' }) => {
+    const uid = React.useId()
+    const realtimeGradientId = `realtimeGradient-${uid}`
     const [values, setValues] = React.useState([50, 60, 55, 70, 65, 75, 70])
 
     React.useEffect(() => {
@@ -431,7 +454,7 @@ export const RealtimeMetrics: React.FC<ChartProps> = ({ className = '' }) => {
     return (
         <svg viewBox="0 0 300 120" className={className} preserveAspectRatio="xMidYMid meet">
             <defs>
-                <linearGradient id="realtimeGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                <linearGradient id={realtimeGradientId} x1="0%" y1="0%" x2="0%" y2="100%">
                     <stop offset="0%" stopColor="#10B981" stopOpacity="0.8" />
                     <stop offset="100%" stopColor="#10B981" stopOpacity="0.1" />
                 </linearGradient>
@@ -454,7 +477,7 @@ export const RealtimeMetrics: React.FC<ChartProps> = ({ className = '' }) => {
             {/* Area */}
             <path
                 d={`${pathData} L 290 90 L 10 90 Z`}
-                fill="url(#realtimeGradient)"
+                fill={`url(#${realtimeGradientId})`}
             />
 
             {/* Line */}
@@ -476,9 +499,11 @@ export const RealtimeMetrics: React.FC<ChartProps> = ({ className = '' }) => {
                 className="animate-pulse"
             />
 
+            {/* TODO: i18n — title needs translation */}
             <text x="150" y="15" textAnchor="middle" className="text-sm font-semibold fill-gray-700">
                 Производительность в реальном времени
             </text>
+            {/* TODO: i18n — "Сейчас" needs translation */}
             <text x="290" y="105" textAnchor="end" className="text-xs fill-gray-500">
                 Сейчас
             </text>
@@ -516,6 +541,7 @@ export const FinancialDashboard: React.FC<ChartProps> = ({ className = '' }) => 
                 </div>
 
                 {/* Metrics row */}
+                {/* TODO: i18n — metric labels need translation */}
                 <div className="grid grid-cols-4 gap-3 mb-4">
                     {[
                         { label: 'Доход', value: '₽12.4M', change: '+23%' },
@@ -550,6 +576,7 @@ export const DashboardPreview: React.FC<ChartProps> = ({ className = '' }) => {
         <div className={`bg-gradient-to-br from-gray-50 to-gray-100 rounded-xl p-6 shadow-xl ${className}`}>
             <div className="bg-white rounded-lg shadow-sm p-4 mb-4">
                 <div className="flex items-center justify-between mb-4">
+                    {/* TODO: i18n — title needs translation */}
                     <h4 className="text-sm font-semibold text-gray-800">Операционная эффективность</h4>
                     <div className="flex gap-2">
                         <div className="w-2 h-2 bg-green-500 rounded-full"></div>
@@ -562,11 +589,13 @@ export const DashboardPreview: React.FC<ChartProps> = ({ className = '' }) => {
 
             <div className="grid grid-cols-2 gap-4">
                 <div className="bg-white rounded-lg shadow-sm p-4">
+                    {/* TODO: i18n — title needs translation */}
                     <h5 className="text-xs font-medium text-gray-600 mb-2">Квартальный рост</h5>
                     <BarChart className="h-24" />
                 </div>
 
                 <div className="bg-white rounded-lg shadow-sm p-4">
+                    {/* TODO: i18n — title needs translation */}
                     <h5 className="text-xs font-medium text-gray-600 mb-2">Распределение</h5>
                     <PieChart className="h-24" />
                 </div>

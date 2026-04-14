@@ -2,7 +2,6 @@
 
 import ModernHeader from '@/components/sections/ModernHeader'
 import HeroRedesign from '@/components/sections/HeroRedesign'
-import { PartnersMarquee } from '@/components/sections/PartnerMarquee'
 import ProblemStatement from '@/components/sections/ProblemStatement'
 import SolutionsPreview from '@/components/sections/SolutionsPreview'
 import CaseStudies from '@/components/sections/CaseStudies'
@@ -17,7 +16,6 @@ export default function Home() {
             <PageBackground />
             <ModernHeader />
             <HeroRedesign />
-            {/* <PartnersMarquee /> */}
             <TrustSignals />
             <ProblemStatement />
             <SolutionsPreview />

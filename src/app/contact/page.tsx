@@ -209,7 +209,7 @@ function ContactFormBlock({ content }: { content: ReturnType<typeof getContent> 
     const validate = (): boolean => {
         const e: FormErrors = {}
         if (!formData.name.trim()) e.name = content.validation.nameRequired
-        else if (!/^[a-zA-Zа-яА-ЯёЁүүөөңңҢҢ\s\-']+$/.test(formData.name)) e.name = content.validation.nameInvalid
+        else if (!/^[a-zA-Zа-яА-ЯёЁүҮөӨңҢ\s\-']+$/.test(formData.name)) e.name = content.validation.nameInvalid
         if (!formData.email.trim()) e.email = content.validation.emailRequired
         else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) e.email = content.validation.emailInvalid
         if (formData.phone && !/^[\d+\-\s()]*$/.test(formData.phone)) e.phone = content.validation.phoneInvalid

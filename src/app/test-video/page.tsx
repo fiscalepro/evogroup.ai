@@ -1,3 +1,4 @@
+// TODO: This test page should be removed before production
 'use client'
 
 import { useState } from 'react'
@@ -37,11 +38,7 @@ export default function TestVideo() {
                         muted
                         playsInline
                         preload="auto"
-                        onLoadedData={() => console.log('Video loaded!')}
-                        onCanPlay={() => console.log('Video can play!')}
-                        onError={(e) => console.error('Video error:', e)}
                         onEnded={() => {
-                            console.log('Video ended!')
                             setIsPlaying(false)
                         }}
                     />

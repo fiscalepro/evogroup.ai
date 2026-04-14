@@ -199,7 +199,7 @@ const ContactForm: React.FC = () => {
         // Имя
         if (!formData.name.trim()) {
             newErrors.name = translations.errors.nameRequired
-        } else if (!/^[a-zA-Zа-яА-ЯёЁүүөөңңҢҢ\s\-']+$/.test(formData.name)) {
+        } else if (!/^[a-zA-Zа-яА-ЯёЁүҮөӨңҢ\s\-']+$/.test(formData.name)) {
             newErrors.name = translations.errors.nameInvalid
         }
 
