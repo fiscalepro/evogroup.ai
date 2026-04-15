@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Script from 'next/script';
+import { useTranslation } from '@/components/providers/I18nProvider';
 
 declare global {
   interface Window {
@@ -29,13 +30,7 @@ interface UserContext {
 export default function ChatBot() {
   const TURNSTILE_SITE_KEY = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
   const [isOpen, setIsOpen] = useState(false);
-  const getBrowserLang = () => {
-    if (typeof navigator === 'undefined') return 'ru';
-    const lang = navigator.language?.slice(0, 2);
-    if (lang === 'en') return 'en';
-    if (lang === 'ky') return 'ky';
-    return 'ru';
-  };
+  const { locale } = useTranslation();
 
   const greetings: Record<string, string> = {
     en: 'Hi! I\'m the AI assistant of Evolution Group. I can tell you about our services, team, or help you contact specialists. How can I help?',
@@ -43,15 +38,22 @@ export default function ChatBot() {
     ru: 'Привет! Я AI-ассистент Evolution Group. Расскажу о наших услугах, команде или помогу связаться со специалистами. Что вас интересует?',
   };
 
-  const lang = getBrowserLang();
-
   const [messages, setMessages] = useState<Message[]>([
     {
       role: 'assistant',
-      content: greetings[lang],
+      content: greetings[locale] || greetings['ru'],
       timestamp: new Date(),
     },
   ]);
+
+  useEffect(() => {
+    setMessages(prev => {
+      if (prev.length === 1 && prev[0].role === 'assistant') {
+        return [{ ...prev[0], content: greetings[locale] || greetings['ru'] }];
+      }
+      return prev;
+    });
+  }, [locale]);
   const [inputValue, setInputValue] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
@@ -190,8 +192,8 @@ export default function ChatBot() {
       if (TURNSTILE_SITE_KEY && !turnstileToken) {
         const errorMessage: Message = {
           role: 'assistant',
-          content: lang === 'en' ? 'Security check failed. Please refresh the page and try again.'
-            : lang === 'ky' ? 'Коопсуздук текшерүүсү өтпөдү. Баракчаны жаңылап, кайра аракет кылыңыз.'
+          content: locale === 'en' ? 'Security check failed. Please refresh the page and try again.'
+            : locale === 'ky' ? 'Коопсуздук текшерүүсү өтпөдү. Баракчаны жаңылап, кайра аракет кылыңыз.'
             : 'Проверка безопасности не пройдена. Обновите страницу и попробуйте снова.',
           timestamp: new Date(),
         };
@@ -217,8 +219,8 @@ export default function ChatBot() {
       const data = await response.json();
 
       if (!response.ok) {
-        const fallback = lang === 'en' ? 'Oops, something went wrong. Please try again in a few seconds.'
-          : lang === 'ky' ? 'Ката кетти. Бир нече секунддан кийин кайра аракет кылыңыз.'
+        const fallback = locale === 'en' ? 'Oops, something went wrong. Please try again in a few seconds.'
+          : locale === 'ky' ? 'Ката кетти. Бир нече секунддан кийин кайра аракет кылыңыз.'
           : 'Упс, что-то пошло не так. Попробуйте еще раз через пару секунд.';
         const errorMessage: Message = {
           role: 'assistant',
@@ -241,8 +243,8 @@ export default function ChatBot() {
 
       const errorMessage: Message = {
         role: 'assistant',
-        content: lang === 'en' ? 'Cannot connect to the server. Check your internet connection or try again later.'
-          : lang === 'ky' ? 'Серверге туташуу мүмкүн эмес. Интернет байланышыңызды текшериңиз же кийинчерээк аракет кылыңыз.'
+        content: locale === 'en' ? 'Cannot connect to the server. Check your internet connection or try again later.'
+          : locale === 'ky' ? 'Серверге туташуу мүмкүн эмес. Интернет байланышыңызды текшериңиз же кийинчерээк аракет кылыңыз.'
           : 'Не могу подключиться к серверу. Проверьте интернет-соединение или попробуйте позже.',
         timestamp: new Date(),
       };
@@ -410,7 +412,7 @@ export default function ChatBot() {
                   value={inputValue}
                   onChange={(e) => setInputValue(e.target.value)}
                   onKeyDown={handleKeyPress}
-                  placeholder={lang === 'en' ? 'Type a message...' : lang === 'ky' ? 'Билдирүү жазыңыз...' : 'Напишите сообщение...'}
+                  placeholder={locale === 'en' ? 'Type a message...' : locale === 'ky' ? 'Билдирүү жазыңыз...' : 'Напишите сообщение...'}
                   className="flex-1 px-4 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm"
                   disabled={isLoading}
                 />
