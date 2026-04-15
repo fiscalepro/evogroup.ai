@@ -46,14 +46,15 @@ export default function ChatBot() {
     },
   ]);
 
+  // При смене языка — сбрасываем чат и показываем приветствие на новом языке
   useEffect(() => {
-    setMessages(prev => {
-      if (prev.length === 1 && prev[0].role === 'assistant') {
-        return [{ ...prev[0], content: greetings[locale] || greetings['ru'] }];
-      }
-      return prev;
-    });
-  }, [locale]);
+    if (!isOpen) return;
+    setMessages([{
+      role: 'assistant',
+      content: greetings[locale] || greetings['ru'],
+      timestamp: new Date(),
+    }]);
+  }, [locale, isOpen]);
   const [inputValue, setInputValue] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
