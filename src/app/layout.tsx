@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
 import { Providers } from '@/components/providers/Providers'
-import ChatBot from '@/components/ChatBot'
 import SplashScreen from '@/components/ui/SplashScreen'
+import LazyChatBot from '@/components/LazyChatBot'
 
 const inter = Inter({
     subsets: ['latin', 'cyrillic'],
@@ -96,6 +96,17 @@ const metadataByLocale = {
 export const metadata: Metadata = {
     ...metadataByLocale.ru,
     metadataBase: new URL('https://evogroup.ai'),
+    alternates: {
+        canonical: 'https://evogroup.ai',
+        languages: {
+            'ru': 'https://evogroup.ai',
+            'en': 'https://evogroup.ai',
+            'ky': 'https://evogroup.ai',
+        },
+    },
+    verification: {
+        google: process.env.NEXT_PUBLIC_GOOGLE_VERIFICATION,
+    },
 }
 
 export default function RootLayout({
@@ -124,7 +135,7 @@ export default function RootLayout({
         <Providers>
             <SplashScreen />
             {children}
-            <ChatBot />
+            <LazyChatBot />
         </Providers>
         </body>
         </html>
