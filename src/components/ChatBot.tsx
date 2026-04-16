@@ -214,7 +214,6 @@ export default function ChatBot() {
           })),
           userContext: getUserContext(),
           turnstileToken,
-          locale,
         }),
       });
 
@@ -226,7 +225,7 @@ export default function ChatBot() {
           : 'Упс, что-то пошло не так. Попробуйте еще раз через пару секунд.';
         const errorMessage: Message = {
           role: 'assistant',
-          content: fallback,
+          content: data.userMessage || fallback,
           timestamp: new Date(),
         };
         setMessages((prev) => [...prev, errorMessage]);
