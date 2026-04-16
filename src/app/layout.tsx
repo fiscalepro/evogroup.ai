@@ -96,6 +96,8 @@ const metadataByLocale = {
 export const metadata: Metadata = {
     ...metadataByLocale.ru,
     metadataBase: new URL('https://evogroup.ai'),
+    // hreflang — указывает поисковикам какие языковые версии сайта доступны (RU/EN/KY)
+    // Улучшает SEO для мультиязычного сайта, Google показывает нужную версию в выдаче
     alternates: {
         canonical: 'https://evogroup.ai',
         languages: {
@@ -104,6 +106,8 @@ export const metadata: Metadata = {
             'ky': 'https://evogroup.ai',
         },
     },
+    // Google Search Console verification — подтверждает владение сайтом для индексации
+    // Значение берётся из env переменной NEXT_PUBLIC_GOOGLE_VERIFICATION
     ...(process.env.NEXT_PUBLIC_GOOGLE_VERIFICATION ? {
         verification: { google: process.env.NEXT_PUBLIC_GOOGLE_VERIFICATION },
     } : {}),

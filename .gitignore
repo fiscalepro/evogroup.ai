@@ -49,3 +49,6 @@ next-env.d.ts
 
 # Original large video files
 public/originals/
+
+# spec review artifacts
+.spec-review/
