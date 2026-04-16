@@ -1,13 +1,13 @@
 {
   "title": "Алдыңкы технологиялар",
-  "subtitle": "Ишенимдүү жана эффективдүү чечимдерди түзүү үчүн эң заманбап технологияларды колдонобуз",
-  "ai_category": "Жасалма акыл",
+  "subtitle": "Ишенимдүү жана натыйжалуу чечимдер түзүү үчүн заманбап технологияларды колдонобуз",
+  "ai_category": "Жасалма интеллект",
   "integrations_category": "Интеграциялар",
   "security_category": "Коопсуздук",
   "technologies": {
     "machine_learning": {
       "name": "Machine Learning",
-      "description": "Алдын ала аналитика жана автоматташтыруу"
+      "description": "Болжолдоо аналитикасы жана автоматташтыруу"
     },
     "nlp": {
       "name": "NLP",
@@ -15,27 +15,27 @@
     },
     "computer_vision": {
       "name": "Computer Vision",
-      "description": "Көзөмөлдөө үчүн компьютердик көрүү"
+      "description": "Сүрөт жана видео талдоо"
     },
     "api_gateway": {
       "name": "API Gateway",
-      "description": "Мамлекеттик кызматтарга бирдиктүү кирүү чекити"
+      "description": "Кызматтарга бирдиктүү кирүү чекити"
     },
     "microservices": {
       "name": "Microservices",
-      "description": "Масштабдалуучу архитектура"
+      "description": "Масштабдуу архитектура"
     },
     "real_time_sync": {
       "name": "Real-time Sync",
-      "description": "Реалдуу убакта синхрондоштуруу"
+      "description": "Түз убакытта синхрондоштуруу"
     },
     "encryption": {
       "name": "Encryption",
-      "description": "256-бит маалыматтарды шифрлөө"
+      "description": "256-бит маалымат шифрлөө"
     },
     "compliance": {
       "name": "Compliance",
-      "description": "Стандарттарга ылайыктуулук"
+      "description": "Стандарттарга шайкештик"
     },
     "monitoring": {
       "name": "Monitoring",
