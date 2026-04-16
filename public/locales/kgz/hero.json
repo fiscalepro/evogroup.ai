@@ -21,11 +21,11 @@
     },
     "uptime": {
       "value": "600+",
-      "label": "Pull Requests"
+      "label": "Тартуу сурамдары"
     },
     "experts": {
       "value": "5+",
-      "label": "AI-боттор продакшнде"
+      "label": "Иштеп жаткан AI-боттор"
     }
   },
   "features": [
