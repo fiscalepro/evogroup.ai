@@ -104,9 +104,9 @@ export const metadata: Metadata = {
             'ky': 'https://evogroup.ai',
         },
     },
-    verification: {
-        google: process.env.NEXT_PUBLIC_GOOGLE_VERIFICATION,
-    },
+    ...(process.env.NEXT_PUBLIC_GOOGLE_VERIFICATION ? {
+        verification: { google: process.env.NEXT_PUBLIC_GOOGLE_VERIFICATION },
+    } : {}),
 }
 
 export default function RootLayout({
