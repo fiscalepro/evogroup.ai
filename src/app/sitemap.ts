@@ -24,7 +24,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return pages.map((path) => ({
     url: `${BASE_URL}${path}`,
     lastModified: new Date(),
-    changeFrequency: path === '' ? 'weekly' : 'monthly',
+    changeFrequency: (path === '' ? 'weekly' : 'monthly') as 'weekly' | 'monthly',
     priority: path === '' ? 1 : path.startsWith('/solutions') ? 0.8 : 0.6,
   }))
 }

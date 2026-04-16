@@ -1,14 +1,15 @@
+import { Suspense } from 'react'
 import dynamic from 'next/dynamic'
 import ModernHeader from '@/components/sections/ModernHeader'
 import HeroRedesign from '@/components/sections/HeroRedesign'
 import Footer from '@/components/sections/Footer'
 
 // Lazy load секций ниже fold — грузятся только когда пользователь скроллит
-const TrustSignals = dynamic(() => import('@/components/sections/TrustSignals'))
-const ProblemStatement = dynamic(() => import('@/components/sections/ProblemStatement'))
-const SolutionsPreview = dynamic(() => import('@/components/sections/SolutionsPreview'))
-const CaseStudies = dynamic(() => import('@/components/sections/CaseStudies'))
-const Certifications = dynamic(() => import('@/components/sections/Certifications'))
+const TrustSignals = dynamic(() => import('@/components/sections/TrustSignals'), { ssr: false })
+const ProblemStatement = dynamic(() => import('@/components/sections/ProblemStatement'), { ssr: false })
+const SolutionsPreview = dynamic(() => import('@/components/sections/SolutionsPreview'), { ssr: false })
+const CaseStudies = dynamic(() => import('@/components/sections/CaseStudies'), { ssr: false })
+const Certifications = dynamic(() => import('@/components/sections/Certifications'), { ssr: false })
 
 export default function Home() {
     return (
