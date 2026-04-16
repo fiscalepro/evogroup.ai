@@ -7,7 +7,7 @@ const OPENCLAW_GATEWAY_TOKEN = process.env.OPENCLAW_GATEWAY_TOKEN || '';
 const OPENCLAW_AGENT_ID = process.env.OPENCLAW_AGENT_ID || 'demo_bot';
 
 // Allowed origins for CSRF protection
-const DEFAULT_ORIGINS = 'https://evogroup.ai,https://www.evogroup.ai';
+const DEFAULT_ORIGINS = 'https://evogroup.ai,https://www.evogroup.ai,https://test.evogroup.ai';
 const ALLOWED_ORIGINS = (process.env.ALLOWED_ORIGINS || DEFAULT_ORIGINS)
   .split(',')
   .map(o => o.trim())
@@ -168,7 +168,7 @@ export async function POST(req: NextRequest) {
 
     // Verify Turnstile token
     const body = await req.json();
-    const { messages, turnstileToken } = body;
+    const { messages, turnstileToken, locale } = body;
 
     const turnstileSecret = process.env.TURNSTILE_SECRET_KEY;
     if (turnstileSecret) {
@@ -264,10 +264,14 @@ export async function POST(req: NextRequest) {
     const salt = OPENCLAW_GATEWAY_TOKEN || 'default-salt';
     const userId = createHash('sha256').update(`${ip}:${salt}`).digest('hex').slice(0, 16);
 
+    // Determine response language based on locale
+    const langMap: Record<string, string> = { en: 'English', ky: 'Kyrgyz', ru: 'Russian' };
+    const responseLang = langMap[locale] || 'Russian';
+
     // Build request body for OpenClaw webhook
     const webhookBody: Record<string, string> = {
       agent_id: OPENCLAW_AGENT_ID,
-      message: sanitizedMessage,
+      message: `[Respond in ${responseLang}] ${sanitizedMessage}`,
     };
 
     // Reuse session key if available
