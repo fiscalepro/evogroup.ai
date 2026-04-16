@@ -10,10 +10,10 @@
     "download_presentation": "Презентацияны жүктөө",
     "submit": "Өтүнүч жөнөтүү",
     "subscribe": "Жазылуу",
-    "request_demo": "Демо сураныч",
+    "request_demo": "Демо суроо",
     "detailed_case": "Толук мисал",
     "calculate_price": "Баасын эсептөө",
-    "order_consultation": "Консультация заказ берүү",
+    "order_consultation": "Консультация буйрутмалоо",
     "download_estimate": "PDF смета жүктөө",
     "open_chatbot": "Чат-ботту ачуу",
     "send_message": "Жөнөтүү"
@@ -21,7 +21,7 @@
   "stats": {
     "projects": "Долбоорлор",
     "savings": "Кардарлардын үнөмү",
-    "uptime": "Жумуштоо убактысы",
+    "uptime": "Иштөө убактысы",
     "experts": "Адистер",
     "satisfied_clients": "Канааттанган кардарлар",
     "satisfaction": "Канааттануу",
