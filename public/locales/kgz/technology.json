@@ -15,7 +15,7 @@
     },
     "computer_vision": {
       "name": "Computer Vision",
-      "description": "Көзөмөлдөө үчүн компьютердик көрүү"
+      "description": "Сүрөттөрдү жана видеону талдоо"
     },
     "api_gateway": {
       "name": "API Gateway",
