@@ -6,7 +6,6 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useTranslation } from '@/components/providers/I18nProvider'
 import LanguageSwitcher from '@/components/ui/LanguageSwitcher'
-import ThemeToggle from '@/components/ui/ThemeToggle'
 
 const ModernHeader = () => {
 	const { tObj } = useTranslation()
@@ -176,7 +175,6 @@ const ModernHeader = () => {
 
 						{/* Right side */}
 						<div className='flex items-center gap-2'>
-							<ThemeToggle />
 							<LanguageSwitcher />
 
 							{/* Desktop CTA */}
