@@ -31,6 +31,7 @@ const ModernHeader = () => {
 		{ href: '/cases', label: t.cases },
 		{ href: '/technology', label: t.technology },
 		{ href: '/about', label: t.about },
+		{ href: '/career', label: t.careers },
 		{ href: '/contact', label: t.contact },
 	]
 

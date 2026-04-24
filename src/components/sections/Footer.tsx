@@ -55,7 +55,7 @@ const socials = [
 
 const solutionHrefs = ['/solutions/whatsapp', '/solutions/evopay', '/solutions/smartuchet', '/solutions/edo', '/solutions/cce']
 
-const companyHrefs = ['/about', '/technology', '/cases', '#career']
+const companyHrefs = ['/about', '/technology', '/cases', '/career']
 
 const Footer: React.FC = () => {
     const { tObj } = useTranslation()

@@ -12,6 +12,7 @@ export const en = {
         cases: 'Cases',
         technology: 'Technology',
         team: 'Team',
+        careers: 'Careers',
         contact: 'Contact',
         cta: 'Start Project',
     },

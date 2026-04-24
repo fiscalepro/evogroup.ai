@@ -12,6 +12,7 @@ export const ky = {
         cases: 'Кейстер',
         technology: 'Технологиялар',
         team: 'Команда',
+        careers: 'Вакансиялар',
         contact: 'Байланыш',
         cta: 'Долбоорду баштоо',
     },

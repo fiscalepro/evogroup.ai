@@ -12,6 +12,7 @@ export const ru = {
         cases: 'Кейсы',
         technology: 'Технологии',
         team: 'Команда',
+        careers: 'Карьера',
         contact: 'Контакты',
         cta: 'Начать проект',
     },
