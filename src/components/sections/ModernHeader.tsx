@@ -31,7 +31,6 @@ const ModernHeader = () => {
 		{ href: '/cases', label: t.cases },
 		{ href: '/technology', label: t.technology },
 		{ href: '/about', label: t.about },
-		{ href: '/career', label: t.careers },
 		{ href: '/contact', label: t.contact },
 	]
 
@@ -101,7 +100,7 @@ const ModernHeader = () => {
 									className='object-contain'
 								/>
 							</div>
-							<span className='font-semibold text-gray-900 dark:text-[#F0F0F5] text-base'>
+							<span className={`font-semibold text-base transition-colors duration-300 ${isScrolled ? 'text-gray-900 dark:text-[#F0F0F5]' : 'text-white'}`}>
 								{t.company}
 							</span>
 						</Link>
@@ -115,10 +114,14 @@ const ModernHeader = () => {
 								onMouseLeave={handleMouseLeave}
 							>
 								<div
-									className={`flex cursor-pointer items-center gap-1 px-4 py-2 rounded-lg text-sm font-medium transition-colors duration-150 ${
-										isSolutions
-											? 'text-gray-900 dark:text-[#F0F0F5]'
-											: 'text-gray-500 dark:text-[#F0F0F5]/60 hover:text-gray-900 dark:hover:text-[#F0F0F5]'
+									className={`flex cursor-pointer items-center gap-1 px-4 py-2 rounded-lg text-sm font-medium transition-colors duration-300 ${
+										isScrolled
+											? isSolutions
+												? 'text-gray-900 dark:text-[#F0F0F5]'
+												: 'text-gray-500 dark:text-[#F0F0F5]/60 hover:text-gray-900 dark:hover:text-[#F0F0F5]'
+											: isSolutions
+												? 'text-white'
+												: 'text-white/75 hover:text-white'
 									}`}
 								>
 									{t.solutions}
@@ -163,10 +166,14 @@ const ModernHeader = () => {
 								<Link
 									key={item.href}
 									href={item.href}
-									className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors duration-150 ${
-										isActive(item.href)
-											? 'text-gray-900 dark:text-[#F0F0F5]'
-											: 'text-gray-500 dark:text-[#F0F0F5]/60 hover:text-gray-900 dark:hover:text-[#F0F0F5]'
+									className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors duration-300 ${
+										isScrolled
+											? isActive(item.href)
+												? 'text-gray-900 dark:text-[#F0F0F5]'
+												: 'text-gray-500 dark:text-[#F0F0F5]/60 hover:text-gray-900 dark:hover:text-[#F0F0F5]'
+											: isActive(item.href)
+												? 'text-white'
+												: 'text-white/75 hover:text-white'
 									}`}
 								>
 									{item.label}

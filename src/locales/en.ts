@@ -20,14 +20,51 @@ export const en = {
         preTitle: 'EvoAI CRM Demo',
         title: 'We implement AI in business for',
         titleHighlight: ['profitable scaling', 'maximum efficiency', 'your goals'],
+        titleLine1: 'We implement AI and automate businesses',
+        titleLine2: 'for maximum efficiency',
         subtitle: 'We audit your business, organize your operations and install AI automations to eliminate bottlenecks and boost your team productivity',
         ctaPrimary: 'Get Started',
         ctaSecondary: 'Watch Demo',
         stats: [
             { value: '$10M+', label: 'Client Savings' },
-            { value: '99.9%', label: 'System Uptime' },
             { value: '50+', label: 'Projects Delivered' },
+            { value: '99.9%', label: 'System Uptime' },
         ],
+    },
+    keyPartners: {
+        title: 'Our key partners',
+        cards: {
+            finTech: {
+                name: 'Fin Tech',
+                description: 'Banking wallets — 16 microservices',
+            },
+            energyOS: {
+                name: 'Energy OS',
+                description: 'Gas stations and oil depots',
+            },
+            horeca: {
+                name: 'HoreCA',
+                description: 'Restaurant and hotel automation',
+            },
+            clinicOS: {
+                name: 'Clinic OS',
+                description: 'Clinic management and WhatsApp',
+            },
+            businessOS: {
+                name: 'Business OS',
+                description: 'Small and medium business',
+                tags: [
+                    'Retail',
+                    'Beauty & wellness',
+                    'Food & cafes',
+                    'Tourism',
+                    'E-commerce',
+                    'Services',
+                    'Medicine / clinics',
+                    'Floristry',
+                ],
+            },
+        },
     },
     trustSignals: {
         overline: 'Track Record',

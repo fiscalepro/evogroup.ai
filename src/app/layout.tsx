@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+import { Inter, Manrope } from 'next/font/google'
 import './globals.css'
 import { Providers } from '@/components/providers/Providers'
 import SplashScreen from '@/components/ui/SplashScreen'
@@ -9,6 +9,13 @@ const inter = Inter({
     subsets: ['latin', 'cyrillic'],
     display: 'swap',
     variable: '--font-inter',
+})
+
+const manrope = Manrope({
+    subsets: ['latin', 'cyrillic'],
+    weight: ['400', '500', '600', '700', '800'],
+    display: 'swap',
+    variable: '--font-manrope',
 })
 
 // Метаданные для каждого языка
@@ -135,7 +142,7 @@ export default function RootLayout({
                 })();
             `}} />
         </head>
-        <body suppressHydrationWarning className={`${inter.className} antialiased bg-[#FAFAFA] dark:bg-[#0A0E1A] text-gray-900 dark:text-[#F0F0F5] transition-colors duration-300`}>
+        <body suppressHydrationWarning className={`${inter.variable} ${manrope.variable} ${inter.className} antialiased bg-[#FAFAFA] dark:bg-[#0A0E1A] text-gray-900 dark:text-[#F0F0F5] transition-colors duration-300`}>
         <Providers>
             <SplashScreen />
             {children}

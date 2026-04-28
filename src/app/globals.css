@@ -2,6 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+    overflow-x: hidden;
+    width: 100%;
+}
+
+body {
+    overflow-x: hidden;
+    width: 100%;
+    min-width: 0;
+    position: relative;
+}
+
 /*
   Explicit h1 font-size to prevent deprecated browser UA stylesheet behavior.
   Chrome warns when h1 inside <section>/<article>/<nav>/<aside> relies on the
