@@ -2,192 +2,280 @@
 
 import React from 'react'
 import Link from 'next/link'
-import { motion } from 'framer-motion'
 import { useTranslation } from '@/components/providers/I18nProvider'
 
-const cardMeta = [
-    {
-        href: '/solutions/whatsapp',
-        gradient: 'from-gray-700 to-gray-900',
-        iconBg: 'bg-gray-100 dark:bg-white/[0.06]',
-        iconColor: 'text-gray-600 dark:text-[#F0F0F5]/60',
-    },
-    {
-        href: '/solutions/evopay',
-        gradient: 'from-gray-700 to-gray-900',
-        iconBg: 'bg-gray-100 dark:bg-white/[0.06]',
-        iconColor: 'text-gray-600 dark:text-[#F0F0F5]/60',
-    },
-    {
-        href: '/solutions/evoclinic',
-        gradient: 'from-gray-700 to-gray-900',
-        iconBg: 'bg-gray-100 dark:bg-white/[0.06]',
-        iconColor: 'text-gray-600 dark:text-[#F0F0F5]/60',
-    },
-    {
-        href: '/solutions/edo',
-        gradient: 'from-gray-700 to-gray-900',
-        iconBg: 'bg-gray-100 dark:bg-white/[0.06]',
-        iconColor: 'text-gray-600 dark:text-[#F0F0F5]/60',
-    },
-    {
-        href: '/solutions/cce',
-        gradient: 'from-gray-700 to-gray-900',
-        iconBg: 'bg-gray-100 dark:bg-white/[0.06]',
-        iconColor: 'text-gray-600 dark:text-[#F0F0F5]/60',
-    },
-]
+const FIGMA_W = 1920
+const FIGMA_H = 2200
 
-const icons = [
-    <svg key="crm" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-6 h-6">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M8.625 12a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 01-2.555-.337A5.972 5.972 0 015.41 20.97a5.969 5.969 0 01-.474-.065 4.48 4.48 0 00.978-2.025c.09-.457-.133-.901-.467-1.226C3.93 16.178 3 14.189 3 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25z" />
-    </svg>,
-    <svg key="pay" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-6 h-6">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 002.25-2.25V6.75A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25v10.5A2.25 2.25 0 004.5 19.5z" />
-    </svg>,
-    <svg key="clinic" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-6 h-6">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
-    </svg>,
-    <svg key="edo" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-6 h-6">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-    </svg>,
-    <svg key="cce" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-6 h-6">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5" />
-    </svg>,
-]
+// Gradient/Blue из Figma cache
+const CARD_BG = 'linear-gradient(0deg, rgba(16,1,51,1) 0%, rgba(7,70,208,1) 100%)'
+// Electric Sky (#81ECFF) для метрик стандартных карточек
+const METRIC_COLOR = '#81ECFF'
+// Text/Link 2 (#00CFFD) для ссылок и метрики EvoPay
+const LINK_COLOR = '#00CFFD'
 
-const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-        opacity: 1,
-        transition: { staggerChildren: 0.12, delayChildren: 0.1 },
-    },
-}
+const ArrowRight: React.FC = () => (
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden style={{ flexShrink: 0 }}>
+        <path d="M4 12h16M14 6l6 6-6 6" stroke={LINK_COLOR} strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+)
 
-const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-        opacity: 1,
-        y: 0,
-        transition: { duration: 0.55, ease: [0.25, 0.1, 0.25, 1] as [number, number, number, number] },
-    },
+// Переиспользуемый блоб-свет внутри карточки
+const CardGlow: React.FC<{ left: number; top: number }> = ({ left, top }) => (
+    <div
+        aria-hidden
+        style={{
+            position: 'absolute', left, top, width: 676, height: 181,
+            background: 'radial-gradient(circle at 50% 50%, rgba(62,224,247,0.22) 0%, transparent 70%)',
+            filter: 'blur(30px)', pointerEvents: 'none',
+        }}
+    />
+)
+
+type SolutionItem = {
+    title: string
+    category: string
+    description: string
+    metricValue: string
+    metricLabel: string
 }
 
 const SolutionsPreview: React.FC = () => {
     const { tObj } = useTranslation()
     const t = tObj('solutionsPreview')
-    const solutions = (t.solutions ?? []) as Array<{
-        title: string
-        description: string
-        features: string[]
-        metricValue: string
-        metricLabel: string
-    }>
+    const solutions = (t.solutions ?? []) as SolutionItem[]
+    const learnMore = t.learnMore as string
+
+    const [scale, setScale] = React.useState(() =>
+        typeof window !== 'undefined' ? Math.min(1, window.innerWidth / FIGMA_W) : 1
+    )
+    React.useEffect(() => {
+        const update = () => setScale(Math.min(1, window.innerWidth / FIGMA_W))
+        window.addEventListener('resize', update)
+        return () => window.removeEventListener('resize', update)
+    }, [])
+
+    // Вспомогательный рендер стандартной карточки 910×619 (абс. позиция внутри секции)
+    const renderHalfCard = (
+        s: SolutionItem,
+        href: string,
+        sectionLeft: number,
+        sectionTop: number,
+        imgSrc: string,
+        opts: {
+            nameX?: number; nameW?: number
+            leftX?: number; leftY?: number
+            metricX?: number; metricY?: number
+            linkX?: number; linkY?: number
+            imgX?: number; imgY?: number; imgW?: number; imgH?: number
+            img2Src?: string; img2X?: number; img2Y?: number; img2W?: number; img2H?: number
+        } = {}
+    ) => {
+        const {
+            nameX = 305, nameW = 301,
+            leftX = 50, leftY = 103,
+            metricX = 678, metricY = 110,
+            linkX = 714, linkY = 47,
+            imgX = 82, imgY = 228, imgW = 750, imgH = 391,
+            img2Src, img2X, img2Y, img2W, img2H,
+        } = opts
+        return (
+            <div style={{
+                position: 'absolute', left: sectionLeft, top: sectionTop,
+                width: 910, height: 619,
+                borderRadius: 20, overflow: 'hidden',
+                background: CARD_BG,
+                border: '1px solid rgba(70,120,255,0.4)',
+            }}>
+                <CardGlow left={133} top={-91} />
+
+                {/* Название продукта */}
+                <span style={{
+                    position: 'absolute', left: nameX, top: 20, width: nameW, height: 72,
+                    display: 'flex', alignItems: 'center', justifyContent: 'center',
+                    fontFamily: 'var(--font-manrope), Manrope, sans-serif',
+                    fontWeight: 600, fontSize: 54, lineHeight: 1, color: '#FFFFFF',
+                }} suppressHydrationWarning>{s.title}</span>
+
+                {/* Подробнее */}
+                <Link href={href} style={{
+                    position: 'absolute', left: linkX, top: linkY,
+                    display: 'inline-flex', alignItems: 'center', gap: 8,
+                    fontFamily: 'var(--font-inter), Inter, sans-serif',
+                    fontWeight: 500, fontSize: 20, color: LINK_COLOR, textDecoration: 'none',
+                }}>
+                    <span suppressHydrationWarning>{learnMore}</span>
+                    <ArrowRight />
+                </Link>
+
+                {/* Категория + описание */}
+                <div style={{ position: 'absolute', left: leftX, top: leftY, width: 420 }}>
+                    <p style={{
+                        margin: '0 0 14px',
+                        fontFamily: 'var(--font-manrope), Manrope, sans-serif',
+                        fontWeight: 700, fontSize: 32, color: '#FFFFFF',
+                    }} suppressHydrationWarning>{s.category}</p>
+                    <p style={{
+                        margin: 0,
+                        fontFamily: 'var(--font-inter), Inter, sans-serif',
+                        fontWeight: 400, fontSize: 18, lineHeight: '26px',
+                        color: 'rgba(255,255,255,0.75)',
+                    }} suppressHydrationWarning>{s.description}</p>
+                </div>
+
+                {/* Метрика */}
+                <div style={{
+                    position: 'absolute', left: metricX, top: metricY, width: 182,
+                    display: 'flex', flexDirection: 'column', alignItems: 'stretch', gap: 7,
+                }}>
+                    <span style={{
+                        fontFamily: 'var(--font-manrope), Manrope, sans-serif',
+                        fontWeight: 700, fontSize: 64, lineHeight: '26px',
+                        color: METRIC_COLOR, textAlign: 'right',
+                    }} suppressHydrationWarning>{s.metricValue}</span>
+                    <span style={{
+                        fontFamily: 'var(--font-inter), Inter, sans-serif',
+                        fontWeight: 400, fontSize: 16, color: '#FFFFFF', textAlign: 'center',
+                    }} suppressHydrationWarning>{s.metricLabel}</span>
+                </div>
+
+                {/* Скриншот */}
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={imgSrc} alt="" aria-hidden style={{
+                    position: 'absolute', left: imgX, top: imgY, width: imgW, height: imgH,
+                    objectFit: 'cover', borderRadius: '22px 22px 0 0',
+                }} />
+
+                {img2Src && (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img src={img2Src} alt="" aria-hidden style={{
+                        position: 'absolute', left: img2X, top: img2Y, width: img2W, height: img2H,
+                        objectFit: 'cover', borderRadius: '22px 22px 0 0',
+                    }} />
+                )}
+            </div>
+        )
+    }
+
+    const s = solutions
 
     return (
-        <section className="relative py-24 lg:py-32">
-            <div className="max-w-7xl mx-auto px-6">
-                {/* Header */}
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: '-80px' }}
-                    transition={{ duration: 0.6 }}
-                    className="text-center mb-16"
-                >
-                    <h2 className="text-2xl sm:text-3xl lg:text-5xl font-bold text-gray-900 dark:text-[#F0F0F5] tracking-tight mb-4">
-                        {t.title as string}
-                    </h2>
-                    <p className="text-base lg:text-lg text-gray-500 dark:text-[#F0F0F5]/50 max-w-xl mx-auto">
-                        {t.subtitle as string}
-                    </p>
-                </motion.div>
+        <section
+            className="relative w-full"
+            style={{ background: '#020133', overflow: 'hidden', height: FIGMA_H * scale }}
+        >
+            <div style={{
+                width: FIGMA_W, height: FIGMA_H,
+                transform: `scale(${scale})`,
+                transformOrigin: 'top left',
+            }}>
+                {/* ── Заголовок: layout_U2SYMS x=515 y=3613→60 w=927 ── */}
+                <h2 style={{
+                    position: 'absolute', left: 515, top: 60, width: 927, margin: 0,
+                    fontFamily: 'var(--font-manrope), Manrope, sans-serif',
+                    fontWeight: 700, fontSize: 74, lineHeight: '110px',
+                    textAlign: 'center', color: '#FFFFFF',
+                }} suppressHydrationWarning>{t.title as string}</h2>
 
-                {/* Solutions grid */}
-                <motion.div
-                    variants={containerVariants}
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true, margin: '-50px' }}
-                    className="grid sm:grid-cols-2 lg:grid-cols-6 gap-3 sm:gap-5"
-                >
-                    {solutions.map((solution, index) => {
-                        const meta = cardMeta[index]
-                        return (
-                            <motion.div
-                                key={index}
-                                variants={itemVariants}
-                                className={`group relative flex flex-col p-4 sm:p-5 lg:p-7 rounded-2xl border border-transparent hover:border-gray-900 dark:hover:border-white/[0.12] hover:border-opacity-40 bg-white dark:bg-white/[0.02] shadow-sm dark:shadow-none hover:shadow-lg dark:hover:shadow-none transition-all duration-300 ${index < 3 ? 'lg:col-span-2' : 'lg:col-span-3'}`}
-                            >
-                                {/* Top accent line */}
-                                <div className={`absolute top-0 left-6 right-6 h-px bg-gradient-to-r ${meta.gradient} opacity-0 group-hover:opacity-40 transition-opacity duration-300`} />
+                {/* ── Ряд 1: EvoClinic (x=40) + EvoAI CRM (x=970), y=196 ── */}
+                {s[0] && renderHalfCard(s[0], '/solutions/evoclinic', 40, 196,
+                    '/cards-solutions/evoclinic.png',
+                    { nameX: 305, nameW: 301, leftX: 55, leftY: 103, imgX: 82, imgY: 228, imgW: 756, imgH: 391 }
+                )}
+                {s[1] && renderHalfCard(s[1], '/solutions/whatsapp', 970, 196,
+                    '/cards-solutions/evocrm-284ec3.png',
+                    { nameX: 304, nameW: 301, leftX: 44, leftY: 108, metricX: 678, metricY: 112, imgX: 74, imgY: 235, imgW: 762, imgH: 384 }
+                )}
 
-                                {/* Icon + metric row */}
-                                <div className="flex items-start justify-between mb-6">
-                                    <div className={`w-11 h-11 rounded-lg ${meta.iconBg} border border-gray-200 dark:border-white/[0.06] flex items-center justify-center ${meta.iconColor}`}>
-                                        {icons[index]}
-                                    </div>
-                                    <div className="text-right">
-                                        <div className={`text-lg font-bold bg-gradient-to-r ${meta.gradient} bg-clip-text text-transparent`}>
-                                            {solution.metricValue}
-                                        </div>
-                                        <div className="text-xs text-gray-400 dark:text-[#F0F0F5]/40">{solution.metricLabel}</div>
-                                    </div>
-                                </div>
+                {/* ── Ряд 2: EvoPay — полная ширина 1840×619, x=40, y=835 ── */}
+                <div style={{
+                    position: 'absolute', left: 40, top: 835,
+                    width: 1840, height: 619,
+                    borderRadius: 20, overflow: 'hidden',
+                    background: CARD_BG,
+                    border: '1px solid rgba(70,120,255,0.4)',
+                }}>
+                    <CardGlow left={0} top={-91} />
+                    <CardGlow left={1061} top={-91} />
 
-                                {/* Title & description */}
-                                <h3 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-[#F0F0F5] mb-2">
-                                    {solution.title}
-                                </h3>
-                                <p className="text-sm text-gray-500 dark:text-[#F0F0F5]/50 leading-relaxed mb-6 flex-grow">
-                                    {solution.description}
-                                </p>
+                    {/* Название */}
+                    <span style={{
+                        position: 'absolute', left: 813, top: 39, width: 215, height: 72,
+                        display: 'flex', alignItems: 'center', justifyContent: 'center',
+                        fontFamily: 'var(--font-manrope), Manrope, sans-serif',
+                        fontWeight: 600, fontSize: 54, lineHeight: 1, color: '#FFFFFF',
+                    }} suppressHydrationWarning>{s[2]?.title ?? 'EvoPay'}</span>
 
-                                {/* Features list */}
-                                <ul className="space-y-2 mb-8">
-                                    {solution.features.map((feature, i) => (
-                                        <li key={i} className="flex items-center gap-2.5 text-sm text-gray-500 dark:text-[#F0F0F5]/50">
-                                            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" className="flex-shrink-0 text-gray-500 dark:text-[#F0F0F5]/50">
-                                                <path d="M3 7l3 3 5-5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                                            </svg>
-                                            {feature}
-                                        </li>
-                                    ))}
-                                </ul>
+                    {/* Категория */}
+                    <p style={{
+                        position: 'absolute', left: 80, top: 107, width: 669, margin: 0,
+                        fontFamily: 'var(--font-manrope), Manrope, sans-serif',
+                        fontWeight: 700, fontSize: 38, color: '#FFFFFF',
+                    }} suppressHydrationWarning>{s[2]?.category}</p>
 
-                                {/* CTA */}
-                                <Link
-                                    href={meta.href}
-                                    className="arrow-hover inline-flex items-center justify-center gap-2 w-full py-3 rounded-xl text-sm font-semibold text-gray-900 dark:text-[#F0F0F5]/65 border border-gray-900 dark:border-[#F0F0F5]/[0.08] hover:opacity-60 no-underline transition-all duration-200"
-                                >
-                                    {t.learnMore as string}
-                                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                                        <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                                    </svg>
-                                </Link>
-                            </motion.div>
-                        )
-                    })}
-                </motion.div>
+                    {/* Описание */}
+                    <p style={{
+                        position: 'absolute', left: 80, top: 178, width: 728, margin: 0,
+                        fontFamily: 'var(--font-inter), Inter, sans-serif',
+                        fontWeight: 400, fontSize: 18, lineHeight: '26px',
+                        color: 'rgba(255,255,255,0.75)',
+                    }} suppressHydrationWarning>{s[2]?.description}</p>
 
-                {/* Compare link */}
-                <motion.div
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.3 }}
-                    className="text-center mt-10"
-                >
-                    <Link
-                        href="/solutions"
-                        className="arrow-hover text-sm text-gray-700 dark:text-[#F0F0F5]/70 no-underline transition-all duration-200 hover:opacity-60"
-                    >
-                        {t.compare as string}
-                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" className="inline ml-1">
-                            <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                        </svg>
+                    {/* Подробнее */}
+                    <Link href="/solutions/evopay" style={{
+                        position: 'absolute', left: 80, top: 224,
+                        display: 'inline-flex', alignItems: 'center', gap: 8,
+                        fontFamily: 'var(--font-inter), Inter, sans-serif',
+                        fontWeight: 500, fontSize: 20, color: LINK_COLOR, textDecoration: 'none',
+                    }}>
+                        <span suppressHydrationWarning>{learnMore}</span>
+                        <ArrowRight />
                     </Link>
-                </motion.div>
+
+                    {/* Метрика (style_N1V5OV: 94px!) */}
+                    <div style={{ position: 'absolute', left: 80, top: 406, width: 272 }}>
+                        <p style={{
+                            margin: 0,
+                            fontFamily: 'var(--font-manrope), Manrope, sans-serif',
+                            fontWeight: 700, fontSize: 94, lineHeight: '26px',
+                            color: LINK_COLOR,
+                        }} suppressHydrationWarning>{s[2]?.metricValue}</p>
+                        <p style={{
+                            margin: '12px 0 0',
+                            fontFamily: 'var(--font-inter), Inter, sans-serif',
+                            fontWeight: 400, fontSize: 20, color: '#FFFFFF',
+                        }} suppressHydrationWarning>{s[2]?.metricLabel}</p>
+                    </div>
+
+                    {/* Скриншот 1 (дашборд) */}
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src="/cards-solutions/evopay1.png" alt="" aria-hidden style={{
+                        position: 'absolute', left: 920, top: 133, width: 795, height: 486,
+                        objectFit: 'cover', borderRadius: '22px 22px 0 0',
+                    }} />
+                    {/* Скриншот 2 (меню-оверлей) */}
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src="/cards-solutions/evopay2.png" alt="" aria-hidden style={{
+                        position: 'absolute', left: 638, top: 297, width: 532, height: 322,
+                        objectFit: 'cover', borderRadius: '22px 22px 0 0',
+                    }} />
+                </div>
+
+                {/* ── Ряд 3: ЭДО (x=47) + CCE (x=977), y=1474 ── */}
+                {s[3] && renderHalfCard(s[3], '/solutions/edo', 47, 1474,
+                    '/cards-solutions/edo.png',
+                    { nameX: 304, nameW: 301, leftX: 50, leftY: 108, metricX: 678, metricY: 108, imgX: 77, imgY: 233, imgW: 755, imgH: 386 }
+                )}
+                {s[4] && renderHalfCard(s[4], '/solutions/cce', 977, 1474,
+                    '/cards-solutions/cce1.png',
+                    {
+                        nameX: 277, nameW: 355, leftX: 50, leftY: 108,
+                        metricX: 678, metricY: 110,
+                        imgX: 55, imgY: 198, imgW: 798, imgH: 421,
+                        img2Src: '/cards-solutions/cce2.png',
+                        img2X: 50, img2Y: 434, img2W: 164, img2H: 141,
+                    }
+                )}
             </div>
         </section>
     )
