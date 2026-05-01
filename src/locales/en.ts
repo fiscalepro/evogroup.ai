@@ -526,27 +526,31 @@ export const en = {
     },
     problemStatement: {
         title: 'Problems we solve',
-        subtitle: 'Every day without automation costs you clients, money, and time',
         problems: [
             {
-                title: 'One system for team and profit growth',
-                description: 'Monitoring, analytics, quality control, employee training and sales — one tool that grows your team and profit at the same time.',
+                title: 'Your team is working,\nbut you can’t see results',
+                description:
+                    'No clarity on who’s selling, who’s stuck, where leads are dropping. You manage the team blindfolded.',
             },
             {
-                title: 'EvoPay — one platform for venues and guests',
-                description: 'A unified platform connecting venues and their guests. Online orders, cashless payments, QR menus, and a loyalty program with up to 10% cashback — all in one place.',
+                title: 'Orders, payments, loyalty —\nall in different systems',
+                description:
+                    'Waiters can’t see online orders. Cashiers don’t know about guest bonuses. Every tool lives separately — and guests feel it.',
             },
             {
-                title: 'Clinic chaos — patients leave',
-                description: 'Phone-based booking, lost records, missed appointments. Doctors waste time on routine instead of treatment. Patients switch to competitors.',
+                title: 'Clinic chaos —\npatients leave',
+                description:
+                    'Phone bookings, lost records, missed appointments. Doctors waste time on routine instead of treating people. Patients switch to competitors.',
             },
             {
-                title: 'Documents get lost, approvals drag on',
-                description: 'Paper-based workflows, lost versions, missed deadlines. No one knows the document status or who is responsible.',
+                title: 'Documents get lost,\napprovals drag on',
+                description:
+                    'Paper workflows, lost versions, missed deadlines. No one knows what stage a document is at or who is responsible.',
             },
             {
-                title: 'Code reviews bottleneck',
-                description: 'Developers wait days for reviews. Knowledge stays siloed. Standards drift.',
+                title: 'Code review is the bottleneck',
+                description:
+                    'Developers wait days for reviews. Knowledge stays siloed. Standards drift.',
             },
         ],
         solveWith: 'Solve with {solution}',

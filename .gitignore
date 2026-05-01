@@ -50,5 +50,10 @@ next-env.d.ts
 # Original large video files
 public/originals/
 
+# Local-only Figma reference (not committed)
+public/_figma-ref.svg
+public/_figma-view.html
+
 # spec review artifacts
 .spec-review/
+.tmp/

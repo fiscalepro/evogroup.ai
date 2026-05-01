@@ -2,137 +2,270 @@
 
 import React from 'react'
 import Link from 'next/link'
-import { motion } from 'framer-motion'
 import { useTranslation } from '@/components/providers/I18nProvider'
 
-const problemsMeta = [
+// Координаты/размеры взяты 1:1 из Figma (figma-cache.yaml).
+// Десктоп 1920px = 1:1 с макетом. Мобильную адаптацию делаем отдельной задачей.
+
+type CardMeta = {
+    solution: string
+    href: string
+    img: string
+    // отступ контента от верха карточки
+    contentTop: number
+    // ширина текстового контейнера (заголовок + описание)
+    contentWidth: number
+    // ширина описания (если отличается)
+    descriptionWidth?: number
+}
+
+const SMALL_CARDS: CardMeta[] = [
     {
-        icon: (
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-6 h-6">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
-        ),
         solution: 'EvoAI CRM',
         href: '/solutions/whatsapp',
+        img: '/cards-problems/card1.png',
+        contentTop: 60,
+        contentWidth: 294,
     },
     {
-        icon: (
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-6 h-6">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
-            </svg>
-        ),
         solution: 'EvoPay',
         href: '/solutions/evopay',
+        img: '/cards-problems/card2.png',
+        contentTop: 60,
+        contentWidth: 294,
     },
     {
-        icon: (
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-6 h-6">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
-        ),
         solution: 'EvoClinic',
         href: '/solutions/evoclinic',
-    },
-    {
-        icon: (
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-6 h-6">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-            </svg>
-        ),
-        solution: 'EDO',
-        href: '/solutions/edo',
-    },
-    {
-        icon: (
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-6 h-6">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M14.25 9.75L16.5 12l-2.25 2.25m-4.5 0L7.5 12l2.25-2.25M6 20.25h12A2.25 2.25 0 0020.25 18V6A2.25 2.25 0 0018 3.75H6A2.25 2.25 0 003.75 6v12A2.25 2.25 0 006 20.25z" />
-            </svg>
-        ),
-        solution: 'CCE Platform',
-        href: '/solutions/cce',
+        img: '/cards-problems/card3.png',
+        contentTop: 60,
+        contentWidth: 294,
     },
 ]
 
-const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-        opacity: 1,
-        transition: { staggerChildren: 0.1, delayChildren: 0.1 },
+const LARGE_CARDS: CardMeta[] = [
+    {
+        solution: 'EDO',
+        href: '/solutions/edo',
+        img: '/cards-problems/card4.png',
+        contentTop: 60,
+        contentWidth: 350,
     },
+    {
+        solution: 'CCE Platform',
+        href: '/solutions/cce',
+        img: '/cards-problems/card5.png',
+        contentTop: 70,
+        contentWidth: 350,
+        descriptionWidth: 388,
+    },
+]
+
+const ArrowRight: React.FC = () => (
+    <svg
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        aria-hidden
+        style={{ flexShrink: 0 }}
+    >
+        <path
+            d="M4 12h16M14 6l6 6-6 6"
+            stroke="#5E96FF"
+            strokeWidth="1.6"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+        />
+    </svg>
+)
+
+interface ProblemCardProps {
+    width: number
+    title: string
+    description: string
+    solveText: string
+    href: string
+    img: string
+    contentTop: number
+    contentWidth: number
+    descriptionWidth?: number
 }
 
-const itemVariants = {
-    hidden: { opacity: 0, y: 24 },
-    visible: {
-        opacity: 1,
-        y: 0,
-        transition: { duration: 0.5, ease: [0.25, 0.1, 0.25, 1] as [number, number, number, number] },
-    },
+const ProblemCard: React.FC<ProblemCardProps> = ({
+    width,
+    title,
+    description,
+    solveText,
+    href,
+    img,
+    contentTop,
+    contentWidth,
+    descriptionWidth,
+}) => {
+    const contentLeft = width === 600 ? 30 : 40
+    return (
+        <div
+            style={{
+                position: 'relative',
+                width,
+                height: 349,
+                borderRadius: 20,
+                overflow: 'hidden',
+                backgroundImage: `url(${img})`,
+                backgroundSize: '100% 100%',
+                backgroundRepeat: 'no-repeat',
+                flexShrink: 0,
+            }}
+        >
+            <div
+                style={{
+                    position: 'absolute',
+                    left: contentLeft,
+                    top: contentTop,
+                    width: contentWidth,
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: 24,
+                }}
+            >
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+                    <h3
+                        style={{
+                            margin: 0,
+                            fontFamily: 'var(--font-manrope), Manrope, sans-serif',
+                            fontWeight: 700,
+                            fontSize: 24,
+                            lineHeight: '28px',
+                            color: '#FFFFFF',
+                            whiteSpace: 'pre-line',
+                            letterSpacing: 0,
+                        }}
+                        suppressHydrationWarning
+                    >
+                        {title}
+                    </h3>
+                    <p
+                        style={{
+                            margin: 0,
+                            width: descriptionWidth,
+                            fontFamily: 'var(--font-inter), Inter, sans-serif',
+                            fontWeight: 400,
+                            fontSize: 14,
+                            lineHeight: '22.75px',
+                            color: '#FFFFFF',
+                        }}
+                        suppressHydrationWarning
+                    >
+                        {description}
+                    </p>
+                </div>
+                <Link
+                    href={href}
+                    style={{
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        gap: 10,
+                        textDecoration: 'none',
+                        fontFamily: 'var(--font-inter), Inter, sans-serif',
+                        fontWeight: 500,
+                        fontSize: 16,
+                        lineHeight: '22.4px',
+                        color: '#5E96FF',
+                        width: 'fit-content',
+                    }}
+                >
+                    <span suppressHydrationWarning>{solveText}</span>
+                    <ArrowRight />
+                </Link>
+            </div>
+        </div>
+    )
 }
 
 const ProblemStatement: React.FC = () => {
     const { tObj } = useTranslation()
     const t = tObj('problemStatement')
 
+    const renderCardAt = (idx: number, meta: CardMeta, width: number) => (
+        <ProblemCard
+            key={idx}
+            width={width}
+            title={t.problems[idx].title}
+            description={t.problems[idx].description}
+            solveText={t.solveWith.replace('{solution}', meta.solution)}
+            href={meta.href}
+            img={meta.img}
+            contentTop={meta.contentTop}
+            contentWidth={meta.contentWidth}
+            descriptionWidth={meta.descriptionWidth}
+        />
+    )
+
     return (
-        <section className="relative py-24 lg:py-32">
-            <div className="max-w-7xl mx-auto px-6">
-                {/* Header */}
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: '-80px' }}
-                    transition={{ duration: 0.6 }}
-                    className="text-center mb-16"
+        <section
+            className="relative w-full"
+            style={{ background: '#020133', overflow: 'hidden' }}
+        >
+            {/*
+              Figma геометрия (px от верха страницы):
+                Тёмный фрейм       y = 2453 (верх секции)
+                Заголовок          y = 2569
+                Карточки (ряд 1)   y = 2703 → 3052
+                Карточки (ряд 2)   y = 3092 → 3441
+                Конец секции       y ≈ 3613 (старт «Наши решения»)
+            */}
+            <div
+                style={{
+                    width: 1920,
+                    margin: '0 auto',
+                    position: 'relative',
+                    height: 1160, // 2453 → 3613
+                }}
+            >
+                {/* Заголовок: layout_TB61SX x=420, y=(2569-2453)=116, w=1079, h=74 */}
+                <h2
+                    style={{
+                        position: 'absolute',
+                        left: 420,
+                        top: 116,
+                        width: 1079,
+                        margin: 0,
+                        fontFamily: 'var(--font-manrope), Manrope, sans-serif',
+                        fontWeight: 600,
+                        fontSize: 64,
+                        lineHeight: '74px',
+                        textAlign: 'center',
+                        color: '#FFFFFF',
+                        letterSpacing: 0,
+                    }}
+                    suppressHydrationWarning
                 >
-                    <h2 className="text-2xl sm:text-3xl lg:text-5xl font-bold text-gray-900 dark:text-[#F0F0F5] tracking-tight mb-4">
-                        {t.title}
-                    </h2>
-                    <p className="text-base lg:text-lg text-gray-500 dark:text-[#F0F0F5]/50 max-w-xl mx-auto">
-                        {t.subtitle}
-                    </p>
-                </motion.div>
+                    {t.title}
+                </h2>
 
-                {/* Problem cards */}
-                <motion.div
-                    variants={containerVariants}
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true, margin: '-50px' }}
-                    className="grid sm:grid-cols-2 lg:grid-cols-6 gap-5"
+                {/* Контейнер карточек: layout_P1Q063 x=33, y=(2703-2453)=250, w=1851, gap 40 column */}
+                <div
+                    style={{
+                        position: 'absolute',
+                        left: 33,
+                        top: 250,
+                        width: 1851,
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center',
+                        gap: 40,
+                    }}
                 >
-                    {t.problems.map((problem, index) => (
-                        <motion.div
-                            key={index}
-                            variants={itemVariants}
-                            className={`group relative flex flex-col p-4 sm:p-7 rounded-2xl border border-transparent hover:border-gray-900 dark:hover:border-white/[0.12] hover:border-opacity-40 bg-white dark:bg-white/[0.02] shadow-sm dark:shadow-none hover:shadow-lg dark:hover:shadow-none transition-all duration-300 ${index < 3 ? 'lg:col-span-2' : 'lg:col-span-3'}`}
-                        >
-                            {/* Icon */}
-                            <div className="w-11 h-11 rounded-lg bg-red-50 dark:bg-red-500/[0.08] border border-red-200 dark:border-red-400/[0.1] flex items-center justify-center text-red-500 dark:text-red-400/80 mb-5">
-                                {problemsMeta[index].icon}
-                            </div>
-
-                            {/* Content */}
-                            <h3 className="text-base sm:text-lg font-semibold text-gray-900 dark:text-[#F0F0F5] mb-2">
-                                {problem.title}
-                            </h3>
-                            <p className="text-sm text-gray-500 dark:text-[#F0F0F5]/50 leading-relaxed mb-5">
-                                {problem.description}
-                            </p>
-
-                            {/* Solution link */}
-                            <Link
-                                href={problemsMeta[index].href}
-                                className="arrow-hover inline-flex items-center gap-2 mt-auto text-sm font-medium text-blue-600 dark:text-blue-400/80 hover:text-blue-700 dark:hover:text-blue-400 no-underline transition-colors"
-                            >
-                                {t.solveWith.replace('{solution}', problemsMeta[index].solution)}
-                                <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                                    <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                                </svg>
-                            </Link>
-                        </motion.div>
-                    ))}
-                </motion.div>
+                    {/* Ряд 1: 3 малые карточки 600×349, gap 20 */}
+                    <div style={{ display: 'flex', gap: 20 }}>
+                        {SMALL_CARDS.map((meta, i) => renderCardAt(i, meta, 600))}
+                    </div>
+                    {/* Ряд 2: 2 крупные карточки 914×349, gap 20 */}
+                    <div style={{ display: 'flex', gap: 20 }}>
+                        {LARGE_CARDS.map((meta, i) => renderCardAt(i + 3, meta, 914))}
+                    </div>
+                </div>
             </div>
         </section>
     )

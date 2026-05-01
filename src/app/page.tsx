@@ -16,9 +16,7 @@ export default function Home() {
             <ModernHeader />
             <HeroEvoGroup />
             <KeyPartners />
-            <div className="section-tinted">
-                <ProblemStatement />
-            </div>
+            <ProblemStatement />
             <SolutionsPreview />
             <div className="section-tinted">
                 <CaseStudies />
