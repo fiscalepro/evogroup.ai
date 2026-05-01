@@ -183,9 +183,22 @@ const ProblemCard: React.FC<ProblemCardProps> = ({
     )
 }
 
+const FIGMA_W = 1920
+const FIGMA_H = 1160
+
 const ProblemStatement: React.FC = () => {
     const { tObj } = useTranslation()
     const t = tObj('problemStatement')
+
+    // Масштаб: вписываем 1920px фрейм в реальный viewport
+    const [scale, setScale] = React.useState(() =>
+        typeof window !== 'undefined' ? Math.min(1, window.innerWidth / FIGMA_W) : 1
+    )
+    React.useEffect(() => {
+        const update = () => setScale(Math.min(1, window.innerWidth / FIGMA_W))
+        window.addEventListener('resize', update)
+        return () => window.removeEventListener('resize', update)
+    }, [])
 
     const renderCardAt = (idx: number, meta: CardMeta, width: number) => (
         <ProblemCard
@@ -205,22 +218,14 @@ const ProblemStatement: React.FC = () => {
     return (
         <section
             className="relative w-full"
-            style={{ background: '#020133', overflow: 'hidden' }}
+            style={{ background: '#020133', overflow: 'hidden', height: FIGMA_H * scale }}
         >
-            {/*
-              Figma геометрия (px от верха страницы):
-                Тёмный фрейм       y = 2453 (верх секции)
-                Заголовок          y = 2569
-                Карточки (ряд 1)   y = 2703 → 3052
-                Карточки (ряд 2)   y = 3092 → 3441
-                Конец секции       y ≈ 3613 (старт «Наши решения»)
-            */}
             <div
                 style={{
-                    width: 1920,
-                    margin: '0 auto',
-                    position: 'relative',
-                    height: 1160, // 2453 → 3613
+                    width: FIGMA_W,
+                    height: FIGMA_H,
+                    transform: `scale(${scale})`,
+                    transformOrigin: 'top left',
                 }}
             >
                 {/* Заголовок: layout_TB61SX x=420, y=(2569-2453)=116, w=1079, h=74 */}
