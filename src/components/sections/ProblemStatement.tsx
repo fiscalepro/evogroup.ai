@@ -190,12 +190,10 @@ const ProblemStatement: React.FC = () => {
     const { tObj } = useTranslation()
     const t = tObj('problemStatement')
 
-    // Масштаб: вписываем 1920px фрейм в реальный viewport
-    const [scale, setScale] = React.useState(() =>
-        typeof window !== 'undefined' ? Math.min(1, window.innerWidth / FIGMA_W) : 1
-    )
+    const [scale, setScale] = React.useState(1)
     React.useEffect(() => {
         const update = () => setScale(Math.min(1, window.innerWidth / FIGMA_W))
+        update()
         window.addEventListener('resize', update)
         return () => window.removeEventListener('resize', update)
     }, [])

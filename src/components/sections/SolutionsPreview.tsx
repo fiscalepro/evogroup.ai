@@ -46,11 +46,10 @@ const SolutionsPreview: React.FC = () => {
     const solutions = (t.solutions ?? []) as SolutionItem[]
     const learnMore = t.learnMore as string
 
-    const [scale, setScale] = React.useState(() =>
-        typeof window !== 'undefined' ? Math.min(1, window.innerWidth / FIGMA_W) : 1
-    )
+    const [scale, setScale] = React.useState(1)
     React.useEffect(() => {
         const update = () => setScale(Math.min(1, window.innerWidth / FIGMA_W))
+        update()
         window.addEventListener('resize', update)
         return () => window.removeEventListener('resize', update)
     }, [])
