@@ -120,6 +120,10 @@ const SolutionsPreview: React.FC = () => {
                         fontFamily: 'var(--font-inter), Inter, sans-serif',
                         fontWeight: 400, fontSize: 18, lineHeight: '26px',
                         color: 'rgba(255,255,255,0.75)',
+                        overflow: 'hidden',
+                        display: '-webkit-box',
+                        WebkitLineClamp: 3,
+                        WebkitBoxOrient: 'vertical',
                     }} suppressHydrationWarning>{s.description}</p>
                 </div>
 

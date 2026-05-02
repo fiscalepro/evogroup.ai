@@ -6,7 +6,7 @@ import { useTranslation } from '@/components/providers/I18nProvider'
 const FIGMA_W = 1920
 const FIGMA_H = 2580
 
-const SECTION_DARK_H = 1200
+const SECTION_DARK_H = 1264
 const CARD_BG = '#FFFFFF'
 const CARD_RADIUS = 22
 const CARD_W = 910
