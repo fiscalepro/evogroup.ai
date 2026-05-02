@@ -757,6 +757,15 @@ export const en = {
             },
         ],
     },
+    certifications: {
+        overline: 'Certifications & Partnerships',
+        items: [
+            { title: 'ISO 27001', description: 'Information security management' },
+            { title: 'API Partner', description: 'Direct access to platforms' },
+            { title: 'AI Certified', description: 'Certified AI solutions' },
+            { title: 'Meta Tech Provider', description: 'Official Meta technology provider' },
+        ],
+    },
     caseStudies: {
         title: 'Real Results',
         subtitle: 'AI automation end-to-end. Here\'s what clients actually get — with numbers and names.',

@@ -647,6 +647,15 @@ export const ru = {
             },
         ],
     },
+    certifications: {
+        overline: 'Сертификации и партнёрства',
+        items: [
+            { title: 'ISO 27001', description: 'Управление информационной безопасностью' },
+            { title: 'API Partner', description: 'Прямой доступ к платформам' },
+            { title: 'AI Certified', description: 'Сертифицированные ИИ-решения' },
+            { title: 'Meta Tech Provider', description: 'Официальный технологический провайдер Meta' },
+        ],
+    },
     caseStudies: {
         title: 'Реальные результаты',
         subtitle: 'AI-автоматизация под ключ. Вот что получают клиенты на практике — с цифрами и именами.',

@@ -757,6 +757,15 @@ export const ky = {
             },
         ],
     },
+    certifications: {
+        overline: 'Сертификаттар жана өнөктөштүктөр',
+        items: [
+            { title: 'ISO 27001', description: 'Маалымат коопсуздугун башкаруу' },
+            { title: 'API Partner', description: 'Платформаларга түз кирүү' },
+            { title: 'AI Certified', description: 'Сертификатталган ЖИ-чечимдер' },
+            { title: 'Meta Tech Provider', description: 'Meta расмий технологиялык провайдери' },
+        ],
+    },
     caseStudies: {
         title: 'Чыныгы натыйжалар',
         subtitle: 'AI-автоматташтыруу «ачкычтан». Кардарлар практикада эмне алат — цифралар жана аттар менен.',
