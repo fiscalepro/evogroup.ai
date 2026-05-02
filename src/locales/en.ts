@@ -757,4 +757,63 @@ export const en = {
             },
         ],
     },
+    caseStudies: {
+        title: 'Real Results',
+        subtitle: 'AI automation end-to-end. Here\'s what clients actually get — with numbers and names.',
+        discuss: 'Discuss project',
+        cases: [
+            {
+                tag: 'OIL & GAS · EDO',
+                num: '01',
+                company: 'Partner Neft',
+                title: 'Full EDO system automated document flow for an oil & gas company',
+                description: 'Partner Neft needed a full electronic document management system. We built a Spring Boot 3.2.5 backend and React 18 frontend, JWT auth, MinIO storage, Redis caching and PostgreSQL with Flyway migrations.',
+                metrics: [
+                    { value: '226+', label: 'PRs shipped' },
+                    { value: '100%', label: 'Digital document flow' },
+                    { value: 'JWT', label: 'Secure token management' },
+                    { value: 'MinIO', label: 'S3-compatible storage' },
+                ],
+            },
+            {
+                tag: 'MANUFACTURING · B2B',
+                num: '02',
+                company: 'BIAST.KG',
+                title: 'Full automation: from incoming request to shipment',
+                description: 'A sandwich-panel manufacturer was losing orders and spending hours on manual processing. We deployed an AI chatbot, CRM and dashboard — everything became transparent.',
+                metrics: [
+                    { value: '~0%', label: 'Lost orders' },
+                    { value: '−80%', label: 'Processing time' },
+                    { value: '100%', label: 'Transparency' },
+                    { value: '3–5 days', label: 'Onboarding' },
+                ],
+            },
+            {
+                tag: 'RETAIL · E-COMMERCE',
+                num: '03',
+                company: 'Phone Store',
+                title: 'AI chatbot replaced 2 managers and boosted sales by 35%',
+                description: 'A phone retailer was losing customers on Instagram and WhatsApp — slow replies, missed requests after hours. We deployed an AI chatbot that knows the full catalog, recommends phones and takes orders 24/7.',
+                metrics: [
+                    { value: '+35%', label: 'Sales conversion' },
+                    { value: '5 sec', label: 'Response time' },
+                    { value: '+40%', label: 'After-hours sales' },
+                    { value: '$800+', label: 'Monthly savings' },
+                ],
+            },
+            {
+                tag: 'DISTRIBUTION · HR TECH',
+                num: '04',
+                company: 'Training Platform',
+                title: 'AI learning platform cut onboarding from 2 weeks to 3 days',
+                description: 'A distributor spent weeks on manual training of sales reps. We built an AI platform with role-based courses, 24/7 AI coach, automated exams and instant reports.',
+                metrics: [
+                    { value: '3 days', label: 'Onboarding time' },
+                    { value: '78%', label: 'Avg exam score' },
+                    { value: '24/7', label: 'AI coach' },
+                    { value: '0', label: 'Supervisor hours' },
+                ],
+            },
+        ],
+    },
 }

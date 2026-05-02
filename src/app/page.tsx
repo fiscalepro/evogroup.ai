@@ -18,9 +18,7 @@ export default function Home() {
             <KeyPartners />
             <ProblemStatement />
             <SolutionsPreview />
-            <div className="section-tinted">
-                <CaseStudies />
-            </div>
+            <CaseStudies />
             <Certifications />
             <Footer />
         </div>

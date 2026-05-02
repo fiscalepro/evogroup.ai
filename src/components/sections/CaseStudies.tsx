@@ -1,269 +1,264 @@
 'use client'
 
 import React from 'react'
-import { motion } from 'framer-motion'
-import { CaseCard } from './CaseCard'
-import Link from 'next/link'
 import { useTranslation } from '@/components/providers/I18nProvider'
-import { Button } from '@/components/ui/Button'
 
-interface ResultItem {
-    value: string
-    label: string
-}
+const FIGMA_W = 1920
+const FIGMA_H = 2580
 
-export interface CaseCard {
-    number: string
-    color: 'green' | 'blue'
+const SECTION_DARK_H = 1200
+const CARD_BG = '#FFFFFF'
+const CARD_RADIUS = 22
+const CARD_W = 910
+const CARD_H = 622
+
+// tag bg #F6F9FF, tag text #003074
+// num gradient 141deg #0F2580→#A90F56
+// btn gradient 91deg #01318C→#E10A4D
+// metric value #022660, metric label #6F798E
+// card title #2A3D65, card desc #647088
+
+type Metric = { value: string; label: string }
+type CaseItem = {
     tag: string
+    num: string
     company: string
-    headline: string
-    teaser: string
-    results: ResultItem[]
-    quoteAuthor: string
-    instagram: {
-        handle: string
-        url: string
-    }
+    title: string
+    description: string
+    metrics: Metric[]
 }
 
-function getCaseData(locale: string): { cases: CaseCard[]; overline: string; title: string; subtitle: string; ctaTitle: string; ctaSub: string; ctaBtn: string } {
-    if (locale === 'en') {
-        return {
-            overline: 'Client cases',
-            title: 'Real results',
-            subtitle: 'We build full-cycle digital platforms. Here\'s what clients get in production.',
-            ctaTitle: 'Your business — the next case?',
-            ctaSub: 'Let\'s analyze the situation and launch a free 2-week pilot.',
-            ctaBtn: 'Start free pilot →',
-            cases: [
-                {
-                    number: '01',
-                    color: 'green',
-                    tag: 'Banking · Fintech',
-                    company: 'Banking — Universal Cabinet',
-                    headline: 'Full ecosystem of government e-services for small business banking',
-                    teaser: 'A leading bank needed to offer ESF, ETTN, tax reports, HR, ERP and IP registration inside their mobile app. We built 16 microservices on Spring Cloud with Tunduk X-Road integration and OECP digital signing.',
-                    results: [
-                        { value: '16', label: 'Microservices' },
-                        { value: '84+', label: 'API endpoints (HR alone)' },
-                        { value: '4', label: 'Languages supported' },
-                        { value: '289+', label: 'PRs merged' },
-                    ],
-                    quoteAuthor: '— Bank engineering team',
-                    instagram: { handle: '@evogroup.ai', url: 'https://instagram.com/evogroup.ai' },
-                },
-                {
-                    number: '02',
-                    color: 'blue',
-                    tag: 'Oil & Gas · Enterprise',
-                    company: 'Oil & Gas Enterprise',
-                    headline: 'Oil depots, tanks, gas stations — all in one platform',
-                    teaser: 'A major fuel network had no unified digital system. We built depot management with AI analytics, technical support with mobile apps, and 1C integration — 600+ PRs shipped.',
-                    results: [
-                        { value: '152', label: 'Tanks monitored' },
-                        { value: '10', label: 'User roles' },
-                        { value: '600+', label: 'PRs shipped' },
-                        { value: 'AI', label: 'Analytics & corrections' },
-                    ],
-                    quoteAuthor: '— Oil & Gas enterprise team',
-                    instagram: { handle: '@evogroup.ai', url: 'https://instagram.com/evogroup.ai' },
-                },
-                {
-                    number: '03',
-                    color: 'green',
-                    tag: 'HoReCa · Automation',
-                    company: 'HoReCa Automation',
-                    headline: 'Full restaurant automation: QR menu, online payments, and real-time analytics',
-                    teaser: 'A premium restaurant was losing time on manual orders, cashier queues during rush hours, and had zero analytics. We deployed EvoPay — QR menu with online payments, automatic order routing to kitchen screens, a loyalty system, and a real-time management dashboard.',
-                    results: [
-                        { value: '−40%', label: 'Service time' },
-                        { value: '+18%', label: 'Average check' },
-                        { value: '×1', label: 'Unified dashboard' },
-                        { value: '24/7', label: 'Analytics access' },
-                    ],
-                    quoteAuthor: '— Restaurant management',
-                    instagram: { handle: '@evogroup.ai', url: 'https://instagram.com/evogroup.ai' },
-                },
-            ],
-        }
-    }
-    if (locale === 'ky') {
-        return {
-            overline: 'Кардарлардын кейстери',
-            title: 'Чыныгы натыйжалар',
-            subtitle: 'Толук санариптик платформаларды курабыз. Кардарлардын продакшнунда эмне иштеп жатат.',
-            ctaTitle: 'Сиздин бизнес — кийинки кейс?',
-            ctaSub: 'Кырдаалды талдап, 2 жумалык бекер пилотту ишке киргизебиз.',
-            ctaBtn: 'Бекер пилотту баштоо →',
-            cases: [
-                {
-                    number: '01',
-                    color: 'green',
-                    tag: 'Банктар · Финтех',
-                    company: 'Банк — Универсалдуу Кабинет',
-                    headline: 'Чакан бизнес үчүн мамлекеттик электрондук кызматтардын толук экосистемасы',
-                    teaser: 'Алдыңкы банкка кардарларга ЭСФ, ЭТТН, салык отчёттору, HR, ERP жана ИП каттоону мобилдик тиркемеден берүү керек болду. Биз Tunduk X-Road интеграциясы менен 16 микросервис курдук.',
-                    results: [
-                        { value: '16', label: 'Микросервис' },
-                        { value: '84+', label: 'API endpoints (HR гана)' },
-                        { value: '4', label: 'Интерфейс тили' },
-                        { value: '289+', label: 'PR бириктирилди' },
-                    ],
-                    quoteAuthor: '— Банк иштеп чыгуу командасы',
-                    instagram: { handle: '@evogroup.ai', url: 'https://instagram.com/evogroup.ai' },
-                },
-                {
-                    number: '02',
-                    color: 'blue',
-                    tag: 'Мунай жана газ · Ишкана',
-                    company: 'Мунай-газ ишканасы',
-                    headline: 'Мунай базалары, резервуарлар, АЗС — бир платформада',
-                    teaser: 'Ири күйүүчү май тармагында бирдиктүү санариптик система жок эле. Мунай базаларын AI-аналитика менен башкаруу, мобилдик техподдержка жана 1С интеграциясын курдук.',
-                    results: [
-                        { value: '152', label: 'Резервуар контролдо' },
-                        { value: '10', label: 'Колдонуучу ролу' },
-                        { value: '600+', label: 'PR жөнөтүлдү' },
-                        { value: 'AI', label: 'Аналитика жана оңдоолор' },
-                    ],
-                    quoteAuthor: '— Мунай-газ ишкана командасы',
-                    instagram: { handle: '@evogroup.ai', url: 'https://instagram.com/evogroup.ai' },
-                },
-                {
-                    number: '03',
-                    color: 'green',
-                    tag: 'Тамак-аш · Автоматташтыруу',
-                    company: 'HoReCa Автоматташтыруу',
-                    headline: 'Ресторанды толук автоматташтыруу: QR-меню, онлайн төлөм жана реал убакыттагы аналитика',
-                    teaser: 'Ресторан заказдарды кол менен кабыл алууга убакыт жоготуп, кассада кезектер, аналитика жок болгон. EvoPay орноттук — онлайн төлөм менен QR-меню, заказдарды ашканага автоматтык жөнөтүү, лоялдуулук системасы жана реал убакыттагы башкаруу дашборду.',
-                    results: [
-                        { value: '−40%', label: 'Тейлөө убактысы' },
-                        { value: '+18%', label: 'Орточо чек' },
-                        { value: '×1', label: 'Бирдиктүү дашборд' },
-                        { value: '24/7', label: 'Аналитикага кирүү' },
-                    ],
-                    quoteAuthor: '— Ресторан башкаруусу',
-                    instagram: { handle: '@evogroup.ai', url: 'https://instagram.com/evogroup.ai' },
-                },
-            ],
-        }
-    }
-    // ru (default)
-    return {
-        overline: 'Кейсы клиентов',
-        title: 'Реальные результаты',
-        subtitle: 'Строим полноценные цифровые платформы. Вот что работает в продакшне у клиентов.',
-        ctaTitle: 'Ваш бизнес — следующий кейс?',
-        ctaSub: 'Разберём ситуацию и запустим пилот бесплатно на 2 недели.',
-        ctaBtn: 'Начать бесплатный пилот →',
-        cases: [
-            {
-                number: '01',
-                color: 'green',
-                tag: 'Банки · Финтех',
-                company: 'Fin Tech — Универсальный Кабинет',
-                headline: 'Полная экосистема госуслуг для малого бизнеса в банковском приложении',
-                teaser: 'Ведущему банку нужно было дать клиентам ЭСФ, ЭТТН, налоговые отчёты, HR, ERP и регистрацию ИП прямо в мобильном приложении. Мы построили 16 микросервисов на Spring Cloud с интеграцией через Tunduk X-Road и ОЭЦП подписанием.',
-                results: [
-                    { value: '16', label: 'Микросервисов' },
-                    { value: '84+', label: 'API endpoints (только HR)' },
-                    { value: '4', label: 'Языка интерфейса' },
-                    { value: '289+', label: 'PRs в HR-модуле' },
-                ],
-                quoteAuthor: '— Команда разработки банка',
-                instagram: { handle: '@evogroup.ai', url: 'https://instagram.com/evogroup.ai' },
-            },
-            {
-                number: '02',
-                color: 'blue',
-                tag: 'Нефтегаз · Энтерпрайз',
-                company: 'Нефтегазовое предприятие',
-                headline: 'Нефтебазы, резервуары, АЗС — всё в одной платформе',
-                teaser: 'Крупная топливная сеть не имела единой цифровой системы. Мы создали управление нефтебазами с AI-аналитикой, техподдержку с мобильными приложениями и интеграцию с 1С — 600+ PR отгружено.',
-                results: [
-                    { value: '152', label: 'Резервуара под контролем' },
-                    { value: '10', label: 'Ролей пользователей' },
-                    { value: '600+', label: 'PR отгружено' },
-                    { value: 'AI', label: 'Аналитика и корректировки' },
-                ],
-                quoteAuthor: '— Команда нефтегазового предприятия',
-                instagram: { handle: '@evogroup.ai', url: 'https://instagram.com/evogroup.ai' },
-            },
-            {
-                number: '03',
-                color: 'green',
-                tag: 'Общепит · Автоматизация',
-                company: 'HoReCa Автоматизация',
-                headline: 'Полная автоматизация ресторана: QR-меню, онлайн-оплата и аналитика в реальном времени',
-                teaser: 'Премиальный ресторан терял время на ручном приёме заказов, очереди на кассе в часы пик, нулевая аналитика. Внедрили EvoPay — QR-меню с онлайн-оплатой, автопередача заказов на кухню, система лояльности и дашборд управляющего в реальном времени.',
-                results: [
-                    { value: '−40%', label: 'Время обслуживания' },
-                    { value: '+18%', label: 'Средний чек' },
-                    { value: '×1', label: 'Единый дашборд' },
-                    { value: '24/7', label: 'Доступ к аналитике' },
-                ],
-                quoteAuthor: '— Управление рестораном',
-                instagram: { handle: '@evogroup.ai', url: 'https://instagram.com/evogroup.ai' },
-            },
-        ],
-    }
-}
+const CardGlow: React.FC<{ x: number; y: number; color: string }> = ({ x, y, color }) => (
+    <div aria-hidden style={{
+        position: 'absolute', left: x, top: y, width: 638, height: 572,
+        background: color, filter: 'blur(60px)', opacity: 0.5, pointerEvents: 'none',
+    }} />
+)
+
+const CaseCard: React.FC<{ item: CaseItem; discussLabel: string }> = ({ item, discussLabel }) => (
+    <div style={{
+        position: 'relative', width: CARD_W, height: CARD_H,
+        background: CARD_BG, borderRadius: CARD_RADIUS,
+        overflow: 'hidden', flexShrink: 0,
+        boxShadow: '0 4px 32px rgba(0,0,0,0.08)',
+    }}>
+        {/* Decorative ellipses */}
+        <CardGlow x={-260} y={493} color="radial-gradient(circle, rgba(255,140,182,1) 0%, rgba(216,202,214,0.6) 100%)" />
+        <CardGlow x={547} y={-266} color="radial-gradient(circle, rgba(140,144,255,1) 0%, rgba(216,202,214,0.6) 100%)" />
+
+        {/* Industry tag */}
+        <div style={{
+            position: 'absolute', left: 32, top: 77,
+            background: '#F6F9FF', borderRadius: 6,
+            padding: '4px 10px',
+            fontFamily: 'var(--font-inter), Inter, sans-serif',
+            fontWeight: 600, fontSize: 11, letterSpacing: '1.1px',
+            textTransform: 'uppercase', color: '#003074',
+        }} suppressHydrationWarning>{item.tag}</div>
+
+        {/* Case number */}
+        <span style={{
+            position: 'absolute', left: 809, top: 30, width: 72,
+            fontFamily: 'var(--font-manrope), Manrope, sans-serif',
+            fontWeight: 700, fontSize: 64, lineHeight: '63px',
+            background: 'linear-gradient(141deg, #0F2580 0%, #A90F56 93%)',
+            WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent',
+            backgroundClip: 'text',
+        }} suppressHydrationWarning>{item.num}</span>
+
+        {/* Left column: company + button */}
+        <div style={{
+            position: 'absolute', left: 32, top: 123, width: 377, height: 183,
+            display: 'flex', flexDirection: 'column', justifyContent: 'space-between',
+        }}>
+            <span style={{
+                fontFamily: 'var(--font-manrope), Manrope, sans-serif',
+                fontWeight: 700, fontSize: 40, lineHeight: '44px', color: '#111827',
+            }} suppressHydrationWarning>{item.company}</span>
+            <a href="/contact" style={{
+                display: 'inline-flex', alignItems: 'center', gap: 10,
+                padding: '10px 20px', borderRadius: 10,
+                background: 'linear-gradient(91deg, #01318C 0%, #E10A4D 100%)',
+                fontFamily: 'var(--font-inter), Inter, sans-serif',
+                fontWeight: 500, fontSize: 16, color: '#FFFFFF',
+                textDecoration: 'none', width: 'fit-content',
+            }} suppressHydrationWarning>
+                {discussLabel}
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden>
+                    <path d="M4 12h16M14 6l6 6-6 6" stroke="#fff" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+            </a>
+        </div>
+
+        {/* Right column: title + description */}
+        <div style={{
+            position: 'absolute', left: 440, top: 123, width: 440,
+            display: 'flex', flexDirection: 'column', gap: 16,
+        }}>
+            <p style={{
+                margin: 0,
+                fontFamily: 'var(--font-inter), Inter, sans-serif',
+                fontWeight: 600, fontSize: 18, lineHeight: '24px',
+                color: '#2A3D65', textAlign: 'right',
+            }} suppressHydrationWarning>{item.title}</p>
+            <p style={{
+                margin: 0,
+                fontFamily: 'var(--font-inter), Inter, sans-serif',
+                fontWeight: 400, fontSize: 14, lineHeight: '22px',
+                color: '#647088', textAlign: 'right',
+            }} suppressHydrationWarning>{item.description}</p>
+        </div>
+
+        {/* Divider */}
+        <div style={{
+            position: 'absolute', left: 32, top: 360, width: 847, height: 1,
+            background: '#E8EBF0',
+        }} />
+
+        {/* Metrics row */}
+        <div style={{
+            position: 'absolute', left: 32, top: 395, width: 847,
+            display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start',
+        }}>
+            {item.metrics.map((m, i) => (
+                <div key={i} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8 }}>
+                    <span style={{
+                        fontFamily: 'var(--font-manrope), Manrope, sans-serif',
+                        fontWeight: 700, fontSize: 56, lineHeight: '36px',
+                        color: '#022660',
+                    }} suppressHydrationWarning>{m.value}</span>
+                    <span style={{
+                        fontFamily: 'var(--font-inter), Inter, sans-serif',
+                        fontWeight: 400, fontSize: 14, lineHeight: '20px',
+                        color: '#6F798E', textAlign: 'center', maxWidth: 160,
+                    }} suppressHydrationWarning>{m.label}</span>
+                </div>
+            ))}
+        </div>
+    </div>
+)
 
 const CaseStudies: React.FC = () => {
-    const { locale } = useTranslation()
-    const content = getCaseData(locale)
+    const { tObj } = useTranslation()
+    const t = tObj('caseStudies')
+    const cases = (t.cases ?? []) as CaseItem[]
+    const title = t.title as string
+    const subtitle = t.subtitle as string
+    const discussLabel = t.discuss as string
+
+    const [scale, setScale] = React.useState(() =>
+        typeof window !== 'undefined' ? Math.min(1, window.innerWidth / FIGMA_W) : 1
+    )
+    React.useEffect(() => {
+        const update = () => setScale(Math.min(1, window.innerWidth / FIGMA_W))
+        window.addEventListener('resize', update)
+        return () => window.removeEventListener('resize', update)
+    }, [])
+
+    const row1 = cases.slice(0, 2)
+    const row2 = cases.slice(2, 4)
 
     return (
-        <section id="cases" className="relative py-24 lg:py-32 overflow-hidden">
-            <div className="relative z-10 max-w-4xl mx-auto px-6">
+        <section
+            className="relative w-full"
+            style={{ background: '#EDF0F5', overflow: 'hidden', height: FIGMA_H * scale }}
+        >
+            <div style={{
+                width: FIGMA_W, height: FIGMA_H,
+                transform: `scale(${scale})`,
+                transformOrigin: 'top left',
+            }}>
+                {/* Dark header area */}
+                <div style={{
+                    position: 'absolute', left: 0, top: 0, width: 1920, height: SECTION_DARK_H,
+                    background: '#010133',
+                }} />
 
-                {/* Section header */}
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: '-80px' }}
-                    transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
-                    className="mb-12"
-                >
-                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-gray-400 bg-white dark:bg-white/[0.02] mb-5">
-                        <span className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse" />
-                        <span className="text-xs text-gray-500 dark:text-[#F0F0F5]/55 uppercase tracking-widest font-medium">{content.overline}</span>
-                    </div>
-                    <h2 className="text-2xl sm:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-[#F0F0F5] tracking-tight leading-tight mb-3">
-                        {content.title}
-                    </h2>
-                    <p className="text-base text-gray-500 dark:text-[#F0F0F5]/55 max-w-md leading-relaxed">
-                        {content.subtitle}
-                    </p>
-                </motion.div>
+                {/* Title area */}
+                <div style={{
+                    position: 'absolute', left: 505, top: 305, width: 890,
+                    display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 20,
+                }}>
+                    <h2 style={{
+                        margin: 0, width: '100%',
+                        fontFamily: 'var(--font-manrope), Manrope, sans-serif',
+                        fontWeight: 700, fontSize: 74, lineHeight: '90px',
+                        textAlign: 'center', color: '#FFFFFF',
+                    }} suppressHydrationWarning>{title}</h2>
+                    <p style={{
+                        margin: 0, width: 677,
+                        fontFamily: 'var(--font-inter), Inter, sans-serif',
+                        fontWeight: 400, fontSize: 18, lineHeight: '28px',
+                        textAlign: 'center', color: 'rgba(255,255,255,0.7)',
+                    }} suppressHydrationWarning>{subtitle}</p>
+                </div>
 
-                {/* Case cards */}
-                <div className="flex flex-col gap-5 mb-10">
-                    {content.cases.map((card, index) => (
-                        <CaseCard key={index} card={card} index={index} />
+                {/* ROI decoration (right) */}
+                <div style={{
+                    position: 'absolute', left: 1442, top: 417, width: 423, height: 568,
+                    background: 'radial-gradient(circle at 50% 50%, rgba(194,97,254,0.15) 0%, rgba(255,255,255,0.5) 100%)',
+                    borderRadius: 48,
+                }} />
+                <p style={{
+                    position: 'absolute', left: 1550, top: 695,
+                    margin: 0, width: 202,
+                    fontFamily: 'var(--font-inter), Inter, sans-serif',
+                    fontWeight: 500, fontSize: 32, lineHeight: '24px', color: '#FAFAFF',
+                }}>средний ROI</p>
+                <p style={{
+                    position: 'absolute', left: 1486, top: 920,
+                    margin: 0, width: 298,
+                    fontFamily: 'var(--font-inter), Inter, sans-serif',
+                    fontWeight: 500, fontSize: 24, lineHeight: '32px', color: '#FFFFFF',
+                }}>В течение 6–18 месяцев</p>
+
+                {/* Stats decoration (left) */}
+                <div style={{
+                    position: 'absolute', left: 61, top: 417, width: 423, height: 568,
+                    background: 'radial-gradient(circle at 50% 50%, rgba(194,97,254,0.15) 0%, rgba(255,255,255,0.5) 100%)',
+                    borderRadius: 48,
+                }} />
+                <p style={{
+                    position: 'absolute', left: 95, top: 480,
+                    margin: 0,
+                    fontFamily: 'var(--font-manrope), Manrope, sans-serif',
+                    fontWeight: 700, fontSize: 99, lineHeight: '88px',
+                    background: 'linear-gradient(91deg, #01318C 0%, #E10A4D 100%)',
+                    WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent',
+                    backgroundClip: 'text',
+                }}>50+</p>
+                <p style={{
+                    position: 'absolute', left: 95, top: 600,
+                    margin: 0,
+                    fontFamily: 'var(--font-inter), Inter, sans-serif',
+                    fontWeight: 500, fontSize: 32, lineHeight: '24px', color: '#FAFAFF',
+                }}>клиентов</p>
+                <p style={{
+                    position: 'absolute', left: 95, top: 650,
+                    margin: 0,
+                    fontFamily: 'var(--font-inter), Inter, sans-serif',
+                    fontWeight: 500, fontSize: 24, lineHeight: '32px', color: 'rgba(255,255,255,0.7)',
+                }}>Активных внедрений</p>
+
+                {/* Cards row 1 */}
+                <div style={{
+                    position: 'absolute', left: 38, top: 1264,
+                    display: 'flex', gap: 20,
+                }}>
+                    {row1.map((item, i) => (
+                        <CaseCard key={i} item={item} discussLabel={discussLabel} />
                     ))}
                 </div>
 
-                {/* Bottom CTA */}
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: 0.2 }}
-                    className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border border-transparent hover:border-gray-900/40 dark:hover:border-white/[0.12] rounded-2xl px-4 py-4 sm:px-7 sm:py-6 bg-white dark:bg-white/[0.02] shadow-sm dark:shadow-none hover:shadow-lg dark:hover:shadow-none transition-all duration-300"
-                >
-                    <div>
-                        <p className="text-base font-semibold text-gray-900 dark:text-[#F0F0F5] mb-1">{content.ctaTitle}</p>
-                        <p className="text-sm text-gray-500 dark:text-[#F0F0F5]/55 leading-relaxed">{content.ctaSub}</p>
-                    </div>
-                    <Button href="/contact" variant="primary" size="lg" className="arrow-hover flex-shrink-0">
-                        {content.ctaBtn}
-                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                            <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                        </svg>
-                    </Button>
-                </motion.div>
-
+                {/* Cards row 2 */}
+                <div style={{
+                    position: 'absolute', left: 38, top: 1264 + CARD_H + 20,
+                    display: 'flex', gap: 20,
+                }}>
+                    {row2.map((item, i) => (
+                        <CaseCard key={i} item={item} discussLabel={discussLabel} />
+                    ))}
+                </div>
             </div>
         </section>
     )
