@@ -16,35 +16,14 @@ const CTASection: React.FC = () => {
             position: 'relative', background: '#010133', overflow: 'hidden',
             padding: '120px 40px 100px', textAlign: 'center',
         }}>
-            {/* Globe glow background */}
-            <div aria-hidden style={{
-                position: 'absolute', left: '50%', top: '50%',
+            {/* Globe — slightly below center */}
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/cta-globe.png" alt="" aria-hidden style={{
+                position: 'absolute', left: '50%', top: '55%',
                 transform: 'translate(-50%, -50%)',
-                width: 700, height: 700, borderRadius: '50%',
-                background: 'radial-gradient(circle at 50% 50%, rgba(62,97,255,0.18) 0%, rgba(130,60,255,0.08) 40%, transparent 70%)',
-                border: '1px solid rgba(62,97,255,0.12)',
-                pointerEvents: 'none',
-            }} />
-            {/* Inner globe ring */}
-            <div aria-hidden style={{
-                position: 'absolute', left: '50%', top: '50%',
-                transform: 'translate(-50%, -50%)',
-                width: 480, height: 480, borderRadius: '50%',
-                border: '1px solid rgba(62,97,255,0.1)',
-                background: 'radial-gradient(circle at 30% 35%, rgba(100,60,255,0.12) 0%, transparent 60%)',
-                pointerEvents: 'none',
-            }} />
-
-            {/* Side vertical bars */}
-            <div aria-hidden style={{
-                position: 'absolute', left: 0, top: 0, width: 60, height: '100%',
-                background: 'linear-gradient(90deg, rgba(2,1,60,0.9) 0%, transparent 100%)',
-                pointerEvents: 'none',
-            }} />
-            <div aria-hidden style={{
-                position: 'absolute', right: 0, top: 0, width: 60, height: '100%',
-                background: 'linear-gradient(270deg, rgba(2,1,60,0.9) 0%, transparent 100%)',
-                pointerEvents: 'none',
+                width: '75%', maxWidth: 1100,
+                mixBlendMode: 'screen',
+                opacity: 0.55, pointerEvents: 'none',
             }} />
 
             {/* Content */}
@@ -64,15 +43,13 @@ const CTASection: React.FC = () => {
                     fontWeight: 700, fontSize: 'clamp(42px, 4vw, 74px)',
                     lineHeight: 1.1, color: '#FFFFFF',
                 }}>
-                    <span suppressHydrationWarning>{t.titleLine1} </span>
+                    <span suppressHydrationWarning>{t.titleLine1}</span>
+                    <br />
                     <span style={{
                         background: 'linear-gradient(90deg, #A855F7 0%, #3B82F6 100%)',
                         WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent',
                         backgroundClip: 'text',
-                    }} suppressHydrationWarning>{t.titleHighlight}</span>
-                    {t.titleLine2 && (
-                        <span suppressHydrationWarning> {t.titleLine2}</span>
-                    )}
+                    }} suppressHydrationWarning>{t.titleHighlight}{t.titleLine2 ? ` ${t.titleLine2}` : ''}</span>
                 </h2>
 
                 {/* Subtitle */}

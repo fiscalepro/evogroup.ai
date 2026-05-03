@@ -768,7 +768,7 @@ export const en = {
     },
     caseStudies: {
         title: 'Real Results',
-        subtitle: 'AI automation end-to-end. Here\'s what clients actually get — with numbers and names.',
+        subtitle: 'Building full-scale digital platforms. Here\'s what actually runs in production at our clients.',
         discuss: 'Discuss project',
         cases: [
             {
