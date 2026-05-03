@@ -825,4 +825,13 @@ export const en = {
             },
         ],
     },
+    ctaSection: {
+        overline: 'START TODAY',
+        titleLine1: 'Ready to launch',
+        titleHighlight: 'AI',
+        titleLine2: 'in your business?',
+        subtitle: 'We will analyze your situation for free and launch a pilot project in 2 weeks — no commitment.',
+        btnPrimary: 'Get a free demo',
+        btnSecondary: 'Contact us',
+    },
 }

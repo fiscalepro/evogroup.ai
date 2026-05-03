@@ -825,4 +825,13 @@ export const ky = {
             },
         ],
     },
+    ctaSection: {
+        overline: 'БҮГҮН БАШТАҢЫЗ',
+        titleLine1: 'ЖИ жайылтууга',
+        titleHighlight: 'даярсызбы?',
+        titleLine2: '',
+        subtitle: 'Биз сиздин кырдаалыңызды бекер талдап, 2 жумада пилоттук долбоорду ишке киргиземиз — милдеттенмесиз.',
+        btnPrimary: 'Бекер демо алуу',
+        btnSecondary: 'Жазуу',
+    },
 }

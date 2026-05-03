@@ -3,12 +3,12 @@ import ModernHeader from '@/components/sections/ModernHeader'
 import HeroEvoGroup from '@/components/sections/HeroEvoGroup'
 import Footer from '@/components/sections/Footer'
 
-// Lazy load секций ниже fold — грузятся только когда пользователь скроллит
 const KeyPartners = dynamic(() => import('@/components/sections/KeyPartners'))
 const ProblemStatement = dynamic(() => import('@/components/sections/ProblemStatement'))
 const SolutionsPreview = dynamic(() => import('@/components/sections/SolutionsPreview'))
 const CaseStudies = dynamic(() => import('@/components/sections/CaseStudies'))
 const Certifications = dynamic(() => import('@/components/sections/Certifications'))
+const CTASection = dynamic(() => import('@/components/sections/CTASection'))
 
 export default function Home() {
     return (
@@ -20,6 +20,7 @@ export default function Home() {
             <SolutionsPreview />
             <CaseStudies />
             <Certifications />
+            <CTASection />
             <Footer />
         </div>
     )

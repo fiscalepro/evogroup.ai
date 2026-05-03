@@ -121,6 +121,7 @@ const HeroEvoGroup: React.FC = () => {
                             fontSize: 'inherit',
                             backgroundImage:
                                 'linear-gradient(90deg, #2769E6 0%, #E10A4D 100%)',
+                            textTransform: 'uppercase',
                         }}
                         suppressHydrationWarning
                     >
