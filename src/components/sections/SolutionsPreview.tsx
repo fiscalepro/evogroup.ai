@@ -88,6 +88,20 @@ const SolutionsPreview: React.FC = () => {
             }}>
                 <CardGlow left={133} top={-91} />
 
+                {/* Скриншот — рендерится первым, чтобы текст был поверх */}
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={imgSrc} alt="" aria-hidden style={{
+                    position: 'absolute', left: imgX, top: imgY, width: imgW, height: imgH,
+                    objectFit: 'cover', borderRadius: '22px 22px 0 0',
+                }} />
+                {img2Src && (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img src={img2Src} alt="" aria-hidden style={{
+                        position: 'absolute', left: img2X, top: img2Y, width: img2W, height: img2H,
+                        objectFit: 'cover', borderRadius: '22px 22px 0 0',
+                    }} />
+                )}
+
                 {/* Название продукта */}
                 <span style={{
                     position: 'absolute', left: nameX, top: 20, width: nameW, height: 72,
@@ -108,7 +122,10 @@ const SolutionsPreview: React.FC = () => {
                 </Link>
 
                 {/* Категория + описание */}
-                <div style={{ position: 'absolute', left: leftX, top: leftY, width: 420 }}>
+                <div style={{
+                    position: 'absolute', left: leftX, top: leftY, width: 420,
+                    maxHeight: imgY - leftY, overflow: 'hidden',
+                }}>
                     <p style={{
                         margin: '0 0 14px',
                         fontFamily: 'var(--font-manrope), Manrope, sans-serif',
@@ -119,10 +136,6 @@ const SolutionsPreview: React.FC = () => {
                         fontFamily: 'var(--font-inter), Inter, sans-serif',
                         fontWeight: 400, fontSize: 18, lineHeight: '26px',
                         color: 'rgba(255,255,255,0.75)',
-                        overflow: 'hidden',
-                        display: '-webkit-box',
-                        WebkitLineClamp: 3,
-                        WebkitBoxOrient: 'vertical',
                     }} suppressHydrationWarning>{s.description}</p>
                 </div>
 
@@ -141,21 +154,6 @@ const SolutionsPreview: React.FC = () => {
                         fontWeight: 400, fontSize: 16, color: '#FFFFFF', textAlign: 'center',
                     }} suppressHydrationWarning>{s.metricLabel}</span>
                 </div>
-
-                {/* Скриншот */}
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={imgSrc} alt="" aria-hidden style={{
-                    position: 'absolute', left: imgX, top: imgY, width: imgW, height: imgH,
-                    objectFit: 'cover', borderRadius: '22px 22px 0 0',
-                }} />
-
-                {img2Src && (
-                    // eslint-disable-next-line @next/next/no-img-element
-                    <img src={img2Src} alt="" aria-hidden style={{
-                        position: 'absolute', left: img2X, top: img2Y, width: img2W, height: img2H,
-                        objectFit: 'cover', borderRadius: '22px 22px 0 0',
-                    }} />
-                )}
             </div>
         )
     }

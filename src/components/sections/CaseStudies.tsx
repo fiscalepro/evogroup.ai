@@ -199,16 +199,25 @@ const CaseStudies: React.FC = () => {
                     borderRadius: 48,
                 }} />
                 <p style={{
-                    position: 'absolute', left: 1550, top: 695,
+                    position: 'absolute', left: 1486, top: 490,
+                    margin: 0,
+                    fontFamily: 'var(--font-manrope), Manrope, sans-serif',
+                    fontWeight: 700, fontSize: 99, lineHeight: '88px',
+                    background: 'linear-gradient(91deg, #01318C 0%, #E10A4D 100%)',
+                    WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent',
+                    backgroundClip: 'text',
+                }}>300%+</p>
+                <p style={{
+                    position: 'absolute', left: 1486, top: 610,
                     margin: 0, width: 202,
                     fontFamily: 'var(--font-inter), Inter, sans-serif',
                     fontWeight: 500, fontSize: 32, lineHeight: '24px', color: '#FAFAFF',
                 }}>средний ROI</p>
                 <p style={{
-                    position: 'absolute', left: 1486, top: 920,
+                    position: 'absolute', left: 1486, top: 660,
                     margin: 0, width: 298,
                     fontFamily: 'var(--font-inter), Inter, sans-serif',
-                    fontWeight: 500, fontSize: 24, lineHeight: '32px', color: '#FFFFFF',
+                    fontWeight: 500, fontSize: 24, lineHeight: '32px', color: 'rgba(255,255,255,0.7)',
                 }}>В течение 6–18 месяцев</p>
 
                 {/* Stats decoration (left) */}
