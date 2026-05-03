@@ -265,14 +265,14 @@ const SolutionsPreview: React.FC = () => {
                 {/* ── Ряд 3: ЭДО (x=47) + CCE (x=977), y=1474 ── */}
                 {s[3] && renderHalfCard(s[3], '/solutions/edo', 47, 1474,
                     '/cards-solutions/edo.png',
-                    { nameX: 304, nameW: 301, leftX: 50, leftY: 108, metricX: 678, metricY: 108, imgX: 77, imgY: 233, imgW: 755, imgH: 386 }
+                    { nameX: 304, nameW: 301, leftX: 50, leftY: 108, metricX: 678, metricY: 108, imgX: 77, imgY: 290, imgW: 755, imgH: 329 }
                 )}
                 {s[4] && renderHalfCard(s[4], '/solutions/cce', 977, 1474,
                     '/cards-solutions/cce1.png',
                     {
                         nameX: 277, nameW: 355, leftX: 50, leftY: 108,
                         metricX: 678, metricY: 110,
-                        imgX: 55, imgY: 198, imgW: 798, imgH: 421,
+                        imgX: 55, imgY: 290, imgW: 798, imgH: 329,
                         img2Src: '/cards-solutions/cce2.png',
                         img2X: 50, img2Y: 434, img2W: 164, img2H: 141,
                     }
